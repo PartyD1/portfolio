@@ -2,6 +2,14 @@ import { projects } from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
 
+/** Index 0 is the full-width flagship; the rest fill a two-column grid. */
+function isGradient(i: number) {
+  if (i === 0) return true;
+  const row = Math.floor((i - 1) / 2);
+  const column = (i - 1) % 2;
+  return column === row % 2;
+}
+
 export default function Work() {
   return (
     <section
@@ -25,8 +33,12 @@ export default function Work() {
             delay={i * 50}
             className={project.flagship ? "work__item--flagship" : undefined}
           >
-            {/* The flagship, then every other card, carries the gradient edge. */}
-            <ProjectCard project={project} gradient={i === 0 || i % 2 === 1} />
+            {/*
+              One gradient edge per ROW, alternating sides. Selecting odd
+              indices instead put it on every left-column card, which reads as
+              a stripe down the page rather than a rhythm.
+            */}
+            <ProjectCard project={project} gradient={isGradient(i)} />
           </Reveal>
         ))}
       </div>

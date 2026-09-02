@@ -8,6 +8,8 @@
 export type StackGroup = {
   id: string;
   label: string;
+  /** Short form for the ring itself — the inner arc has little room. */
+  short: string;
   /** Ring tone, drawn from the blob palette. */
   tone: string;
   items: string[];
@@ -17,6 +19,7 @@ export const stack: StackGroup[] = [
   {
     id: "languages",
     label: "Languages",
+    short: "Languages",
     tone: "var(--blob-a-3)",
     items: [
       "Python",
@@ -34,6 +37,7 @@ export const stack: StackGroup[] = [
   {
     id: "frameworks",
     label: "Frameworks & libraries",
+    short: "Frameworks",
     tone: "var(--blob-b-1)",
     items: [
       "FastAPI",
@@ -50,6 +54,7 @@ export const stack: StackGroup[] = [
   {
     id: "tools",
     label: "Developer tools",
+    short: "Tools",
     tone: "var(--blob-a-2)",
     items: [
       "Node.js",

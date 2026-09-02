@@ -1,449 +1,412 @@
 ---
 name: Parth Doshi Portfolio
-description: An editorial, name-led introduction in a tight grotesk on a quiet stone wash, with a rolling "I'm …" line in the hero and projects as flat radius-20 cards in sand, stone, and deep green.
+description: A holographic self-introduction — iridescent blobs, film grain and wide outline caps over a lavender-grey ground.
 colors:
-  ink: "#142e26"
-  ink-2: "#3f5c50"
-  paper: "#efece3"
-  white: "#fbf9f3"
-  cream: "#f3efe4"
-  sand: "#e2d7bb"
-  stone: "#dbd8ce"
-  accent: "#b8641f"
-  wash-a: "#e1e2c6"
-  wash-b: "#d4dcd2"
-  wash-c: "#eadbc9"
-  wash-d: "#e4ded1"
+  # --- Light theme (:root in app/globals.css — normative) ---
+  ground: "#e9e6ee"
+  ink: "#3f3f68"
+  ink-2: "#5f5f82"
+  surface: "#f7f6fa"
+  signal: "#d9705a"
+  signal-ink: "#a8412d"
+  glass: "rgb(255 255 255 / 0.52)"
+  glass-strong: "rgb(255 255 255 / 0.72)"
+  glass-edge: "rgb(255 255 255 / 0.68)"
+  blob-gloss: "rgb(255 255 255 / 0.7)"
+  blob-a-1: "#7fe0b4"
+  blob-a-2: "#6fc4ee"
+  blob-a-3: "#b295ea"
+  blob-b-1: "#f4a97e"
+  blob-b-2: "#eed878"
+  blob-b-3: "#86ddba"
+  blob-c-1: "#b39ceb"
+  blob-c-2: "#ee9dc0"
+  blob-c-3: "#f4b98c"
+  blob-d-1: "#7cc3ee"
+  blob-d-2: "#7ddcb5"
+  blob-d-3: "#ecd77f"
+  # --- Dark theme (.dark in app/globals.css — a second world, not a filter) ---
+  ground-dark: "#191a2e"
+  ink-dark: "#ecebf4"
+  ink-2-dark: "#cbcae2"
+  surface-dark: "#23243d"
+  signal-dark: "#f0a48f"
+  glass-dark: "rgb(255 255 255 / 0.07)"
+  glass-strong-dark: "rgb(255 255 255 / 0.11)"
+  glass-edge-dark: "rgb(255 255 255 / 0.14)"
+  blob-gloss-dark: "rgb(255 255 255 / 0.4)"
+  blob-a-1-dark: "#4fd3a0"
+  blob-a-2-dark: "#4bb4ec"
+  blob-a-3-dark: "#a888ee"
+  blob-b-1-dark: "#f2a273"
+  blob-b-2-dark: "#e8cf6a"
+  blob-b-3-dark: "#63d6ab"
+  blob-c-1-dark: "#a98cee"
+  blob-c-2-dark: "#ee8ab4"
+  blob-c-3-dark: "#f4ad7e"
+  blob-d-1-dark: "#59b6ee"
+  blob-d-2-dark: "#57d3a7"
+  blob-d-3-dark: "#e8d074"
 typography:
   display:
-    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
-    fontSize: "clamp(2.75rem, 7.6vw, 5.5rem)"
-    fontWeight: 800
-    lineHeight: 0.96
-    letterSpacing: "-0.035em"
-    fontVariation: "'wdth' 88"
-  display-contact:
-    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
-    fontSize: "clamp(3rem, 8vw, 6rem)"
-    fontWeight: 800
-    lineHeight: 0.94
-    letterSpacing: "-0.035em"
-    fontVariation: "'wdth' 88"
-  headline:
-    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
-    fontSize: "clamp(2.5rem, 5vw, 4rem)"
-    fontWeight: 800
-    lineHeight: 1
-    letterSpacing: "-0.03em"
-    fontVariation: "'wdth' 90"
-  title:
-    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
-    fontSize: "clamp(1.625rem, 2.4vw, 2.25rem)"
-    fontWeight: 800
-    lineHeight: 1.02
-    letterSpacing: "-0.025em"
-    fontVariation: "'wdth' 90"
-  title-flagship:
-    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
-    fontSize: "clamp(2.25rem, 4vw, 3.5rem)"
-    fontWeight: 800
-    lineHeight: 1.02
-    letterSpacing: "-0.025em"
-    fontVariation: "'wdth' 90"
-  email:
-    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
-    fontSize: "clamp(1.375rem, 3.2vw, 2.25rem)"
+    fontFamily: "Unbounded, 'Trebuchet MS', system-ui, sans-serif"
+    fontSize: "clamp(1.75rem, 5.1vw, 4rem)"
     fontWeight: 700
-    lineHeight: 1.5
-    letterSpacing: "-0.02em"
-  lede:
-    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
-    fontSize: "1.1875rem"
-    fontWeight: 400
-    lineHeight: 1.45
-    letterSpacing: "normal"
+    lineHeight: 1.12
+    letterSpacing: "0.005em"
+  headline:
+    fontFamily: "Unbounded, 'Trebuchet MS', system-ui, sans-serif"
+    fontSize: "clamp(2rem, 4.4vw, 3.25rem)"
+    fontWeight: 700
+    lineHeight: 1.02
+    letterSpacing: "0.015em"
+  title:
+    fontFamily: "Unbounded, 'Trebuchet MS', system-ui, sans-serif"
+    fontSize: "clamp(1.25rem, 1.9vw, 1.625rem)"
+    fontWeight: 700
+    lineHeight: 1.02
+    letterSpacing: "0.01em"
   body:
-    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
-    fontSize: "1.125rem"
+    fontFamily: "'Hanken Grotesk', system-ui, -apple-system, sans-serif"
+    fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.5
-    letterSpacing: "normal"
-  small:
-    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
-    fontSize: "0.9375rem"
-    fontWeight: 400
-    lineHeight: 1.4
-    letterSpacing: "normal"
-  control:
-    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 600
-    lineHeight: 1
     letterSpacing: "normal"
   label:
-    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
-    fontSize: "0.75rem"
-    fontWeight: 600
-    lineHeight: 1.3
-    letterSpacing: "0.14em"
+    fontFamily: "'Hanken Grotesk', system-ui, -apple-system, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 500
+    lineHeight: 1
+    letterSpacing: "0.06em"
+  micro-label:
+    fontFamily: "'Hanken Grotesk', system-ui, -apple-system, sans-serif"
+    fontSize: "0.6875rem"
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: "0.1em"
 rounded:
-  key: "6px"
-  card: "20px"
+  card: "22px"
+  control: "1rem"
   pill: "999px"
-  dot: "50%"
+  focus: "4px"
 spacing:
-  hair: "2px"
-  xxs: "6px"
-  xs: "8px"
-  sm: "12px"
-  md: "16px"
-  grid: "16px"
   gutter: "24px"
-  lg: "28px"
-  xl: "32px"
-  card: "34px"
-  2xl: "48px"
-  section: "72px"
-  section-bottom: "88px"
+  gutter-mobile: "20px"
+  grid-gap: "18px"
+  card-pad: "30px"
+  card-pad-flagship: "40px"
+  section-top: "80px"
+  section-bottom: "96px"
+  column-gap: "48px"
+  shell-pad: "22px 28px"
 components:
-  button-primary:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.white}"
-    typography: "{typography.control}"
-    rounded: "{rounded.pill}"
-    padding: "14px 22px"
-  button-primary-hover:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.white}"
-  button-ghost:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    typography: "{typography.control}"
-    rounded: "{rounded.pill}"
-    padding: "14px 22px"
-  button-ghost-hover:
-    backgroundColor: "color-mix(in oklab, #fbf9f3 55%, transparent)"
-    textColor: "{colors.ink}"
-  role-roll:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    typography: "{typography.display}"
-    padding: "0.12em 0.1em 0.2em 0"
-  role-roll-finale:
-    backgroundColor: "transparent"
-    textColor: "{colors.accent}"
-    typography: "{typography.display}"
-  nav-link:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    typography: "{typography.control}"
-    rounded: "{rounded.pill}"
-    padding: "10px 18px"
-  nav-link-hover:
-    backgroundColor: "color-mix(in oklab, #142e26 8%, transparent)"
-    textColor: "{colors.ink}"
-  nav-link-active:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.white}"
-  card-sand:
-    backgroundColor: "{colors.sand}"
+  card:
+    backgroundColor: "{colors.glass}"
     textColor: "{colors.ink}"
     rounded: "{rounded.card}"
-    padding: "34px"
-  card-stone:
-    backgroundColor: "{colors.stone}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.card}"
-    padding: "34px"
-  card-ink:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.cream}"
-    rounded: "{rounded.card}"
-    padding: "34px"
+    padding: "30px"
+  card-hover:
+    backgroundColor: "{colors.glass-strong}"
   card-flagship:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.cream}"
-    rounded: "{rounded.card}"
-    padding: "48px"
-  card-link:
-    backgroundColor: "transparent"
-    textColor: "inherit"
-    typography: "{typography.control}"
-    rounded: "{rounded.pill}"
-    padding: "10px 16px"
-  card-link-hover:
-    backgroundColor: "color-mix(in oklab, currentColor 12%, transparent)"
-    textColor: "inherit"
-  range-pill:
-    backgroundColor: "color-mix(in oklab, #fbf9f3 70%, transparent)"
+    backgroundColor: "{colors.glass}"
     textColor: "{colors.ink}"
-    typography: "{typography.small}"
+    rounded: "{rounded.card}"
+    padding: "40px"
+  badge-outline:
+    textColor: "{colors.ink}"
     rounded: "{rounded.pill}"
-    padding: "10px 14px"
+    padding: "2px 8px"
+    height: "20px"
+  badge-secondary:
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    padding: "2px 8px"
+    height: "20px"
+  link-arrow:
+    textColor: "{colors.ink}"
+    typography: "{typography.body}"
+    padding: "8px 4px"
+  link-arrow-hover:
+    textColor: "{colors.signal-ink}"
+  link-arrow-pending:
+    textColor: "{colors.ink-2}"
+  contact-email:
+    textColor: "{colors.ink}"
+    typography: "{typography.display}"
+  orbit-label:
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    padding: "3px 9px"
+  orbit-ring-label:
+    textColor: "{colors.ink}"
+    typography: "{typography.micro-label}"
+    rounded: "{rounded.pill}"
+    padding: "4px 12px"
+  icon-button:
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    size: "40px"
+  scroll-ring:
+    backgroundColor: "{colors.glass-strong}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    size: "44px"
   status-dot:
-    backgroundColor: "{colors.accent}"
-    rounded: "{rounded.dot}"
-    size: "10px"
+    backgroundColor: "{colors.signal}"
+    rounded: "{rounded.pill}"
+    size: "9px"
 ---
 
 # Design System: Parth Doshi Portfolio
 
-<!-- Recorded from the built homepage (app/globals.css, app/layout.tsx, components/*.tsx, data/projects.ts) on 2026-09-01, after the "Editorial grotesk" refinement; hero re-recorded the same day after the rolling-phrase change (components/Hero.tsx, components/RoleRoll.tsx, captures in .impeccable/review/). The build is ground truth; where it departs from the pinned references or the direction contract, the build wins and the departure is noted. Light theme only. Replaces the earlier "Sunlit Greeting" record (Gabarito, pastel cards, sparkles, blob), which the user rejected as too bubbly. -->
-
 ## Overview
 
-**Creative North Star: "The Editorial Grotesk"**
+**Creative North Star: "The Holographic Introduction"**
 
-The site is a confident self-introduction set like a magazine opener, left-aligned on the grid: a two-line display headline in a tight, narrowed grotesk (Archivo at 800 weight, width axis pulled to 88), one near-black-green ink, standing on a quiet stone-colored page over four slowly drifting desaturated wash blobs. The first line says "Hey, I'm Parth."; the second says "I'm" and then a predicate that types itself in once and rolls through six phrases, the last of them in burnt ochre. Nothing else decorates. There are no sparkles, no gradient blob, no grain, no illustration. The only other ornament is structural: a floating pill nav, a pulsing burnt-ochre dot beside "Open to opportunities", and a thick ochre underline under the email. The register is adult and editorial; the type carries the personality, and the palette stays out of its way.
+A person who is several things at once, introducing himself on a sheet of iridescent film. The ground is a cool lavender-grey with four soft gradient blobs pushed hard into the corners and a real film-grain tile over everything; the centre of the viewport stays calm so wide display capitals can sit on it without fighting colour. The page's whole argument is made twice — once by the words, once by the material: the blobs are three-stop gradients on four different axes, so nothing repeats, and the frosted cards that float over them borrow their colour rather than adding a new one.
 
-Density is generous but not soft. Sections breathe at 72px/88px, the hero owns the first viewport, and project cards are flat radius-20 slabs in three materials: sand, stone, and the ink itself (deep green with cream text). Every row of the work grid holds exactly one deep-green card, so the grid reads as a deliberate rhythm rather than a color rotation. Cards carry a name, one sentence, a geometric mark, and a tagged foot; only the flagship gets a description. The About column caps at 62ch.
+Density is low and deliberate. One 1140px column, generous vertical air (80px in, 96px out per section), an 18px grid gap, and long unbroken measures (40–46ch on ledes, 60ch on About). The register is adult and editorial, never bubbly: no sparkles, no candy pastels, no 40px pillow corners, no glossy mascot shapes. Colour lives in the ground; the foreground is ink, glass and one coral.
 
-Color does three jobs and no more. The deep green is the sole voice for text, the primary button, the active nav pill, and one card per row. Sand and stone are the two quiet card materials. Burnt ochre is the single accent, spent on the hero's final phrase, the status dot, the email underline, and the text-selection tint, and nowhere else. The build refuses the dark-terminal developer portfolio, the sterile résumé page, and its own candy-pastel first pass.
+Two complete themes ship. Dark is not an inverted filter — it is a second token set with a deep indigo ground, a second full set of blob stops mixed brighter, and the blobs held to 62% opacity so body text still survives over them. Every visual decision is expressed as a custom property in `app/globals.css`, which is the normative source for both.
 
 **Key Characteristics:**
-- One typeface (Archivo, variable with the `wdth` axis) at four jobs: 800 narrowed display, 700 for the email and inline emphasis, 600 controls and labels, 400 body.
-- One ink (`ink`) for all text and primary surfaces; a softened ink (`ink-2`) for secondary prose on the page ground; cream (`cream`) for text on ink cards.
-- Three card materials (sand, stone, ink), with one ink card per row of the work grid.
-- One accent (`accent`, burnt ochre) used in exactly four places, one of them the hero's closing phrase.
-- Pills at 999px, cards at 20px, key hints at 6px; nothing larger than 20px on a container.
-- One authored motion moment: the hero's rolling phrase (typed once, then rolled through a clipped line box). Everything else is ambient (wash drift, status pulse), entrance (rise, reveal), or hover, all eased-out on `cubic-bezier(0.16, 1, 0.3, 1)`, and all of it disables or simplifies under `prefers-reduced-motion`.
-- Light theme only (`color-scheme: light`); the page never inverts.
+
+- Iridescent gradient blobs in all four corners, calm ground in the middle
+- Wide uppercase display capitals with an outline-and-fill contrast device
+- Frosted glass surfaces whose blur is legibility, not decoration
+- Exactly one accent colour, split into a shape token and a text token
+- A real 128px grain raster, not an SVG filter
+- Flat by construction: edges and blur convey depth, never shadows
+- Two full themes, both first-class
 
 ## Colors
 
-A stone page under a desaturated olive-sage-peach wash, one deep green ink, two quiet card materials, and one burnt-ochre accent.
+A cool lavender-grey world with slate-indigo ink, a mint→sky→lilac→apricot iridescent range reserved for the ground, and a single coral that appears only as a signal.
 
 ### Primary
-- **Deep Green Ink** (`ink`, #142e26): Every heading, every body paragraph on sand and stone cards, the primary button fill, the active nav pill, the focus ring, the caret, the scrollbar thumb, the email underline on hover, the `currentColor` of every SVG mark on a light card, and the surface of every `card--ink` card. It is both the text color and the darkest material. The rolling phrase's typing caret is `currentColor`, so it is ink too.
-- **Softened Ink** (`ink-2`, #3f5c50): Secondary prose on the page ground only: hero subline, section ledes, About body, contact lede, footer. Never used on a card.
 
-### Secondary (the accent)
-- **Burnt Ochre** (`accent`, #b8641f): The single accent. The hero's finale phrase ("obsessed with AI.", via `.roll__item--accent`; the "I'm" before it stays ink), the status dot (and its pulse ring at 50% alpha), the resting email underline (4px), and the text-selection background (mixed 32% into `paper`). Used nowhere else; its rarity is the point.
+- **Coral Signal** (`{colors.signal}`): The one accent. Reserved for the status dot, the scroll-ring fill, the email underline, the focus ring, the caret and the selection tint. It measures 2.65:1 on the light ground — correct as a mark, unusable as text.
+- **Burnt Coral Ink** (`{colors.signal-ink}`): The text-only sibling of the accent (4.92:1 on the light ground). Carries the finale phrase "obsessed with AI." and the arrow-link hover colour. In dark it is aliased straight to `{colors.signal-dark}`, which already clears contrast on the deep ground.
 
-### Tertiary (card materials)
-- **Sand** (`sand`, #e2d7bb): The warm light card material; ink text.
-- **Stone** (`stone`, #dbd8ce): The cool light card material; ink text.
-- **Ink card** (`ink` as surface): The deep-green card material; `cream` text and cream marks. One per row.
+### Secondary
+
+The iridescent blob range — twelve stops in light, twelve in dark, three per blob, each blob on its own gradient axis. These are ground material and accent-edge material only; they never become a text colour or a card fill.
+
+- **Blob A — Mint / Sky / Lilac** (`{colors.blob-a-1}` → `{colors.blob-a-3}`): top-left, axis 8% 0% → 92% 100%.
+- **Blob B — Apricot / Butter / Jade** (`{colors.blob-b-1}` → `{colors.blob-b-3}`): top-right, axis 100% 10% → 0% 90%.
+- **Blob C — Lilac / Rose / Peach** (`{colors.blob-c-1}` → `{colors.blob-c-3}`): bottom-left, axis 0% 20% → 100% 80%.
+- **Blob D — Sky / Mint / Butter** (`{colors.blob-d-1}` → `{colors.blob-d-3}`): bottom-right, axis 20% 100% → 80% 0%.
+- **Specular Gloss** (`{colors.blob-gloss}` → transparent): a radial highlight at 34% / 28%, r 46%, clipped to each blob so it reads as an inflated object rather than a flat shape. It is a radial gradient on purpose — same look as a blurred spot, no filter pass.
+
+Three of these stops are re-used as the Stack orbit's ring tones (`data/stack.ts`): lilac `--blob-a-3` for Languages, apricot `--blob-b-1` for Frameworks, sky `--blob-a-2` for Tools.
 
 ### Neutral
-- **Stone Paper** (`paper`, #efece3): The page ground and the `.wash` base. Also the fallback `--card` value when no `card--*` modifier is set.
-- **Warm White** (`white`, #fbf9f3): Text on ink surfaces (primary button, active nav), the nav shell (at 84% over blur), and the translucent hover and chip fills built with `color-mix()`.
-- **Cream** (`cream`, #f3efe4): Text and mark color on ink cards (`--card-fg`). Slightly warmer than `white` so cream-on-green reads as paper, not as a screen.
-- **Wash Olive / Sage / Peach / Warm Gray** (`wash-a` #e1e2c6, `wash-b` #d4dcd2, `wash-c` #eadbc9, `wash-d` #e4ded1): The four radial blobs of the fixed background wash (top-left, top-right, bottom-right, bottom-left). All four sit within a few points of `paper` in lightness; the wash is a tint, not a gradient statement. Never used as fills elsewhere.
+
+- **Lavender Grey Ground** (`{colors.ground}` / `{colors.ground-dark}`): the page. Painted on `body` and on the fixed wash behind everything.
+- **Slate Indigo Ink** (`{colors.ink}` / `{colors.ink-dark}`): all primary text, all icon strokes, the monogram, the outline stroke. 4.94:1 on the light ground, 5.52:1 over glass.
+- **Muted Indigo** (`{colors.ink-2}` / `{colors.ink-2-dark}`): every lede, tagline, note, footer line and the pending state. Chosen to clear 4.5:1 rather than sit just under it; the dark value runs brighter than a conventional muted tone because it has to survive sitting over a lit blob.
+- **Near-White Surface** (`{colors.surface}` / `{colors.surface-dark}`): the shadcn `--card` / `--popover` / `--sidebar` slot. Opaque surfaces are rare in this world — the frosted glass tokens do the work instead.
+- **Frosted Glass** (`{colors.glass}`, `{colors.glass-strong}`, `{colors.glass-edge}` and their `-dark` twins): every floating surface. Rest fill, hover fill, and the 1px edge that declares elevation.
 
 ### Named Rules
-**The One Ink Rule.** All text is `ink`, `ink-2`, or (on an ink card) `cream`; there is no gray, no colored text, and no third light color. On a sand or stone card, text is always full `ink`. The one exception is the hero's finale phrase, which is the accent doing its job, not a fourth text color.
 
-**The One Green Per Row Rule.** The work grid's `tone` values in `data/projects.ts` are set so each two-column row holds exactly one `ink` card and one `sand` or `stone` card, and the ink card alternates sides row to row (right, left, right). The full-width flagship is ink. Adding a project means choosing its tone to keep this pattern, not picking a favorite.
+**The Two Corals Rule.** `--signal` draws shapes; `--signal-ink` writes words. Never swap them. The light accent fails text contrast (2.65:1) and the dark ground makes a second value unnecessary, which is exactly why the split is a token and not a judgement call.
 
-**The One Accent Rule.** `accent` appears on the hero's finale phrase, the status dot, the email underline, and the selection tint. It is never a button, a heading of its own, a border, or a card; in the hero it colors exactly one rolling phrase, never the "I'm" or the name line. A fifth use needs a reason the first four do not already serve.
+**The One Accent Rule.** Coral appears in six places and no more: the finale phrase, the status dot and its pulse, the email underline, the scroll-ring fill, the focus outline, and the caret/selection tint. Anything else that wants colour takes it from the blob range instead.
 
-**The Translucent Fill Rule.** Hover and chip fills are never new colors; they are `color-mix(in oklab, var(--white) N%, transparent)` (55%, 70%), `color-mix(in oklab, var(--ink) 8%, transparent)`, or, on cards, `color-mix(in oklab, var(--card-fg) 12%, transparent)`, so they tint whatever surface they sit on and work on both light and ink cards.
+**The Calm Centre Rule.** Iridescence lives in the four corners at negative offsets; the middle band of every viewport stays ground. Type is never composited over a gradient peak, which is what lets 4.9:1 ink hold on a coloured page.
+
+**The Ground-Only Iridescence Rule.** Blob colours are for the wash, the card gradient edge, and the orbit ring tones. They never become body text, a card background, or a button fill.
 
 ## Typography
 
-**Display Font:** Archivo (variable, `wdth` axis loaded, via `next/font/google` as `--font-archivo`; fallback `system-ui, -apple-system, sans-serif`)
-**Body Font:** Archivo (same family)
-**Label Font:** Archivo at 600, tracked caps
+**Display Font:** Unbounded (`--font-display`, via `next/font/google`), falling back to Trebuchet MS, system-ui, sans-serif
+**Body Font:** Hanken Grotesk (`--font-body`, via `next/font/google`), falling back to system-ui, -apple-system, sans-serif
+**Label/Mono Font:** none — micro-labels are Hanken Grotesk, uppercase, tracked out
 
-**Character:** One grotesk doing every job, with the width axis as the second dial. Headings are pulled narrow (`font-variation-settings: "wdth" 90`; the two largest displays go to 88) at 800 with tight negative tracking, which gives them an editorial density a plain bold could not. At 400 and full width it is a clean, slightly technical reader. The hierarchy is made with weight, size, and width, never with a second family.
+**Character:** Unbounded is a wide, geometric, high-contrast display face; set in capitals with positive tracking it gives the page its poster voice. Hanken Grotesk underneath is quiet, humanist and highly legible at 17px, so the display face never has to carry a paragraph.
 
 ### Hierarchy
-- **Display** (800, `clamp(2.75rem, 7.6vw, 5.5rem)`, 0.96, -0.035em, `wdth` 88): The hero headline only. Two `.hero__line` blocks: "Hey, I'm Parth." and "I'm" plus the rolling phrase. The 5.5rem cap is set so the longest phrase ("I'm a computer scientist.") holds one line on a desktop viewport; the title sets `text-wrap: initial` (no balancing) so the rolling line box is never re-wrapped.
-- **Display, contact** (800, `clamp(3rem, 8vw, 6rem)`, 0.94, -0.035em, `wdth` 88): The "Let's talk." closer. Same voice as the hero, slower viewport ramp and a slightly larger cap.
-- **Headline** (800, `clamp(2.5rem, 5vw, 4rem)`, 1, -0.03em, `wdth` 90): Section titles (Work, About).
-- **Title** (800, `clamp(1.625rem, 2.4vw, 2.25rem)`, 1.02, -0.025em, `wdth` 90): Project card names. Fixed 1.5rem under 760px.
-- **Title, flagship** (800, `clamp(2.25rem, 4vw, 3.5rem)`, 1.02, -0.025em, `wdth` 90): The Operations Agent card name.
-- **Email** (700, `clamp(1.375rem, 3.2vw, 2.25rem)`, -0.02em): The contact email link; underlined 4px in `accent`, offset 10px. The one 700-weight display element.
-- **Lede** (400, 1.1875rem, 1.45, `ink-2`): Section ledes (max 44ch) and About body (max 62ch, line-height 1.55; inline `<strong>` is 700 in full `ink`). The hero subline is the same role on a viewport ramp: `clamp(1.125rem, 1.4vw, 1.375rem)`, max 54ch; 1.0625rem under 720px. Contact lede is 1.25rem, max 40ch.
-- **Body** (400, 1.125rem, 1.5): The `body` default and the card tagline (1.45, max 42ch; 1.0625rem under 760px). Flagship tagline steps up to `clamp(1.25rem, 1.6vw, 1.5rem)` at max 30ch; its description stays body-size at max 52ch.
-- **Control** (600, 1rem, 1): Buttons, nav links, and card links. Nav links drop to 0.9375rem under 640px.
-- **Small** (0.9375rem): Status line (600), card note (400, 1.4), range pills (600), footer (400, `ink-2`; its link 600 `ink`).
-- **Label** (600, 0.75rem, 0.14em, uppercase, 1.3): Card labels in the card foot, right-aligned, in the card's foreground color. The only uppercase text in the system.
-- **Key hint** (600, 0.6875rem, 1): The nav's keyboard-shortcut badge.
+
+- **Display** (700, `clamp(1.75rem, 5.1vw, 4rem)`, line-height 1.12, tracking 0.005em, uppercase): the hero headline only. Drops to `clamp(1.25rem, 5.9vw, 1.875rem)` / line-height 1.18 under 720px.
+- **Headline** (700, `clamp(2rem, 4.4vw, 3.25rem)`, line-height 1.02, tracking 0.015em, uppercase): section titles — WORK, STACK, ABOUT. Contact overrides to `clamp(2.25rem, 6.5vw, 4.5rem)`; the menu's section links run `clamp(1.75rem, 5vw, 2.5rem)`.
+- **Title** (700, `clamp(1.25rem, 1.9vw, 1.625rem)`, tracking 0.01em, uppercase): project card names. The flagship card scales up to `clamp(1.625rem, 3vw, 2.5rem)`.
+- **Body** (400, 1.0625rem / 17px, line-height 1.5): every paragraph. Measures are capped — 46ch on the hero subline, 42ch on section ledes, 40ch on card taglines and the contact lede, 52ch on the flagship description, 60ch on About (which runs line-height 1.6).
+- **Label** (500, 0.875rem, tracking 0.06em, uppercase): the status line. Card notes and the footer use the same size at normal tracking, sentence case.
+- **Micro-label** (700, 0.6875rem, tracking 0.1em, uppercase): the orbit's three ring labels. A third micro step — 600 / 0.75rem / tracking 0.08em, uppercase — carries the menu keycaps and the "coming soon" pending flag.
+
+### The outline-and-fill device
+
+`.type-outline` is the signature. It renders **solid ink by default**, then — inside `@supports (-webkit-text-stroke: 1px currentColor)` — switches to `color: transparent` with `-webkit-text-stroke: 0.03em var(--ink)` at `font-weight: 400`. The declaration order is the point: a browser without text-stroke keeps readable solid type instead of invisible text.
+
+The light weight is not a style choice. Unbounded's heavy weights are drawn with self-overlapping contours, so stroking at 700 exposes the construction lines inside H, E, Y and M. At 400 there are no overlaps to reveal, and the slightly heavier 0.03em stroke keeps the outline reading at display size. Under 720px the stroke floors at `max(1.1px, 0.03em)`, because 0.03em is sub-pixel at phone display sizes.
 
 ### Named Rules
-**The Width-Axis Display Rule.** Every heading carries `font-variation-settings: "wdth" 90`; the hero and contact displays go to 88. A heading at default width (100) is off-system. Body and controls stay at default width; the narrowing is reserved for 800-weight type.
 
-**The Weight-Not-Family Rule.** Hierarchy is made with weight (800 / 700 / 600 / 400), size, and width, never with a second typeface, italics, or color changes beyond `ink` / `ink-2` / `cream` (and the accent on the hero's finale phrase).
+**The Outline-Lead Rule.** Only the lead-in words are outlined — "HEY, I'M" and the standalone "I'M". The subject is always filled. Outline is a contrast device between the greeting and the person, never a decoration applied to a whole heading.
 
-**The Tracked-Caps-Only-In-The-Foot Rule.** Uppercase tracked text appears in exactly one place: the project card's foot label, right-aligned. It is a tag, never an eyebrow or kicker above a heading.
+**The Never-Stroke-Bold Rule.** Outlined type runs at weight 400 inside the `@supports` guard, and the solid fallback runs at 700. Raising the outline weight to match the fill re-introduces the self-overlap artefacts the guard exists to avoid.
 
-**The Measured Prose Rule.** Every paragraph carries a `max-width` in `ch` (30, 40, 42, 44, 52, 54, 62) and `text-wrap: pretty`; headings carry `text-wrap: balance`, except the hero title, which opts out (`text-wrap: initial`) so its rolling second line keeps a fixed line box.
-
-**The Longest-Phrase Cap Rule.** The hero display's upper clamp bound is the size at which the longest rolling phrase still fits one line at 1200px. Adding a longer phrase means lowering the cap, not letting the line wrap on desktop.
+**The Uppercase Display Rule.** `h1`, `h2` and `h3` are uppercase Unbounded at 700 with positive tracking (0.015em base). Body copy is never uppercase; only the three micro-label steps are, and they always carry ≥0.06em tracking to stay legible.
 
 ## Layout
 
-**Container.** Sections are centered at `max-width: 1200px` with 24px horizontal gutters and `padding: 72px 24px 88px`; `scroll-margin-top: 72px` clears the fixed nav on anchor jumps. The Work section tightens its top to 28px so the flagship card sits close under the hero. Contact is a section with `padding-top: 120px; padding-bottom: 140px`, centered text; its lede sits 24px under the title, the email 28px under the lede, the link pair 40px under the email.
+One centred column. `.section` is `max-width: 1140px`, `margin: 0 auto`, `padding: 80px 24px 96px`, with `scroll-margin-top: 84px` so anchor jumps clear the fixed header. Under 760px the padding drops to `64px 20px 72px` and section heads stack from a space-between row to a left-aligned column with a 12px gap.
 
-**Hero.** Left-aligned on the same 1200px container as the sections (`max-width: 1200px; margin: 0 auto`): a CSS grid with `align-content: center`, `justify-content: start`, `justify-items: start`, `text-align: left`, `min-height: min(100svh, 640px)`, `padding: 140px 24px 32px` (116px top under 720px), `overflow: clip`. The headline, subline, CTA pair (`justify-content: flex-start`), and status line all sit on the left gutter; the right half of the viewport is empty wash. Internal rhythm: subline `margin-top: 28px`, actions 32px, status 22px. There are no decorations in the hero; the wash is the only thing behind the type.
+The hero is its own grid: `min-height: min(100svh, 720px)`, `align-content: center`, `justify-items: center`, `text-align: center`, `padding: 150px 24px 56px`, `overflow: clip`. Its column is declared `grid-template-columns: minmax(0, 1fr)` — not left implicit — so children have a width to shrink against and the rolling headline can never overflow the viewport. Under 720px it becomes `118px 20px 48px` / `min(100svh, 620px)`.
 
-**Section head.** Flex row, `align-items: flex-end`, `justify-content: space-between`, `gap: 32px`, `margin-bottom: 24px`; title left, lede right. Stacks to a column with 14px gap under 760px.
+Work is a two-column grid (`repeat(2, minmax(0, 1fr))`, 18px gap) with the flagship spanning `1 / -1`; it collapses to one column at 760px. About is `minmax(0, 1fr) minmax(0, 1.5fr)` with a 48px gap, collapsing to one column with a 20px gap at 760px. Contact is centred with 96px/128px vertical padding.
 
-**Work grid.** Two equal columns (`repeat(2, minmax(0, 1fr))`) with a 16px gap; the flagship spans both (`grid-column: 1 / -1`). One column under 760px.
+The header is fixed with `pointer-events: none` and re-enabled on its children, so it never blocks the page underneath; padding `22px 28px`, dropping to `16px 18px` at 640px. The scroll ring sits fixed at 28px from the bottom-right corner, 18px at 640px.
 
-**Card internals.** A standard card is a grid of `minmax(0, 1fr) minmax(0, 40%)` columns and `auto 1fr auto` rows, `column-gap: 24px`, `row-gap: 14px`, `padding: 34px`: head (row 1, col 1), tagline (row 2, col 1), art (col 2, rows 1–2, `aspect-ratio: 1`, `align-self: center`), foot spanning both columns in row 3 with `padding-top: 18px`. Under 760px the art column narrows to 36%, column-gap 16px, padding 26px. The flagship is `minmax(0, 1.15fr) minmax(0, 1fr)`, `column-gap: 32px`, `min-height: 440px`, `padding: 48px`, `align-items: center`, body as a flex column with 14px gap, art at `aspect-ratio: 4 / 3`; under 760px it becomes one column with the art below (max 360px, centered) and 30px padding.
-
-**About.** Two columns `minmax(0, 1fr) minmax(0, 1.4fr)` with 48px gap, title left, prose right; body paragraphs stack with 20px gap; the range pill list follows with 8px top margin and 8px wrap gap. One column with 24px gap under 760px.
-
-**Nav.** Fixed at `top: 16px`, horizontally centered by `left: 50%; transform: translateX(-50%)`, `z-index: 10`; 12px from the top under 640px.
-
-**Wash.** A `position: fixed; inset: 0; z-index: -1` layer on `paper`, holding four 80vmax radial blobs (`closest-side`, fading to transparent at 64%) anchored off-canvas at each corner (a: top -34vmax / left -26vmax; b: top -20vmax / right -30vmax; c: bottom -40vmax / right -10vmax; d: bottom -30vmax / left -20vmax), so the gradient is viewport-locked and content scrolls over it.
-
-**Breakpoints.** Three, all `max-width`: **720px** (hero padding, subline size; the hero's "I'm " lead hides and the rolling slot becomes a block that wraps, carrying "I'm " itself), **760px** (section head stack, work grid to one column, card padding and art column, card name and tagline sizes, flagship stacks, About stacks), **640px** (nav top and padding shrink, key hints hide).
-
-**Spacing rhythm.** Values in use, smallest to largest: 2 (nav item gap), 6 (nav shell padding), 8 (icon/pill gaps), 10 (status and button icon gaps), 12 (action gaps), 14 (card row gap), 16 (grid gap, foot gap), 18 (foot top padding), 20 (About paragraph gap), 22, 24 (gutter, card column gap, head margin, contact lede), 28, 32, 34 (card padding), 40, 48 (flagship padding, About gap), 72/88 (section), 120/140 (contact). The base step is 4px; card and section values are deliberately off-grid (34, 22, 18) and should be reused as-is rather than rounded.
+Breakpoints in use: **640px** (shell and scroll-ring insets), **720px** (hero type, blob sizing and drift, outline stroke floor), **760px** (grid collapses, section padding, orbit mobile mode).
 
 ### Named Rules
-**The Peek Rule.** The Work section's 28px top padding exists so the deep-green flagship card's top edge shows above the fold on desktop. Keep the first card within reach of the hero.
 
-**The Left-Gutter Rule.** The hero and every section start on the same 24px left gutter of the 1200px container; only Contact and the footer center. A centered hero is the previous pass, not the system.
+**The 1140 Rule.** Content lives in a 1140px column with a 24px gutter (20px under 760px). The only full-bleed layers are the fixed wash and the fixed header.
+
+**The Fixed-Ground Rule.** The wash is `position: fixed; inset: 0; z-index: -1`, `aria-hidden`, and `pointer-events: none`. It scrolls with nothing and intercepts nothing.
+
+**The Portrait-vmax Rule.** Blobs are sized in `vmax` on desktop (40–46vmax) but in `vw` under 720px (76–84vw), because on a phone `vmax` is the viewport *height* — which makes the blobs full-bleed and swallows the body copy.
 
 ## Elevation & Depth
 
-Depth is tonal first, shadow second. Surfaces are flat slabs on a stone ground, and the strongest depth cue on the page is material contrast: the ink card against sand and stone. The only ambient shadows are soft, large-blur, negative-spread green-tinted casts that appear on the floating nav, the primary button, and cards on hover. All shadows are built from one RGB triple token, `--shadow-ink: 20 46 38` (the ink color), so they read as the ink's own tint rather than gray.
+There are no shadows in this system. Not "few" — none. Depth comes from three stacked materials: the fixed blob wash at `z-index: -1`, the grain tile over it, and frosted glass surfaces above with `backdrop-filter: blur(22px) saturate(1.35)` (28px / 1.3 on the menu sheet, 12px on the scroll ring). Elevation is declared exactly once per surface, as a 1px `--glass-edge` border. Hover adds a 3px lift and swaps `--glass` for `--glass-strong`; it never adds a shadow.
+
+The grain is a real raster: `public/textures/grain.png`, 128×128, 8-bit grayscale, tiled at `background-size: 128px 128px`, `mix-blend-mode: multiply` at 0.055 opacity in light and `screen` at 0.05 in dark. It is generated by `scripts/make-grain.mjs` (`node scripts/make-grain.mjs public/textures/grain.png`) from a seeded mulberry32 PRNG (seed `20260901`), averaging three samples per pixel so it reads as film grain rather than salt-and-pepper. Same seed, same bytes — the asset is reproducible and carries its provenance in the generator.
 
 ### Shadow Vocabulary
-- **Nav float** (`box-shadow: 0 10px 30px -14px rgb(var(--shadow-ink) / 0.35)`): The fixed pill nav, at rest.
-- **Primary button rest** (`box-shadow: 0 12px 26px -14px rgb(var(--shadow-ink) / 0.6)`): The ink-filled CTA.
-- **Primary button hover** (`box-shadow: 0 18px 30px -14px rgb(var(--shadow-ink) / 0.65)`): Paired with `translateY(-2px)`.
-- **Card hover** (`box-shadow: 0 26px 40px -26px rgb(var(--shadow-ink) / 0.45)`): Paired with `translateY(-3px)`. Cards have no shadow at rest.
-- **Status pulse** (`box-shadow: 0 0 0 0 → 0 0 0 10px rgb(184 100 31 / 0.5 → 0)`): Not a depth shadow; an expanding ochre ring.
 
-**Glass.** The nav is the one translucent material: `color-mix(in oklab, var(--white) 84%, transparent)` over `backdrop-filter: blur(14px)`.
+None. Do not add one.
 
 ### Named Rules
-**The Ink-Tinted Shadow Rule.** Every shadow uses `rgb(var(--shadow-ink) / alpha)`, never neutral black. Negative spread (-14px, -26px) keeps the cast beneath the element, not around it.
 
-**The Flat-At-Rest Card Rule.** Cards carry no shadow or border at rest; they are distinguished by material alone. Shadow is a hover response only.
+**The Edge-Not-Shadow Rule.** A surface declares its elevation once, as an edge. A 1px border *under* a soft drop shadow is the ghost-card look this world refuses.
+
+**The Blur-Is-Legibility Rule.** Any surface that floats over the wash must carry `backdrop-filter: blur() saturate()`. The blur is what keeps text readable over a saturated blob; it is a functional requirement, not a finish.
+
+**The Held-Back-Blob Rule.** In dark, `.wash__blob` runs at `opacity: 0.62`. The blobs are far brighter than the deep indigo ground, and body text has to survive over them.
 
 ## Shapes
 
-The form language is rounded but restrained. Controls (buttons, nav shell, nav links, card links, range pills, and the focus rings on those) are pills (`999px`). Cards are slabs at `--radius-card: 20px` (with `overflow: hidden`); this is the largest container radius in the system. The nav key hint is the one small-radius element (`6px`, 1.5px `currentColor` border at 78% opacity). The status dot is a 10px circle. The rolling phrase's caret is a hard-edged bar (0.07em × 0.8em, no radius). The wash blobs are 50% circles but read only as a tint. There is no organic blob shape and no star shape anywhere.
+Four radii, and nothing else. **22px** (`--radius-card`) for every glass card — soft, but nowhere near the pillow corners the register rejects. **999px** for pills: badges, orbit labels, ring labels, the pending flag, the icon buttons, the scroll ring, the status dot. **1rem** (shadcn `--radius`) for scaffold controls, with the derived `--radius-sm/md/lg/xl/2xl/3xl/4xl` ramp at 0.6×–2.6×. **4px** on the focus ring.
 
-Borders are rare: the ghost button's `2px solid color-mix(in oklab, var(--ink) 30%, transparent)` (solid ink on hover) and the key hint's 1.5px are the only ones. Nothing uses a 1px hairline.
+The recurring silhouettes are the circle and the blob. The circle appears as the scroll ring, the status dot, the orbit's three tracks and its label pills, and the dot-grid menu trigger (nine 1.7r circles on a 4/12/20 lattice, drawn as SVG rather than set as a glyph). The blob appears only in the wash, from four frozen SVG paths in `components/Blob.tsx` — generated once by a seeded Catmull-Rom through jittered radial points, then pasted in. Nothing is computed at runtime.
 
-Project art follows one grammar: inline SVG in a 120-unit square (320×240 for the flagship), `stroke: currentColor`, `stroke-width: 2.5` (3 for emphasis), round caps and joins, `rx: 5` on 18–19px cells, `rx: 6–15` on larger rects, filled shapes at `opacity 0.3–0.65` for "secondary" state and dashed strokes (`6 8`, `5 6`, `4 6`) for "pending/ghost" state. Checkmarks inside filled cells are stroked in `var(--card)` so they cut through to the card material. The art container takes `color: var(--card-fg)`, so the same mark is ink on sand or stone and cream on an ink card; it sits at `opacity: 0.9` (0.85 on the flagship).
+Borders are hairlines: 1px on cards and orbit labels, 1.5px on orbit tracks, ring labels and menu keycaps, 2px on the card gradient edge and the hero wave, 2–3px on icon strokes.
+
+Icons are authored, not imported: `components/Icon.tsx` exports ArrowRight, ArrowDown and ArrowUpRight on a 20×20 viewBox at `stroke-width: 2.25`, round caps and joins, `currentColor`, `fill: none`. The theme toggle's sun and moon and the monogram match that construction (2, 2.4 stroke). Project marks in `components/Artifact.tsx` are the same language at 2.5 stroke on a 320×240 viewBox: geometric diagrams, never illustration.
 
 ### Named Rules
-**The Twenty-Not-Forty Rule.** Containers round at 20px, controls at 999px, and nothing in between. A 40px card corner is the rejected first pass; a square corner is off-world. New containers reuse `--radius-card`.
 
-**The Geometry-Not-Illustration Rule.** Card art is stroked/filled vector geometry in the card's foreground color, never a raster, screenshot, gradient, or illustration. A new project needs a new mark added to `components/Artifact.tsx` following the `stroke` preset and registered in the `marks` map by slug.
+**The One Radius Family Rule.** 22px card, 999px pill, 1rem control, 4px focus. A new value needs a new reason.
+
+**The Drawn-Not-Set Rule.** Every mark on this page is authored SVG in `currentColor` — the monogram, the dot grid, the arrows, the sun and moon, the seven project marks. No icon fonts, no glyph characters standing in for icons, no raster illustration.
 
 ## Components
 
-### Rolling phrase (`.roll`, `components/RoleRoll.tsx`)
-The hero's signature and the page's one authored motion moment: the predicate of "I'm …" types itself in once, then rolls through six phrases in the display type, ending on the accent.
-- **Copy:** Phrases are everything after "I'm", article and period included, declared in `components/Hero.tsx`: `a developer.` / `a researcher.` / `a computer scientist.` / `an athlete.` / `a mentor.` / `obsessed with AI.` The last is the finale (`accent: true`, `hold: 4200`). The h1 reads "Hey, I'm Parth." on line one and "I'm " (`.hero__lead`) plus the slot on line two (`.hero__line--roll`).
-- **Slot:** `display: inline-grid`, `vertical-align: baseline`, every phrase stacked in `grid-area: 1 / 1` (`white-space: nowrap`, `visibility: hidden` unless `.is-active`), so the slot reserves the longest phrase's width and height and the line never reflows between phrases. `overflow: clip` with `padding: 0.12em 0.1em 0.2em 0` and the matching negative margins (`-0.12em -0.1em -0.2em 0`) so descenders and the period's overhang are not cut while the layout footprint stays exact. `cursor: default`.
-- **Type:** Inherits the display (800, `wdth` 88, -0.035em, 0.96). The finale item is `.roll__item--accent`, `color: var(--accent)`; the "I'm" before it stays ink.
-- **Caret** (`.roll__caret`): a solid `0.07em × 0.8em` bar in `currentColor`, `margin-left: 0.08em`, `vertical-align: -0.04em`, rendered inside the first phrase only while typing. It is steady during typing and blinks only in the caret phase (`blink 1s steps(2, jump-none) infinite`, i.e. a hard on/off), then disappears when rolling begins.
-- **States** (`data-phase`): **typing**: after a 320ms start delay, the first phrase appears one character every 45ms plus up to 22ms of jitter, behind the steady caret. **caret**: the full first phrase holds for 700ms with the caret blinking. **rolling**: the caret is gone; each phrase holds 2400ms (the finale 4200ms) plus a 650ms roll allowance, then the leaving item runs `roll-out` (0.4s `--ease-out`, opacity gone by 40%, ending at `translateY(-0.85em)`) while the entering item runs `roll-in` (0.55s `--ease-out`, 0.1s delay, from `translateY(0.7em)` and opacity 0). **paused**: pointer hover on the slot, or `document.hidden`, holds the current phrase (the timer re-polls every 400ms); click advances immediately when rolling. **reduced**: under `prefers-reduced-motion: reduce` there is no typing, no caret, and no roll; phrases swap in place every 3600ms (the leaving item is only ever visible inside the `no-preference` query).
-- **Server render:** the first phrase renders in full without JS; the client resets it to empty on hydration (unless reduced) so the type-in starts from nothing.
-- **Accessibility:** the whole slot and the "I'm " lead are `aria-hidden`; the h1 carries the full sentence ("I'm a developer, a researcher, a computer scientist, an athlete, a mentor — and obsessed with AI.") in a `.visually-hidden` span, so the accessible name and the tab title never move.
-- **Mobile (≤720px):** `.hero__lead` is hidden, the slot becomes `display: grid` at `max-width: 100%`, items wrap (`white-space: normal`) and each carries its own "I'm " via `::before`, so a long phrase takes two lines ("I'm a computer / scientist.") instead of overflowing.
-- **Entrance:** the second hero line rises with `animation-delay: 0.3s`, so the typing begins after the line has settled.
+### Cards (project cards)
 
-### Buttons (`.btn`)
-Firm, quiet, pill-shaped; the only ink-filled control on the page.
-- **Shape:** Pill (`999px`), `padding: 14px 22px`, `inline-flex` with 10px gap, 600 / 1rem / line-height 1.
-- **Primary** (`.btn--primary`): `ink` fill, `white` text, rest shadow `0 12px 26px -14px`. Hover: `translateY(-2px)` and the deeper shadow. Used once on the page (hero "Get in touch"); it is the mailto.
-- **Ghost** (`.btn--ghost`): transparent, `ink` text, `2px` border at 30% ink. Hover: border to solid ink, fill `color-mix(white 55%)`. Used for GitHub (hero, no icon) and GitHub / LinkedIn (contact, with icon).
-- **Icon:** A 1em stroked arrow (`ArrowRight` in the hero, `ArrowUpRight` for external links; `stroke-width 2.25`, round caps). On hover the icon slides `translateX(3px)`.
-- **Transitions:** transform and box-shadow 0.45s, background and border-color 0.3s, all on `--ease-out`.
-- **Focus:** the global 3px ink outline at 4px offset, rounded to a pill.
+Frosted panes floating over the wash. Character: quiet, wide, and lit only at their edge.
 
-### Status line (`.status`)
-A small live signal, not an eyebrow. `inline-flex`, 10px gap, 600 / 0.9375rem, `ink`, `margin-top: 22px` under the CTA pair. The dot is 10px, `accent`, and pulses a 10px ochre ring every 2.6s (`ease-out`, infinite) when motion is allowed.
+- **Corner Style:** 22px (`{rounded.card}`)
+- **Background:** `{colors.glass}` at rest, `{colors.glass-strong}` on hover
+- **Border:** 1px `{colors.glass-edge}`; on hover it mixes 40% signal into the edge
+- **Shadow Strategy:** none — see Elevation & Depth
+- **Internal Padding:** 30px (24px under 760px); the flagship runs 40px (26px under 760px)
+- **Layout:** `minmax(0, 1fr) minmax(0, 38%)` with the mark in column 2 spanning rows 1–2 and a footer spanning both columns. The flagship is `minmax(0, 1.15fr) minmax(0, 1fr)`, `min-height: 400px`, mark in a 4/3 box; under 760px it stacks and the mark centres at `max-width: 320px`.
+- **Hover:** `translateY(-3px)` plus the background/border swap, all at 200ms `--ease-out`; the mark inside drifts `translate(-3px, -3px)`. Every hover rule sits behind `@media (hover: hover) and (pointer: fine)`.
+- **Gradient edge:** one card per row carries `.card--gradient` — a 2px `linear-gradient(120deg, --blob-c-1, --blob-b-1, --blob-a-2)` painted into a `::before` and masked with `mask-composite: exclude` so only the border shows. Selection is by **row/column parity**, not odd index: `column === row % 2` (`components/Work.tsx`). Odd-index selection put it on every left-column card, which reads as a stripe down the page rather than a rhythm.
 
-### Pill nav (`.nav`)
-A floating frosted capsule with keyboard hints.
-- **Shell:** fixed, centered, `padding: 6px`, 2px item gap, `white` at 84% over `blur(14px)`, nav-float shadow.
-- **Link:** pill, `padding: 10px 18px`, 600 / 1rem, ink; hover fills `ink` at 8%; the section currently in view (`aria-current="location"`, set by an IntersectionObserver with `rootMargin: -35% 0px -55% 0px`) inverts to `ink` fill / `white` text. Transitions 0.35s.
-- **Key hint** (`.nav__key`): a 6px-radius badge showing the digit that scrolls to that section (`1`, `2`, `3`; global keydown, ignored inside inputs and with modifiers). Hidden under 640px.
-- **Mobile:** `top: 12px`, links `9px 14px` at 0.9375rem.
+*To add a project:* append to `data/projects.ts` (`slug`, `name`, `label`, `tagline`, optional `href`/`description`/`note`, `flagship`). Add its mark to `components/Artifact.tsx` under the same slug. The gradient parity recalculates itself.
 
-### Section head (`.section__head`)
-Headline left, `ink-2` lede right, bottom-aligned, 24px below to content. Stacks under 760px. About uses `.about__grid` instead (title left column, prose right).
+### Badges
 
-### Project card (`.card`)
-A flat slab in one of three materials holding a name, one sentence, a geometric mark, and a tagged foot.
-- **Corner Style:** `20px` (`--radius-card`), `overflow: hidden`.
-- **Material:** `card--sand`, `card--stone`, or `card--ink`, set via two custom properties: `--card` (surface) and `--card-fg` (text and mark color; `ink` on light materials, `cream` on ink). Every text element inside the card reads `var(--card-fg)`, so a card never needs per-element color overrides.
-- **Shadow Strategy:** none at rest; card-hover shadow with `translateY(-3px)` over 0.55s. On hover the art nudges `translate(-3px, -3px)` over 0.7s (no rotation).
-- **Border:** none.
-- **Internal Padding:** `34px` (26px under 760px); flagship `48px` (30px under 760px).
-- **Foot** (`.card__foot`): flex, space-between, bottom-aligned, `padding-top: 18px`. Left: the GitHub card link, or the confidential note (`.card__note`, 0.9375rem) when there is no repo. Right: the tracked-caps label.
-- **Card link** (`.card__link`): a 600-weight "GitHub ↗" with a negative-margin pill hit area (`padding: 10px 16px; margin: -10px -16px`) that fills `color-mix(var(--card-fg) 12%)` on hover; icon slides `translate(2px, -2px)`.
-- **Flagship** (`.card--flagship`): spans the grid, body/art side by side at 1.15fr/1fr, larger name and tagline, an extra description paragraph, art at 4:3. Only the flagship has a description; it is always `ink`.
-- **Entry:** wrapped in `Reveal` with `delay = index * 70ms`.
-- **Adding a project:** append to `data/projects.ts` with a `tone` that keeps one `ink` card per row (see The One Green Per Row Rule) and a factual `label`; add a `currentColor` mark to `components/Artifact.tsx` and register it in `marks` under the same slug.
+shadcn `Badge`, themed by the project's tokens. `outline` carries the factual card label bottom-right (border `--border`, text `--foreground`); `secondary` carries the About range chips (`--secondary` fill = 8% ink in the ground, 12% in dark). Both are 20px tall, `rounded-4xl`, `text-xs`, 500 weight, 2px/8px padding.
 
-### Range pills (`.about__range li`)
-Non-interactive chips listing areas of work: pill, `padding: 10px 14px`, 600 / 0.9375rem, `ink` on `white` at 70%. No hover state; they are labels, not filters.
+### Links
 
-### Contact email (`.contact__email`)
-The page's largest link: 700 weight, `clamp(1.375rem, 3.2vw, 2.25rem)`, -0.02em, `ink`, underlined `4px` in `accent` at `10px` offset; underline turns `ink` on hover (0.3s). `word-break: break-all` so it never overflows on narrow screens.
+- **Arrow link** (`.link-arrow`): the page's primary action shape — an authored arrow, then a lowercase sentence-case label at 17px/500. Icon leads on in-page navigation (`see my work`), trails on outbound (`GitHub ↗`). Hover moves the arrow 4px and turns the text `{colors.signal-ink}`; `:active` scales to 0.97.
+- **Pending state** (`.link-arrow.is-pending`): a designed state, not a stopgap. Text drops to `--ink-2`, cursor stays `default`, hover is explicitly suppressed, and a `.pending-note` pill spells out "coming soon". It is inert to pointer, keyboard and screen reader alike (`aria-disabled`). Gated by `resume.ready` in `data/site.ts`.
+- **Contact email**: display face, `clamp(1rem, 2.6vw, 1.75rem)` at 600, underlined with a 3px coral rule at 10px offset. Hover swaps the underline to ink — the text colour never moves.
+- **Card link** (`.card__link`): 15px/600 in a pill hit area created with negative margins (`padding: 8px 14px; margin: -8px -14px`), so the tap target is generous without changing layout.
 
-### Footer (`.footer`)
-Centered, `padding: 32px 24px 40px`, 0.9375rem `ink-2`; the "Back to the top" link is 600 `ink` with the global 2px underline at 0.2em offset.
+### Navigation
 
-### Reveal (`components/Reveal.tsx`)
-A one-shot scroll entrance. Elements render visible on the server; on mount, only elements below the viewport (and only when `prefers-reduced-motion` is not `reduce`) are set to `data-reveal="pending"` (`opacity: 0; translateY(28px)`), then to `"in"` at 12% intersection, transitioning opacity and transform over 0.9s `--ease-out` with an optional `transitionDelay`.
+There is no persistent nav. The fixed shell carries the monogram (44px, 38px at 640px) on the left and two 40px pill icon buttons on the right: the theme toggle and a dot-grid menu trigger. Both fill with 10% ink on hover and scale to 0.97 on press.
 
-### Utilities
-- **`.visually-hidden`:** the standard clip pattern (`position: absolute; width/height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0`). Used to give the hero's animated line a static accessible twin; use it whenever decorative or animated text is `aria-hidden`.
+The menu is a shadcn/Radix `Sheet` from the right, styled `.menu`: 86% ground with `blur(28px) saturate(1.3)`, a 1px `--glass-edge` left border, 48px/40px padding. Links are display-face uppercase `clamp(1.75rem, 5vw, 2.5rem)` with a bordered keycap on the right (1/2/3/4). Each link rises in on open at 420ms with a `calc(var(--i) * 40ms + 80ms)` stagger. The 1/2/3/4 keyboard shortcuts are global (`components/Shell.tsx`) and always scroll with `behavior: "auto"` — keyboard-initiated jumps never animate.
 
-### Motion grammar
-All timing uses `--ease-out: cubic-bezier(0.16, 1, 0.3, 1)` unless noted; everything below is gated behind `@media (prefers-reduced-motion: no-preference)` or the matching JS check, so reduced-motion users see a static, fully visible page (the wash blobs simply hold their resting positions, and the rolling phrase swaps in place instead of typing or rolling).
-- **Hero rise:** `rise` keyframe (`opacity 0, translateY(28px)` → rest), 1.1s, `both`, on each `.hero__line`, `.hero__sub`, `.hero__actions`, and `.status`. Stagger: line 1 at 0s, line 2 (`.hero__line--roll`) at 0.3s, subline 0.2s, actions 0.3s, status 0.38s.
-- **Rolling phrase:** the one authored moment. Type-in at 45ms/char (+0–22ms jitter) after a 320ms start delay; caret blink `1s steps(2, jump-none)` for a 700ms hold; then per phrase a 2400ms hold (finale 4200ms) plus 650ms for the roll: `roll-out` 0.4s (opacity 0 by 40%, `translateY(-0.85em)`) and `roll-in` 0.55s with 0.1s delay (from `translateY(0.7em)`, opacity 0). Reduced motion: in-place swap every 3600ms.
-- **Wash drift:** each blob translates 8–12vmax on `ease-in-out infinite alternate` at 28s / 34s / 31s / 37s (a, b, c, d), so the ground never repeats visibly.
-- **Status pulse:** 2.6s `ease-out infinite` expanding ochre ring.
-- **Card reveal:** 0.9s rise, 70ms per-card stagger.
-- **Hover lift:** buttons -2px / 0.45s, cards -3px / 0.55s, art nudge 0.7s, icons 3px / 0.45s, nav and link fills 0.3–0.35s.
-- **Scroll:** `scroll-behavior: smooth` on `html`; key-hint navigation uses `scrollIntoView({ behavior: "smooth" })`.
+### Signature Component: the rolling headline
 
-### Named Rules
-**The One Moving Line Rule.** The hero's rolling phrase is the only text on the page that types, cycles, or loops. Every other motion is ambient (wash, pulse), an entrance (rise, reveal), or a hover response. A second animated headline, ticker, or typewriter anywhere else is off-system.
+The hero's memorable moment. `"HEY, I'M"` in outline plus `PARTH DOSHI` filled over a two-pass sine wave; below it a standalone outlined `"I'M"` and a slot that types out the first phrase, then rolls through six self-descriptions and lands on "obsessed with AI." in `{colors.signal-ink}`.
 
-### Browser surface
-- **Selection:** `color-mix(in oklab, var(--accent) 32%, var(--paper))` background, `ink` text.
-- **Caret:** `ink`.
-- **Scrollbar:** `scrollbar-color: var(--ink) transparent`.
-- **Focus ring:** `3px solid ink`, `outline-offset: 4px`; pill-rounded on `.btn`, `.nav__link`, `.card__link`.
-- **Links:** inherit color, `text-underline-offset: 0.2em`, `text-decoration-thickness: 2px`.
-- **Color scheme:** `color-scheme: light` on `:root`. No dark tokens exist.
+The structural rule: **the lead sits outside the slot.** `.roll` is an `inline-grid` with `justify-items: center`, all phrases stacked in `1 / 1`, so the slot is a constant width (the longest phrase) and only the space around a short phrase changes. Putting "I'm" inside re-centred the whole line on every swap and slid the anchor word across the viewport.
+
+Timing (`components/RoleRoll.tsx`): 320ms start delay after `document.fonts.ready`, 45ms per character with 22ms jitter, 700ms caret hold, 2400ms per phrase (4200ms on the finale, 3200ms under reduced motion). Enter is 360ms `--ease-out` from `translateY(0.7em)` + `blur(3px)`; exit is 200ms to `translateY(-0.85em)` — faster than the entrance, and the blur is what makes two words read as one morph. The caret is solid while typing and blinks with `steps(2, jump-none)` only on the hold. Before hydration `[data-pretype]` holds the glyphs at `color: transparent` with a 1.6s CSS reveal, so the box never reflows and the phrase still appears if JS never arrives. The whole element is `aria-hidden`; the `h1` carries the full sentence for assistive tech.
+
+*To change the phrases:* edit the `phrases` array in `components/Hero.tsx`. Each entry owns its article and its period; `accent: true` marks the finale, `hold` overrides the dwell.
+
+### Signature Component: the Stack orbit
+
+Three concentric rings running inner → outer as languages → frameworks → tools, sourced from `data/stack.ts`. The orbit box is `--orbit: min(620px, 88vw)`; ring radii are `0.175`, `0.305` and `0.415` of that. Each ring draws a 1.5px track at 92% of its tone, names itself in a pill just *outside* its track (`translateY(calc(var(--r) * -1 - 22px))`), and distributes its items across `360° - 44°` — the gap the ring's own label occupies. Item pills are placed by rotating out to the radius and un-rotating themselves, so the type stays upright at every angle.
+
+It is **deliberately static**. The page already has one authored motion moment and ambient blob drift; a third continuous rotation would compete with both and make 29 labels harder to read.
+
+On a phone the orbit keeps its form and scrolls horizontally inside `.orbit-scroll` (`justify-content: safe center`, edges masked 28px, scrollbar hidden), centred on mount and resize by `components/OrbitScroller.tsx`, with a "Swipe the diagram" hint below. Collapsing it into stacked runs would ship the one shape this section exists to avoid. The rings are `aria-hidden`; a visually-hidden list carries the real content.
+
+*To add a tool:* add the string to the right group's `items` array in `data/stack.ts`. Angles redistribute automatically. A fourth group would need a fourth `.orbit__ring--4` radius and a tone from the blob range.
+
+### Signature Component: the scroll ring
+
+The reference's circled dot made functional. A 44px glass pill fixed bottom-right, holding a 36-viewBox SVG rotated −90°: a 22%-ink track, a coral progress arc driven by `stroke-dashoffset` on a `2πr` dasharray, and a solid ink dot at the centre. It fades in past 40% of a viewport of scroll and takes `tabIndex={-1}` while hidden. Visibility is a discrete property, so it transitions with `visibility 0s linear 250ms` on the way out and `transition-delay: 0s` on the way in. Clicking scrolls to top — smoothly, unless the user prefers reduced motion.
+
+### Motion
+
+The motion system is bound to the `emil-design-eng` framework and is not negotiable per-component.
+
+- **Easings:** `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)` for almost everything; `--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1)`; `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)` for the sheet. The built-in keywords are too weak, and `ease-in` is banned.
+- **Durations:** 160ms press, 200ms colour/background/hover, 250ms scroll-ring fade, 360ms roll enter / 200ms roll exit, 420ms menu link rise, 450ms reveal, 600ms hero rise.
+- **Transitions, not keyframes,** for anything interruptible — a transition retargets from wherever it is; a keyframe restarts from zero. Keyframes are reserved for the ambient loops (blob drift, dot pulse, caret blink) and one-shot entrances.
+- **Press feedback:** every pressable element carries `:active { transform: scale(0.97) }` (0.98 on the large menu links).
+- **Hover behind capability:** every hover rule sits inside `@media (hover: hover) and (pointer: fine)`.
+- **Exits are faster than entrances.** The roll leaves in 200ms and enters in 360ms.
+- **Staggers stay 30–80ms** per step (hero 60/120/180/240ms, cards 50ms, menu links 40ms). Longer reads as the page being slow.
+- **Reduced motion:** `scroll-behavior: smooth` is gated behind `prefers-reduced-motion: no-preference`; blob drift, the roll's translate/blur, the dot pulse, the toggle's icon rotation, the hero rise and the Reveal all disappear. Typing survives — it is not spatial motion — and only slows. Keyboard-initiated jumps are always instant regardless of preference.
+- **Off-screen and hidden work is paused:** the roll checks `document.hidden`, an IntersectionObserver and pointer hover before advancing; the scroll ring reads progress inside a single rAF on a passive listener.
+- **Theme switching:** `disableTransitionOnChange` on the provider, so flipping themes doesn't animate every transitioned property at once.
+- **Ambient drift:** four blobs on 34s / 41s / 37s / 45s `ease-in-out infinite alternate` loops, each translating 5–7vmax and rotating 7–11°. Disabled outright under 720px — four animated blobs is not a mobile budget — and under reduced motion.
+
+### shadcn/ui
+
+shadcn is installed with **this world as its theme, not the reverse**. `app/globals.css` bridges every shadcn slot to a project token in both `:root` and `.dark` (`--background: var(--ground)`, `--foreground: var(--ink)`, `--ring: var(--signal)`, charts 1–4 to blob stops, chart 5 to the signal). Radix is the interaction base. Components actually in use: **Badge** (outline and secondary), **Sheet** (the menu). **Button** is present as scaffold, used only for the sheet's close control. `--accent` belongs to shadcn; the project's accent is `--signal`.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** set every text element in `ink` (#142e26) or `ink-2` (#3f5c50) on the page ground, and read `var(--card-fg)` inside a card so it resolves to `ink` on sand/stone and `cream` on ink.
-- **Do** make every new control a `999px` pill and every new container a `20px` slab; reuse `--radius-card`.
-- **Do** narrow every heading with `font-variation-settings: "wdth" 90` (88 for the two largest displays) at weight 800 with negative tracking; keep body and controls at default width.
-- **Do** start the hero and every section on the same 24px left gutter of the 1200px container; keep the hero's headline, subline, CTAs, and status left-aligned.
-- **Do** keep the work grid at one `ink` card per row, alternating sides, with `sand` and `stone` as the partner materials; set a new project's `tone` in `data/projects.ts` to preserve that, and give it a `currentColor` SVG mark in `components/Artifact.tsx`.
-- **Do** build hover and chip fills with `color-mix(in oklab, var(--white) N%, transparent)` at 55 / 70%, `var(--ink)` at 8%, or `var(--card-fg)` at 12% on cards, rather than introducing a new flat color.
-- **Do** tint every shadow with `rgb(var(--shadow-ink) / alpha)` and a negative spread; keep cards shadowless at rest.
-- **Do** gate every animation behind `prefers-reduced-motion: no-preference` (CSS) or a `matchMedia` check (JS), and run it on `--ease-out`.
-- **Do** give any `aria-hidden` animated or decorative text a static `.visually-hidden` twin so the accessible name never moves, as the hero does.
-- **Do** keep the hero display's upper clamp bound at the size where the longest rolling phrase still fits one desktop line; edit the phrase list in `components/Hero.tsx` and the cap together.
-- **Do** cap prose with a `ch` max-width and `text-wrap: pretty`; balance headings (the hero title is the one deliberate exception).
-- **Do** use the same three breakpoints (720px hero, 760px grid/cards/sections, 640px nav) for new surfaces.
-- **Do** keep the page light-only; `color-scheme: light` is a brand commitment, not a default.
+
+- **Do** put every new colour through the token layer in `app/globals.css`, and define it in **both** `:root` and `.dark`. A value that only exists in one theme is a bug.
+- **Do** use `--signal` for marks and `--signal-ink` for text (The Two Corals Rule).
+- **Do** give any surface that floats over the wash a `backdrop-filter: blur() saturate()` and a 1px `--glass-edge` border.
+- **Do** keep new sections inside `.section` (1140px / 24px gutter / 80px–96px vertical) and give them an `id` plus `aria-labelledby`, so the menu and the 1/2/3/4 shortcuts can reach them.
+- **Do** wrap below-the-fold content in `<Reveal>` and stagger siblings at 50ms.
+- **Do** author new icons as SVG in `currentColor` at the established stroke weights (2.25 for UI arrows, 2.5 for project marks), round caps and joins.
+- **Do** put every hover rule behind `@media (hover: hover) and (pointer: fine)` and give every pressable a `:active { scale(0.97) }`.
+- **Do** regenerate the grain with `node scripts/make-grain.mjs public/textures/grain.png` rather than hand-editing the PNG; the seed is the provenance.
+- **Do** cap measures — 40–46ch for ledes and taglines, 60ch for long-form body.
+- **Do** keep the outline device on lead-in words only, at weight 400 inside the `@supports` guard.
 
 ### Don't:
-- **Don't** add a dark mode, a `prefers-color-scheme: dark` block, or dark-surface variants; the ink card is the only dark surface and it lives inside the light page.
-- **Don't** bring back the first pass: no candy pastels (lavender, mint, butter, peach), no sparkles, no gradient blob, no 40px corners, no rounded or "friendly" display face. The register is adult and editorial.
-- **Don't** center the hero; the centered opener is the previous pass.
-- **Don't** add grain, noise, `feTurbulence`, or texture overlays; the ground is the desaturated live wash.
-- **Don't** introduce a second typeface, italics, or colored text; hierarchy is weight (800 / 700 / 600 / 400), size, and width in Archivo.
-- **Don't** put tracked-caps text above a heading as an eyebrow or kicker; uppercase lives only in the card foot label.
-- **Don't** use `accent` for anything but the hero's finale phrase, the status dot, the email underline, and the selection tint; it is the sole accent, and in the hero it never touches the name line or the "I'm".
-- **Don't** add a second typing, cycling, or looping text effect anywhere on the page; the hero's rolling phrase is the one authored motion moment.
-- **Don't** let a rolling phrase wrap on desktop or overflow on a phone; phrases are short predicates that fit the slot, and the ≤720px wrap-with-own-"I'm" treatment is the only multi-line case.
-- **Don't** put two `ink` cards in the same row, or a row with none; the rhythm is the point.
-- **Don't** use neutral black or gray shadows, 1px hairline borders, or square corners.
-- **Don't** replace card art with screenshots, rasters, gradients, or illustrations; draw geometry in `currentColor` so it takes the card's foreground.
-- **Don't** fabricate labels: card labels are factual tags from `data/projects.ts` (`Internship · Summer 2026`, `In use by DECA competitors`), not status badges.
+
+- **Don't** add a `box-shadow`. This system has none; elevation is an edge over blur (The Edge-Not-Shadow Rule).
+- **Don't** paint blob colours onto text, card fills or buttons. They are ground, gradient edge and orbit tone only.
+- **Don't** stroke display type at 700 — Unbounded's heavy contours self-overlap and the stroke exposes the construction lines.
+- **Don't** size the blobs in `vmax` below 720px; portrait `vmax` is the viewport height and the blobs swallow the copy.
+- **Don't** animate anything interruptible with a keyframe. Use a transition so it can retarget mid-flight.
+- **Don't** let a stagger exceed 80ms per step, or an exit run longer than its entrance.
+- **Don't** animate a keyboard-initiated scroll, and don't put `scroll-behavior: smooth` outside the reduced-motion guard.
+- **Don't** rotate the Stack orbit or add a fourth continuous ambient motion; two (the roll, the blob drift) is the budget.
+- **Don't** collapse the orbit into a stacked list on mobile — it scrolls instead.
+- **Don't** ship a dead link. An unavailable action takes the designed pending state (`.is-pending` plus a `.pending-note` pill), inert to pointer, keyboard and screen reader.
+- **Don't** introduce a fifth radius, a second accent, or a new display face.
+- **Don't** override shadcn's `--accent` expecting the page accent; that slot belongs to shadcn, ours is `--signal`.

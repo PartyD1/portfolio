@@ -1,6 +1,3 @@
-/** Card material. One `ink` (deep green) card per row; the rest sand/stone. */
-export type Tone = "ink" | "sand" | "stone";
-
 export type Project = {
   slug: string;
   name: string;
@@ -10,7 +7,6 @@ export type Project = {
   description?: string;
   href?: string;
   note?: string;
-  tone: Tone;
   flagship?: boolean;
 };
 
@@ -23,7 +19,6 @@ export const projects: Project[] = [
     description:
       "Built with a partner for the operations team. It manages bookings, autonomously flags the ones that need attention, and works on fixing them — so the team spends its time on the exceptions, not the queue.",
     note: "Internal to the company, so there's no public repo.",
-    tone: "ink",
     flagship: true,
   },
   {
@@ -33,7 +28,6 @@ export const projects: Project[] = [
     tagline:
       "An AI, rubric-based evaluator for DECA reports — high-school competitors use it to get feedback on their written work.",
     href: "https://github.com/PartyD1/scorely-ai",
-    tone: "sand",
   },
   {
     slug: "santaclaws",
@@ -42,7 +36,6 @@ export const projects: Project[] = [
     tagline:
       "OpenClaw agents that find small businesses with a missing or outdated website, then autonomously build them a mockup.",
     href: "https://github.com/PartyD1/santaclaws",
-    tone: "ink",
   },
   {
     slug: "wave-function-collapse",
@@ -51,7 +44,6 @@ export const projects: Project[] = [
     tagline:
       "A tile-based map generator in Phaser and JavaScript, assembling every map from adjacency rules one cell at a time.",
     href: "https://github.com/PartyD1/wave-function",
-    tone: "ink",
   },
   {
     slug: "pewter-platformer",
@@ -60,7 +52,6 @@ export const projects: Project[] = [
     tagline:
       "Better movement physics, plus tools that let an LLM understand them well enough to design levels that are hard but still playable.",
     href: "https://github.com/PartyD1/Pewter-The-Platformer",
-    tone: "stone",
   },
   {
     slug: "gestura",
@@ -69,7 +60,6 @@ export const projects: Project[] = [
     tagline:
       "A browser music player controlled entirely by hand shapes and movement, built for people with motor impairments.",
     href: "https://github.com/PartyD1/gestura",
-    tone: "sand",
   },
   {
     slug: "wordplay",
@@ -77,7 +67,6 @@ export const projects: Project[] = [
     label: "Full stack",
     tagline: "A Wordle recreation with full statistics and game history.",
     href: "https://github.com/PartyD1/wordplay",
-    tone: "ink",
   },
 ];
 

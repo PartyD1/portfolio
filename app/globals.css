@@ -12,25 +12,30 @@
 
   --ground: #e9e6ee;
   --ink: #3f3f68;
-  --ink-2: #6f6f92;
+  /* 4.94:1 on the ground, 5.52:1 over glass — carries every lede, tagline and
+   * body run, so it has to clear the 4.5:1 floor rather than sit just under. */
+  --ink-2: #5f5f82;
   --white: #f7f6fa;
   /* Our one accent. shadcn owns --accent, so ours is --signal. */
   --signal: #d9705a;
+  /* The accent is 2.65:1 on the ground — fine as a dot, ring or underline,
+   * unusable as text. Text uses this darker sibling (4.92:1). */
+  --signal-ink: #a8412d;
 
   /* Iridescent blobs: three stops each, on their own axis. */
-  --blob-a-1: #b9ecd0;
-  --blob-a-2: #a6d9f2;
-  --blob-a-3: #cbb9ef;
-  --blob-b-1: #f8c9ac;
-  --blob-b-2: #f4e6a6;
-  --blob-b-3: #bdead4;
-  --blob-c-1: #cbbcef;
-  --blob-c-2: #f4bcd2;
-  --blob-c-3: #f9d2b4;
-  --blob-d-1: #aed9f4;
-  --blob-d-2: #aee8cd;
-  --blob-d-3: #f2e5aa;
-  --blob-gloss: rgb(255 255 255 / 0.62);
+  --blob-a-1: #7fe0b4;
+  --blob-a-2: #6fc4ee;
+  --blob-a-3: #b295ea;
+  --blob-b-1: #f4a97e;
+  --blob-b-2: #eed878;
+  --blob-b-3: #86ddba;
+  --blob-c-1: #b39ceb;
+  --blob-c-2: #ee9dc0;
+  --blob-c-3: #f4b98c;
+  --blob-d-1: #7cc3ee;
+  --blob-d-2: #7ddcb5;
+  --blob-d-3: #ecd77f;
+  --blob-gloss: rgb(255 255 255 / 0.7);
   --blob-gloss-out: rgb(255 255 255 / 0);
 
   /* Frosted glass: the cards sit over the blobs, so blur is legibility. */
@@ -42,7 +47,6 @@
   --grain-blend: multiply;
 
   --radius-card: 22px;
-  --shadow-ink: 63 63 104;
 
   /* Motion (emil-design-eng): built-in easings are too weak; ease-in is banned. */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -100,6 +104,8 @@
   --ink-2: #cbcae2;
   --white: #23243d;
   --signal: #f0a48f;
+  /* On the deep ground the accent already clears contrast as text. */
+  --signal-ink: var(--signal);
 
   --blob-a-1: #4fd3a0;
   --blob-a-2: #4bb4ec;
@@ -123,7 +129,6 @@
   --grain-opacity: 0.05;
   --grain-blend: screen;
 
-  --shadow-ink: 0 0 0;
 
   --background: var(--ground);
   --foreground: var(--ink);
@@ -155,8 +160,15 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scrollbar-color: color-mix(in oklab, var(--ink) 45%, transparent) transparent;
+}
+
+/* Smooth scrolling is motion: it belongs behind the preference, not on html
+ * unconditionally. Keyboard-initiated jumps stay instant regardless. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -228,10 +240,17 @@ svg {
   color: var(--ink);
 }
 
+/*
+ * Unbounded's heavy weights are drawn with self-overlapping contours, so
+ * stroking them at 700 exposes the construction lines inside H, E, Y and M.
+ * A light weight has no overlaps to reveal, and a slightly heavier stroke
+ * keeps the outline reading at display size.
+ */
 @supports (-webkit-text-stroke: 1px currentColor) {
   .type-outline {
     color: transparent;
-    -webkit-text-stroke: 0.022em var(--ink);
+    font-weight: 400;
+    -webkit-text-stroke: 0.03em var(--ink);
   }
 }
 
@@ -548,12 +567,6 @@ svg {
   transform: scale(0.98);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .menu__link:hover {
-    color: var(--signal);
-  }
-}
-
 .menu__key {
   font-family: var(--font-body-stack);
   font-size: 0.75rem;
@@ -612,13 +625,15 @@ svg {
   visibility: hidden;
   transition:
     opacity 250ms var(--ease-out),
-    visibility 250ms,
+    /* discrete: hold visible until the fade finishes, then flip */
+      visibility 0s linear 250ms,
     transform 160ms var(--ease-out);
 }
 
 .scroll-ring[data-visible="true"] {
   opacity: 1;
   visibility: visible;
+  transition-delay: 0s;
 }
 
 .scroll-ring:active {
@@ -665,7 +680,11 @@ svg {
   position: relative;
   min-height: min(100svh, 720px);
   display: grid;
-  place-content: center;
+  /* An explicit minmax(0, 1fr) column: `place-content: center` left the column
+   * max-content-sized, so `max-width: 100%` on the children measured against
+   * their own content and the headline could overflow the viewport. */
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
   justify-items: center;
   text-align: center;
   padding: 150px 24px 56px;
@@ -673,6 +692,10 @@ svg {
 }
 
 .hero__title {
+  /* The hero centres its grid items rather than stretching them, so without
+   * this the h1 sizes to max-content and nothing inside it has a width to
+   * shrink against — the rolling slot then overflows the viewport. */
+  max-width: 100%;
   font-size: clamp(1.75rem, 5.1vw, 4rem);
   line-height: 1.12;
   letter-spacing: 0.005em;
@@ -742,8 +765,9 @@ svg {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .link-arrow:hover {
-    color: var(--signal);
+  .link-arrow:hover,
+  .menu__link:hover {
+    color: var(--signal-ink);
   }
   .link-arrow:hover .icon {
     transform: translateX(4px);
@@ -789,10 +813,29 @@ svg {
     font-size: clamp(1.25rem, 5.9vw, 1.875rem);
     line-height: 1.18;
   }
+  /*
+   * Keep the lead and the phrase on one row: as a plain inline sibling of a
+   * full-width slot, "I'm" was orphaned onto a line of its own.
+   */
+  .hero__line--roll {
+    display: flex;
+    /* nowrap on purpose: wrapping pushed the whole slot to its own line
+     * instead of letting it shrink, which is what orphaned "I'm". */
+    flex-wrap: nowrap;
+    align-items: baseline;
+    justify-content: center;
+    column-gap: 0.26em;
+  }
+  .roll {
+    min-width: 0;
+  }
+  /* 0.03em is sub-pixel at phone display sizes; hold a visible floor. */
+  .type-outline {
+    -webkit-text-stroke-width: max(1.1px, 0.03em);
+  }
   /* The longest phrase cannot fit one phone line, so let it wrap rather than
    * be clipped by the hero's overflow. */
   .roll {
-    display: grid;
     max-width: 100%;
   }
   .roll__item {
@@ -834,6 +877,12 @@ svg {
    ========================================================================== */
 .roll {
   display: inline-grid;
+  /*
+   * The slot is a constant width (the longest phrase), so the lead beside it
+   * never moves and the line as a whole stays centred. Each phrase centres
+   * within the slot: the anchor is pinned, the axis holds, and only the space
+   * around a short phrase changes.
+   */
   justify-items: center;
   vertical-align: baseline;
   overflow: clip;
@@ -861,19 +910,7 @@ svg {
 }
 
 .roll__item--accent {
-  color: var(--signal);
-}
-
-/* The finale's lead keeps the outline treatment, in the accent. */
-.roll__item--accent .roll__lead {
-  color: var(--signal);
-}
-
-@supports (-webkit-text-stroke: 1px currentColor) {
-  .roll__item--accent .roll__lead {
-    color: transparent;
-    -webkit-text-stroke-color: var(--signal);
-  }
+  color: var(--signal-ink);
 }
 
 /* Until the client takes over, the glyphs are held back but the box is not,
@@ -1261,9 +1298,25 @@ svg {
 /* ==========================================================================
    Stack orbit
    ========================================================================== */
+/* `safe center` centres the orbit when it fits and still lets the whole
+ * diagram be reached when it overflows on a narrow screen. */
+.orbit-scroll {
+  display: flex;
+  justify-content: safe center;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  padding-block: 4px;
+}
+
+.orbit-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 .orbit {
   --orbit: min(620px, 88vw);
   position: relative;
+  flex: none;
   width: var(--orbit);
   height: var(--orbit);
   margin: 8px auto 0;
@@ -1273,15 +1326,12 @@ svg {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 18%;
-  height: 18%;
   transform: translate(-50%, -50%);
-  opacity: 0.9;
-}
-
-.orbit__core svg {
-  width: 100%;
-  height: 100%;
+  font-family: var(--font-display-stack);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
 }
 
 .orbit__ring--1 {
@@ -1290,11 +1340,14 @@ svg {
 .orbit__ring--2 {
   --r: calc(var(--orbit) * 0.305);
 }
+/* Pulled in slightly so the outer ring's label clears the container edge. */
 .orbit__ring--3 {
-  --r: calc(var(--orbit) * 0.435);
+  --r: calc(var(--orbit) * 0.415);
 }
 
 /* The ring line itself: one hairline, in the group's tone. */
+/* The ring has to be legible as a ring: the grouping is the whole point of
+ * the form, and a hairline at 55% tone disappeared on the pale ground. */
 .orbit__track {
   position: absolute;
   left: 50%;
@@ -1302,8 +1355,26 @@ svg {
   width: calc(var(--r) * 2);
   height: calc(var(--r) * 2);
   transform: translate(-50%, -50%);
-  border: 1px solid color-mix(in oklab, var(--tone) 55%, transparent);
+  border: 1.5px solid color-mix(in oklab, var(--tone) 92%, transparent);
   border-radius: 50%;
+}
+
+/* Each ring names itself at the top, so the diagram needs no legend. */
+.orbit__ring-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) translateY(calc(var(--r) * -1 - 22px));
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--tone) 62%, var(--ground));
+  border: 1.5px solid color-mix(in oklab, var(--tone) 92%, transparent);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink);
 }
 
 /*
@@ -1337,75 +1408,55 @@ svg {
   }
 }
 
-.orbit__legend {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 22px;
-  margin: 26px 0 0;
-  padding: 0;
-  list-style: none;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-2);
+/* The orbit keeps its form on a phone and scrolls inside its own container.
+ * Collapsing it into stacked runs would ship the one shape this section
+ * exists to avoid. */
+/* Only meaningful where the diagram actually overflows. */
+.orbit__hint {
+  display: none;
 }
 
-.orbit__legend li {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.orbit__swatch {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--tone);
-}
-
-/* Rings can't hold their labels on a phone: same data, typographic runs. */
 @media (max-width: 760px) {
-  .orbit {
-    width: 100%;
-    height: auto;
-    margin-top: 4px;
+  .orbit__hint {
     display: flex;
-    flex-direction: column;
-    gap: 22px;
-  }
-  .orbit__core {
-    display: none;
-  }
-  .orbit__ring {
-    position: static;
-    display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding-top: 26px;
-    border-top: 1px solid color-mix(in oklab, var(--tone) 55%, transparent);
-  }
-  .orbit__track {
-    display: none;
-  }
-  .orbit__label {
-    position: static;
-    transform: none;
-  }
-  .orbit__legend {
-    display: none;
-  }
-  /* On mobile each run is labelled in place, so the legend is redundant. */
-  .orbit__ring::before {
-    content: attr(data-label);
-    flex-basis: 100%;
-    margin-top: -6px;
-    font-size: 0.75rem;
+    margin-top: 14px;
+    font-size: 0.8125rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--ink-2);
+  }
+  .orbit__hint .icon {
+    width: 1.1em;
+    height: 1.1em;
+  }
+  .orbit {
+    --orbit: 560px;
+    margin-top: 4px;
+  }
+  .orbit__label {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+  /* Fade the edges so it's legible that the diagram continues past them. */
+  .orbit-scroll {
+    -webkit-mask: linear-gradient(
+      to right,
+      transparent,
+      #000 28px,
+      #000 calc(100% - 28px),
+      transparent
+    );
+    mask: linear-gradient(
+      to right,
+      transparent,
+      #000 28px,
+      #000 calc(100% - 28px),
+      transparent
+    );
   }
 }
 

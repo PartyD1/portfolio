@@ -49,8 +49,14 @@ export default function Hero() {
           </span>
         </span>
 
+        {/*
+          The lead sits OUTSIDE the rolling slot so it never moves: only the
+          phrase after it changes width. Putting it inside re-centred the whole
+          line on every swap, sliding the anchor word across the viewport.
+        */}
         <span className="hero__line hero__line--roll" aria-hidden="true">
-          <RoleRoll phrases={phrases} lead="I’m" />
+          <span className="type-outline hero__lead">I&rsquo;m</span>{" "}
+          <RoleRoll phrases={phrases} />
         </span>
       </h1>
 
