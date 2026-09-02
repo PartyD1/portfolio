@@ -4,6 +4,29 @@ Status: PLAN — nothing below is built yet. Branch: `holographic-overhaul` (off
 
 This is a visual-world replacement, not a refinement: the editorial-grotesk world is evidence of what the subject is, not authority over what it becomes. Product truth, content, the rolling headline, and the push rules in CLAUDE.md all carry over.
 
+## Confirmed by Parth (2026-09-01)
+
+- **Register: go full holographic.** Four saturated iridescent blobs at reference scale in the hero, grain, outline+fill caps. The boldest of the three options.
+- **Dark mode: yes.** Real second token set (deep indigo ground, blobs glow), `next-themes`, moon/sun toggle as in the reference.
+- **Hobbies: no photos.** The blob treatment ships as the permanent state — each hobby a gradient blob with the word set large inside.
+- **Delivery: build it all, as a GitHub stacked PR chain** (not one mega-PR, not a mid-build checkpoint).
+- Still outstanding, and blocking only PRs 4 and 5: the **tech-stack list** (grouped daily/often/learning, with which project used what) and the **hobbies list + which sport "athlete" means**.
+
+## Delivery: the PR stack
+
+Six PRs, each merging into the previous, each leaving the site coherent if merged alone:
+
+| # | Branch | Contents | Blocked on |
+|---|---|---|---|
+| 1 | `motion-system` | Phase 2g motion tokens + the three standing defects (`:active` on pressables, hover gating, status-dot pulse), and the Phase 3b typewriter rebuild. No visual-world change. | — |
+| 2 | `foundation-theming` | Tailwind v4 + shadcn init, token bridge, `next-themes`, dark-mode plumbing and toggle, still expressing today's palette. | — |
+| 3 | `holographic-world` | Fonts (Unbounded + Hanken), palette, grain, `Blob`, shell (monogram / Sheet menu / scroll ring), hero, Work cards restyled. The overhaul proper. | — |
+| 4 | `stack-orbit` | Phase 5 Orbit section. | stack list |
+| 5 | `hobbies` | Phase 6, blob treatment. | hobbies list + sport |
+| 6 | `resume-and-finish` | Resume placeholder, About/Contact/footer, detector + `/polish`, finish review, DESIGN.md regeneration. | — |
+
+**Stack safety protocol** (PR #4 missed `main` because this was absent): "Automatically delete head branches" is now enabled on the repo, so GitHub retargets children when a base merges. Merge strictly bottom-up; after each merge rebase every remaining branch onto `main` and force-with-lease; verify each landing with `git merge-base --is-ancestor <sha> origin/main`. Recorded in CLAUDE.md.
+
 ---
 
 ## Phase 0 — Facts only Parth can supply (asked before Phase 2 starts)

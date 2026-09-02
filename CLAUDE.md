@@ -40,7 +40,12 @@ Screenshots in `.impeccable/review/` (1440 and 390 wide, fold + full page) were 
 
 1. **Frontend changes get a polish pass first.** Any change to `app/`, `components/`, `data/`, or `DESIGN.md` runs `/polish` (the pinned shortcut for `/impeccable polish`) before it is pushed, and the findings it raises are fixed in the same push. Docs-only or config-only changes skip this.
 2. **Never push onto a merged PR's branch.** Before pushing, check the current branch's PR: `gh pr view --json state,mergedAt` (or `gh pr list --head <branch> --state all`). If it is `MERGED`, do not push to that branch — create a fresh branch from `main` (`git fetch origin && git switch -c <new-branch> origin/main`, bring the changes over), push that, and open a new PR. Only an `OPEN` PR receives additional commits.
-3. **Base every PR on `main`, never on another PR's branch.** PRs here get merged within minutes and in any order; a PR stacked on a branch is not retargeted when that branch merges (GitHub only retargets if the base branch is deleted), so its commits silently miss `main`. This happened with PR #4 — fixed by PR #5. If work truly depends on an unmerged PR, wait for that merge, then branch from `main`.
+3. **Stacked PRs are allowed, but only with these guardrails.** A PR stacked on another branch is retargeted when its base merges *only if the base branch is deleted* — otherwise its commits silently miss `main` (this happened with PR #4; fixed by PR #5). "Automatically delete head branches" is now enabled on this repo, which makes GitHub retarget children automatically. On top of that:
+   - Merge a stack strictly **bottom-up**; never merge a middle PR before its parent.
+   - After each merge, rebase every remaining branch in the stack onto the new `main` (`git rebase origin/main`) and `git push --force-with-lease`.
+   - Verify a merge actually landed before moving on: `git merge-base --is-ancestor <sha> origin/main`.
+   - Each PR in a stack must leave the site coherent on its own, since it may be merged alone.
+   - For unrelated work, still base on `main`.
 
 ## Animation
 
