@@ -1,3 +1,9 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
 /* ---------- Tokens ---------- */
 :root {
   color-scheme: light;
@@ -10,7 +16,8 @@
 
   --sand: #e2d7bb;
   --stone: #dbd8ce;
-  --accent: #b8641f;
+  /* Our single brand accent. shadcn owns --accent, so ours is --signal. */
+  --signal: #b8641f;
 
   --wash-a: #e1e2c6;
   --wash-b: #d4dcd2;
@@ -26,6 +33,40 @@
 
   --font: var(--font-archivo), system-ui, -apple-system, sans-serif;
   --shadow-ink: 20 46 38;
+
+  /* --- shadcn bridge: our world IS the shadcn theme, not the reverse --- */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--white);
+  --card-foreground: var(--ink);
+  --popover: var(--white);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--white);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--ink);
+  --muted: var(--stone);
+  --muted-foreground: var(--ink-2);
+  --accent: var(--sand);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: color-mix(in oklab, var(--ink) 14%, transparent);
+  --input: color-mix(in oklab, var(--ink) 20%, transparent);
+  --ring: var(--signal);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 /* ---------- Base ---------- */
@@ -53,7 +94,7 @@ body {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--accent) 32%, var(--paper));
+  background: color-mix(in oklab, var(--signal) 32%, var(--paper));
   color: var(--ink);
 }
 
@@ -219,6 +260,64 @@ svg {
   color: var(--white);
 }
 
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 2px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.theme-toggle:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .theme-toggle:hover {
+    background: color-mix(in oklab, var(--ink) 8%, transparent);
+  }
+}
+
+/* Both icons occupy one cell; only the live one is shown, so the button
+ * never resizes and the swap is a crossfade rather than a reflow. */
+.theme-toggle__icon {
+  grid-area: 1 / 1;
+  display: block;
+  width: 18px;
+  height: 18px;
+  opacity: 0;
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+}
+
+.theme-toggle__icon[data-visible="true"] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .theme-toggle__icon {
+    transform: rotate(-45deg) scale(0.9);
+  }
+  .theme-toggle__icon[data-visible="true"] {
+    transform: none;
+  }
+}
+
+.theme-toggle__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
 .nav__key {
   font-size: 0.6875rem;
   font-weight: 600;
@@ -316,7 +415,7 @@ svg {
 }
 
 .roll__item--accent {
-  color: var(--accent);
+  color: var(--signal);
 }
 
 /* Until the client takes over, the glyphs are held back but the box is not,
@@ -513,7 +612,7 @@ svg {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--signal);
 }
 
 /* A scaling ring, not an animated box-shadow: transform and opacity only. */
@@ -522,7 +621,7 @@ svg {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--signal);
   opacity: 0;
 }
 
@@ -882,7 +981,7 @@ svg {
   color: var(--ink);
   text-decoration: underline;
   text-decoration-thickness: 4px;
-  text-decoration-color: var(--accent);
+  text-decoration-color: var(--signal);
   text-underline-offset: 10px;
   transition: text-decoration-color 200ms var(--ease-out);
   word-break: break-all;
@@ -934,4 +1033,116 @@ svg {
   width: 1em;
   height: 1em;
   flex: none;
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/*
+ * Dark inverts the ROLES, not the hues: the ground goes deep green, and the
+ * standout card that was darkest in light becomes the lightest here, so the
+ * "one standout per row" rhythm survives. Because .card--ink is written as
+ * --card: var(--ink) / --card-fg: var(--cream), that inversion is automatic.
+ */
+.dark {
+  color-scheme: dark;
+
+  --ink: #e9ece4;
+  --ink-2: #a3b0a6;
+  --paper: #0f1a15;
+  --white: #18241e;
+  --cream: #14201a;
+
+  --sand: #262418;
+  --stone: #232725;
+  --signal: #d98a3d;
+
+  --wash-a: #1b2418;
+  --wash-b: #16241d;
+  --wash-c: #24201a;
+  --wash-d: #1d211a;
+
+  --shadow-ink: 0 0 0;
+
+  /* --- shadcn bridge (dark) --- */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--white);
+  --card-foreground: var(--ink);
+  --popover: var(--white);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--white);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--ink);
+  --muted: var(--stone);
+  --muted-foreground: var(--ink-2);
+  --accent: var(--sand);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: color-mix(in oklab, var(--ink) 16%, transparent);
+  --input: color-mix(in oklab, var(--ink) 22%, transparent);
+  --ring: var(--signal);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
