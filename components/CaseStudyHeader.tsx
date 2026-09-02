@@ -34,51 +34,56 @@ export default function CaseStudyHeader({ project }: { project: Project }) {
 
   return (
     <header className="case__header">
-      {/* Leading arrow: this link stays on the site. */}
-      <Link className="case__back" href="/#work">
-        <ArrowLeft />
-        back to the work
-      </Link>
+      {/* Everything textual sits on one frosted panel — see .case__headline.
+          The back link included: left outside it, it was the single worst
+          contrast on the site, with 96.8% of its glyph run below 4.5:1. */}
+      <div className="case__headline">
+        {/* Leading arrow: this link stays on the site. */}
+        <Link className="case__back" href="/#work">
+          <ArrowLeft />
+          back to the work
+        </Link>
 
-      <h1 className="case__title">{name}</h1>
+        <h1 className="case__title">{name}</h1>
 
-      {meta.length > 0 && (
-        <p className="case__meta">
-          {meta.map((m, i) => (
-            <span key={m} className="case__meta-item">
-              {i > 0 && (
-                <span className="case__meta-sep" aria-hidden="true">
-                  ·
-                </span>
-              )}
-              {m}
-            </span>
-          ))}
-        </p>
-      )}
+        {meta.length > 0 && (
+          <p className="case__meta">
+            {meta.map((m, i) => (
+              <span key={m} className="case__meta-item">
+                {i > 0 && (
+                  <span className="case__meta-sep" aria-hidden="true">
+                    ·
+                  </span>
+                )}
+                {m}
+              </span>
+            ))}
+          </p>
+        )}
 
-      {/*
+        {/*
         Operations Agent renders NO repo affordance of any kind here — not a
         link, not a disabled link, not a greyed pill. A disabled control implies
         the thing exists and is being withheld from you. Its note says the true
         thing calmly instead, and the Experience row plus LinkedIn carry the
         off-site verification of the employment.
       */}
-      {note && <p className="case__note">{note}</p>}
+        {note && <p className="case__note">{note}</p>}
 
-      {/* Absent, not skeletal, until the tool→project mapping is supplied. */}
-      <TechRow slugs={tech} />
+        {/* Absent, not skeletal, until the tool→project mapping is supplied. */}
+        <TechRow slugs={tech} />
 
-      {/*
+        {/*
         The standfirst sits ABOVE the media, not below it. Until the case-study
         prose is written this is the only real prose on the page, and putting it
         under a ~560px frame buries the one thing worth reading below the fold.
       */}
-      {description && (
-        <div className="case__standfirst">
-          <p>{description}</p>
-        </div>
-      )}
+        {description && (
+          <div className="case__standfirst">
+            <p>{description}</p>
+          </div>
+        )}
+      </div>
 
       {/* Fixtures are dead code with NEXT_PUBLIC_FIXTURES unset — Next inlines
           the constant at build time — and there is a grep gate on .next/ to

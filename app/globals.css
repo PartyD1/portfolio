@@ -1809,8 +1809,12 @@ svg {
 /* ==========================================================================
    Contact
    ========================================================================== */
+/* Left-aligned, like every other section. It was centred, which read as a
+ * deliberate finale while the HERO was also centred — the two bookended the
+ * page. C3 left-aligned the hero, which left this as the only centred block on
+ * the site, and a lone centred section reads as an oversight rather than a
+ * decision. One trustworthy left edge, top to bottom. */
 .contact {
-  text-align: center;
   padding-top: 96px;
   padding-bottom: 128px;
 }
@@ -1820,7 +1824,7 @@ svg {
 }
 
 .contact__lede {
-  margin: 22px auto 0;
+  margin: 22px 0 0;
   max-width: 40ch;
   font-size: 1.0625rem;
   color: var(--ink-2);
@@ -1851,7 +1855,6 @@ svg {
 .contact__links {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 24px;
   margin-top: 36px;
 }
@@ -1870,8 +1873,44 @@ svg {
   padding: 0 var(--gutter);
 }
 
+/*
+ * The header text sits on a frosted panel, and this is COMPLIANCE with The
+ * Blur-Is-Legibility Rule rather than a new invention: the rule already says
+ * anything floating over the wash carries backdrop-filter, cards already do,
+ * and this text did not — which is why it was the worst contrast on the site.
+ *
+ * Measured cause: the wash is position:fixed with blob A's core at roughly
+ * (115, 101) at 1440, so the calm band in the left column runs y 370-640 and
+ * the case header — pinned to the document top — lands right on the core. 96.8%
+ * of the back link's glyph run was below 4.5:1.
+ *
+ * Spacing cannot fix it. The blobs are vmax-sized, so the calm band moves with
+ * viewport size; padding tuned to clear it at 1440 is wrong at 768 and at 1920,
+ * and the header block is taller than the band anyway. A surface fixes it at
+ * every width, using vocabulary the system already owns.
+ */
 .case__header {
-  padding-top: 120px;
+  padding-top: 140px;
+}
+
+.case__headline {
+  padding: 32px 34px 34px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--glass-edge);
+  /* OPAQUE, not glass, and measured rather than chosen. Frosted at --glass got
+   * the note and standfirst clear but left the back link and metadata line
+   * still failing at the panel's top edge, where blob A's core is: light glass
+   * is 0.52 alpha (4.34:1, just short) and DARK glass is 0.07, which cannot
+   * mask a lit blob at all (2.53:1). An opaque well is deterministic in both
+   * themes at every viewport size, and it is the same surface as the media
+   * frame directly below it. */
+  background: var(--media-well);
+}
+
+@media (max-width: 760px) {
+  .case__headline {
+    padding: 24px 22px 26px;
+  }
 }
 
 /* Leading arrow — this link stays on the site. Outbound links take the
@@ -1881,7 +1920,7 @@ svg {
   align-items: center;
   gap: 8px;
   padding: 8px 4px;
-  margin-left: -4px;
+  margin: 0 0 10px -4px;
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--ink-2);
@@ -1911,7 +1950,7 @@ svg {
 }
 
 .case__title {
-  margin-top: 18px;
+  margin-top: 0;
   font-size: clamp(2.25rem, 6vw, 4rem);
   line-height: 1.08;
   letter-spacing: 0.005em;
