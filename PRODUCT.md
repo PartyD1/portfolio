@@ -75,6 +75,28 @@ Real projects to feature:
 
 No other testimonials, metrics, press, or case-study detail beyond what's listed above is confirmed — future work must not invent adoption numbers, user counts, or outcomes not stated here.
 
+### SUPPLIED-TOMORROW — the exact boundary
+
+Everything below is **blocked on Parth and absent from the UI until he supplies it.** The build is complete around each one: the field is typed, the layout is designed and captured, and supplying it is a data edit rather than a design decision. Nothing here may be inferred, approximated, or written into the UI as a placeholder.
+
+**Merge gates — the PR does not ship without these two:**
+
+1. **Operations Agent case-study prose** — at least three of: Problem & context, What I built & how, Outcome & impact, Hardest technical challenge, Current limitations. The flagship card is the biggest promise on the homepage, and terminating it in a near-empty page is worse than today's dead-end card. Almost none of what a hiring manager wants here is confidential: the agent loop, the tool surface, what data it read, how it decided a booking needed attention, what guardrails stopped a bad write, what happened when it was wrong, how correctness was judged.
+2. **The employer identity** for the Experience row — company name, role title, exact dates. Most internship NDAs cover code and customer data, not the fact of employment; ask explicitly rather than assuming. "Internship" is an employment type and is **not** an acceptable stand-in for a job title.
+
+**Not gating, and absent until supplied:**
+
+3. Per-project tech lists (the tool→project mapping). Do not infer from repo language, README, or the framework you would expect.
+4. Per-project dates and roles.
+5. The ownership split on Operations Agent — which subsystems were his vs. his partner's.
+6. Graduation term; location, relocation and work authorisation; target role and start date. These three render as the hero availability subline and are, per survey:convert, the single highest-cost omission on the site.
+7. Screenshots / GIFs, and whether a scrubbed architecture diagram of the Operations Agent is permissible — a diagram sidesteps confidentiality entirely and is a better proof artifact here than a UI screenshot.
+8. Any *sourced* usage fact for ScorelyAI. "In use by DECA competitors" is confirmed and must never be embellished into a number.
+9. Whether Gestura / Wave Function Collapse / WordPlay can be deployed to live URLs.
+10. Whether any project should be promoted to `weight: 2`.
+
+**Off-repo, and the highest-leverage thing Parth can do next:** a README with one image and one run command on each of the six public repos. A recruiter will click through, and a repo with no README subtracts the credibility the case study just earned.
+
 ## Product Principles
 
 1. Lead with applied-AI and agentic-systems work, not generic "I use AI" framing — show autonomous systems that ship and solve real problems.
