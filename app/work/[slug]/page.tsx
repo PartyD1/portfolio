@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { projects, bySlug } from "@/data/projects";
+import { FIXTURES, fixtureStudy } from "@/data/fixtures";
 import { links } from "@/data/site";
 import { ArrowUpRight } from "@/components/Icon";
 import CaseStudyHeader from "@/components/CaseStudyHeader";
@@ -45,7 +46,9 @@ export default async function CaseStudyPage({
   const p = bySlug(slug);
   if (!p) notFound();
 
-  const s = p.study;
+  // Fixture prose exists only so the pin's scroll budget can be measured
+  // against a representative route. Never active in production.
+  const s = FIXTURES ? fixtureStudy : p.study;
 
   return (
     <article className="case">

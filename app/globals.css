@@ -2094,6 +2094,106 @@ svg {
   }
 }
 
+/* --- the pinned media sequence -------------------------------------------
+ * DEFAULT FIRST, AND UNGUARDED: a readable, stacked band. This is what ships
+ * to every engine without view(), to every reduced-motion reader, and below
+ * 761px — which is why there is no "undo" block anywhere below. The pin is
+ * purely ADDITIVE inside the guard, so there are not two structures to keep in
+ * sync, only one that gains a behaviour. */
+.case__stage {
+  display: grid;
+  gap: 18px;
+}
+
+.case__pin {
+  scroll-margin-top: 84px;
+}
+
+.case__strip {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 761px) {
+    /* Height follows the beat count rather than being fixed, so two beats do
+     * not buy the scroll length of three. 100svh of sticky child plus 50svh of
+     * travel per beat: 2 -> 200svh (100svh travel), 3 -> 250svh (150svh travel,
+     * exactly the ceiling and not over it). 50svh per beat sits inside the
+     * 40-80svh window, so nothing twitches and nothing feels stuck.
+     *
+     * svh, never vh or dvh: vh jumps when the mobile URL bar hides, and dvh
+     * resizes continuously DURING the scroll, which is jitter. */
+    .case__pin[data-beats="2"] {
+      height: 200svh;
+    }
+    .case__pin[data-beats="3"] {
+      height: 250svh;
+    }
+
+    .case__stage {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      align-content: center;
+      gap: 0;
+      overflow: clip;
+      padding-block: 84px 24px;
+    }
+
+    /* All beats stack in one cell and cross-fade. */
+    .case__beat {
+      grid-area: 1 / 1;
+      animation: beat linear both;
+      animation-timeline: view();
+    }
+
+    /* 2 beats -> 75svh each; 3 -> 50svh each. Both inside the 40-80vh window,
+     * so nothing twitches and nothing feels stuck. */
+    .case__pin[data-beats="2"] .case__beat:nth-child(1) {
+      animation-range: contain 0% contain 50%;
+    }
+    .case__pin[data-beats="2"] .case__beat:nth-child(2) {
+      animation-range: contain 50% contain 100%;
+    }
+    .case__pin[data-beats="3"] .case__beat:nth-child(1) {
+      animation-range: contain 0% contain 33.34%;
+    }
+    .case__pin[data-beats="3"] .case__beat:nth-child(2) {
+      animation-range: contain 33.33% contain 66.67%;
+    }
+    .case__pin[data-beats="3"] .case__beat:nth-child(3) {
+      animation-range: contain 66.66% contain 100%;
+    }
+  }
+}
+
+/* translate and scale, never transform — same cascade reasoning as the drift.
+ * Nothing enters from scale(0); 0.985 is a settle, not an appearance. */
+@keyframes beat {
+  0% {
+    opacity: 0;
+    translate: 0 6%;
+    scale: 0.985;
+  }
+  22% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+  78% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 -6%;
+    scale: 0.985;
+  }
+}
+
 /* --- sections ----------------------------------------------------------- */
 .case__section {
   padding: 80px 0 0;

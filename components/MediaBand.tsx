@@ -19,6 +19,47 @@ import type { ProjectMedia } from "@/data/projects";
  * for content. When a screenshot arrives it replaces the mark inside an
  * identical frame, so nothing about the layout or the choreography changes.
  */
+/** One frame. Identical markup whether it holds a screenshot or the mark. */
+function Frame({
+  item,
+  slug,
+  priority,
+}: {
+  item?: ProjectMedia;
+  slug: string;
+  priority?: boolean;
+}) {
+  return (
+    <figure className="case__media">
+      <div className="case__media__inner">
+        {item?.src ? (
+          <Image
+            src={item.src}
+            alt={item.alt}
+            width={item.width}
+            height={item.height}
+            className="case__media__img"
+            priority={priority}
+          />
+        ) : (
+          <Artifact slug={slug} className="case__media__mark" />
+        )}
+      </div>
+    </figure>
+  );
+}
+
+/**
+ * The route's ONE pin allowance, and it is spent here — on the media band,
+ * never on Problem & context, What I built & how, or Outcome & impact, which
+ * are read, not watched. There are ZERO pins on the homepage, by rule: the
+ * hero -> cards -> email path is the conversion path and nothing choreographed
+ * may lengthen it.
+ *
+ * The pin renders only at >= 2 media items and caps at 3 beats; any further
+ * media render as a static strip below it. Below two, the single frame and its
+ * C9 drift are what ship.
+ */
 export default function MediaBand({
   slug,
   media,
@@ -26,28 +67,55 @@ export default function MediaBand({
   slug: string;
   media: ProjectMedia[];
 }) {
-  const first = media[0];
+  const pinned = media.length >= 2;
+
+  if (!pinned) {
+    const first = media[0];
+    return (
+      <div className="case__band">
+        <Frame item={first} slug={slug} priority />
+        {first?.caption && (
+          <figcaption className="case__media__cap">{first.caption}</figcaption>
+        )}
+      </div>
+    );
+  }
+
+  const beats = media.slice(0, 3);
+  const rest = media.slice(3);
 
   return (
-    <div className="case__band">
-      <figure className="case__media">
-        <div className="case__media__inner">
-          {first?.src ? (
-            <Image
-              src={first.src}
-              alt={first.alt}
-              width={first.width}
-              height={first.height}
-              className="case__media__img"
-              priority
-            />
-          ) : (
-            <Artifact slug={slug} className="case__media__mark" />
-          )}
+    <div className="case__band case__band--pinned">
+      {/*
+        No focusable element ever goes inside .case__stage. That is what
+        licenses a beat's opacity reaching 0 without hiding a control from a
+        keyboard user — frames carry captions, never links. It is asserted, not
+        assumed.
+      */}
+      <div className="case__pin" data-beats={beats.length}>
+        <div className="case__stage">
+          {beats.map((m, i) => (
+            <div className="case__beat" key={m.alt + i}>
+              <Frame item={m} slug={slug} priority={i === 0} />
+              {m.caption && (
+                <figcaption className="case__media__cap">{m.caption}</figcaption>
+              )}
+            </div>
+          ))}
         </div>
-      </figure>
-      {first?.caption && (
-        <figcaption className="case__media__cap">{first.caption}</figcaption>
+      </div>
+
+      {rest.length > 0 && (
+        <div className="case__strip">
+          {rest.map((m, i) => (
+            <div key={m.alt + i}>
+              <Frame item={m} slug={slug} />
+              {m.caption && (
+                <figcaption className="case__media__cap">{m.caption}</figcaption>
+              )}
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowLeft } from "@/components/Icon";
 import MediaBand from "@/components/MediaBand";
 import { TechRow } from "@/components/TechMark";
+import { FIXTURES, fixtureMedia } from "@/data/fixtures";
 import type { Project } from "@/data/projects";
 
 /**
@@ -79,7 +80,11 @@ export default function CaseStudyHeader({ project }: { project: Project }) {
         </div>
       )}
 
-      <MediaBand slug={slug} media={media} />
+      {/* Fixtures are dead code with NEXT_PUBLIC_FIXTURES unset — Next inlines
+          the constant at build time — and there is a grep gate on .next/ to
+          prove it. They exist so the pin's every check can run against real
+          pinned DOM before any media is supplied. */}
+      <MediaBand slug={slug} media={FIXTURES ? fixtureMedia : media} />
     </header>
   );
 }
