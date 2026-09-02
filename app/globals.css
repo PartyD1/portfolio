@@ -2042,6 +2042,58 @@ svg {
   color: var(--ink-2);
 }
 
+/*
+ * The media well drifts inside its frame as it passes.
+ *
+ * A TRAVERSAL DRIVEN BY THE FRAME'S ASPECT RATIO, NOT BY PIXEL CONTENT — which
+ * is what makes it bit-identical with the authored empty-state mark, with a
+ * fixture, and with tomorrow's screenshot. The choreography never has to be
+ * redesigned when the content lands.
+ *
+ * Every value is deliberate:
+ *  - `translate:`, never `transform:`. A scroll animation on `transform` is the
+ *    last animation in the cascade and silently REPLACES the hover transform on
+ *    any element that has one. Interaction keeps `transform:`; scroll gets
+ *    `translate:`/`scale:`. They compose instead of fighting.
+ *  - 6% total on a layer that is 106% tall (inset: -3% 0), so no edge is ever
+ *    exposed at either end of the range, and well inside the 8% ceiling.
+ *  - `linear`, always. This is constant motion tied to the scroll position, and
+ *    an eased scrub is exactly how cinematic scroll starts feeling laggy —
+ *    the element stops tracking the finger.
+ *  - min-width 761px: mobile gets less by rule, not by accident. The blob drift
+ *    is already disabled under 720px.
+ *  - The start state lives ONLY inside the @supports + no-preference guard, so
+ *    the finished state is the default. No JS, no scroll listener, no polyfill,
+ *    and no reduced-motion undo block to get wrong.
+ *  - .case__media is opaque and carries no backdrop-filter, so nothing
+ *    re-samples and re-blurs per frame.
+ *  - The :not(--pinned) scope keeps the route at ONE authored scroll moment
+ *    when the pinned sequence lands: the drift is REPLACED by the pin, never
+ *    stacked under it.
+ *
+ * will-change is deliberately not set: Chromium already promotes
+ * scroll-timeline-driven elements, and a blanket hint costs memory and can
+ * reduce framerate on mobile.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 761px) {
+    .case__band:not(.case__band--pinned) .case__media__inner {
+      animation: media-drift linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+
+@keyframes media-drift {
+  from {
+    translate: 0 -3%;
+  }
+  to {
+    translate: 0 3%;
+  }
+}
+
 /* --- sections ----------------------------------------------------------- */
 .case__section {
   padding: 80px 0 0;
