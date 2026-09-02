@@ -19,6 +19,8 @@ Two primary audiences, both browsing to quickly assess Parth Doshi as a software
 
 Parth is a student at UC Santa Cruz (email domain `ucsc.edu`).
 
+How Parth describes himself (his words, 2026-09-01, used verbatim in the hero rotation): a developer, a researcher, a computer scientist, an athlete, a mentor — and "obsessed with AI." The sport and the mentoring context have not been supplied; do not elaborate on either.
+
 ## Product Purpose
 
 A personal portfolio site presenting Parth Doshi's software engineering work. It exists to land job opportunities and build professional visibility, anchored by demonstrated experience building autonomous, AI-driven systems that solve real problems (not just "using AI tools").
