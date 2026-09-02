@@ -344,7 +344,8 @@ svg {
 @media (prefers-reduced-motion: no-preference) {
   .hero__title span,
   .hero__sub,
-  .hero__actions {
+  .hero__actions,
+  .status {
     animation: rise 1.1s var(--ease-out) both;
   }
   .hero__title span:nth-child(2) {
@@ -355,6 +356,9 @@ svg {
   }
   .hero__actions {
     animation-delay: 0.3s;
+  }
+  .status {
+    animation-delay: 0.38s;
   }
   .hero__sparkle {
     animation: twinkle 4.2s ease-in-out infinite;
