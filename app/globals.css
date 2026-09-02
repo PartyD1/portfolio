@@ -90,6 +90,23 @@
   --sidebar-accent-foreground: var(--ink);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--signal);
+
+  /* The horizontal breathing room outside the 1140 column. A token because the
+   * hero's no-wrap invariant is measured against the column it produces, so
+   * every surface that shares the left edge has to derive from one number.
+   * Not a colour, so both themes share it. */
+  --gutter: 24px;
+}
+
+/* Below 400px a fixed 20px bite grows as a fraction of the viewport, so the
+ * column stops being scale-proportional and the headline's clearance falls off
+ * a cliff. Making the gutter fluid keeps the clearance flat through the whole
+ * phone range. At every width >= 400px this evaluates to exactly the
+ * documented 20px, so nothing about the existing small-screen layout moves. */
+@media (max-width: 760px) {
+  :root {
+    --gutter: clamp(14px, 5vw, 20px);
+  }
 }
 
 /* Dark is a real second world, not an inverted filter: the ground goes deep
@@ -676,27 +693,45 @@ svg {
 /* ==========================================================================
    Hero
    ========================================================================== */
+/*
+ * Left-aligned, and on the same 1140 column as every section below it, so the
+ * page has one trustworthy left edge from the name down to the footer. The
+ * headline is three lines: the name, the outlined lead alone, and the typing
+ * slot alone. Line 2 and line 3 used to share a line box, which is what made
+ * the headline unfittable — see the note on .roll.
+ */
 .hero {
   position: relative;
-  min-height: min(100svh, 720px);
+  min-height: 100svh;
   display: grid;
   /* An explicit minmax(0, 1fr) column: `place-content: center` left the column
    * max-content-sized, so `max-width: 100%` on the children measured against
    * their own content and the headline could overflow the viewport. */
   grid-template-columns: minmax(0, 1fr);
   align-content: center;
-  justify-items: center;
-  text-align: center;
-  padding: 150px 24px 56px;
+  justify-items: start;
+  text-align: left;
+  /* 150 -> 120: the third display line adds ~72px at the 64px cap and the
+   * status line has to stay inside the fold at 1440x900. */
+  padding: 120px var(--gutter) 56px;
+  max-width: calc(1140px + var(--gutter) * 2);
+  margin-inline: auto;
   overflow: clip;
 }
 
 .hero__title {
-  /* The hero centres its grid items rather than stretching them, so without
+  /* The hero starts its grid items rather than stretching them, so without
    * this the h1 sizes to max-content and nothing inside it has a width to
    * shrink against — the rolling slot then overflows the viewport. */
   max-width: 100%;
-  font-size: clamp(1.75rem, 5.1vw, 4rem);
+  /*
+   * Bounds in px, never rem. This clamp is one side of an invariant whose
+   * other side is measured in vw; a root-relative bound lets a large default
+   * font size inflate the type without inflating the column, which is a silent
+   * overflow generator under `overflow: clip`. Same reasoning applies to the
+   * mobile floor below, which is why that one is px-bounded too.
+   */
+  font-size: clamp(28px, 5.1vw, 64px);
   line-height: 1.12;
   letter-spacing: 0.005em;
 }
@@ -741,7 +776,7 @@ svg {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px 28px;
   margin-top: 30px;
 }
@@ -812,38 +847,31 @@ svg {
 
 @media (max-width: 720px) {
   .hero {
-    padding: 118px 20px 48px;
+    padding: 96px var(--gutter) 48px;
     min-height: min(100svh, 620px);
   }
   .hero__title {
-    font-size: clamp(1.25rem, 5.9vw, 1.875rem);
+    /* px-bounded for the same reason as the desktop clamp. 5.2vw, with the
+     * gutter also proportional below 400px, holds the clearance flat at 7.7%
+     * across the entire phone range instead of falling off toward 280px. */
+    font-size: clamp(14px, 5.2vw, 30px);
     line-height: 1.18;
-  }
-  /*
-   * Keep the lead and the phrase on one row: as a plain inline sibling of a
-   * full-width slot, "I'm" was orphaned onto a line of its own.
-   */
-  .hero__line--roll {
-    display: flex;
-    /* nowrap on purpose: wrapping pushed the whole slot to its own line
-     * instead of letting it shrink, which is what orphaned "I'm". */
-    flex-wrap: nowrap;
-    align-items: baseline;
-    justify-content: center;
-    column-gap: 0.26em;
-  }
-  .roll {
-    min-width: 0;
   }
   /* 0.03em is sub-pixel at phone display sizes; hold a visible floor. */
   .type-outline {
     -webkit-text-stroke-width: max(1.1px, 0.03em);
   }
-  /* The longest phrase cannot fit one phone line, so let it wrap rather than
-   * be clipped by the hero's overflow. */
-  .roll {
-    max-width: 100%;
-  }
+  /*
+   * Deliberately absent here, and both deletions are the point of this change:
+   *
+   *   .hero__line--roll { display: flex; flex-wrap: nowrap; column-gap: .26em }
+   *     existed to keep the lead and the phrase on one row. Line 3 now holds
+   *     exactly one item, so there is no row to keep.
+   *
+   *   .roll { min-width: 0; max-width: 100% }
+   *     existed so the longest phrase would wrap rather than be clipped.
+   *     Wrapping is now the failure we want to be visible: see .roll.
+   */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -853,18 +881,24 @@ svg {
   .status {
     animation: rise 600ms var(--ease-out) both;
   }
-  /* Stagger steps stay 30–80ms; longer reads as the page being slow. */
-  .hero__line--roll {
+  /* Stagger steps stay 30–80ms; longer reads as the page being slow. The
+   * headline is three lines now, so the ladder gained a rung — the step is
+   * still 60ms, and without the lead's own delay lines 1 and 2 rose together
+   * and the ladder had a hole in it. */
+  .hero__line--lead {
     animation-delay: 60ms;
   }
-  .hero__sub {
+  .hero__line--roll {
     animation-delay: 120ms;
   }
-  .hero__actions {
+  .hero__sub {
     animation-delay: 180ms;
   }
-  .status {
+  .hero__actions {
     animation-delay: 240ms;
+  }
+  .status {
+    animation-delay: 300ms;
   }
 }
 
@@ -891,6 +925,15 @@ svg {
   padding: 0.14em 0.1em 0.22em;
   margin: -0.14em -0.1em -0.22em;
   cursor: default;
+  /*
+   * Load-bearing. The slot is sized to the widest phrase, and that width is an
+   * invariant the build asserts against the column. Without nowrap a future
+   * violation relays out into a two-line-tall slot: the page still looks
+   * plausible, the headline is quietly four lines, and nothing fails. With
+   * nowrap the same violation CLIPS against .hero's `overflow: clip`, which is
+   * visible and, more importantly, assertable as scrollWidth > clientWidth.
+   */
+  white-space: nowrap;
 }
 
 .roll__sizer {
@@ -921,6 +964,13 @@ svg {
   }
 }
 
+/*
+ * UNSCOPED, deliberately. A caret is rendered in both grid children — the
+ * hidden sizer and the live text — so that the slot reserves room for it and
+ * the box does not grow by 0.12em at the exact moment the widest phrase
+ * finishes typing. If this rule were scoped to .roll__live, the sizer's caret
+ * would contribute zero width and the fix would silently do nothing.
+ */
 .roll__caret {
   display: inline-block;
   width: 0.06em;
@@ -933,8 +983,13 @@ svg {
 /*
  * Solid while the text is moving, blinking only when it rests — which is how
  * a real caret behaves. Constant motion → steps, never eased.
+ *
+ * Scoped to the LIVE caret. The sizer copy is `visibility: hidden`, so a blink
+ * on it would be invisible but would still be a running animation in
+ * document.getAnimations() — and the ambient-motion budget is asserted by
+ * counting exactly that.
  */
-.roll[data-mode="holding"] .roll__caret {
+.roll[data-mode="holding"] .roll__live .roll__caret {
   animation: blink 1s steps(2, jump-none) infinite;
 }
 
@@ -999,10 +1054,18 @@ svg {
 /* ==========================================================================
    Sections
    ========================================================================== */
+/*
+ * `max-width: 1140px` with border-box padding produced a 1092px content column,
+ * which contradicted The 1140 Rule as written ("a 1140px column with a 24px
+ * gutter") — the gutter sits OUTSIDE the column, not inside it. That 48px
+ * discrepancy is not cosmetic now: the hero shares this left edge, and its
+ * no-wrap invariant needs the full 1140 to clear at the 64px cap. Corrected to
+ * match the documented rule.
+ */
 .section {
-  max-width: 1140px;
+  max-width: calc(1140px + var(--gutter) * 2);
   margin: 0 auto;
-  padding: 80px 24px 96px;
+  padding: 80px var(--gutter) 96px;
   scroll-margin-top: 84px;
 }
 
@@ -1031,7 +1094,7 @@ svg {
 
 @media (max-width: 760px) {
   .section {
-    padding: 64px 20px 72px;
+    padding: 64px var(--gutter) 72px;
   }
   .section__head {
     flex-direction: column;

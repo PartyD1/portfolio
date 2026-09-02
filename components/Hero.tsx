@@ -5,7 +5,7 @@ import { ArrowRight } from "@/components/Icon";
 const phrases: Phrase[] = [
   { text: "a developer." },
   { text: "a researcher." },
-  { text: "a computer scientist." },
+  { text: "a computer scientist.", widest: true },
   { text: "an athlete." },
   { text: "a mentor." },
   { text: "obsessed with AI.", accent: true, hold: 4200 },
@@ -53,9 +53,19 @@ export default function Hero() {
           The lead sits OUTSIDE the typing slot so it never moves: only the
           phrase after it changes width. "And I'm" rather than a second "I'm",
           which read as a stutter directly under the name.
+
+          It also sits on its own LINE. Sharing a line box with the slot is what
+          made the headline unfittable: lead plus slot needs ~21em, which at
+          5.1vw is wider than the viewport by construction across the whole
+          fluid range and only clears above ~1384px. No amount of wrap-tuning
+          fixes an arithmetic impossibility. An orphaned outlined lead-in on a
+          left-aligned line reads as composition rather than as a widow, which
+          is what left-aligning buys.
         */}
+        <span className="hero__line hero__line--lead" aria-hidden="true">
+          <span className="type-outline hero__lead">And I&rsquo;m</span>
+        </span>
         <span className="hero__line hero__line--roll" aria-hidden="true">
-          <span className="type-outline hero__lead">And I&rsquo;m</span>{" "}
           <RoleRoll phrases={phrases} />
         </span>
       </h1>
