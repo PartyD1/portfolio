@@ -25,7 +25,8 @@ export default function Work() {
             delay={i * 50}
             className={project.flagship ? "work__item--flagship" : undefined}
           >
-            <ProjectCard project={project} />
+            {/* The flagship, then every other card, carries the gradient edge. */}
+            <ProjectCard project={project} gradient={i === 0 || i % 2 === 1} />
           </Reveal>
         ))}
       </div>

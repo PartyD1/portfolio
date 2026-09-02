@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
+import { Unbounded, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import Wash from "@/components/Wash";
-import Nav from "@/components/Nav";
+import Shell from "@/components/Shell";
+import ScrollRing from "@/components/ScrollRing";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 
-const archivo = Archivo({
+const display = Unbounded({
   subsets: ["latin"],
-  variable: "--font-archivo",
+  variable: "--font-display",
   display: "swap",
-  axes: ["wdth"],
+});
+
+const body = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -23,13 +29,18 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={archivo.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${display.variable} ${body.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         <ThemeProvider>
           <Wash />
-          <Nav />
+          <Shell />
           <main>{children}</main>
           <Footer />
+          <ScrollRing />
         </ThemeProvider>
       </body>
     </html>
