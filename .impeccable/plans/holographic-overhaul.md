@@ -9,7 +9,7 @@ This is a visual-world replacement, not a refinement: the editorial-grotesk worl
 - **Register: go full holographic.** Four saturated iridescent blobs at reference scale in the hero, grain, outline+fill caps. The boldest of the three options.
 - **Dark mode: yes.** Real second token set (deep indigo ground, blobs glow), `next-themes`, moon/sun toggle as in the reference.
 - **Hobbies: no photos.** The blob treatment ships as the permanent state — each hobby a gradient blob with the word set large inside.
-- **Delivery: build it all, as a GitHub stacked PR chain** (not one mega-PR, not a mid-build checkpoint).
+- **Delivery: build it all, as a GitHub stacked PR chain** (not one mega-PR), **stopping after every PR for Parth's feedback** before the next one starts.
 - Still outstanding, and blocking only PRs 4 and 5: the **tech-stack list** (grouped daily/often/learning, with which project used what) and the **hobbies list + which sport "athlete" means**.
 
 ## Delivery: the PR stack
@@ -148,7 +148,7 @@ These are content, not taste. Anything not answered is built with a labelled pla
 - **Interruptibility — the biggest feel win.** The roll moves from keyframes to CSS **transitions** driven by `data-state` (`entering` / `active` / `leaving`). Click-to-advance mid-roll currently restarts a keyframe from zero; a transition retargets from wherever it is.
 - **Asymmetric timing:** enter 360ms `--ease-out` (was 550ms), exit 200ms (was 400ms). The phrase still holds 2.4s; only the swap tightens.
 - **Blur to mask the crossfade.** The overlap defect patched last round by delaying the entrance gets the real fix: `filter: blur(3px)` on both phrases during the swap, clearing as each settles, so two overlapping words read as one morphing word rather than two objects. Far under the 20px Safari ceiling.
-- **The caret is visible *during* typing**, not only after — its absence mid-type is most of what reads as "broken". Solid cap-height bar, `steps(2, jump-none)` blink at 1s (constant motion → steps, never eased), removed once the roll starts.
+- **Caret** (correction to an earlier draft of this plan: it *was* already visible while typing). It stays solid during typing and blinks only on the hold — `steps(2, jump-none)`, constant motion, never eased — and leaves when the roll starts.
 - **Typing survives reduced motion.** It is not spatial movement and does not provoke vestibular symptoms; only the roll degrades to an in-place swap.
 - **Hydration.** SSR renders the full first phrase; `data-pretype` hides the glyphs (not the box) until the client takes over, with a 1.6s CSS fallback reveal if JS never runs — no flash of the full phrase, no blank hero without JS. Typing starts on `requestAnimationFrame` after `document.fonts.ready`, so the caret never types in a fallback face and then reflows. StrictMode's double-effect is guarded by a ref.
 - **Pause stays and grows.** Hover + `document.hidden` are already right (Sonner's "handle edge cases invisibly"); add pause when the slot scrolls out of view via `IntersectionObserver`, so nothing animates off-screen.

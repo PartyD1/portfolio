@@ -18,7 +18,12 @@
   --wash-d: #e4ded1;
 
   --radius-card: 20px;
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Motion (emil-design-eng): built-in easings are too weak; ease-in is banned. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
   --font: var(--font-archivo), system-ui, -apple-system, sans-serif;
   --shadow-ink: 20 46 38;
 }
@@ -103,7 +108,6 @@ svg {
   height: 80vmax;
   border-radius: 50%;
   background: radial-gradient(closest-side, var(--c), transparent 64%);
-  will-change: transform;
 }
 
 .wash__blob--a {
@@ -128,6 +132,10 @@ svg {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  /* will-change only while something is actually animating. */
+  .wash__blob {
+    will-change: transform;
+  }
   .wash__blob--a {
     animation: drift-a 28s ease-in-out infinite alternate;
   }
@@ -191,12 +199,19 @@ svg {
   color: var(--ink);
   text-decoration: none;
   transition:
-    background 0.35s var(--ease-out),
-    color 0.35s var(--ease-out);
+    background 200ms var(--ease-out),
+    color 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
 }
 
-.nav__link:hover {
-  background: color-mix(in oklab, var(--ink) 8%, transparent);
+@media (hover: hover) and (pointer: fine) {
+  .nav__link:hover {
+    background: color-mix(in oklab, var(--ink) 8%, transparent);
+  }
+}
+
+.nav__link:active {
+  transform: scale(0.97);
 }
 
 .nav__link[aria-current="location"] {
@@ -282,18 +297,39 @@ svg {
   cursor: default;
 }
 
+/*
+ * Transitions, not keyframes. Click-to-advance can interrupt a swap mid-flight;
+ * a transition retargets from wherever it is, a keyframe restarts from zero.
+ * The base rule doubles as the enter-from state.
+ */
 .roll__item {
   grid-area: 1 / 1;
   white-space: nowrap;
-  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms var(--ease-out);
 }
 
-.roll__item.is-active {
-  visibility: visible;
+.roll__item[data-state="active"] {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .roll__item--accent {
   color: var(--accent);
+}
+
+/* Until the client takes over, the glyphs are held back but the box is not,
+ * so nothing reflows. If JS never arrives, the phrase reveals itself. */
+.roll[data-pretype] .roll__item {
+  color: transparent;
+  animation: pretype-reveal 1ms linear 1.6s forwards;
+}
+
+@keyframes pretype-reveal {
+  to {
+    color: inherit;
+  }
 }
 
 .roll__caret {
@@ -305,6 +341,7 @@ svg {
   vertical-align: -0.04em;
 }
 
+/* Solid while typing; blinks only on the hold. Constant motion → steps. */
 .roll[data-phase="caret"] .roll__caret {
   animation: blink 1s steps(2, jump-none) infinite;
 }
@@ -316,29 +353,25 @@ svg {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .roll[data-phase="rolling"] .roll__item.is-active {
-    animation: roll-in 0.55s var(--ease-out) 0.1s both;
-  }
-  .roll[data-phase="rolling"] .roll__item.is-leaving {
-    visibility: visible;
-    animation: roll-out 0.4s var(--ease-out) both;
-  }
-}
-
-@keyframes roll-in {
-  from {
+  .roll__item {
     transform: translateY(0.7em);
-    opacity: 0;
+    filter: blur(3px);
+    transition:
+      transform 360ms var(--ease-out),
+      opacity 360ms var(--ease-out),
+      filter 360ms var(--ease-out);
   }
-}
 
-@keyframes roll-out {
-  40% {
-    opacity: 0;
+  .roll__item[data-state="active"] {
+    transform: none;
+    filter: none;
   }
-  to {
+
+  /* Exit faster than entrance; the blur blends two words into one morph. */
+  .roll__item[data-state="leaving"] {
     transform: translateY(-0.85em);
-    opacity: 0;
+    filter: blur(3px);
+    transition-duration: 200ms;
   }
 }
 
@@ -382,19 +415,20 @@ svg {
   .hero__sub,
   .hero__actions,
   .status {
-    animation: rise 1.1s var(--ease-out) both;
+    animation: rise 600ms var(--ease-out) both;
   }
+  /* Stagger steps stay 30–80ms; longer reads as the page being slow. */
   .hero__line--roll {
-    animation-delay: 0.3s;
+    animation-delay: 60ms;
   }
   .hero__sub {
-    animation-delay: 0.2s;
+    animation-delay: 120ms;
   }
   .hero__actions {
-    animation-delay: 0.3s;
+    animation-delay: 180ms;
   }
   .status {
-    animation-delay: 0.38s;
+    animation-delay: 240ms;
   }
 }
 
@@ -417,10 +451,15 @@ svg {
   line-height: 1;
   text-decoration: none;
   transition:
-    transform 0.45s var(--ease-out),
-    box-shadow 0.45s var(--ease-out),
-    background 0.3s var(--ease-out),
-    border-color 0.3s var(--ease-out);
+    transform 160ms var(--ease-out),
+    box-shadow 200ms var(--ease-out),
+    background 200ms var(--ease-out),
+    border-color 200ms var(--ease-out);
+}
+
+/* Instant press feedback: the interface confirms it heard you. */
+.btn:active {
+  transform: scale(0.97);
 }
 
 .btn--primary {
@@ -429,27 +468,33 @@ svg {
   box-shadow: 0 12px 26px -14px rgb(var(--shadow-ink) / 0.6);
 }
 
-.btn--primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 30px -14px rgb(var(--shadow-ink) / 0.65);
-}
-
 .btn--ghost {
   color: var(--ink);
   border: 2px solid color-mix(in oklab, var(--ink) 30%, transparent);
 }
 
-.btn--ghost:hover {
-  border-color: var(--ink);
-  background: color-mix(in oklab, var(--white) 55%, transparent);
-}
-
 .btn .icon {
-  transition: transform 0.45s var(--ease-out);
+  transition: transform 200ms var(--ease-out);
 }
 
-.btn:hover .icon {
-  transform: translateX(3px);
+@media (hover: hover) and (pointer: fine) {
+  .btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 30px -14px rgb(var(--shadow-ink) / 0.65);
+  }
+
+  .btn--primary:active {
+    transform: translateY(-2px) scale(0.97);
+  }
+
+  .btn--ghost:hover {
+    border-color: var(--ink);
+    background: color-mix(in oklab, var(--white) 55%, transparent);
+  }
+
+  .btn:hover .icon {
+    transform: translateX(3px);
+  }
 }
 
 .status {
@@ -464,27 +509,38 @@ svg {
 }
 
 .status__dot {
+  position: relative;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--accent);
 }
 
+/* A scaling ring, not an animated box-shadow: transform and opacity only. */
+.status__dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .status__dot {
-    animation: pulse 2.6s ease-out infinite;
+  .status__dot::after {
+    animation: pulse 2.6s var(--ease-out) infinite;
   }
 }
 
 @keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgb(184 100 31 / 0.5);
+  from {
+    transform: scale(1);
+    opacity: 0.5;
   }
-  70% {
-    box-shadow: 0 0 0 10px rgb(184 100 31 / 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgb(184 100 31 / 0);
+  70%,
+  to {
+    transform: scale(3);
+    opacity: 0;
   }
 }
 
@@ -560,13 +616,15 @@ svg {
   color: var(--card-fg);
   overflow: hidden;
   transition:
-    transform 0.55s var(--ease-out),
-    box-shadow 0.55s var(--ease-out);
+    transform 200ms var(--ease-out),
+    box-shadow 200ms var(--ease-out);
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 26px 40px -26px rgb(var(--shadow-ink) / 0.45);
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 26px 40px -26px rgb(var(--shadow-ink) / 0.45);
+  }
 }
 
 .card--sand {
@@ -637,19 +695,27 @@ svg {
   padding: 10px 16px;
   margin: -10px -16px;
   border-radius: 999px;
-  transition: background 0.3s var(--ease-out);
+  transition:
+    background 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
 }
 
-.card__link:hover {
-  background: color-mix(in oklab, var(--card-fg) 12%, transparent);
+.card__link:active {
+  transform: scale(0.97);
 }
 
 .card__link .icon {
-  transition: transform 0.45s var(--ease-out);
+  transition: transform 200ms var(--ease-out);
 }
 
-.card__link:hover .icon {
-  transform: translate(2px, -2px);
+@media (hover: hover) and (pointer: fine) {
+  .card__link:hover {
+    background: color-mix(in oklab, var(--card-fg) 12%, transparent);
+  }
+
+  .card__link:hover .icon {
+    transform: translate(2px, -2px);
+  }
 }
 
 .card__art {
@@ -660,7 +726,7 @@ svg {
   aspect-ratio: 1;
   color: var(--card-fg);
   opacity: 0.9;
-  transition: transform 0.7s var(--ease-out);
+  transition: transform 200ms var(--ease-out);
 }
 
 .card__art svg {
@@ -668,8 +734,10 @@ svg {
   height: 100%;
 }
 
-.card:hover .card__art {
-  transform: translate(-3px, -3px);
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .card__art {
+    transform: translate(-3px, -3px);
+  }
 }
 
 .card--flagship {
@@ -816,12 +884,14 @@ svg {
   text-decoration-thickness: 4px;
   text-decoration-color: var(--accent);
   text-underline-offset: 10px;
-  transition: text-decoration-color 0.3s var(--ease-out);
+  transition: text-decoration-color 200ms var(--ease-out);
   word-break: break-all;
 }
 
-.contact__email:hover {
-  text-decoration-color: var(--ink);
+@media (hover: hover) and (pointer: fine) {
+  .contact__email:hover {
+    text-decoration-color: var(--ink);
+  }
 }
 
 .contact__links {
@@ -855,8 +925,8 @@ svg {
   opacity: 1;
   transform: none;
   transition:
-    opacity 0.9s var(--ease-out),
-    transform 0.9s var(--ease-out);
+    opacity 450ms var(--ease-out),
+    transform 450ms var(--ease-out);
 }
 
 /* ---------- Icons ---------- */

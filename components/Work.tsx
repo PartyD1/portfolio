@@ -22,7 +22,7 @@ export default function Work() {
         {projects.map((project, i) => (
           <Reveal
             key={project.slug}
-            delay={i * 70}
+            delay={i * 50}
             className={project.flagship ? "work__item--flagship" : undefined}
           >
             <ProjectCard project={project} />
