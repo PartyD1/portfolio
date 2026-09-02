@@ -30,6 +30,10 @@ No image generation is available in this environment — code-led is the only pa
 
 Mission Control / Ops Console (seed b925b460, Impeccable's Pick) was locked on 2026-09-01 and then superseded the same day by the user's pinned references. Its one kept idea: a status label per project (● IN USE / SHIPPED / RESEARCH), translated into the pinned world's tracked-caps card labels.
 
+## Finish (2026-09-01)
+
+FINISH line discharged. Detector: zero findings. Finish review (fresh general-purpose agent on `degraded/finish-reviewer.md`, substituted because the shipped agents are Codex-only here): disposition **fix** with 8 material findings → all 8 scored **resolved** on the verdict pass → disposition **ship**. DESIGN.md and `.impeccable/design.json` written by the documenter from the built code. No shipping rasters exist (all card art is inline SVG geometry), so no provenance embedding was owed. Evidence: `.impeccable/review/{desktop,mobile}{,-fold}.png`.
+
 ## Unresolved Decisions
 
 - Final hero copy (draft: "Hi. I'm Parth. / I build with AI.") and subline wording.
