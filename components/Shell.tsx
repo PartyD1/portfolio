@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Sheet,
   SheetContent,
@@ -33,8 +34,10 @@ function DotGrid() {
 
 export default function Shell() {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
-  // The 1/2/3 shortcuts survive the nav's retirement.
+  // The numeric shortcuts survive the nav's retirement — and now survive
+  // leaving the homepage too.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
@@ -49,14 +52,20 @@ export default function Shell() {
       const item = items.find((i) => i.key === e.key);
       if (!item) return;
       setOpen(false);
-      // Keyboard-initiated actions are repeated often and never animate.
-      document
-        .getElementById(item.id)
-        ?.scrollIntoView({ behavior: "auto", block: "start" });
+      // On a case-study route the section does not exist in this document, so
+      // the shortcut has to cross routes rather than silently no-op.
+      const el = document.getElementById(item.id);
+      if (el) {
+        // Keyboard-initiated actions are repeated often and never animate —
+        // at any motion preference. The house rule, extended to route jumps.
+        el.scrollIntoView({ behavior: "auto", block: "start" });
+      } else {
+        router.push(`/#${item.id}`);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [router]);
 
   return (
     <header className="shell">
@@ -78,7 +87,9 @@ export default function Shell() {
               {items.map((item, i) => (
                 <a
                   key={item.id}
-                  href={`#${item.id}`}
+                  // Root-relative, so the menu works from a case-study route
+                  // as well as from the homepage.
+                  href={`/#${item.id}`}
                   className="menu__link"
                   style={{ ["--i" as string]: i }}
                   onClick={() => setOpen(false)}

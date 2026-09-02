@@ -87,7 +87,12 @@ export const projects: Project[] = [
     description:
       "Built with a partner for the operations team. It manages bookings, autonomously flags the ones that need attention, and works on fixing them — so the team spends its time on the exceptions, not the queue.",
     ownership: "Built with a partner",
-    note: "Internal to the company, so there's no public repo.",
+    /*
+     * Says the true thing calmly, and turns the absence into an invitation
+     * rather than an apology. It is deliberately NOT phrased as "no repo" — the
+     * thing a hiring manager wants here was never in the repo anyway.
+     */
+    note: "The code and the company's data stay internal. The architecture and the decisions I can walk through in detail.",
     weight: 1,
     tech: [],
     media: [],

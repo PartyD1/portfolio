@@ -48,6 +48,12 @@
 
   --radius-card: 22px;
 
+  /* The media well's ground. Defined ONCE, against an already-themed value, so
+   * it is automatically correct in both themes and cannot become a value that
+   * exists in only one of them. Opaque on purpose — see The Opaque-Media
+   * Rule. It is also what the Artifact knockouts paint against. */
+  --media-well: var(--white);
+
   /* Motion (emil-design-eng): built-in easings are too weak; ease-in is banned. */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
@@ -1604,6 +1610,226 @@ svg {
   justify-content: center;
   gap: 24px;
   margin-top: 36px;
+}
+
+/* ==========================================================================
+   Case study — /work/[slug]
+   ==========================================================================
+   Inherits the homepage's world without amendment: same wash, same grain, same
+   caps, same one accent, both themes. One new component vocabulary, one new
+   token (--media-well), zero new radii, zero box-shadow.
+   ========================================================================== */
+.case {
+  display: block;
+  max-width: calc(1140px + var(--gutter) * 2);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.case__header {
+  padding-top: 120px;
+}
+
+/* Leading arrow — this link stays on the site. Outbound links take the
+ * trailing ArrowUpRight instead, and the two read as different promises. */
+.case__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px;
+  margin-left: -4px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition:
+    color 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.case__back .icon {
+  width: 1.05em;
+  height: 1.05em;
+  transition: transform 200ms var(--ease-out);
+}
+
+.case__back:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .case__back:hover {
+    color: var(--signal-ink);
+  }
+  .case__back:hover .icon {
+    transform: translateX(-4px);
+  }
+}
+
+.case__title {
+  margin-top: 18px;
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: 0.005em;
+}
+
+/* A hairline of facts, and only the facts that exist. Nothing here renders a
+ * placeholder — an unsupplied field is simply not in the line. */
+.case__meta {
+  margin-top: 16px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.case__meta-sep {
+  padding: 0 10px;
+  opacity: 0.55;
+}
+
+.case__note {
+  max-width: 62ch;
+  margin-top: 14px;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.case__standfirst {
+  max-width: 62ch;
+  margin: 28px 0 0;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.case__standfirst p {
+  margin: 0;
+}
+
+/* --- the media well ------------------------------------------------------
+ * OPAQUE. The Opaque-Media Rule, a named amendment to The Blur-Is-Legibility
+ * Rule: blur keeps TEXT legible over the wash, and a screenshot has no such
+ * job. It is also the only surface allowed to travel under scroll motion,
+ * because a moving backdrop-filter re-blurs its backdrop every frame. */
+.case__band {
+  margin-top: 40px;
+}
+
+.case__media {
+  position: relative;
+  overflow: clip;
+  aspect-ratio: 16 / 10;
+  max-height: 62svh;
+  margin: 0;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--glass-edge);
+  background: var(--media-well);
+}
+
+/* 106% tall, so a +-3% drift never exposes an edge at either end of its range. */
+.case__media__inner {
+  position: absolute;
+  inset: -3% 0;
+  display: grid;
+  place-items: center;
+}
+
+.case__media__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Sized to compose the frame rather than sit in the middle of it. A small mark
+ * in a large well reads as a missing screenshot; a large one reads as the
+ * authored empty state it actually is. */
+.case__media__mark {
+  width: min(64%, 520px);
+  color: var(--ink);
+  opacity: 0.7;
+}
+
+.case__media__mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.case__media__cap {
+  margin-top: 12px;
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+
+/* --- sections ----------------------------------------------------------- */
+.case__section {
+  padding: 80px 0 0;
+  scroll-margin-top: 84px;
+}
+
+.case__section-title {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  letter-spacing: 0.005em;
+}
+
+.case__prose {
+  /* craft-floor 65-75ch. */
+  max-width: 70ch;
+  margin-top: 18px;
+}
+
+.case__prose p {
+  margin: 0 0 18px;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+.case__prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- the foot: the highest-intent moment on the site --------------------- */
+.case__foot {
+  margin-top: 96px;
+  padding: 72px 0 128px;
+  border-top: 1px solid var(--glass-edge);
+}
+
+.case__foot-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.case__foot-lede {
+  max-width: 46ch;
+  margin-top: 16px;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.case__foot .contact__email {
+  margin-top: 28px;
+}
+
+.case__foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 34px;
+}
+
+@media (max-width: 760px) {
+  .case__header {
+    padding-top: 96px;
+  }
+  .case__section {
+    padding-top: 64px;
+  }
+  .case__foot {
+    margin-top: 72px;
+    padding: 56px 0 96px;
+  }
 }
 
 /* ==========================================================================
