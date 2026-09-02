@@ -16,32 +16,37 @@ Single-page portfolio landing surface. Mode: Experience (portfolio/showcase), ca
 - Audience: recruiters/hiring managers screening fast; peers/professional network browsing casually. Both must be served at once.
 - Job/action: judge technical depth and agentic-systems credibility quickly; primary actions are opening the Operations Agent case study and reaching GitHub/LinkedIn/email.
 - Proof/content: 7 real projects (Operations Agent flagship — no public repo, case-study only; ScorelyAI; SantaClaws; Wave Function Collapse; WordPlay; Pewter Platformer; Gestura); confirmed GitHub, LinkedIn, email.
-- Constraints: never fabricate metrics/testimonials/adoption numbers; resume PDF not yet supplied (pending asset); no auth/backend needed.
+- Constraints: never fabricate metrics/testimonials/adoption numbers; resume PDF not yet supplied (pending asset); no auth/backend needed; light theme only.
 
 ## Chosen Direction & Memorable Moment
 
-Mission Control / Ops Console (Impeccable's Pick — see Direction contract). Memorable moment: the scanline sweeping across the console header on load, and each project channel's status glyph (● armed / flagged / resolved) flipping state as it scrolls into view.
+User-pinned reference world (see PRODUCT.md Brand Commitments and `.impeccable/references/`); Seán's reference leads. Memorable moment: the two-line rounded display headline settling in over a slowly drifting warm gradient wash, sparkles blinking, and the pastel project cards rising into view with their status labels.
 
 ## Execution Contract
 
-No image generation is available in this environment — code-led is the only path (stated, not asked); the FIRST VIEWPORT block and signature interaction below carry the ambition the finish review audits.
+No image generation is available in this environment — code-led is the only path (stated, not asked); the FIRST VIEWPORT block and signature interaction carry the ambition the finish review audits.
+
+## Superseded
+
+Mission Control / Ops Console (seed b925b460, Impeccable's Pick) was locked on 2026-09-01 and then superseded the same day by the user's pinned references. Its one kept idea: a status label per project (● IN USE / SHIPPED / RESEARCH), translated into the pinned world's tracked-caps card labels.
 
 ## Unresolved Decisions
 
-- Exact copy/voice for channel status labels.
+- Final hero copy (draft: "Hi. I'm Parth. / I build with AI.") and subline wording.
 - Whether a contact form is added beyond direct email/LinkedIn links.
 - Final resume asset (PDF not yet supplied).
+- Exact display typeface (chosen at build; rounded, friendly, with personality, not a training-data default).
 
 ## Direction contract
 
-THESIS: The portfolio is a supervisory console for autonomous systems — you watch Parth's agents at work, not read a résumé. Refuses the hero-plus-project-grid default.
+THESIS: A warm, friendly typographic self-introduction at monumental scale on a soft gradient wash, projects as chunky pastel cards; refuses both the dark-terminal dev portfolio and the sterile résumé page.
 
-OWN-WORLD: Near-black charcoal ground; monospace telemetry type; a restrained green/amber signal palette (amber = flagged/attention, green = resolved/shipped); thin scanline motion; projects as status "channels" on a control-room wall.
+OWN-WORLD: Warm cream→peach→sage gradient wash with faint grain; one deep green ink for display type and body; lavender as the single recurring accent; rounded pill nav and buttons; white four-point sparkles; pastel project cards (lavender, mint, butter, peach) with small tracked-caps labels.
 
-STORY: Visitor lands on the console, Operations Agent's channel leading center-stage with status glyphs; scrolling moves between stations — OPERATIONS (flagship), SIGNALS (agent projects), SYSTEMS (game/physics research), FIELD (assistive tech) — leaving with "this person ships autonomous systems that supervise real work."
+STORY: Visitor meets Parth by name, reads the one-line positioning, sees "● OPEN TO OPPORTUNITIES", scrolls into the cards — Operations Agent first and largest — and leaves with "friendly, ships real AI systems, easy to reach."
 
-FIRST VIEWPORT: A bank of channel cards, Operations Agent centered and largest, scanline ticking across the top, status glyphs (● armed / flagged / resolved) per project, primary action (open case study) inside the flagship channel.
+FIRST VIEWPORT: Centered pill nav (Work / About / Contact); status-dot label; two-line rounded display headline; one-sentence subline; pill CTA pair (Get in touch → / GitHub); the tops of the first two pastel cards peeking above the fold.
 
-FORM: Mission Control / Ops Console — Impeccable's Pick, ranked #1 on the grounded list (dice-assigned direction was Lab Notebook / Research Log, index 5); seed key b925b460.
+FORM: User-pinned reference world (beats the roll) — Seán leads; Ram donates the status label and CTA pair; Sharlee donates grain and one soft gradient blob. Supersedes seed b925b460.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
