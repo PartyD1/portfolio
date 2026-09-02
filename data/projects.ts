@@ -1,4 +1,4 @@
-export type Tone = "lavender" | "mint" | "butter" | "peach" | "sky" | "rose";
+export type Tone = "lavender" | "mint" | "butter" | "peach";
 
 export type Project = {
   slug: string;
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     tagline:
       "Better movement physics, plus tools that let an LLM understand them well enough to design levels that are hard but still playable.",
     href: "https://github.com/PartyD1/Pewter-The-Platformer",
-    tone: "sky",
+    tone: "mint",
   },
   {
     slug: "gestura",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     tagline:
       "A browser music player controlled entirely by hand shapes and movement, built for people with motor impairments.",
     href: "https://github.com/PartyD1/gestura",
-    tone: "rose",
+    tone: "butter",
   },
   {
     slug: "wordplay",
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     label: "Full stack",
     tagline: "A Wordle recreation with full statistics and game history.",
     href: "https://github.com/PartyD1/wordplay",
-    tone: "mint",
+    tone: "peach",
   },
 ];
 

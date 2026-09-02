@@ -12,13 +12,11 @@
   --mint: #b4ded4;
   --butter: #f0e2a4;
   --peach: #f6cdb3;
-  --sky: #bdd6ee;
-  --rose: #f3c5d3;
 
-  --wash-a: #e3e8b2;
-  --wash-b: #cbe0d0;
-  --wash-c: #f6d6c1;
-  --wash-d: #efe1c9;
+  --wash-a: #dde6a3;
+  --wash-b: #c6dfcc;
+  --wash-c: #f8ceb3;
+  --wash-d: #efdfc3;
 
   --radius-card: 40px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -58,6 +56,11 @@ body {
 :focus-visible {
   outline: 3px solid var(--ink);
   outline-offset: 4px;
+}
+
+.btn:focus-visible,
+.nav__link:focus-visible,
+.card__link:focus-visible {
   border-radius: 999px;
 }
 
@@ -99,7 +102,7 @@ svg {
   width: 80vmax;
   height: 80vmax;
   border-radius: 50%;
-  background: radial-gradient(closest-side, var(--c), transparent 72%);
+  background: radial-gradient(closest-side, var(--c), transparent 62%);
   will-change: transform;
 }
 
@@ -196,7 +199,7 @@ svg {
   background: color-mix(in oklab, var(--ink) 8%, transparent);
 }
 
-.nav__link[aria-current="true"] {
+.nav__link[aria-current="location"] {
   background: var(--ink);
   color: var(--white);
 }
@@ -208,7 +211,7 @@ svg {
   padding: 3px 6px 2px;
   border-radius: 6px;
   border: 1.5px solid currentColor;
-  opacity: 0.55;
+  opacity: 0.78;
 }
 
 @media (max-width: 640px) {
@@ -227,17 +230,17 @@ svg {
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: min(100svh, 720px);
+  min-height: min(100svh, 640px);
   display: grid;
   place-content: center;
   justify-items: center;
   text-align: center;
-  padding: 150px 24px 64px;
+  padding: 140px 24px 32px;
   overflow: clip;
 }
 
 .hero__title {
-  font-size: clamp(2.5rem, 10.5vw, 6.75rem);
+  font-size: clamp(2.875rem, 13vw, 6rem);
   line-height: 0.98;
   color: var(--ink);
 }
@@ -247,8 +250,8 @@ svg {
 }
 
 .hero__sub {
-  max-width: 46ch;
-  margin-top: 32px;
+  max-width: 54ch;
+  margin-top: 28px;
   font-size: clamp(1.125rem, 1.4vw, 1.375rem);
   line-height: 1.45;
   color: var(--ink-2);
@@ -260,7 +263,38 @@ svg {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin-top: 36px;
+  margin-top: 32px;
+}
+
+/* Sharlee's device: one discrete soft blob at the hero's edge */
+.hero__blob {
+  position: absolute;
+  z-index: -1;
+  right: 6%;
+  bottom: 6%;
+  width: 260px;
+  height: 260px;
+  border-radius: 46% 54% 52% 48% / 55% 45% 55% 45%;
+  background: linear-gradient(
+    135deg,
+    var(--lavender) 0%,
+    var(--mint) 48%,
+    var(--butter) 100%
+  );
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.hero__blob::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 32% 28%,
+    rgb(255 253 248 / 0.85),
+    rgb(255 253 248 / 0) 46%
+  );
 }
 
 .hero__sparkle {
@@ -284,17 +318,26 @@ svg {
 
 @media (max-width: 720px) {
   .hero {
-    padding-top: 120px;
+    padding-top: 116px;
+  }
+  .hero__sub {
+    font-size: 1.0625rem;
   }
   .hero__sparkle--a {
-    top: 17%;
+    top: 15%;
     right: 8%;
     width: 48px;
   }
   .hero__sparkle--b {
-    bottom: 9%;
-    left: 12%;
-    width: 36px;
+    bottom: 20%;
+    left: 5%;
+    width: 34px;
+  }
+  .hero__blob {
+    right: -40px;
+    bottom: 4%;
+    width: 150px;
+    height: 150px;
   }
 }
 
@@ -317,6 +360,9 @@ svg {
     animation: twinkle 4.2s ease-in-out infinite;
     transform-origin: center;
   }
+  .hero__blob {
+    animation: bob 14s ease-in-out infinite alternate;
+  }
   .hero__sparkle--b {
     animation-delay: -1.7s;
     animation-duration: 5.1s;
@@ -327,6 +373,12 @@ svg {
   from {
     opacity: 0;
     transform: translateY(28px);
+  }
+}
+
+@keyframes bob {
+  to {
+    transform: translate(-14px, -18px) rotate(8deg);
   }
 }
 
@@ -393,10 +445,8 @@ svg {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 16px;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--white) 70%, transparent);
-  font-weight: 700;
+  margin-top: 22px;
+  font-weight: 600;
   font-size: 0.9375rem;
   line-height: 1;
   color: var(--ink);
@@ -435,12 +485,16 @@ svg {
   scroll-margin-top: 72px;
 }
 
+.section--work {
+  padding-top: 28px;
+}
+
 .section__head {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 32px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .section__title {
@@ -483,11 +537,12 @@ svg {
 .card {
   --card: var(--paper);
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  min-height: 330px;
-  padding: 36px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 40%);
+  grid-template-rows: auto 1fr auto;
+  column-gap: 24px;
+  row-gap: 14px;
+  padding: 34px;
   border-radius: var(--radius-card);
   background: var(--card);
   color: var(--ink);
@@ -514,16 +569,9 @@ svg {
 .card--peach {
   --card: var(--peach);
 }
-.card--sky {
-  --card: var(--sky);
-}
-.card--rose {
-  --card: var(--rose);
-}
-
 .card__head {
-  min-height: 116px;
-  padding-right: 132px;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .card__label {
@@ -538,12 +586,14 @@ svg {
 }
 
 .card__name {
-  font-size: clamp(1.75rem, 2.6vw, 2.5rem);
+  font-size: clamp(1.625rem, 2.4vw, 2.25rem);
   letter-spacing: -0.025em;
   line-height: 1.02;
 }
 
 .card__tagline {
+  grid-column: 1;
+  grid-row: 2;
   max-width: 42ch;
   font-size: 1.125rem;
   line-height: 1.45;
@@ -557,12 +607,14 @@ svg {
 }
 
 .card__foot {
+  grid-column: 1 / -1;
+  grid-row: 3;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
   margin-top: auto;
-  padding-top: 20px;
+  padding-top: 18px;
 }
 
 .card__link {
@@ -590,13 +642,13 @@ svg {
 }
 
 .card__art {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  width: 116px;
-  height: 116px;
+  grid-column: 2;
+  grid-row: 1 / 3;
+  align-self: center;
+  width: 100%;
+  aspect-ratio: 1;
   color: var(--ink);
-  opacity: 0.6;
+  opacity: 0.9;
   transition: transform 0.7s var(--ease-out);
 }
 
@@ -610,25 +662,21 @@ svg {
 }
 
 .card--flagship {
-  grid-column: 1 / -1;
-  display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  grid-template-rows: auto;
   align-items: center;
-  gap: 32px;
+  column-gap: 32px;
   min-height: 440px;
   padding: 48px;
 }
 
 .card--flagship .card__body {
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   gap: 14px;
   min-height: 100%;
-}
-
-.card--flagship .card__head {
-  min-height: 0;
-  padding-right: 0;
 }
 
 .card--flagship .card__name {
@@ -646,33 +694,32 @@ svg {
 }
 
 .card--flagship .card__art {
-  position: static;
-  width: 100%;
-  height: auto;
+  grid-column: 2;
+  grid-row: 1;
   aspect-ratio: 4 / 3;
-  opacity: 0.75;
+  opacity: 0.8;
 }
 
 @media (max-width: 760px) {
   .card {
-    padding: 28px;
-    min-height: 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 36%);
+    column-gap: 16px;
+    padding: 26px;
   }
-  .card__head {
-    min-height: 84px;
-    padding-right: 100px;
+  .card__name {
+    font-size: 1.5rem;
   }
-  .card__art {
-    top: 24px;
-    right: 24px;
-    width: 84px;
-    height: 84px;
+  .card__tagline {
+    font-size: 1.0625rem;
   }
   .card--flagship {
     grid-template-columns: 1fr;
-    padding: 32px;
+    grid-template-rows: auto auto;
+    padding: 30px;
   }
   .card--flagship .card__art {
+    grid-column: 1;
+    grid-row: 2;
     max-width: 360px;
     justify-self: center;
   }

@@ -5,6 +5,7 @@ import { links } from "@/data/projects";
 export default function Hero() {
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
+      <div className="hero__blob" aria-hidden="true" />
       <Sparkle className="hero__sparkle hero__sparkle--a" />
       <Sparkle className="hero__sparkle hero__sparkle--b" />
 
@@ -14,9 +15,8 @@ export default function Hero() {
       </h1>
 
       <p className="hero__sub">
-        Computer science at UC Santa Cruz. I build autonomous agents that do
-        real work — managing bookings, grading reports, finding leads — and I
-        get more out of AI than most, in what I build and how I work.
+        CS student at UC Santa Cruz building autonomous agents that do real
+        work — and getting more out of AI than most.
       </p>
 
       <div className="hero__actions">
@@ -32,11 +32,12 @@ export default function Hero() {
         >
           GitHub
         </a>
-        <span className="status">
-          <span className="status__dot" aria-hidden="true" />
-          Open to opportunities
-        </span>
       </div>
+
+      <p className="status">
+        <span className="status__dot" aria-hidden="true" />
+        Open to opportunities
+      </p>
     </section>
   );
 }

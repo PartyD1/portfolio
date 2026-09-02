@@ -61,7 +61,7 @@ export default function Nav() {
           key={item.id}
           href={`#${item.id}`}
           className="nav__link"
-          aria-current={active === item.id ? "true" : undefined}
+          aria-current={active === item.id ? "location" : undefined}
         >
           {item.label}
           <span className="nav__key" aria-hidden="true">

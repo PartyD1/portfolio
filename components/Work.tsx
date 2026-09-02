@@ -4,14 +4,18 @@ import Reveal from "@/components/Reveal";
 
 export default function Work() {
   return (
-    <section className="section" id="work" aria-labelledby="work-title">
+    <section
+      className="section section--work"
+      id="work"
+      aria-labelledby="work-title"
+    >
       <div className="section__head">
         <h2 className="section__title" id="work-title">
           Work
         </h2>
         <p className="section__lede">
-          Seven things I&rsquo;ve shipped. Six have the code out in the open;
-          the one I&rsquo;m proudest of lives inside a company.
+          Seven things I&rsquo;ve made. Six have the code out in the open; the
+          one I&rsquo;m proudest of lives inside a company.
         </p>
       </div>
       <div className="work__grid">

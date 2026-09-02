@@ -16,7 +16,7 @@ export default function About() {
           </p>
           <p>
             That thread runs through my game work too. In a research lab I
-            rebuilt a platformer&rsquo;s movement physics and gave an LLM the
+            improved a platformer&rsquo;s movement physics and gave an LLM the
             tools to understand them well enough to design levels that are hard
             but still playable. And Gestura, a music player you control with
             your hands, came from asking what a browser could do for people
