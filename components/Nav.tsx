@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const items = [
   { id: "work", label: "Work", key: "1" },
@@ -69,6 +70,7 @@ export default function Nav() {
           </span>
         </a>
       ))}
+      <ThemeToggle />
     </nav>
   );
 }
