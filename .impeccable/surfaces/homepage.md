@@ -9,50 +9,45 @@ related_targets: []
 
 ## Scope & Mode
 
-Single-page portfolio landing surface. Mode: Experience (portfolio/showcase), carrying Persuade-grade scanability for the recruiter audience.
+Single-page portfolio landing surface. Mode: Experience (portfolio/showcase), carrying Persuade-grade scanability for the recruiter audience. Sections: Hero → Work → Stack → About → Contact.
 
 ## Audience, Job, Action, Proof, Constraints
 
 - Audience: recruiters/hiring managers screening fast; peers/professional network browsing casually. Both must be served at once.
-- Job/action: judge technical depth and agentic-systems credibility quickly; primary actions are opening the Operations Agent case study and reaching GitHub/LinkedIn/email.
-- Proof/content: 7 real projects (Operations Agent flagship — no public repo, case-study only; ScorelyAI; SantaClaws; Wave Function Collapse; WordPlay; Pewter Platformer; Gestura); confirmed GitHub, LinkedIn, email.
-- Constraints: never fabricate metrics/testimonials/adoption numbers; resume PDF not yet supplied (pending asset); no auth/backend needed; light theme only.
+- Job/action: judge technical depth and agentic-systems credibility quickly; primary actions are opening the Operations Agent case study, downloading the résumé, and reaching GitHub/LinkedIn/email.
+- Proof/content: 7 real projects (Operations Agent flagship — no public repo, case-study only); Parth's own 29-tool stack in his own grouping; confirmed GitHub, LinkedIn, email; résumé live at `public/resume.pdf`.
+- Constraints: never fabricate metrics/testimonials/adoption numbers; no tool→project mapping and no fluency ordering exist, so neither may be inferred; the sport behind "an athlete" and the mentoring context are still unsupplied and must not be invented.
 
 ## Chosen Direction & Memorable Moment
 
-User-pinned reference world (see PRODUCT.md Brand Commitments and `.impeccable/references/`); Seán's reference leads. Memorable moment: the two-line rounded display headline settling in over a slowly drifting warm gradient wash, sparkles blinking, and the pastel project cards rising into view with their status labels.
+User-pinned reference world — Sharlee's holographic blobs lead (`.impeccable/references/ref-2-sharlee-holographic-blobs.png`). Memorable moment: the outline-and-fill headline, where "I'm" stays hollow and the filled phrase after it rolls through Parth's six self-descriptions, landing on "obsessed with AI." in the accent.
 
 ## Execution Contract
 
-No image generation is available in this environment — code-led is the only path (stated, not asked); the FIRST VIEWPORT block and signature interaction carry the ambition the finish review audits.
+No image generation exists in this environment — code-led (stated, not asked). The FIRST VIEWPORT block and the named signature interaction carry the ambition the finish review audits.
 
 ## Superseded
 
-Mission Control / Ops Console (seed b925b460, Impeccable's Pick) was locked on 2026-09-01 and then superseded the same day by the user's pinned references. Its one kept idea: a status label per project (● IN USE / SHIPPED / RESEARCH), translated into the pinned world's tracked-caps card labels.
-
-## Finish (2026-09-01)
-
-FINISH line discharged. Detector: zero findings. Finish review (fresh general-purpose agent on `degraded/finish-reviewer.md`, substituted because the shipped agents are Codex-only here): disposition **fix** with 8 material findings → all 8 scored **resolved** on the verdict pass → disposition **ship**. DESIGN.md and `.impeccable/design.json` written by the documenter from the built code. No shipping rasters exist (all card art is inline SVG geometry), so no provenance embedding was owed. Evidence: `.impeccable/review/{desktop,mobile}{,-fold}.png`.
+1. Mission Control / Ops Console (seed b925b460) — locked, then superseded by the user's pinned references.
+2. Editorial grotesk (Archivo, stone/sand/deep-green) — shipped, then superseded on 2026-09-01 when the user pinned Sharlee's holographic reference and asked to go "full holographic".
+3. A Hobbies section — planned, then cut: with no photos or detail it would be the only content-free section, and About plus the hero's rolling phrases already carry the personality.
 
 ## Unresolved Decisions
 
-- Final hero copy (draft: "Hi. I'm Parth. / I build with AI.") and subline wording.
-- Whether a contact form is added beyond direct email/LinkedIn links.
-- Final resume asset (PDF not yet supplied).
-- Exact display typeface (chosen at build; rounded, friendly, with personality, not a training-data default).
+- One About sentence grounding "an athlete" and "a mentor" — blocked on the sport and the mentoring context.
+- Whether Tailwind stays under "Languages" (the user's own grouping) or moves to Frameworks.
+- Whether to add tool→project links in the Stack orbit (needs a mapping that does not exist yet).
 
 ## Direction contract
 
-THESIS: A confident, editorial self-introduction at monumental scale on a quiet stone wash, projects as flat cards in sand, stone, and deep green; refuses the dark-terminal dev portfolio, the sterile résumé page, and the candy-pastel first pass.
+THESIS: A holographic self-introduction — iridescent blobs, grain and wide outline caps — where the visitor meets a person who is several things at once; refuses the dark-terminal dev portfolio, the sterile résumé page, and the candy-pastel first pass.
 
-OWN-WORLD: Desaturated warm-stone gradient wash; near-black-green ink; a tight grotesk (Archivo, width ~88%) for display; burnt ochre as the single accent; pill nav and buttons; radius-20 cards in sand / stone with one deep-green card per row, cream text on green; small tracked-caps labels in the card foot; no sparkles, no blob, no grain.
+OWN-WORLD: Lavender-grey ground with four deterministic iridescent blobs and a real 128px grain tile; slate-indigo ink; Unbounded caps with outline-and-fill contrast; Hanken Grotesk for everything else; coral accent used only for the finale phrase, the status dot, the email underline and the scroll ring; frosted glass cards with a gradient edge on every other one. Dark is a second world (deep indigo, blobs lit and held to 62%), not an inverted filter.
 
-STORY: Visitor meets Parth by full name, reads the one-line positioning, sees the "Open to opportunities" line, scrolls into the cards — Operations Agent first, largest, and deep green — and leaves with "serious, ships real AI systems, easy to reach."
+STORY: Visitor meets Parth by name in outline-and-fill caps, watches the phrase after "I'm" roll through developer / researcher / computer scientist / athlete / mentor and land on "obsessed with AI."; scrolls into seven projects with the Operations Agent flagship first; reads the stack as three rings; leaves able to reach him or take the résumé.
 
-FIRST VIEWPORT: Centered pill nav (Work / About / Contact); a left-aligned hero column on the 1200px grid: two-line tight-grotesk headline "Hey, I'm Parth. / I'm [rolling phrase]"; one-sentence subline; pill CTA pair (Get in touch → / GitHub); status line beneath; the top of the deep-green flagship card peeking above the fold.
+FIRST VIEWPORT: Centred hero. "HEY, I'M" outline + "PARTH DOSHI" filled over a two-pass sine wave; "I'M" outline + the rolling phrase; one-sentence subline; two arrow links (see my work / more about me); status line. Monogram top-left, theme toggle and dot-grid menu top-right, blobs in all four corners with a calm centre.
 
-MOTION (the page's one authored moment, added 2026-09-01): the first phrase "a developer." types in once behind a solid ink caret sized to the cap height; the caret leaves; then every 2.4s the next phrase rolls in from below through a clipped line box on the site's ease-out while the old one exits upward faster. Phrases, verbatim from the user: a developer. / a researcher. / a computer scientist. / an athlete. / a mentor. / obsessed with AI. — the last is the finale: held 4.2s and set in the ochre accent. Pauses on hover and when the tab is hidden; click advances. Reduced motion: a static list, no typing, no roll. The h1 carries the full sentence for assistive tech; the animating slot is aria-hidden.
-
-FORM: User-pinned reference world (beats the roll) — Seán's structure leads, Ram's temperament sets the register; refined 2026-09-01 to "Editorial grotesk" at the user's request (first pass read too bubbly). Supersedes seed b925b460.
+FORM: User-pinned reference world (beats the roll) — Sharlee leads, Ram donates the status line, Seán's structure survives in the section rhythm. Supersedes seed b925b460 and the editorial-grotesk pass.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.

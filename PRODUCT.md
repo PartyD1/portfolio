@@ -45,6 +45,7 @@ Visitors are doing fast technical screening (recruiters) or casual browsing (pee
 - Name: Parth Doshi.
 - No existing logo, color system, or typographic identity.
 - Pinned visual references (binding; added 2026-09-01): three portfolio screenshots at `.impeccable/references/` (`ref-1-sean-warm-gradient.png` leads; `ref-2-sharlee-holographic-blobs.png` and `ref-3-ram-editorial-serif.png` contribute details). Shared traits the user pinned: light airy ground, a big name-led typographic hero, a recurring lavender accent, rounded pill controls, playful decoration (sparkles, soft gradient blobs). Light theme only — no dark mode.
+- No hobbies section (decided 2026-09-01). With no photos or detail behind it, it would be the only section with no real content, and it dilutes a page whose argument is applied AI systems. The personality it would have carried is served by the About section and the hero's rolling self-descriptions instead.
 - Register (added 2026-09-01 after the first build): adult and editorial, never bubbly — the user said the first pass (candy pastels, 40px corners, sparkles, glossy blob, puffy rounded type) read like a child's site. Chosen refinement, "Editorial grotesk": tight grotesk display in near-black-green, flat radius-20 sand/stone cards with one deep-green card per row, desaturated stone wash, no sparkles or blob. Same structure, still light-only and name-led.
 
 ## Evidence on Hand
@@ -52,7 +53,13 @@ Visitors are doing fast technical screening (recruiters) or casual browsing (pee
 - GitHub: https://github.com/PartyD1
 - LinkedIn: https://www.linkedin.com/in/parthmdoshi/
 - Email/contact: pmdoshi@ucsc.edu
-- Resume: PDF exists; not yet added to the project (no file/path yet — do not fabricate its content).
+- Resume: supplied by Parth on 2026-09-01 and live at `public/resume.pdf` (gated by `resume.ready` in `data/site.ts`).
+- Tech stack (Parth's own list and grouping, 2026-09-01), recorded in `data/stack.ts`:
+  - Languages: Python, Java, JavaScript, TypeScript, C, HTML, CSS, Bash, Tailwind, Elixir.
+  - Frameworks/libraries: FastAPI, Flask, React, Next.js, PyTorch, TensorFlow, Pandas, Pydantic, LangChain.
+  - Developer tools: Node.js, PostgreSQL, Supabase, OpenAI API, NemoClaw, Vercel, Apify, Git, Jupyter, OpenClaw.
+  - Not established: which project used which tool, and any fluency ordering. Do not infer either.
+- Still not supplied: which sport "an athlete" refers to, and the mentoring context. The hero claims both, so one grounding sentence in About is owed once Parth answers. Do not invent a sport or a mentee group.
 
 Real projects to feature:
 
