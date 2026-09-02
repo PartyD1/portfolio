@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import Monogram from "@/components/Monogram";
 import ThemeToggle from "@/components/ThemeToggle";
+import ResumeLink from "@/components/ResumeLink";
 import { links } from "@/data/projects";
 
 const items = [
@@ -96,6 +97,7 @@ export default function Shell() {
               <a href={links.linkedin} target="_blank" rel="noreferrer">
                 LinkedIn
               </a>
+              <ResumeLink className="menu__resume" />
             </div>
           </SheetContent>
         </Sheet>

@@ -1,5 +1,6 @@
 import { links } from "@/data/projects";
 import { ArrowUpRight } from "@/components/Icon";
+import ResumeLink from "@/components/ResumeLink";
 
 export default function Contact() {
   return (
@@ -37,6 +38,7 @@ export default function Contact() {
           LinkedIn
           <ArrowUpRight />
         </a>
+        <ResumeLink />
       </div>
     </section>
   );
