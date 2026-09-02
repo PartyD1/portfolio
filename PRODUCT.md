@@ -43,6 +43,7 @@ Visitors are doing fast technical screening (recruiters) or casual browsing (pee
 - Name: Parth Doshi.
 - No existing logo, color system, or typographic identity.
 - Pinned visual references (binding; added 2026-09-01): three portfolio screenshots at `.impeccable/references/` (`ref-1-sean-warm-gradient.png` leads; `ref-2-sharlee-holographic-blobs.png` and `ref-3-ram-editorial-serif.png` contribute details). Shared traits the user pinned: light airy ground, a big name-led typographic hero, a recurring lavender accent, rounded pill controls, playful decoration (sparkles, soft gradient blobs). Light theme only — no dark mode.
+- Register (added 2026-09-01 after the first build): adult and editorial, never bubbly — the user said the first pass (candy pastels, 40px corners, sparkles, glossy blob, puffy rounded type) read like a child's site. Chosen refinement, "Editorial grotesk": tight grotesk display in near-black-green, flat radius-20 sand/stone cards with one deep-green card per row, desaturated stone wash, no sparkles or blob. Same structure, still light-only and name-led.
 
 ## Evidence on Hand
 

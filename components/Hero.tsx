@@ -1,16 +1,11 @@
-import Sparkle from "@/components/Sparkle";
 import { ArrowRight } from "@/components/Icon";
 import { links } from "@/data/projects";
 
 export default function Hero() {
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
-      <div className="hero__blob" aria-hidden="true" />
-      <Sparkle className="hero__sparkle hero__sparkle--a" />
-      <Sparkle className="hero__sparkle hero__sparkle--b" />
-
       <h1 className="hero__title" id="hero-title">
-        <span>Hi. I&rsquo;m Parth.</span>
+        <span>I&rsquo;m Parth Doshi.</span>
         <span>I build with AI.</span>
       </h1>
 

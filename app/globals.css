@@ -2,26 +2,25 @@
 :root {
   color-scheme: light;
 
-  --ink: #1e4d3e;
-  --ink-2: #3f6a5c;
-  --paper: #f4f0e6;
-  --white: #fffdf8;
+  --ink: #142e26;
+  --ink-2: #3f5c50;
+  --paper: #efece3;
+  --white: #fbf9f3;
+  --cream: #f3efe4;
 
-  --lavender: #cdb0ee;
-  --lavender-deep: #8a5cd1;
-  --mint: #b4ded4;
-  --butter: #f0e2a4;
-  --peach: #f6cdb3;
+  --sand: #e2d7bb;
+  --stone: #dbd8ce;
+  --accent: #b8641f;
 
-  --wash-a: #dde6a3;
-  --wash-b: #c6dfcc;
-  --wash-c: #f8ceb3;
-  --wash-d: #efdfc3;
+  --wash-a: #e1e2c6;
+  --wash-b: #d4dcd2;
+  --wash-c: #eadbc9;
+  --wash-d: #e4ded1;
 
-  --radius-card: 40px;
+  --radius-card: 20px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --font: var(--font-gabarito), ui-rounded, system-ui, -apple-system, sans-serif;
-  --shadow-ink: 30 77 62;
+  --font: var(--font-archivo), system-ui, -apple-system, sans-serif;
+  --shadow-ink: 20 46 38;
 }
 
 /* ---------- Base ---------- */
@@ -49,7 +48,7 @@ body {
 }
 
 ::selection {
-  background: var(--lavender);
+  background: color-mix(in oklab, var(--accent) 32%, var(--paper));
   color: var(--ink);
 }
 
@@ -74,6 +73,7 @@ h1,
 h2,
 h3 {
   font-weight: 800;
+  font-variation-settings: "wdth" 90;
   letter-spacing: -0.03em;
   margin: 0;
   text-wrap: balance;
@@ -102,7 +102,7 @@ svg {
   width: 80vmax;
   height: 80vmax;
   border-radius: 50%;
-  background: radial-gradient(closest-side, var(--c), transparent 62%);
+  background: radial-gradient(closest-side, var(--c), transparent 64%);
   will-change: transform;
 }
 
@@ -174,7 +174,7 @@ svg {
   gap: 2px;
   padding: 6px;
   border-radius: 999px;
-  background: color-mix(in oklab, var(--white) 82%, transparent);
+  background: color-mix(in oklab, var(--white) 84%, transparent);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 10px 30px -14px rgb(var(--shadow-ink) / 0.35);
@@ -186,7 +186,7 @@ svg {
   gap: 8px;
   padding: 10px 18px;
   border-radius: 999px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1rem;
   color: var(--ink);
   text-decoration: none;
@@ -206,7 +206,7 @@ svg {
 
 .nav__key {
   font-size: 0.6875rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
   padding: 3px 6px 2px;
   border-radius: 6px;
@@ -240,8 +240,10 @@ svg {
 }
 
 .hero__title {
-  font-size: clamp(2.875rem, 13vw, 6rem);
-  line-height: 0.98;
+  font-size: clamp(2.75rem, 12vw, 6rem);
+  font-variation-settings: "wdth" 88;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
   color: var(--ink);
 }
 
@@ -266,78 +268,12 @@ svg {
   margin-top: 32px;
 }
 
-/* Sharlee's device: one discrete soft blob at the hero's edge */
-.hero__blob {
-  position: absolute;
-  z-index: -1;
-  right: 6%;
-  bottom: 6%;
-  width: 260px;
-  height: 260px;
-  border-radius: 46% 54% 52% 48% / 55% 45% 55% 45%;
-  background: linear-gradient(
-    135deg,
-    var(--lavender) 0%,
-    var(--mint) 48%,
-    var(--butter) 100%
-  );
-  opacity: 0.85;
-  pointer-events: none;
-}
-
-.hero__blob::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    circle at 32% 28%,
-    rgb(255 253 248 / 0.85),
-    rgb(255 253 248 / 0) 46%
-  );
-}
-
-.hero__sparkle {
-  position: absolute;
-  color: var(--white);
-  filter: drop-shadow(0 6px 14px rgb(var(--shadow-ink) / 0.12));
-  pointer-events: none;
-}
-
-.hero__sparkle--a {
-  top: 22%;
-  right: 16%;
-  width: 72px;
-}
-
-.hero__sparkle--b {
-  bottom: 34%;
-  left: 14%;
-  width: 52px;
-}
-
 @media (max-width: 720px) {
   .hero {
     padding-top: 116px;
   }
   .hero__sub {
     font-size: 1.0625rem;
-  }
-  .hero__sparkle--a {
-    top: 15%;
-    right: 8%;
-    width: 48px;
-  }
-  .hero__sparkle--b {
-    bottom: 20%;
-    left: 5%;
-    width: 34px;
-  }
-  .hero__blob {
-    right: -40px;
-    bottom: 4%;
-    width: 150px;
-    height: 150px;
   }
 }
 
@@ -360,41 +296,12 @@ svg {
   .status {
     animation-delay: 0.38s;
   }
-  .hero__sparkle {
-    animation: twinkle 4.2s ease-in-out infinite;
-    transform-origin: center;
-  }
-  .hero__blob {
-    animation: bob 14s ease-in-out infinite alternate;
-  }
-  .hero__sparkle--b {
-    animation-delay: -1.7s;
-    animation-duration: 5.1s;
-  }
 }
 
 @keyframes rise {
   from {
     opacity: 0;
     transform: translateY(28px);
-  }
-}
-
-@keyframes bob {
-  to {
-    transform: translate(-14px, -18px) rotate(8deg);
-  }
-}
-
-@keyframes twinkle {
-  0%,
-  100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(0.82) rotate(12deg);
-    opacity: 0.85;
   }
 }
 
@@ -405,7 +312,7 @@ svg {
   gap: 10px;
   padding: 14px 22px;
   border-radius: 999px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1rem;
   line-height: 1;
   text-decoration: none;
@@ -460,7 +367,7 @@ svg {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--lavender-deep);
+  background: var(--accent);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -471,13 +378,13 @@ svg {
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgb(138 92 209 / 0.55);
+    box-shadow: 0 0 0 0 rgb(184 100 31 / 0.5);
   }
   70% {
-    box-shadow: 0 0 0 10px rgb(138 92 209 / 0);
+    box-shadow: 0 0 0 10px rgb(184 100 31 / 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgb(138 92 209 / 0);
+    box-shadow: 0 0 0 0 rgb(184 100 31 / 0);
   }
 }
 
@@ -525,7 +432,7 @@ svg {
 .work__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  gap: 16px;
 }
 
 .work__item--flagship {
@@ -540,6 +447,7 @@ svg {
 
 .card {
   --card: var(--paper);
+  --card-fg: var(--ink);
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 40%);
@@ -549,7 +457,7 @@ svg {
   padding: 34px;
   border-radius: var(--radius-card);
   background: var(--card);
-  color: var(--ink);
+  color: var(--card-fg);
   overflow: hidden;
   transition:
     transform 0.55s var(--ease-out),
@@ -557,22 +465,21 @@ svg {
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 28px 44px -26px rgb(var(--shadow-ink) / 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 26px 40px -26px rgb(var(--shadow-ink) / 0.45);
 }
 
-.card--lavender {
-  --card: var(--lavender);
+.card--sand {
+  --card: var(--sand);
 }
-.card--mint {
-  --card: var(--mint);
+.card--stone {
+  --card: var(--stone);
 }
-.card--butter {
-  --card: var(--butter);
+.card--ink {
+  --card: var(--ink);
+  --card-fg: var(--cream);
 }
-.card--peach {
-  --card: var(--peach);
-}
+
 .card__head {
   grid-column: 1;
   grid-row: 1;
@@ -580,11 +487,11 @@ svg {
 
 .card__label {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.14em;
   line-height: 1.3;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--card-fg);
   text-align: right;
   margin-left: auto;
 }
@@ -601,13 +508,13 @@ svg {
   max-width: 42ch;
   font-size: 1.125rem;
   line-height: 1.45;
-  color: var(--ink);
+  color: var(--card-fg);
 }
 
 .card__note {
   font-size: 0.9375rem;
   line-height: 1.4;
-  color: var(--ink);
+  color: var(--card-fg);
 }
 
 .card__foot {
@@ -625,7 +532,7 @@ svg {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
   padding: 10px 16px;
   margin: -10px -16px;
@@ -634,7 +541,7 @@ svg {
 }
 
 .card__link:hover {
-  background: color-mix(in oklab, var(--white) 45%, transparent);
+  background: color-mix(in oklab, var(--card-fg) 12%, transparent);
 }
 
 .card__link .icon {
@@ -651,7 +558,7 @@ svg {
   align-self: center;
   width: 100%;
   aspect-ratio: 1;
-  color: var(--ink);
+  color: var(--card-fg);
   opacity: 0.9;
   transition: transform 0.7s var(--ease-out);
 }
@@ -662,7 +569,7 @@ svg {
 }
 
 .card:hover .card__art {
-  transform: translate(-3px, -3px) rotate(-3deg);
+  transform: translate(-3px, -3px);
 }
 
 .card--flagship {
@@ -694,14 +601,14 @@ svg {
 
 .card--flagship .card__desc {
   max-width: 52ch;
-  color: var(--ink);
+  color: var(--card-fg);
 }
 
 .card--flagship .card__art {
   grid-column: 2;
   grid-row: 1;
   aspect-ratio: 4 / 3;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 @media (max-width: 760px) {
@@ -765,7 +672,7 @@ svg {
   padding: 10px 14px;
   border-radius: 999px;
   background: color-mix(in oklab, var(--white) 70%, transparent);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.9375rem;
   color: var(--ink);
 }
@@ -786,7 +693,9 @@ svg {
 
 .contact__title {
   font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 0.98;
+  font-variation-settings: "wdth" 88;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
 }
 
 .contact__lede {
@@ -800,19 +709,19 @@ svg {
   display: inline-block;
   margin-top: 28px;
   font-size: clamp(1.375rem, 3.2vw, 2.25rem);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--ink);
   text-decoration: underline;
   text-decoration-thickness: 4px;
-  text-decoration-color: var(--lavender);
+  text-decoration-color: var(--accent);
   text-underline-offset: 10px;
   transition: text-decoration-color 0.3s var(--ease-out);
   word-break: break-all;
 }
 
 .contact__email:hover {
-  text-decoration-color: var(--lavender-deep);
+  text-decoration-color: var(--ink);
 }
 
 .contact__links {
@@ -832,7 +741,7 @@ svg {
 }
 
 .footer a {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ink);
 }
 
