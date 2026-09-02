@@ -16,8 +16,9 @@ import { links } from "@/data/projects";
 
 const items = [
   { id: "work", label: "Work", key: "1" },
-  { id: "about", label: "About", key: "2" },
-  { id: "contact", label: "Contact", key: "3" },
+  { id: "stack", label: "Stack", key: "2" },
+  { id: "about", label: "About", key: "3" },
+  { id: "contact", label: "Contact", key: "4" },
 ] as const;
 
 /** The reference's dot grid, drawn rather than set as a glyph. */
