@@ -37,7 +37,7 @@ export default function Hero() {
     <section className="hero" id="top" aria-labelledby="hero-title">
       <h1 className="hero__title" id="hero-title">
         <span className="visually-hidden">
-          Hey, I&rsquo;m Parth Doshi. I&rsquo;m a developer, a researcher, a
+          Hey, I&rsquo;m Parth Doshi, and I&rsquo;m a developer, a researcher, a
           computer scientist, an athlete, a mentor — and obsessed with AI.
         </span>
 
@@ -50,12 +50,12 @@ export default function Hero() {
         </span>
 
         {/*
-          The lead sits OUTSIDE the rolling slot so it never moves: only the
-          phrase after it changes width. Putting it inside re-centred the whole
-          line on every swap, sliding the anchor word across the viewport.
+          The lead sits OUTSIDE the typing slot so it never moves: only the
+          phrase after it changes width. "And I'm" rather than a second "I'm",
+          which read as a stutter directly under the name.
         */}
         <span className="hero__line hero__line--roll" aria-hidden="true">
-          <span className="type-outline hero__lead">I&rsquo;m</span>{" "}
+          <span className="type-outline hero__lead">And I&rsquo;m</span>{" "}
           <RoleRoll phrases={phrases} />
         </span>
       </h1>

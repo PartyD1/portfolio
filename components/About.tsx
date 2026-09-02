@@ -31,6 +31,11 @@ export default function About() {
             your hands, came from asking what a browser could do for people
             with motor impairments.
           </p>
+          <p>
+            Away from the screen I play volleyball, and I mentor younger kids —
+            passing on the things I&rsquo;ve worked out about adulting, which
+            nobody hands you a manual for.
+          </p>
           <ul className="about__range" aria-label="Areas of work">
             {range.map((r) => (
               <li key={r}>

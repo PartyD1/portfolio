@@ -705,6 +705,12 @@ svg {
   display: block;
 }
 
+/* The lead is one unit: without this it breaks across lines ("AND" / "I'M")
+ * once the row is squeezed, and the slot shrinks instead. */
+.hero__lead {
+  white-space: nowrap;
+}
+
 .hero__name {
   position: relative;
   display: inline-block;
@@ -838,9 +844,6 @@ svg {
   .roll {
     max-width: 100%;
   }
-  .roll__item {
-    white-space: normal;
-  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -875,47 +878,39 @@ svg {
 /* ==========================================================================
    Rolling phrase
    ========================================================================== */
+/*
+ * The slot holds the longest phrase's width, and the live text is left-aligned
+ * inside it so the lead never moves. The space that leaves on the right reads
+ * as a text field rather than a gap, because the caret sits at the end of
+ * whatever has been typed.
+ */
 .roll {
   display: inline-grid;
-  /*
-   * The slot is a constant width (the longest phrase), so the lead beside it
-   * never moves and the line as a whole stays centred. Each phrase centres
-   * within the slot: the anchor is pinned, the axis holds, and only the space
-   * around a short phrase changes.
-   */
-  justify-items: center;
+  justify-items: start;
   vertical-align: baseline;
-  overflow: clip;
   padding: 0.14em 0.1em 0.22em;
   margin: -0.14em -0.1em -0.22em;
   cursor: default;
 }
 
-/*
- * Transitions, not keyframes. Click-to-advance can interrupt a swap mid-flight;
- * a transition retargets from wherever it is, a keyframe restarts from zero.
- * The base rule doubles as the enter-from state.
- */
-.roll__item {
+.roll__sizer {
   grid-area: 1 / 1;
-  white-space: nowrap;
-  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 200ms var(--ease-out);
 }
 
-.roll__item[data-state="active"] {
-  opacity: 1;
-  pointer-events: auto;
+.roll__live {
+  grid-area: 1 / 1;
+  display: inline;
 }
 
-.roll__item--accent {
+.roll__text--accent {
   color: var(--signal-ink);
 }
 
 /* Until the client takes over, the glyphs are held back but the box is not,
  * so nothing reflows. If JS never arrives, the phrase reveals itself. */
-.roll[data-pretype] .roll__item {
+.roll[data-pretype] .roll__live {
   color: transparent;
   animation: pretype-reveal 1ms linear 1.6s forwards;
 }
@@ -930,42 +925,22 @@ svg {
   display: inline-block;
   width: 0.06em;
   height: 0.78em;
-  margin-left: 0.08em;
+  margin-left: 0.06em;
   background: currentColor;
   vertical-align: -0.04em;
 }
 
-/* Solid while typing; blinks only on the hold. Constant motion → steps. */
-.roll[data-phase="caret"] .roll__caret {
+/*
+ * Solid while the text is moving, blinking only when it rests — which is how
+ * a real caret behaves. Constant motion → steps, never eased.
+ */
+.roll[data-mode="holding"] .roll__caret {
   animation: blink 1s steps(2, jump-none) infinite;
 }
 
 @keyframes blink {
   50% {
     opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .roll__item {
-    transform: translateY(0.7em);
-    filter: blur(3px);
-    transition:
-      transform 360ms var(--ease-out),
-      opacity 360ms var(--ease-out),
-      filter 360ms var(--ease-out);
-  }
-
-  .roll__item[data-state="active"] {
-    transform: none;
-    filter: none;
-  }
-
-  /* Exit faster than entrance; the blur blends two words into one morph. */
-  .roll__item[data-state="leaving"] {
-    transform: translateY(-0.85em);
-    filter: blur(3px);
-    transition-duration: 200ms;
   }
 }
 
