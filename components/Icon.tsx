@@ -17,6 +17,23 @@ export function ArrowRight({ className = "icon" }: IconProps) {
   );
 }
 
+export function ArrowDown({ className = "icon" }: IconProps) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M10 3v13M5 11l5 5 5-5" />
+    </svg>
+  );
+}
+
 export function ArrowUpRight({ className = "icon" }: IconProps) {
   return (
     <svg

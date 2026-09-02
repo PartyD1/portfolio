@@ -32,7 +32,7 @@ Screenshots in `.impeccable/review/` (1440 and 390 wide, fold + full page) were 
 
 ## Product and design constraints
 
-- `PRODUCT.md` is product truth. The parts that bite: never invent metrics, users, or testimonials; **Operations Agent has no public repo** (internship-confidential) and must not be given a link; the resume PDF has not been supplied — don't render a resume link until it exists.
+- `PRODUCT.md` is product truth. The parts that bite: never invent metrics, users, or testimonials; **Operations Agent has no public repo** (internship-confidential) and must not be given a link; the resume PDF has not been supplied. It ships as a designed pending state via `data/site.ts`: drop the file at `public/resume.pdf` and flip `resume.ready` to `true` — that single flag switches the Contact and menu entries from an inert "coming soon" to a real download link. Never hand-wire a resume link around it.
 - The visual direction was **pinned by the user** to three reference screenshots in `.impeccable/references/` (Seán's warm-gradient, rounded-type portfolio leads). Light theme only. Don't re-propose a dark or "console/terminal" aesthetic; that direction was explicitly superseded (history in `.impeccable/surfaces/homepage.md`).
 - Every copy claim on the page traces to `PRODUCT.md`; when in doubt, soften rather than escalate ("improved", not "rebuilt").
 
