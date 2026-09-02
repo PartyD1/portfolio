@@ -19,7 +19,7 @@ Two primary audiences, both browsing to quickly assess Parth Doshi as a software
 
 Parth is a student at UC Santa Cruz (email domain `ucsc.edu`).
 
-How Parth describes himself (his words, 2026-09-01, used verbatim in the hero rotation): a developer, a researcher, a computer scientist, an athlete, a mentor — and "obsessed with AI." The sport and the mentoring context have not been supplied; do not elaborate on either.
+How Parth describes himself (his words, 2026-09-01, used verbatim in the hero rotation): a developer, a researcher, a computer scientist, an athlete, a mentor — and "obsessed with AI." The sport and the mentoring context were supplied 2026-09-02 (see Evidence on Hand): volleyball, and mentoring younger kids. **No team, league, level or program was supplied — do not invent one.**
 
 ## Product Purpose
 
@@ -47,7 +47,8 @@ Visitors are doing fast technical screening (recruiters) or casual browsing (pee
 - Pinned visual references (binding). Three portfolio screenshots at `.impeccable/references/`. **`ref-2-sharlee-holographic-blobs.png` leads** (re-pinned 2026-09-01, superseding `ref-1-sean-warm-gradient.png`, whose section rhythm survives); `ref-3-ram-editorial-serif.png` donates the status line. Traits: cool lavender-grey ground, iridescent gradient blobs, film grain, wide display caps with outline-and-fill contrast, a single coral accent.
 - Light **and dark** both ship (dark added 2026-09-01 at the user's request). Dark is a real second token set — deep indigo ground, blobs lit and held back — not an inverted filter.
 - No hobbies section (decided 2026-09-01). With no photos or detail behind it, it would be the only section with no real content, and it dilutes a page whose argument is applied AI systems. The personality it would have carried is served by the About section and the hero's rolling self-descriptions instead.
-- Register (added 2026-09-01 after the first build): adult and editorial, never bubbly — the user said the first pass (candy pastels, 40px corners, sparkles, glossy blob, puffy rounded type) read like a child's site. Chosen refinement, "Editorial grotesk": tight grotesk display in near-black-green, flat radius-20 sand/stone cards with one deep-green card per row, desaturated stone wash, no sparkles or blob. Same structure, still light-only and name-led.
+- Register (added 2026-09-01 after the first build): adult and editorial, never bubbly — the user said the first pass (candy pastels, 40px corners, sparkles, glossy blob, puffy rounded type) read like a child's site. **The register commitment stands; the specific "Editorial grotesk" refinement below is SUPERSEDED 2026-09-01** by the holographic system that actually shipped (Unbounded display, lavender-grey ground, 22px radius, iridescent blobs, two themes). Recorded for history only:
+  > *Chosen refinement, "Editorial grotesk": tight grotesk display in near-black-green, flat radius-20 sand/stone cards with one deep-green card per row, desaturated stone wash, no sparkles or blob. Same structure, still light-only and name-led.*
 
 ## Evidence on Hand
 

@@ -34,7 +34,7 @@ No image generation exists in this environment — code-led (stated, not asked).
 
 ## Unresolved Decisions
 
-- One About sentence grounding "an athlete" and "a mentor" — blocked on the sport and the mentoring context.
+- ~~One About sentence grounding "an athlete" and "a mentor" — blocked on the sport and the mentoring context.~~ **RESOLVED 2026-09-02:** volleyball, and mentoring younger kids. No team, league, level or program was supplied; the sentence stays at that grain.
 - Whether Tailwind stays under "Languages" (the user's own grouping) or moves to Frameworks.
 - Whether to add tool→project links in the Stack orbit (needs a mapping that does not exist yet).
 
