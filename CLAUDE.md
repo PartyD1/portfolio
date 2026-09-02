@@ -40,6 +40,16 @@ Screenshots in `.impeccable/review/` (1440 and 390 wide, fold + full page) were 
 
 1. **Frontend changes get a polish pass first.** Any change to `app/`, `components/`, `data/`, or `DESIGN.md` runs `/polish` (the pinned shortcut for `/impeccable polish`) before it is pushed, and the findings it raises are fixed in the same push. Docs-only or config-only changes skip this.
 2. **Never push onto a merged PR's branch.** Before pushing, check the current branch's PR: `gh pr view --json state,mergedAt` (or `gh pr list --head <branch> --state all`). If it is `MERGED`, do not push to that branch — create a fresh branch from `main` (`git fetch origin && git switch -c <new-branch> origin/main`, bring the changes over), push that, and open a new PR. Only an `OPEN` PR receives additional commits.
+3. **Stacked PRs are allowed, but only with these guardrails.** A PR stacked on another branch is retargeted when its base merges *only if the base branch is deleted* — otherwise its commits silently miss `main` (this happened with PR #4; fixed by PR #5). "Automatically delete head branches" is now enabled on this repo, which makes GitHub retarget children automatically. On top of that:
+   - Merge a stack strictly **bottom-up**; never merge a middle PR before its parent.
+   - After each merge, rebase every remaining branch in the stack onto the new `main` (`git rebase origin/main`) and `git push --force-with-lease`.
+   - Verify a merge actually landed before moving on: `git merge-base --is-ancestor <sha> origin/main`.
+   - Each PR in a stack must leave the site coherent on its own, since it may be merged alone.
+   - For unrelated work, still base on `main`.
+
+## Animation
+
+**Every animation in this project is designed through the `emil-design-eng` skill — load it before writing any motion code**, including the hero typewriter/roll. It supplies the decision framework (how often is it seen → should it animate at all; what purpose; which easing; how fast), the custom easing curves (the built-in CSS easings are too weak, and `ease-in` is banned), and the rules this project follows: only `transform`/`opacity` animate, nothing enters from `scale(0)`, exits are faster than entrances, transitions (not keyframes) for anything interruptible, `:active { scale(0.97) }` on every pressable element, hover effects gated behind `@media (hover: hover) and (pointer: fine)`, stagger 30–80ms, and reduced motion meaning *fewer and gentler*, not none. No motion library: CSS transitions plus WAAPI, because CSS runs off the main thread and stays smooth during hydration.
 
 ## Design workflow (Impeccable)
 
