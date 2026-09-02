@@ -1,6 +1,6 @@
 import { stack } from "@/data/stack";
-import Blob from "@/components/Blob";
 import Reveal from "@/components/Reveal";
+import OrbitScroller from "@/components/OrbitScroller";
 
 /**
  * The stack as an orbit rather than a list: three concentric rings, inner to
@@ -11,9 +11,20 @@ import Reveal from "@/components/Reveal";
  * rotation would compete with both and make 29 labels harder to read, which is
  * the opposite of what a scanning recruiter needs.
  *
- * Under 760px the rings can't hold their labels, so the same data renders as
- * three typographic runs — still not a bulleted list.
+ * On a phone the rings keep their form and scroll horizontally inside their
+ * own container. Collapsing them into stacked runs would ship exactly the
+ * shape this section exists to avoid.
  */
+
+/**
+ * Degrees left clear at the top of each ring for that ring's own label.
+ *
+ * The label sits just OUTSIDE its ring line rather than on it, so it barely
+ * consumes tool arc. Widening the gap instead compressed the inner ring's ten
+ * labels into each other — the circle is small and JavaScript is a long word.
+ */
+const LABEL_GAP = 44;
+
 export default function Stack() {
   return (
     <section className="section" id="stack" aria-labelledby="stack-title">
@@ -28,49 +39,42 @@ export default function Stack() {
       </div>
 
       <Reveal>
-        <div className="orbit" role="img" aria-label={ariaSummary()}>
-          <div className="orbit__core" aria-hidden="true">
-            <Blob name="c" />
+        <OrbitScroller>
+          <div className="orbit" role="img" aria-label={ariaSummary()}>
+            <span className="orbit__core" aria-hidden="true">
+              PD
+            </span>
+
+            {stack.map((group, ring) => (
+              <div
+                key={group.id}
+                className={`orbit__ring orbit__ring--${ring + 1}`}
+                style={{ ["--tone" as string]: group.tone }}
+                aria-hidden="true"
+              >
+                <div className="orbit__track" />
+                <span className="orbit__ring-label">{group.short}</span>
+                {group.items.map((item, i) => {
+                  // Distribute across the arc left over once the ring's own
+                  // label has taken the top, so the two never collide.
+                  const span = 360 - LABEL_GAP;
+                  const angle =
+                    LABEL_GAP / 2 + (i * span) / group.items.length;
+                  return (
+                    <span
+                      key={item}
+                      className="orbit__label"
+                      style={{ ["--a" as string]: `${angle}deg` }}
+                    >
+                      {item}
+                    </span>
+                  );
+                })}
+              </div>
+            ))}
           </div>
-
-          {stack.map((group, ring) => (
-            <div
-              key={group.id}
-              className={`orbit__ring orbit__ring--${ring + 1}`}
-              style={{ ["--tone" as string]: group.tone }}
-              data-label={group.label}
-              aria-hidden="true"
-            >
-              <div className="orbit__track" />
-              {group.items.map((item, i) => {
-                // Offset each ring so labels don't line up radially.
-                const angle = (i * 360) / group.items.length + ring * 14;
-                return (
-                  <span
-                    key={item}
-                    className="orbit__label"
-                    style={{ ["--a" as string]: `${angle}deg` }}
-                  >
-                    {item}
-                  </span>
-                );
-              })}
-            </div>
-          ))}
-        </div>
+        </OrbitScroller>
       </Reveal>
-
-      <ul className="orbit__legend" aria-hidden="true">
-        {stack.map((group) => (
-          <li key={group.id}>
-            <span
-              className="orbit__swatch"
-              style={{ ["--tone" as string]: group.tone }}
-            />
-            {group.label}
-          </li>
-        ))}
-      </ul>
 
       {/* The rings are decorative to a screen reader; this is the real content. */}
       <div className="visually-hidden">

@@ -36,7 +36,7 @@ Visitors are doing fast technical screening (recruiters) or casual browsing (pee
 ## Capabilities and Constraints
 
 - Static/informational site — no auth or dynamic backend required unless a contact form is added later (undecided; not requested).
-- Resume exists as a PDF but has not yet been supplied as a file — treat as a pending asset until provided.
+- Resume supplied 2026-09-01 and live at `public/resume.pdf`, gated by `resume.ready` in `data/site.ts`.
 - The Operations Agent project has no public repository (internship-confidential) and must be presented as a case-study description only, with no code link.
 - All other projects link to public GitHub repos (see Evidence on Hand).
 
@@ -44,7 +44,8 @@ Visitors are doing fast technical screening (recruiters) or casual browsing (pee
 
 - Name: Parth Doshi.
 - No existing logo, color system, or typographic identity.
-- Pinned visual references (binding; added 2026-09-01): three portfolio screenshots at `.impeccable/references/` (`ref-1-sean-warm-gradient.png` leads; `ref-2-sharlee-holographic-blobs.png` and `ref-3-ram-editorial-serif.png` contribute details). Shared traits the user pinned: light airy ground, a big name-led typographic hero, a recurring lavender accent, rounded pill controls, playful decoration (sparkles, soft gradient blobs). Light theme only — no dark mode.
+- Pinned visual references (binding). Three portfolio screenshots at `.impeccable/references/`. **`ref-2-sharlee-holographic-blobs.png` leads** (re-pinned 2026-09-01, superseding `ref-1-sean-warm-gradient.png`, whose section rhythm survives); `ref-3-ram-editorial-serif.png` donates the status line. Traits: cool lavender-grey ground, iridescent gradient blobs, film grain, wide display caps with outline-and-fill contrast, a single coral accent.
+- Light **and dark** both ship (dark added 2026-09-01 at the user's request). Dark is a real second token set — deep indigo ground, blobs lit and held back — not an inverted filter.
 - No hobbies section (decided 2026-09-01). With no photos or detail behind it, it would be the only section with no real content, and it dilutes a page whose argument is applied AI systems. The personality it would have carried is served by the About section and the hero's rolling self-descriptions instead.
 - Register (added 2026-09-01 after the first build): adult and editorial, never bubbly — the user said the first pass (candy pastels, 40px corners, sparkles, glossy blob, puffy rounded type) read like a child's site. Chosen refinement, "Editorial grotesk": tight grotesk display in near-black-green, flat radius-20 sand/stone cards with one deep-green card per row, desaturated stone wash, no sparkles or blob. Same structure, still light-only and name-led.
 

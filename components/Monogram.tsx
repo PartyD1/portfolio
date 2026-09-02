@@ -1,6 +1,6 @@
 /**
- * "PD" as one continuous ribbon — a single stroke that draws the P, loops, and
- * closes the D, in the spirit of the reference's hand-drawn S mark.
+ * "PD" drawn as two ribbon strokes sharing one stem rhythm, in the spirit of
+ * the reference's hand-drawn S mark.
  */
 export default function Monogram({ className }: { className?: string }) {
   return (

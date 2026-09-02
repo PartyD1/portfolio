@@ -49,9 +49,10 @@ export default function Shell() {
       const item = items.find((i) => i.key === e.key);
       if (!item) return;
       setOpen(false);
+      // Keyboard-initiated actions are repeated often and never animate.
       document
         .getElementById(item.id)
-        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        ?.scrollIntoView({ behavior: "auto", block: "start" });
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
