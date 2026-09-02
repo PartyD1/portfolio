@@ -337,13 +337,21 @@ There is no persistent nav. The fixed shell carries the monogram (44px, 38px at 
 
 The menu is a shadcn/Radix `Sheet` from the right, styled `.menu`: 86% ground with `blur(28px) saturate(1.3)`, a 1px `--glass-edge` left border, 48px/40px padding. Links are display-face uppercase `clamp(1.75rem, 5vw, 2.5rem)` with a bordered keycap on the right (1/2/3/4). Each link rises in on open at 420ms with a `calc(var(--i) * 40ms + 80ms)` stagger. The 1/2/3/4 keyboard shortcuts are global (`components/Shell.tsx`) and always scroll with `behavior: "auto"` — keyboard-initiated jumps never animate.
 
-### Signature Component: the rolling headline
+### Signature Component: the typewriter headline
 
-The hero's memorable moment. `"HEY, I'M"` in outline plus `PARTH DOSHI` filled over a two-pass sine wave; below it a standalone outlined `"I'M"` and a slot that types out the first phrase, then rolls through six self-descriptions and lands on "obsessed with AI." in `{colors.signal-ink}`.
+The hero's memorable moment. `"HEY, I'M"` in outline plus `PARTH DOSHI` filled over a two-pass sine wave; below it an outlined `"AND I'M"` and a slot that **types a phrase, holds it, backspaces it away, and types the next**, cycling six self-descriptions and landing on "obsessed with AI." in `{colors.signal-ink}`.
 
-The structural rule: **the lead sits outside the slot.** `.roll` is an `inline-grid` with `justify-items: center`, all phrases stacked in `1 / 1`, so the slot is a constant width (the longest phrase) and only the space around a short phrase changes. Putting "I'm" inside re-centred the whole line on every swap and slid the anchor word across the viewport.
+Two structural rules make the shape work:
 
-Timing (`components/RoleRoll.tsx`): 320ms start delay after `document.fonts.ready`, 45ms per character with 22ms jitter, 700ms caret hold, 2400ms per phrase (4200ms on the finale, 3200ms under reduced motion). Enter is 360ms `--ease-out` from `translateY(0.7em)` + `blur(3px)`; exit is 200ms to `translateY(-0.85em)` — faster than the entrance, and the blur is what makes two words read as one morph. The caret is solid while typing and blinks with `steps(2, jump-none)` only on the hold. Before hydration `[data-pretype]` holds the glyphs at `color: transparent` with a 1.6s CSS reveal, so the box never reflows and the phrase still appears if JS never arrives. The whole element is `aria-hidden`; the `h1` carries the full sentence for assistive tech.
+**The lead sits outside the slot.** `.roll` is an `inline-grid` with `justify-items: start`; a hidden `.roll__sizer` holding the longest phrase reserves the width, and `.roll__live` sits in the same `1 / 1` cell. The slot is therefore a constant width and "And I'm" never moves — measured drift across a full cycle is 4px. `.hero__lead` is `white-space: nowrap` so it can't break into "AND" / "I'M" when the row is squeezed.
+
+**The caret is what licenses the trailing space.** Because text is left-aligned in a fixed slot, short phrases leave room on the right. With a caret at the end of the typed text that reads as a text field rather than a gap — which is exactly why an earlier centred-swap version looked broken and this does not.
+
+Timing (`components/RoleRoll.tsx`): 320ms start delay after `document.fonts.ready`, 52ms per character with 26ms jitter typing, **26ms per character erasing** (backspacing is a correction, not a thought, so it is quicker), 1900ms hold per phrase (4200ms on the finale), 320ms beat between phrases. The caret is solid while the text moves and blinks with `steps(2, jump-none)` only in `data-mode="holding"`. Clicking wipes the current phrase and moves on. The cycle pauses on hover, on a hidden tab, and when scrolled off-screen.
+
+Under `prefers-reduced-motion: reduce` the per-character animation is dropped entirely: phrases swap whole on a 3400ms clock. Typing is not spatial motion, but a continuous churn of characters is still churn.
+
+Before hydration `[data-pretype]` holds the glyphs at `color: transparent` with a 1.6s CSS reveal, so the box never reflows and the phrase still appears if JS never arrives. The whole element is `aria-hidden`; the `h1` carries the full sentence for assistive tech.
 
 *To change the phrases:* edit the `phrases` array in `components/Hero.tsx`. Each entry owns its article and its period; `accent: true` marks the finale, `hold` overrides the dwell.
 
@@ -366,11 +374,11 @@ The reference's circled dot made functional. A 44px glass pill fixed bottom-righ
 The motion system is bound to the `emil-design-eng` framework and is not negotiable per-component.
 
 - **Easings:** `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)` for almost everything; `--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1)`; `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)` for the sheet. The built-in keywords are too weak, and `ease-in` is banned.
-- **Durations:** 160ms press, 200ms colour/background/hover, 250ms scroll-ring fade, 360ms roll enter / 200ms roll exit, 420ms menu link rise, 450ms reveal, 600ms hero rise.
+- **Durations:** 160ms press, 200ms colour/background/hover, 250ms scroll-ring fade, 52ms/char typing, 26ms/char erasing, 420ms menu link rise, 450ms reveal, 600ms hero rise.
 - **Transitions, not keyframes,** for anything interruptible — a transition retargets from wherever it is; a keyframe restarts from zero. Keyframes are reserved for the ambient loops (blob drift, dot pulse, caret blink) and one-shot entrances.
 - **Press feedback:** every pressable element carries `:active { transform: scale(0.97) }` (0.98 on the large menu links).
 - **Hover behind capability:** every hover rule sits inside `@media (hover: hover) and (pointer: fine)`.
-- **Exits are faster than entrances.** The roll leaves in 200ms and enters in 360ms.
+- **Exits are faster than entrances.** The typewriter backspaces at 26ms/char against 52ms/char typing.
 - **Staggers stay 30–80ms** per step (hero 60/120/180/240ms, cards 50ms, menu links 40ms). Longer reads as the page being slow.
 - **Reduced motion:** `scroll-behavior: smooth` is gated behind `prefers-reduced-motion: no-preference`; blob drift, the roll's translate/blur, the dot pulse, the toggle's icon rotation, the hero rise and the Reveal all disappear. Typing survives — it is not spatial motion — and only slows. Keyboard-initiated jumps are always instant regardless of preference.
 - **Off-screen and hidden work is paused:** the roll checks `document.hidden`, an IntersectionObserver and pointer hover before advancing; the scroll ring reads progress inside a single rAF on a passive listener.

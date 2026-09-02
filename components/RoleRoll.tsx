@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 export type Phrase = {
-  /** Everything after "I'm" — article and period included. */
+  /** Everything after the lead — article and period included. */
   text: string;
   /** Set in the page accent and held longer: the finale. */
   accent?: boolean;
@@ -11,50 +11,58 @@ export type Phrase = {
   hold?: number;
 };
 
-type Phase = "typing" | "caret" | "rolling";
-type ItemState = "idle" | "active" | "leaving";
+type Mode = "typing" | "holding" | "erasing";
 
-const TYPE_MS = 45;
-const TYPE_JITTER_MS = 22;
+const TYPE_MS = 52;
+const TYPE_JITTER_MS = 26;
+/** Backspacing is quicker than typing — it is a correction, not a thought. */
+const ERASE_MS = 26;
 const START_DELAY_MS = 320;
-const CARET_HOLD_MS = 700;
-const HOLD_MS = 2400;
-/** Slower cadence when motion is reduced: gentler, not absent. */
-const REDUCED_HOLD_MS = 3200;
-/** Must match the enter duration in globals.css. */
-const ROLL_MS = 360;
+const HOLD_MS = 1900;
+const BETWEEN_MS = 320;
+/** Reduced motion swaps whole phrases, so it needs a slower, calmer clock. */
+const REDUCED_HOLD_MS = 3400;
 const PAUSE_POLL_MS = 400;
 
 /**
- * The rolling "I'm …" phrase.
+ * The typewriter: types a phrase, holds it, backspaces it away, types the next.
  *
- * Typing is not spatial motion, so it runs even under reduced motion; only the
- * vertical roll degrades there, to a crossfade in place. The swap itself is a
- * CSS transition rather than a keyframe so that click-to-advance can interrupt
- * it and retarget from wherever it is. The whole element is aria-hidden — the
- * h1 carries the full sentence for assistive tech.
+ * The slot is sized to the longest phrase and the text is left-aligned inside
+ * it, so the lead beside it never moves. The trailing space that leaves reads
+ * as a text field rather than a gap, because the caret sits at the end of the
+ * typed text — which is exactly what makes this shape work where a centred
+ * swap did not.
+ *
+ * Under reduced motion the per-character animation is dropped entirely and
+ * phrases swap whole on a slower clock: typing is not spatial motion, but a
+ * continuous churn of characters is still churn.
  */
 export default function RoleRoll({ phrases }: { phrases: Phrase[] }) {
+  const longest = phrases.reduce((a, b) =>
+    b.text.length > a.text.length ? b : a,
+  );
+
   const [reduced, setReduced] = useState(false);
   const [mounted, setMounted] = useState(false);
-  // Server-render the full first phrase; CSS holds the glyphs back until the
-  // client takes over, so there is no flash of the whole phrase before typing.
-  const [typed, setTyped] = useState(phrases[0].text.length);
-  const [phase, setPhase] = useState<Phase>("typing");
   const [index, setIndex] = useState(0);
-  const [prev, setPrev] = useState<number | null>(null);
+  // Server-render the first phrase whole; CSS holds the glyphs back until the
+  // client takes over, so there is no flash before typing starts.
+  const [count, setCount] = useState(phrases[0].text.length);
+  const [mode, setMode] = useState<Mode>("typing");
 
   const rootRef = useRef<HTMLSpanElement>(null);
   const hovered = useRef(false);
   const onScreen = useRef(true);
-  const indexRef = useRef(0);
   const timer = useRef<number | null>(null);
   const advanceRef = useRef<(() => void) | null>(null);
-  const typedOnce = useRef(false);
 
   useLayoutEffect(() => {
-    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-    if (!typedOnce.current) setTyped(0);
+    const isReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    setReduced(isReduced);
+    if (isReduced) setMode("holding");
+    else setCount(0);
     setMounted(true);
   }, []);
 
@@ -75,7 +83,8 @@ export default function RoleRoll({ phrases }: { phrases: Phrase[] }) {
   useEffect(() => {
     if (!mounted) return;
     let cancelled = false;
-    let raf = 0;
+    let i = 0;
+    let n = reduced ? phrases[0].text.length : 0;
 
     const clear = () => {
       if (timer.current !== null) {
@@ -89,63 +98,83 @@ export default function RoleRoll({ phrases }: { phrases: Phrase[] }) {
         if (!cancelled) fn();
       }, ms);
     };
-
-    const baseHold = reduced ? REDUCED_HOLD_MS : HOLD_MS;
-    const rollMs = reduced ? 0 : ROLL_MS;
-
-    const holdThen = (ms: number) =>
+    /** Waits out hover, a hidden tab, or being scrolled off-screen. */
+    const whenLive = (fn: () => void, ms: number) =>
       tick(() => {
         if (hovered.current || document.hidden || !onScreen.current) {
-          holdThen(PAUSE_POLL_MS);
+          whenLive(fn, PAUSE_POLL_MS);
           return;
         }
-        goNext();
+        fn();
       }, ms);
 
-    const goNext = () => {
-      const next = (indexRef.current + 1) % phrases.length;
-      setPrev(indexRef.current);
-      indexRef.current = next;
-      setIndex(next);
-      holdThen((phrases[next].hold ?? baseHold) + rollMs);
+    const next = () => {
+      i = (i + 1) % phrases.length;
+      setIndex(i);
     };
 
-    const startRolling = () => {
-      setPhase("rolling");
-      holdThen(phrases[indexRef.current].hold ?? baseHold);
+    const startTyping = () => {
+      setMode("typing");
+      type();
     };
 
-    advanceRef.current = goNext;
+    const type = () => {
+      if (n < phrases[i].text.length) {
+        n += 1;
+        setCount(n);
+        tick(type, TYPE_MS + Math.random() * TYPE_JITTER_MS);
+        return;
+      }
+      setMode("holding");
+      whenLive(startErasing, phrases[i].hold ?? HOLD_MS);
+    };
+
+    const startErasing = () => {
+      setMode("erasing");
+      erase();
+    };
+
+    const erase = () => {
+      if (n > 0) {
+        n -= 1;
+        setCount(n);
+        tick(erase, ERASE_MS);
+        return;
+      }
+      next();
+      tick(startTyping, BETWEEN_MS);
+    };
+
+    // Click-to-advance: wipe what is on screen and move on.
+    advanceRef.current = () => {
+      clear();
+      if (reduced) {
+        next();
+        whenLive(advanceRef.current!, REDUCED_HOLD_MS);
+        return;
+      }
+      startErasing();
+    };
 
     const stop = () => {
       cancelled = true;
-      cancelAnimationFrame(raf);
       clear();
       advanceRef.current = null;
     };
 
-    // Already typed once (a re-run of this effect, or StrictMode's second
-    // pass in development): pick up at the roll rather than retyping.
-    if (typedOnce.current) {
-      startRolling();
+    if (reduced) {
+      whenLive(function swap() {
+        next();
+        whenLive(swap, REDUCED_HOLD_MS);
+      }, REDUCED_HOLD_MS);
       return stop;
     }
 
-    const typeChar = (n: number) => {
-      setTyped(n);
-      if (n < phrases[0].text.length) {
-        tick(() => typeChar(n + 1), TYPE_MS + Math.random() * TYPE_JITTER_MS);
-        return;
-      }
-      typedOnce.current = true;
-      setPhase("caret");
-      tick(startRolling, CARET_HOLD_MS);
-    };
-
     // Wait for the real face: typing in a fallback font reflows mid-word.
+    let raf = 0;
     const begin = () => {
       if (cancelled) return;
-      raf = requestAnimationFrame(() => tick(() => typeChar(1), START_DELAY_MS));
+      raf = requestAnimationFrame(() => tick(startTyping, START_DELAY_MS));
     };
     if (typeof document !== "undefined" && document.fonts) {
       if (document.fonts.status === "loaded") begin();
@@ -154,16 +183,20 @@ export default function RoleRoll({ phrases }: { phrases: Phrase[] }) {
       begin();
     }
 
-    return stop;
+    return () => {
+      cancelAnimationFrame(raf);
+      stop();
+    };
   }, [reduced, mounted, phrases]);
 
-  const showCaret = mounted && phase !== "rolling";
+  const phrase = phrases[index];
+  const visible = reduced ? phrase.text : phrase.text.slice(0, count);
 
   return (
     <span
       ref={rootRef}
       className="roll"
-      data-phase={phase}
+      data-mode={mode}
       data-pretype={mounted ? undefined : "true"}
       aria-hidden="true"
       onPointerEnter={() => {
@@ -172,26 +205,16 @@ export default function RoleRoll({ phrases }: { phrases: Phrase[] }) {
       onPointerLeave={() => {
         hovered.current = false;
       }}
-      onClick={() => {
-        if (phase === "rolling") advanceRef.current?.();
-      }}
+      onClick={() => advanceRef.current?.()}
     >
-      {phrases.map((p, i) => {
-        const state: ItemState =
-          i === index ? "active" : i === prev ? "leaving" : "idle";
-        const text =
-          i === 0 && phase !== "rolling" ? p.text.slice(0, typed) : p.text;
-        return (
-          <span
-            key={p.text}
-            className={`roll__item${p.accent ? " roll__item--accent" : ""}`}
-            data-state={state}
-          >
-            {text}
-            {i === 0 && showCaret && <span className="roll__caret" />}
-          </span>
-        );
-      })}
+      {/* Reserves the width of the longest phrase so the lead never shifts. */}
+      <span className="roll__sizer">{longest.text}</span>
+      <span className="roll__live">
+        <span className={phrase.accent ? "roll__text roll__text--accent" : "roll__text"}>
+          {visible}
+        </span>
+        {mounted && <span className="roll__caret" />}
+      </span>
     </span>
   );
 }

@@ -60,7 +60,7 @@ Visitors are doing fast technical screening (recruiters) or casual browsing (pee
   - Frameworks/libraries: FastAPI, Flask, React, Next.js, PyTorch, TensorFlow, Pandas, Pydantic, LangChain.
   - Developer tools: Node.js, PostgreSQL, Supabase, OpenAI API, NemoClaw, Vercel, Apify, Git, Jupyter, OpenClaw.
   - Not established: which project used which tool, and any fluency ordering. Do not infer either.
-- Still not supplied: which sport "an athlete" refers to, and the mentoring context. The hero claims both, so one grounding sentence in About is owed once Parth answers. Do not invent a sport or a mentee group.
+- Sport and mentoring (supplied 2026-09-02): the sport is **volleyball**; he **mentors younger kids**, passing on life experience and lessons learned from adulting. Both are grounded in one About sentence. No further detail was given — do not invent a team, league, level, or program.
 
 Real projects to feature:
 
