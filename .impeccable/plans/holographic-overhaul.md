@@ -67,6 +67,38 @@ These are content, not taste. Anything not answered is built with a labelled pla
 - Bottom-right: scroll-progress ring (the reference's circled dot) — SVG circle whose stroke-dashoffset tracks scroll; click scrolls to top. Reduced motion: static ring.
 - The pill nav is retired; keyboard 1–5 shortcuts move into the Sheet's items and still work from the page.
 
+### 2g. Motion system — built on the `emil-design-eng` skill
+
+**Every animation on this site is designed through Emil Kowalski's framework, the typewriter included.** Load the `emil-design-eng` skill before writing any motion code in any later phase. No animation ships until it answers four questions in order: how often is it seen, what is its purpose, what easing, how fast.
+
+**Easing tokens** (replacing today's single `--ease-out`; the built-in CSS easings are too weak):
+
+```css
+--ease-out: cubic-bezier(0.23, 1, 0.32, 1);      /* enter + exit; the default */
+--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);  /* on-screen movement */
+--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);   /* the Sheet */
+```
+
+`ease-in` is banned outright: it delays the first frame, which is exactly where the eye is.
+
+**Standing rules, enforced at review.** Several are fixes to what the current site already does wrong:
+
+- Only `transform` and `opacity` animate. *This kills the current `.status__dot` box-shadow pulse* — it becomes a pseudo-element ring that scales and fades.
+- Nothing enters from `scale(0)`; `scale(0.95)` + `opacity: 0` is the floor.
+- Exit is always faster than enter, roughly half.
+- **Transitions, not keyframes, for anything interruptible** (the roll, hover, press) — keyframes restart from zero when retriggered, transitions retarget from where they are. Keyframes only for constant ambient motion (blob drift, ring rotation), which also runs off the main thread.
+- Every pressable element gets `:active { transform: scale(0.97) }` at ~160ms — buttons, card links, menu button, theme toggle. **The site has none of this today.**
+- Every hover effect is gated behind `@media (hover: hover) and (pointer: fine)`. **Also absent today** — touch taps currently fire the card hover.
+- Stagger steps stay 30–80ms.
+- `@starting-style` for entrances where supported, `data-mounted` fallback otherwise.
+- **No motion library.** CSS transitions + WAAPI only: CSS runs off the main thread and stays smooth while Next.js hydrates, and Framer Motion's `x`/`y` shorthands aren't hardware-accelerated anyway. A spring arrives only if a drag interaction does, and with Apple-style config (`duration`/`bounce`), not raw stiffness.
+
+**Durations by element:** press 100–160ms · tooltip 125–200ms · card hover 160–200ms · Sheet 250–350ms (`--ease-drawer`, `translateY(100%)` percentage-based) · hero entrance 500–600ms · scroll reveal 400–450ms. Nothing routine goes over 300ms.
+
+**shadcn/Radix overrides.** Default `tailwindcss-animate` classes are generic; every added component gets our curves and durations. Tooltips/popovers/hovercards get `transform-origin: var(--radix-*-content-transform-origin)` so they scale from their trigger rather than their center (the Sheet is edge-anchored and exempt). `TooltipProvider` gets `delayDuration={300} skipDelayDuration={150}`, so the second orbit tooltip opens instantly — the toolbar-feels-faster trick.
+
+**Reduced motion = fewer and gentler, not none.** Movement goes; opacity, colour, and state feedback stay. Blobs stop drifting, rings stop rotating, reveals become instant, the roll swaps in place — but the caret still blinks, **the typing still types**, presses still respond, tooltips still fade.
+
 ---
 
 ## Phase 3 — Hero (half day)
@@ -79,19 +111,24 @@ These are content, not taste. Anything not answered is built with a labelled pla
 - Subline: the current one-sentence positioning, in Hanken.
 - Links, not buttons: `→ see my work   → more about me` in the reference's style (arrow + lowercase), plus the status line. The primary "Get in touch" moves to the Sheet and Contact; the hero is calmer.
 
-### 3b. Fix the typed entrance
+### 3b. Fix the typed entrance, then rebuild it on the emil framework
 **Root cause, confirmed 2026-09-01:** the rolling headline is not on `main`. PR #3 (`editorial-grotesk` → `main`) merged at 02:16:15Z; PR #4 (`rolling-headline` → `editorial-grotesk`) merged 13 seconds later, into a branch that had already been merged. GitHub does not retarget a stacked PR unless its base branch is deleted, so commit `8d78655` lives only on `origin/editorial-grotesk`. Whatever was deployed from `main` has the static "I'm Parth Doshi. / I build with AI." hero and no typing at all.
 - **Fix:** PR #5 = `editorial-grotesk` → `main` (opened with this plan). Merge it and the typing appears. The overhaul branch is based on `editorial-grotesk` so it carries the roll regardless.
 - **Rule added to CLAUDE.md:** never stack a PR on a branch whose PR is open unless "delete branch on merge" is on; otherwise base every PR on `main`.
 
-Then hardening, all of which ship with the overhaul regardless:
-1. **macOS "Reduce motion"** (System Settings → Accessibility → Display) skips the typing by design in the current code; check it if the phrase still appears instantly after #5.
-2. **Changes:**
-   - Typing is *not* spatial motion, so it now runs under reduced motion too; only the roll is disabled there (in-place swaps stay).
-   - Kill the hydration race: the SSR markup renders the phrase with `data-pretype` so CSS hides the glyphs (not the box) until the client takes over; if JS never runs, a 1.6s CSS fallback reveals the text. No flash of the full phrase, no blank hero without JS.
-   - Start the type-in on `requestAnimationFrame` after fonts are ready (`document.fonts.ready`), so the caret never types in a fallback face and then re-flows.
-   - Dev-mode double-effect (StrictMode) guarded with a ref so the first phrase can't type twice.
-   - A visible caret during typing *and* the caret phase (currently it only blinks after typing; during typing it was static — that is what makes it read "not working").
+**Secondary cause to check once #5 merges:** macOS "Reduce motion" (System Settings → Accessibility → Display) skips the typing by design in the current code — the rebuild below changes that.
+
+**Then rebuild the mechanic through the `emil-design-eng` framework**, because "it runs again" is not the same as "it feels right":
+
+*Decision check first.* Typing is seen once per visit → rare, so delight is permitted. The roll repeats every 2.4s while the page is open → frequent, so it must be short, cheap, and never block interaction. Purpose: the headline's whole claim is that Parth is several things at once, and the roll is the only way to say all six in one line. Both survive the framework.
+
+- **Interruptibility — the biggest feel win.** The roll moves from keyframes to CSS **transitions** driven by `data-state` (`entering` / `active` / `leaving`). Click-to-advance mid-roll currently restarts a keyframe from zero; a transition retargets from wherever it is.
+- **Asymmetric timing:** enter 360ms `--ease-out` (was 550ms), exit 200ms (was 400ms). The phrase still holds 2.4s; only the swap tightens.
+- **Blur to mask the crossfade.** The overlap defect patched last round by delaying the entrance gets the real fix: `filter: blur(3px)` on both phrases during the swap, clearing as each settles, so two overlapping words read as one morphing word rather than two objects. Far under the 20px Safari ceiling.
+- **The caret is visible *during* typing**, not only after — its absence mid-type is most of what reads as "broken". Solid cap-height bar, `steps(2, jump-none)` blink at 1s (constant motion → steps, never eased), removed once the roll starts.
+- **Typing survives reduced motion.** It is not spatial movement and does not provoke vestibular symptoms; only the roll degrades to an in-place swap.
+- **Hydration.** SSR renders the full first phrase; `data-pretype` hides the glyphs (not the box) until the client takes over, with a 1.6s CSS fallback reveal if JS never runs — no flash of the full phrase, no blank hero without JS. Typing starts on `requestAnimationFrame` after `document.fonts.ready`, so the caret never types in a fallback face and then reflows. StrictMode's double-effect is guarded by a ref.
+- **Pause stays and grows.** Hover + `document.hidden` are already right (Sonner's "handle edge cases invisibly"); add pause when the slot scrolls out of view via `IntersectionObserver`, so nothing animates off-screen.
 
 ---
 
@@ -99,6 +136,7 @@ Then hardening, all of which ship with the overhaul regardless:
 
 - Cards restyled for the world: translucent frosted surfaces (`white/40` + `backdrop-blur` — bounded to the cards, which sit over blobs so the blur is functional, not decorative), 1.25rem radius, ink text, the existing geometric SVG marks kept (they suit the world), `Badge` for labels. The flagship keeps its full-width two-column layout; one card per row gets a blob-gradient *edge* (a 4px gradient stroke), replacing "one deep-green card per row".
 - Dark: cards `white/8` over the indigo ground.
+- **Motion (emil):** hover lift drops to 200ms and moves inside `@media (hover: hover) and (pointer: fine)`, transitioning `transform, box-shadow` explicitly — never `all`. The GitHub link inside each card gets `:active { transform: scale(0.97) }`. Scroll reveal becomes a `clip-path: inset(0 0 100% 0)` → `inset(0 0 0 0)` wipe plus opacity at 450ms (down from 900ms), 50ms stagger, `IntersectionObserver` with `{ once: true, rootMargin: "-100px" }`.
 
 ---
 
@@ -106,6 +144,7 @@ Then hardening, all of which ship with the overhaul regardless:
 
 - **Information architecture that earns the form:** distance = fluency. A central blob (Parth) with three rings — *daily*, *often*, *learning* — and each tool as a small type label sitting on its ring (no logo tiles: the craft floor bans icon grids and this reads better as typography anyway).
 - Rings rotate slowly in opposite directions (60–90s), pause on hover; hovering a tool opens a `Tooltip` naming the projects it was used in (from `data/stack.ts` `usedIn`), and the matching project cards get a brief ring highlight — the section is wired to the Work section, which is the point.
+- **Motion (emil):** rotation is constant motion → `linear` easing, CSS keyframes (off main thread), paused via `animation-play-state` inside the hover media query. Each label counter-rotates by the same amount so text never tilts. Tooltips at 150ms, origin-aware via `--radix-tooltip-content-transform-origin`, with `skipDelayDuration` so scanning across tools feels instant. The cross-highlight on project cards animates opacity/transform only, 200ms. Labels enter on scroll with a 40ms stagger, capped at ~600ms total.
 - Mobile: rings collapse into three stacked horizontal bands (still labelled daily/often/learning), labels scroll horizontally with snap; no rotation.
 - Reduced motion: rings static; hover/tooltip still works.
 - Data: `data/stack.ts` — `{ name, ring: "daily"|"often"|"learning", usedIn: slug[] }`. Populated from Phase 0; until then, seeded with what the projects prove (JavaScript, Phaser, Next.js, LLM APIs, OpenClaw) and labelled placeholder in a code comment, not on the page.
@@ -119,6 +158,7 @@ Alternative if the orbit reads gimmicky in the first capture: **Strata** — fou
 - Each hobby is one of the world's blob shapes used as a **clipPath over a real photo** (the reference's blobs, now carrying content). Caption in Unbounded caps outline, one line of body copy. 3–6 items in a loose, overlapping composition (not a grid) on desktop; a vertical stack on mobile.
 - Until photos arrive: the same blobs filled with their gradient and the hobby word set large inside them — designed as a state, not a stopgap, so it can ship.
 - Photos get provenance (origin embedded) when supplied; converted to WebP with `cwebp` at 2 sizes.
+- **Motion (emil):** each blob-clipped photo reveals with a `clip-path` wipe from the bottom on first view (450ms, once), staggered 60ms. Hover gives a 1.02 scale at 200ms inside the hover media query — no rotation, no bounce. The caption does not animate separately; one moment per item.
 
 ---
 
@@ -135,13 +175,15 @@ Alternative if the orbit reads gimmicky in the first capture: **Strata** — fou
 - About: keeps its copy; the range pills become `Badge`s; the section gets one small blob.
 - Contact: "Let's talk." in Unbounded outline+fill, email underline in the accent, GitHub / LinkedIn / Resume as outline Buttons.
 - Footer: monogram + © + back-to-top (the scroll ring already does this; footer keeps a text link for keyboard users).
+- **Motion (emil) for the shell:** the Sheet uses `--ease-drawer` at 300ms with percentage-based `translateY`/`translateX`, exit at 200ms; its items stagger 40ms. The scroll-progress ring is driven by `animation-timeline: scroll()` where supported (off main thread) with a scroll-listener fallback, and is static under reduced motion. The theme toggle animates only the icon (rotate + fade, 200ms) and specific token properties — never a blanket `transition: all` on `:root`, which would animate the entire page on every theme change.
 
 ---
 
 ## Phase 9 — Verify, review, document, ship (half day)
 
 1. Build; batched captures: light + dark × desktop (1440) + mobile (390), fold + full; motion frames for typing/roll; the orbit at rest and mid-hover.
-2. One fix batch, one confirmation capture. Stop.
+2. **Motion audit against the `emil-design-eng` checklist**, reported as its required Before/After/Why table: no `transition: all`, no `scale(0)` entries, no `ease-in`, no ungated hover, no keyframes on interruptible elements, exit faster than enter, every pressable element has `:active`, nothing routine over 300ms. Run animations at 3–5× duration (slow motion) to catch overlap and origin errors invisible at speed, and check the roll's swap frame-by-frame in the DevTools Animations panel. Test the Sheet and any drag on a real phone, not just the 390px viewport.
+3. One fix batch, one confirmation capture. Stop.
 3. Detector once; `/polish` (required before pushing frontend changes); embed provenance on `grain.png` and any photos (`embed-prompt.mjs --scan public`).
 4. Finish reviewer (fresh general-purpose agent on `degraded/finish-reviewer.md`) → act on the disposition (fix rounds capped at two).
 5. Documenter replaces DESIGN.md + sidecar from the built world.
@@ -159,6 +201,8 @@ Alternative if the orbit reads gimmicky in the first capture: **Strata** — fou
 | Tech logos | icon tiles are a refusal | Typographic labels on rings |
 | Pastel palette | "candy" was rejected last round | Cool grey-lavender ground, grain, wide caps outline/fill — adult by construction; register check in Phase 0 |
 | Dark mode | none | Real second token set, not an inverted filter |
+| Ambient blob drift | "one authored moment, not scattered effects" | The drift *is* the world, not an effect on top of it; it stays, but it is the only ambient loop besides the ring rotation, and both stop under reduced motion |
+| The roll repeating every 2.4s | emil: frequent animations must be short and cheap | Swap tightened to 360ms in / 200ms out, transitions not keyframes, paused off-screen and off-tab |
 
 ## Rough size
 Foundation ½ day · Hero ½ day · Work 2h · Stack ½ day · Hobbies 2h · Resume ½h · About/Contact 1h · Verify/review/doc ½ day. ~3 working days end to end, one PR.
