@@ -1,5 +1,9 @@
 import RoleRoll, { type Phrase } from "@/components/RoleRoll";
 import { ArrowRight } from "@/components/Icon";
+import { availability } from "@/data/site";
+import { FIXTURES, fixtureAvailability } from "@/data/fixtures";
+
+const avail = FIXTURES ? fixtureAvailability : availability;
 
 /** Parth's own words. The slot owns the article and the period. */
 const phrases: Phrase[] = [
@@ -74,6 +78,25 @@ export default function Hero() {
         CS student at UC Santa Cruz building autonomous agents that do real
         work — and getting more out of AI than most.
       </p>
+
+      {/*
+        Graduation term, target role and location: survey:convert calls these
+        the single highest-cost omission on the site, because a recruiter who
+        cannot tell WHEN someone is available, or WHERE, cannot act on wanting
+        to hire them.
+
+        All three are blocked on Parth and every one renders only when non-null,
+        so today this is absent rather than empty. The layout is built and
+        captured NOW, under fixtures, so supplying them is a data edit and not a
+        design decision made under time pressure.
+      */}
+      {(avail.gradTerm || avail.target || avail.location) && (
+        <p className="hero__avail">
+          {[avail.gradTerm, avail.target, avail.location]
+            .filter(Boolean)
+            .join(" · ")}
+        </p>
+      )}
 
       <div className="hero__actions">
         <a className="link-arrow" href="#work">

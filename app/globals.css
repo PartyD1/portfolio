@@ -787,6 +787,17 @@ svg {
   color: var(--ink-2);
 }
 
+/* Body face, never display; --ink-2, never coral. Email is the only element on
+ * the site that gets display type and the coral underline, and availability is
+ * a fact rather than an action. */
+.hero__avail {
+  max-width: 46ch;
+  margin-top: 10px;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
