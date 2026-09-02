@@ -231,23 +231,27 @@ svg {
 .hero {
   position: relative;
   min-height: min(100svh, 640px);
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
-  place-content: center;
-  justify-items: center;
-  text-align: center;
+  align-content: center;
+  justify-content: start;
+  justify-items: start;
+  text-align: left;
   padding: 140px 24px 32px;
   overflow: clip;
 }
 
 .hero__title {
-  font-size: clamp(2.75rem, 12vw, 6rem);
+  font-size: clamp(2.75rem, 7.6vw, 5.5rem);
   font-variation-settings: "wdth" 88;
   letter-spacing: -0.035em;
-  line-height: 0.94;
+  line-height: 0.96;
   color: var(--ink);
+  text-wrap: initial;
 }
 
-.hero__title span {
+.hero__line {
   display: block;
 }
 
@@ -263,9 +267,91 @@ svg {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 12px;
   margin-top: 32px;
+}
+
+/* ---------- Rolling phrase ---------- */
+.roll {
+  display: inline-grid;
+  vertical-align: baseline;
+  overflow: clip;
+  padding: 0.12em 0.1em 0.2em 0;
+  margin: -0.12em -0.1em -0.2em 0;
+  cursor: default;
+}
+
+.roll__item {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  visibility: hidden;
+}
+
+.roll__item.is-active {
+  visibility: visible;
+}
+
+.roll__item--accent {
+  color: var(--accent);
+}
+
+.roll__caret {
+  display: inline-block;
+  width: 0.07em;
+  height: 0.8em;
+  margin-left: 0.08em;
+  background: currentColor;
+  vertical-align: -0.04em;
+}
+
+.roll[data-phase="caret"] .roll__caret {
+  animation: blink 1s steps(2, jump-none) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .roll[data-phase="rolling"] .roll__item.is-active {
+    animation: roll-in 0.55s var(--ease-out) 0.1s both;
+  }
+  .roll[data-phase="rolling"] .roll__item.is-leaving {
+    visibility: visible;
+    animation: roll-out 0.4s var(--ease-out) both;
+  }
+}
+
+@keyframes roll-in {
+  from {
+    transform: translateY(0.7em);
+    opacity: 0;
+  }
+}
+
+@keyframes roll-out {
+  40% {
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-0.85em);
+    opacity: 0;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @media (max-width: 720px) {
@@ -275,17 +361,31 @@ svg {
   .hero__sub {
     font-size: 1.0625rem;
   }
+  /* The phrase takes its own line(s) and carries the "I'm" itself. */
+  .hero__lead {
+    display: none;
+  }
+  .roll {
+    display: grid;
+    max-width: 100%;
+  }
+  .roll__item {
+    white-space: normal;
+  }
+  .roll__item::before {
+    content: "I\2019m ";
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero__title span,
+  .hero__line,
   .hero__sub,
   .hero__actions,
   .status {
     animation: rise 1.1s var(--ease-out) both;
   }
-  .hero__title span:nth-child(2) {
-    animation-delay: 0.08s;
+  .hero__line--roll {
+    animation-delay: 0.3s;
   }
   .hero__sub {
     animation-delay: 0.2s;

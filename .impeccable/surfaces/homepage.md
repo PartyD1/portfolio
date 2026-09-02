@@ -49,7 +49,9 @@ OWN-WORLD: Desaturated warm-stone gradient wash; near-black-green ink; a tight g
 
 STORY: Visitor meets Parth by full name, reads the one-line positioning, sees the "Open to opportunities" line, scrolls into the cards — Operations Agent first, largest, and deep green — and leaves with "serious, ships real AI systems, easy to reach."
 
-FIRST VIEWPORT: Centered pill nav (Work / About / Contact); two-line tight-grotesk headline "I'm Parth Doshi. / I build with AI."; one-sentence subline; pill CTA pair (Get in touch → / GitHub); status line beneath; the top of the deep-green flagship card peeking above the fold.
+FIRST VIEWPORT: Centered pill nav (Work / About / Contact); a left-aligned hero column on the 1200px grid: two-line tight-grotesk headline "Hey, I'm Parth. / I'm [rolling phrase]"; one-sentence subline; pill CTA pair (Get in touch → / GitHub); status line beneath; the top of the deep-green flagship card peeking above the fold.
+
+MOTION (the page's one authored moment, added 2026-09-01): the first phrase "a developer." types in once behind a solid ink caret sized to the cap height; the caret leaves; then every 2.4s the next phrase rolls in from below through a clipped line box on the site's ease-out while the old one exits upward faster. Phrases, verbatim from the user: a developer. / a researcher. / a computer scientist. / an athlete. / a mentor. / obsessed with AI. — the last is the finale: held 4.2s and set in the ochre accent. Pauses on hover and when the tab is hidden; click advances. Reduced motion: a static list, no typing, no roll. The h1 carries the full sentence for assistive tech; the animating slot is aria-hidden.
 
 FORM: User-pinned reference world (beats the roll) — Seán's structure leads, Ram's temperament sets the register; refined 2026-09-01 to "Editorial grotesk" at the user's request (first pass read too bubbly). Supersedes seed b925b460.
 
