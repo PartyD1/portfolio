@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Gabarito } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 import Wash from "@/components/Wash";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
-const gabarito = Gabarito({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-gabarito",
+  variable: "--font-archivo",
   display: "swap",
+  axes: ["wdth"],
 });
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={gabarito.variable}>
+    <html lang="en" className={archivo.variable}>
       <body>
         <Wash />
         <Nav />

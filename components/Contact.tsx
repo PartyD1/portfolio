@@ -9,7 +9,7 @@ export default function Contact() {
       aria-labelledby="contact-title"
     >
       <h2 className="section__title contact__title" id="contact-title">
-        Say hi.
+        Let&rsquo;s talk.
       </h2>
       <p className="contact__lede">
         Hiring, collaborating, or just curious about something I built —

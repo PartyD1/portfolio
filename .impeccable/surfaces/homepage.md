@@ -43,14 +43,14 @@ FINISH line discharged. Detector: zero findings. Finish review (fresh general-pu
 
 ## Direction contract
 
-THESIS: A warm, friendly typographic self-introduction at monumental scale on a soft gradient wash, projects as chunky pastel cards; refuses both the dark-terminal dev portfolio and the sterile résumé page.
+THESIS: A confident, editorial self-introduction at monumental scale on a quiet stone wash, projects as flat cards in sand, stone, and deep green; refuses the dark-terminal dev portfolio, the sterile résumé page, and the candy-pastel first pass.
 
-OWN-WORLD: Warm cream→peach→sage gradient wash with faint grain; one deep green ink for display type and body; lavender as the single recurring accent; rounded pill nav and buttons; white four-point sparkles; pastel project cards (lavender, mint, butter, peach) with small tracked-caps labels.
+OWN-WORLD: Desaturated warm-stone gradient wash; near-black-green ink; a tight grotesk (Archivo, width ~88%) for display; burnt ochre as the single accent; pill nav and buttons; radius-20 cards in sand / stone with one deep-green card per row, cream text on green; small tracked-caps labels in the card foot; no sparkles, no blob, no grain.
 
-STORY: Visitor meets Parth by name, reads the one-line positioning, sees "● OPEN TO OPPORTUNITIES", scrolls into the cards — Operations Agent first and largest — and leaves with "friendly, ships real AI systems, easy to reach."
+STORY: Visitor meets Parth by full name, reads the one-line positioning, sees the "Open to opportunities" line, scrolls into the cards — Operations Agent first, largest, and deep green — and leaves with "serious, ships real AI systems, easy to reach."
 
-FIRST VIEWPORT: Centered pill nav (Work / About / Contact); status-dot label; two-line rounded display headline; one-sentence subline; pill CTA pair (Get in touch → / GitHub); the tops of the first two pastel cards peeking above the fold.
+FIRST VIEWPORT: Centered pill nav (Work / About / Contact); two-line tight-grotesk headline "I'm Parth Doshi. / I build with AI."; one-sentence subline; pill CTA pair (Get in touch → / GitHub); status line beneath; the top of the deep-green flagship card peeking above the fold.
 
-FORM: User-pinned reference world (beats the roll) — Seán leads; Ram donates the status label and CTA pair; Sharlee donates grain and one soft gradient blob. Supersedes seed b925b460.
+FORM: User-pinned reference world (beats the roll) — Seán's structure leads, Ram's temperament sets the register; refined 2026-09-01 to "Editorial grotesk" at the user's request (first pass read too bubbly). Supersedes seed b925b460.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
