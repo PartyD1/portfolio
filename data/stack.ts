@@ -73,12 +73,15 @@ export const stack: StackGroup[] = [
       { name: "Node.js", slug: "nodedotjs" },
       { name: "PostgreSQL", slug: "postgresql" },
       { name: "Supabase", slug: "supabase" },
-      { name: "OpenAI API", slug: "openai" },
-      // NemoClaw and OpenClaw have no official Simple Icons mark. They render
-      // as text pills rather than being dropped or given an invented glyph.
+      // No official Simple Icons mark exists for any of these four, so they
+      // carry no slug and render as text pills rather than being dropped or
+      // given an invented glyph. Verified against simple-icons 16.29.0:
+      // there is no siOpenai and no siApify. siOpenaigym exists but is OpenAI
+      // GYM, a different product, and using it here would be a small lie.
+      { name: "OpenAI API" },
       { name: "NemoClaw" },
       { name: "Vercel", slug: "vercel" },
-      { name: "Apify", slug: "apify" },
+      { name: "Apify" },
       { name: "Git", slug: "git" },
       { name: "Jupyter", slug: "jupyter" },
       { name: "OpenClaw" },

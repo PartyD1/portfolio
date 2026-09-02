@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "@/components/Icon";
 import MediaBand from "@/components/MediaBand";
+import { TechRow } from "@/components/TechMark";
 import type { Project } from "@/data/projects";
 
 /**
@@ -23,6 +24,7 @@ export default function CaseStudyHeader({ project }: { project: Project }) {
     slug,
     media,
     description,
+    tech,
   } = project;
 
   // Order matters: what kind of system, then what he was, then when, then who
@@ -63,8 +65,8 @@ export default function CaseStudyHeader({ project }: { project: Project }) {
       */}
       {note && <p className="case__note">{note}</p>}
 
-      {/* TechRow slot — populated in C8, and absent (not skeletal) until the
-          tool→project mapping is supplied. */}
+      {/* Absent, not skeletal, until the tool→project mapping is supplied. */}
+      <TechRow slugs={tech} />
 
       {/*
         The standfirst sits ABOVE the media, not below it. Until the case-study

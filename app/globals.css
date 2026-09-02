@@ -1940,6 +1940,54 @@ svg {
   margin: 0;
 }
 
+/* --- the tech row --------------------------------------------------------
+ * A bounded exception to The Drawn-Not-Set Rule: one register, one surface,
+ * one size, one ink. Brand geometry ships; brand colour does not, because ~25
+ * uncontrolled accents would blow The One Accent Rule on a page whose identity
+ * is having exactly one. Case-study header only. */
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tech__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-2);
+  transition: color 200ms var(--ease-out);
+}
+
+.tech:hover .tech__item,
+.tech:focus-within .tech__item {
+  color: var(--ink);
+}
+
+.tech__mark {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+.tech__name {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* A supplied tool with no official mark is never silently dropped. */
+.tech__pill {
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
 /* --- the media well ------------------------------------------------------
  * OPAQUE. The Opaque-Media Rule, a named amendment to The Blur-Is-Legibility
  * Rule: blur keeps TEXT legible over the wash, and a screenshot has no such
