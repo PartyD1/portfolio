@@ -11,8 +11,9 @@ export default function ProjectCard({
   /** One card per row carries the world's gradient as an edge. */
   gradient?: boolean;
 }) {
-  const { slug, name, tagline, description, href, note, label, flagship } =
+  const { slug, name, tagline, description, href, note, label, use, weight } =
     project;
+  const flagship = weight === 1;
 
   const classes = [
     "card",
@@ -43,6 +44,7 @@ export default function ProjectCard({
             <h3 className="card__name">{name}</h3>
           </div>
           <p className="card__tagline">{tagline}</p>
+          {use && <p className="card__use">{use}</p>}
           {description && <p className="card__desc">{description}</p>}
           <div className="card__foot">
             {note ? <p className="card__note">{note}</p> : link}
@@ -61,6 +63,7 @@ export default function ProjectCard({
         <h3 className="card__name">{name}</h3>
       </div>
       <p className="card__tagline">{tagline}</p>
+      {use && <p className="card__use">{use}</p>}
       <div className="card__foot">
         {link}
         <Badge variant="outline">{label}</Badge>

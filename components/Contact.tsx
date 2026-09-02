@@ -1,4 +1,4 @@
-import { links } from "@/data/projects";
+import { links } from "@/data/site";
 import { ArrowUpRight } from "@/components/Icon";
 import ResumeLink from "@/components/ResumeLink";
 

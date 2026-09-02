@@ -63,11 +63,11 @@ export default function Stack() {
                     LABEL_GAP / 2 + (i * span) / group.items.length;
                   return (
                     <span
-                      key={item}
+                      key={item.name}
                       className="orbit__label"
                       style={{ ["--a" as string]: `${angle}deg` }}
                     >
-                      {item}
+                      {item.name}
                     </span>
                   );
                 })}
@@ -91,7 +91,7 @@ export default function Stack() {
       <div className="visually-hidden">
         {stack.map((group) => (
           <p key={group.id}>
-            {group.label}: {group.items.join(", ")}.
+            {group.label}: {group.items.map((i) => i.name).join(", ")}.
           </p>
         ))}
       </div>

@@ -12,7 +12,7 @@ import {
 import Monogram from "@/components/Monogram";
 import ThemeToggle from "@/components/ThemeToggle";
 import ResumeLink from "@/components/ResumeLink";
-import { links } from "@/data/projects";
+import { links } from "@/data/site";
 
 const items = [
   { id: "work", label: "Work", key: "1" },

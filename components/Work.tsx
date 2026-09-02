@@ -31,7 +31,7 @@ export default function Work() {
           <Reveal
             key={project.slug}
             delay={i * 50}
-            className={project.flagship ? "work__item--flagship" : undefined}
+            className={project.weight === 1 ? "work__item--flagship" : undefined}
           >
             {/*
               One gradient edge per ROW, alternating sides. Selecting odd
