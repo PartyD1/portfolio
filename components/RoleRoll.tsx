@@ -34,7 +34,14 @@ const PAUSE_POLL_MS = 400;
  * it and retarget from wherever it is. The whole element is aria-hidden — the
  * h1 carries the full sentence for assistive tech.
  */
-export default function RoleRoll({ phrases }: { phrases: Phrase[] }) {
+export default function RoleRoll({
+  phrases,
+  lead,
+}: {
+  phrases: Phrase[];
+  /** Rendered inside every item so the line stays centred as phrases change. */
+  lead?: string;
+}) {
   const [reduced, setReduced] = useState(false);
   const [mounted, setMounted] = useState(false);
   // Server-render the full first phrase; CSS holds the glyphs back until the
@@ -187,6 +194,11 @@ export default function RoleRoll({ phrases }: { phrases: Phrase[] }) {
             className={`roll__item${p.accent ? " roll__item--accent" : ""}`}
             data-state={state}
           >
+            {lead ? (
+              <>
+                <span className="type-outline roll__lead">{lead}</span>{" "}
+              </>
+            ) : null}
             {text}
             {i === 0 && showCaret && <span className="roll__caret" />}
           </span>

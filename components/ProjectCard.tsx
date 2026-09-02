@@ -1,10 +1,26 @@
 import type { Project } from "@/data/projects";
 import Artifact from "@/components/Artifact";
 import { ArrowUpRight } from "@/components/Icon";
+import { Badge } from "@/components/ui/badge";
 
-export default function ProjectCard({ project }: { project: Project }) {
-  const { slug, name, label, tagline, description, href, note, tone, flagship } =
+export default function ProjectCard({
+  project,
+  gradient,
+}: {
+  project: Project;
+  /** One card per row carries the world's gradient as an edge. */
+  gradient?: boolean;
+}) {
+  const { slug, name, tagline, description, href, note, label, flagship } =
     project;
+
+  const classes = [
+    "card",
+    flagship && "card--flagship",
+    gradient && "card--gradient",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const link = href ? (
     <a
@@ -21,7 +37,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 
   if (flagship) {
     return (
-      <article className={`card card--${tone} card--flagship`}>
+      <article className={classes}>
         <div className="card__body">
           <div className="card__head">
             <h3 className="card__name">{name}</h3>
@@ -30,7 +46,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           {description && <p className="card__desc">{description}</p>}
           <div className="card__foot">
             {note ? <p className="card__note">{note}</p> : link}
-            <p className="card__label">{label}</p>
+            <Badge variant="outline">{label}</Badge>
           </div>
         </div>
         <Artifact slug={slug} className="card__art" />
@@ -39,7 +55,7 @@ export default function ProjectCard({ project }: { project: Project }) {
   }
 
   return (
-    <article className={`card card--${tone}`}>
+    <article className={classes}>
       <Artifact slug={slug} className="card__art" />
       <div className="card__head">
         <h3 className="card__name">{name}</h3>
@@ -47,7 +63,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       <p className="card__tagline">{tagline}</p>
       <div className="card__foot">
         {link}
-        <p className="card__label">{label}</p>
+        <Badge variant="outline">{label}</Badge>
       </div>
     </article>
   );

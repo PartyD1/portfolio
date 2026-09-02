@@ -1,3 +1,12 @@
+import { Badge } from "@/components/ui/badge";
+
+const range = [
+  "Autonomous agents",
+  "Game systems & physics",
+  "Assistive tech",
+  "Full-stack web",
+];
+
 export default function About() {
   return (
     <section className="section" id="about" aria-labelledby="about-title">
@@ -23,10 +32,11 @@ export default function About() {
             with motor impairments.
           </p>
           <ul className="about__range" aria-label="Areas of work">
-            <li>Autonomous agents</li>
-            <li>Game systems &amp; physics</li>
-            <li>Assistive tech</li>
-            <li>Full-stack web</li>
+            {range.map((r) => (
+              <li key={r}>
+                <Badge variant="secondary">{r}</Badge>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

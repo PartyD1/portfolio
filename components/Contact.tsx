@@ -20,7 +20,7 @@ export default function Contact() {
       </a>
       <div className="contact__links">
         <a
-          className="btn btn--ghost"
+          className="link-arrow"
           href={links.github}
           target="_blank"
           rel="noreferrer"
@@ -29,7 +29,7 @@ export default function Contact() {
           <ArrowUpRight />
         </a>
         <a
-          className="btn btn--ghost"
+          className="link-arrow"
           href={links.linkedin}
           target="_blank"
           rel="noreferrer"

@@ -4,38 +4,57 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ---------- Tokens ---------- */
+/* ==========================================================================
+   Tokens
+   ========================================================================== */
 :root {
   color-scheme: light;
 
-  --ink: #142e26;
-  --ink-2: #3f5c50;
-  --paper: #efece3;
-  --white: #fbf9f3;
-  --cream: #f3efe4;
+  --ground: #e9e6ee;
+  --ink: #3f3f68;
+  --ink-2: #6f6f92;
+  --white: #f7f6fa;
+  /* Our one accent. shadcn owns --accent, so ours is --signal. */
+  --signal: #d9705a;
 
-  --sand: #e2d7bb;
-  --stone: #dbd8ce;
-  /* Our single brand accent. shadcn owns --accent, so ours is --signal. */
-  --signal: #b8641f;
+  /* Iridescent blobs: three stops each, on their own axis. */
+  --blob-a-1: #b9ecd0;
+  --blob-a-2: #a6d9f2;
+  --blob-a-3: #cbb9ef;
+  --blob-b-1: #f8c9ac;
+  --blob-b-2: #f4e6a6;
+  --blob-b-3: #bdead4;
+  --blob-c-1: #cbbcef;
+  --blob-c-2: #f4bcd2;
+  --blob-c-3: #f9d2b4;
+  --blob-d-1: #aed9f4;
+  --blob-d-2: #aee8cd;
+  --blob-d-3: #f2e5aa;
+  --blob-gloss: rgb(255 255 255 / 0.62);
+  --blob-gloss-out: rgb(255 255 255 / 0);
 
-  --wash-a: #e1e2c6;
-  --wash-b: #d4dcd2;
-  --wash-c: #eadbc9;
-  --wash-d: #e4ded1;
+  /* Frosted glass: the cards sit over the blobs, so blur is legibility. */
+  --glass: rgb(255 255 255 / 0.52);
+  --glass-strong: rgb(255 255 255 / 0.72);
+  --glass-edge: rgb(255 255 255 / 0.68);
 
-  --radius-card: 20px;
+  --grain-opacity: 0.055;
+  --grain-blend: multiply;
+
+  --radius-card: 22px;
+  --shadow-ink: 63 63 104;
 
   /* Motion (emil-design-eng): built-in easings are too weak; ease-in is banned. */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
-  --font: var(--font-archivo), system-ui, -apple-system, sans-serif;
-  --shadow-ink: 20 46 38;
+  --font-display-stack: var(--font-display), "Trebuchet MS", system-ui,
+    sans-serif;
+  --font-body-stack: var(--font-body), system-ui, -apple-system, sans-serif;
 
   /* --- shadcn bridge: our world IS the shadcn theme, not the reverse --- */
-  --background: var(--paper);
+  --background: var(--ground);
   --foreground: var(--ink);
   --card: var(--white);
   --card-foreground: var(--ink);
@@ -43,33 +62,92 @@
   --popover-foreground: var(--ink);
   --primary: var(--ink);
   --primary-foreground: var(--white);
-  --secondary: var(--sand);
+  --secondary: color-mix(in oklab, var(--ink) 8%, var(--ground));
   --secondary-foreground: var(--ink);
-  --muted: var(--stone);
+  --muted: color-mix(in oklab, var(--ink) 6%, var(--ground));
   --muted-foreground: var(--ink-2);
-  --accent: var(--sand);
+  --accent: color-mix(in oklab, var(--ink) 8%, var(--ground));
   --accent-foreground: var(--ink);
   --destructive: oklch(0.577 0.245 27.325);
   --border: color-mix(in oklab, var(--ink) 14%, transparent);
   --input: color-mix(in oklab, var(--ink) 20%, transparent);
   --ring: var(--signal);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.75rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --chart-1: var(--blob-a-2);
+  --chart-2: var(--blob-b-1);
+  --chart-3: var(--blob-c-1);
+  --chart-4: var(--blob-d-2);
+  --chart-5: var(--signal);
+  --radius: 1rem;
+  --sidebar: var(--white);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--white);
+  --sidebar-accent: var(--secondary);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--signal);
 }
 
-/* ---------- Base ---------- */
+/* Dark is a real second world, not an inverted filter: the ground goes deep
+ * indigo and the blobs gain saturation so they glow rather than fade. */
+.dark {
+  color-scheme: dark;
+
+  --ground: #191a2e;
+  --ink: #ecebf4;
+  /* Secondary text has to survive sitting over a lit blob, so it runs brighter
+   * here than a plain dark-mode muted tone would. */
+  --ink-2: #cbcae2;
+  --white: #23243d;
+  --signal: #f0a48f;
+
+  --blob-a-1: #4fd3a0;
+  --blob-a-2: #4bb4ec;
+  --blob-a-3: #a888ee;
+  --blob-b-1: #f2a273;
+  --blob-b-2: #e8cf6a;
+  --blob-b-3: #63d6ab;
+  --blob-c-1: #a98cee;
+  --blob-c-2: #ee8ab4;
+  --blob-c-3: #f4ad7e;
+  --blob-d-1: #59b6ee;
+  --blob-d-2: #57d3a7;
+  --blob-d-3: #e8d074;
+  --blob-gloss: rgb(255 255 255 / 0.4);
+  --blob-gloss-out: rgb(255 255 255 / 0);
+
+  --glass: rgb(255 255 255 / 0.07);
+  --glass-strong: rgb(255 255 255 / 0.11);
+  --glass-edge: rgb(255 255 255 / 0.14);
+
+  --grain-opacity: 0.05;
+  --grain-blend: screen;
+
+  --shadow-ink: 0 0 0;
+
+  --background: var(--ground);
+  --foreground: var(--ink);
+  --card: var(--white);
+  --card-foreground: var(--ink);
+  --popover: var(--white);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--ground);
+  --secondary: color-mix(in oklab, var(--ink) 12%, var(--ground));
+  --secondary-foreground: var(--ink);
+  --muted: color-mix(in oklab, var(--ink) 10%, var(--ground));
+  --muted-foreground: var(--ink-2);
+  --accent: color-mix(in oklab, var(--ink) 12%, var(--ground));
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: color-mix(in oklab, var(--ink) 16%, transparent);
+  --input: color-mix(in oklab, var(--ink) 22%, transparent);
+  --ring: var(--signal);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -78,35 +156,30 @@
 
 html {
   scroll-behavior: smooth;
-  scrollbar-color: var(--ink) transparent;
+  scrollbar-color: color-mix(in oklab, var(--ink) 45%, transparent) transparent;
 }
 
 body {
   margin: 0;
-  font-family: var(--font);
-  font-size: 1.125rem;
+  font-family: var(--font-body-stack);
+  font-size: 1.0625rem;
   line-height: 1.5;
   color: var(--ink);
-  background: var(--paper);
-  caret-color: var(--ink);
+  background: var(--ground);
+  caret-color: var(--signal);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--signal) 32%, var(--paper));
+  background: color-mix(in oklab, var(--signal) 34%, var(--ground));
   color: var(--ink);
 }
 
 :focus-visible {
-  outline: 3px solid var(--ink);
-  outline-offset: 4px;
-}
-
-.btn:focus-visible,
-.nav__link:focus-visible,
-.card__link:focus-visible {
-  border-radius: 999px;
+  outline: 3px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 a {
@@ -118,10 +191,12 @@ a {
 h1,
 h2,
 h3 {
-  font-weight: 800;
-  font-variation-settings: "wdth" 90;
-  letter-spacing: -0.03em;
   margin: 0;
+  font-family: var(--font-display-stack);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+  line-height: 1.02;
   text-wrap: balance;
 }
 
@@ -134,138 +209,260 @@ svg {
   display: block;
 }
 
-/* ---------- Wash (gradient ground) ---------- */
+.visually-hidden,
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Outline lettering. Declared so that a browser without text-stroke keeps
+ * readable solid type instead of invisible text. */
+.type-outline {
+  color: var(--ink);
+}
+
+@supports (-webkit-text-stroke: 1px currentColor) {
+  .type-outline {
+    color: transparent;
+    -webkit-text-stroke: 0.022em var(--ink);
+  }
+}
+
+/* ==========================================================================
+   Ground: blobs + grain
+   ========================================================================== */
 .wash {
   position: fixed;
   inset: 0;
   z-index: -1;
   overflow: hidden;
-  background: var(--paper);
+  background: var(--ground);
+  pointer-events: none;
 }
 
+/* Pushed to the corners: the reference keeps a calm centre for the type, and
+ * content has to stay legible over the ground. */
 .wash__blob {
   position: absolute;
-  width: 80vmax;
-  height: 80vmax;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, var(--c), transparent 64%);
+  width: 42vmax;
+  height: 42vmax;
 }
 
 .wash__blob--a {
-  --c: var(--wash-a);
-  top: -34vmax;
-  left: -26vmax;
+  top: -15vmax;
+  left: -14vmax;
+  width: 44vmax;
+  height: 44vmax;
 }
 .wash__blob--b {
-  --c: var(--wash-b);
-  top: -20vmax;
-  right: -30vmax;
+  top: -13vmax;
+  right: -15vmax;
+  width: 46vmax;
+  height: 46vmax;
 }
 .wash__blob--c {
-  --c: var(--wash-c);
-  bottom: -40vmax;
-  right: -10vmax;
+  bottom: -18vmax;
+  left: -13vmax;
+  width: 42vmax;
+  height: 42vmax;
 }
 .wash__blob--d {
-  --c: var(--wash-d);
-  bottom: -30vmax;
-  left: -20vmax;
+  bottom: -16vmax;
+  right: -14vmax;
+  width: 40vmax;
+  height: 40vmax;
+}
+
+/* On the dark ground the blobs are far brighter than the page, so they are
+ * held back to keep body text over them readable. */
+.dark .wash__blob {
+  opacity: 0.62;
+}
+
+/* On a phone vmax is the viewport HEIGHT, which makes the blobs full-bleed and
+ * swallows the body copy. Size them from the width instead. */
+@media (max-width: 720px) {
+  .wash__blob--a {
+    top: -16vw;
+    left: -22vw;
+    width: 82vw;
+    height: 82vw;
+  }
+  .wash__blob--b {
+    top: -12vw;
+    right: -24vw;
+    width: 84vw;
+    height: 84vw;
+  }
+  .wash__blob--c {
+    bottom: -20vw;
+    left: -24vw;
+    width: 78vw;
+    height: 78vw;
+  }
+  .wash__blob--d {
+    bottom: -16vw;
+    right: -22vw;
+    width: 76vw;
+    height: 76vw;
+  }
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("/textures/grain.png");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  /* will-change only while something is actually animating. */
   .wash__blob {
     will-change: transform;
   }
   .wash__blob--a {
-    animation: drift-a 28s ease-in-out infinite alternate;
+    animation: drift-a 34s ease-in-out infinite alternate;
   }
   .wash__blob--b {
-    animation: drift-b 34s ease-in-out infinite alternate;
+    animation: drift-b 41s ease-in-out infinite alternate;
   }
   .wash__blob--c {
-    animation: drift-c 31s ease-in-out infinite alternate;
+    animation: drift-c 37s ease-in-out infinite alternate;
   }
   .wash__blob--d {
-    animation: drift-d 37s ease-in-out infinite alternate;
+    animation: drift-d 45s ease-in-out infinite alternate;
+  }
+}
+
+/* Phones stop the drift entirely: four animated blobs is not a mobile budget. */
+@media (max-width: 720px) {
+  .wash__blob {
+    animation: none !important;
+    will-change: auto;
   }
 }
 
 @keyframes drift-a {
   to {
-    transform: translate(10vmax, 8vmax);
+    transform: translate(6vmax, 5vmax) rotate(9deg);
   }
 }
 @keyframes drift-b {
   to {
-    transform: translate(-8vmax, 12vmax);
+    transform: translate(-5vmax, 7vmax) rotate(-11deg);
   }
 }
 @keyframes drift-c {
   to {
-    transform: translate(-12vmax, -8vmax);
+    transform: translate(7vmax, -5vmax) rotate(8deg);
   }
 }
 @keyframes drift-d {
   to {
-    transform: translate(10vmax, -10vmax);
+    transform: translate(-6vmax, -6vmax) rotate(-7deg);
   }
 }
 
-/* ---------- Nav ---------- */
-.nav {
+/* ==========================================================================
+   Shell
+   ========================================================================== */
+.shell {
   position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
   display: flex;
-  gap: 2px;
-  padding: 6px;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--white) 84%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 10px 30px -14px rgb(var(--shadow-ink) / 0.35);
-}
-
-.nav__link {
-  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 1rem;
+  justify-content: space-between;
+  padding: 22px 28px;
+  pointer-events: none;
+}
+
+.shell > * {
+  pointer-events: auto;
+}
+
+.shell__mark {
+  display: block;
+  width: 44px;
   color: var(--ink);
-  text-decoration: none;
-  transition:
-    background 200ms var(--ease-out),
-    color 200ms var(--ease-out),
-    transform 160ms var(--ease-out);
+  border-radius: 10px;
+  transition: transform 160ms var(--ease-out);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .nav__link:hover {
-    background: color-mix(in oklab, var(--ink) 8%, transparent);
-  }
+.shell__mark svg {
+  width: 100%;
+  height: auto;
 }
 
-.nav__link:active {
+.shell__mark:active {
   transform: scale(0.97);
 }
 
-.nav__link[aria-current="location"] {
-  background: var(--ink);
-  color: var(--white);
+.shell__tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
+.shell__menu {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.shell__menu svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.shell__menu:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .shell__menu:hover,
+  .theme-toggle:hover {
+    background: color-mix(in oklab, var(--ink) 10%, transparent);
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 16px 18px;
+  }
+  .shell__mark {
+    width: 38px;
+  }
+}
+
+/* Theme toggle */
 .theme-toggle {
   display: grid;
   place-items: center;
   width: 40px;
   height: 40px;
-  margin-left: 2px;
   padding: 0;
   border: 0;
   border-radius: 999px;
@@ -281,14 +478,6 @@ svg {
   transform: scale(0.97);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .theme-toggle:hover {
-    background: color-mix(in oklab, var(--ink) 8%, transparent);
-  }
-}
-
-/* Both icons occupy one cell; only the live one is shown, so the button
- * never resizes and the swap is a crossfade rather than a reflow. */
 .theme-toggle__icon {
   grid-area: 1 / 1;
   display: block;
@@ -318,62 +507,204 @@ svg {
   height: 100%;
 }
 
-.nav__key {
-  font-size: 0.6875rem;
+/* Menu sheet */
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  padding: 48px 40px;
+  background: color-mix(in oklab, var(--ground) 86%, transparent);
+  backdrop-filter: blur(28px) saturate(1.3);
+  -webkit-backdrop-filter: blur(28px) saturate(1.3);
+  border-left: 1px solid var(--glass-edge);
+}
+
+.menu__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menu__link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  font-family: var(--font-display-stack);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--ink);
+  transition:
+    color 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.menu__link:active {
+  transform: scale(0.98);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .menu__link:hover {
+    color: var(--signal);
+  }
+}
+
+.menu__key {
+  font-family: var(--font-body-stack);
+  font-size: 0.75rem;
   font-weight: 600;
-  line-height: 1;
-  padding: 3px 6px 2px;
-  border-radius: 6px;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
   border: 1.5px solid currentColor;
-  opacity: 0.78;
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+
+.menu__foot {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+}
+
+.menu__foot a {
+  width: fit-content;
+  text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .menu__foot a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-state="open"] .menu__link {
+    animation: rise 420ms var(--ease-out) both;
+    animation-delay: calc(var(--i) * 40ms + 80ms);
+  }
+}
+
+/* Scroll ring */
+.scroll-ring {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--glass-strong);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--ink);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 250ms var(--ease-out),
+    visibility 250ms,
+    transform 160ms var(--ease-out);
+}
+
+.scroll-ring[data-visible="true"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-ring:active {
+  transform: scale(0.97);
+}
+
+.scroll-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.scroll-ring__track,
+.scroll-ring__fill {
+  fill: none;
+  stroke-width: 2;
+}
+
+.scroll-ring__track {
+  stroke: color-mix(in oklab, var(--ink) 22%, transparent);
+}
+
+.scroll-ring__fill {
+  stroke: var(--signal);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 120ms linear;
+}
+
+.scroll-ring__dot {
+  fill: var(--ink);
 }
 
 @media (max-width: 640px) {
-  .nav {
-    top: 12px;
-  }
-  .nav__link {
-    padding: 9px 14px;
-    font-size: 0.9375rem;
-  }
-  .nav__key {
-    display: none;
+  .scroll-ring {
+    right: 18px;
+    bottom: 18px;
   }
 }
 
-/* ---------- Hero ---------- */
+/* ==========================================================================
+   Hero
+   ========================================================================== */
 .hero {
   position: relative;
-  min-height: min(100svh, 640px);
-  max-width: 1200px;
-  margin: 0 auto;
+  min-height: min(100svh, 720px);
   display: grid;
-  align-content: center;
-  justify-content: start;
-  justify-items: start;
-  text-align: left;
-  padding: 140px 24px 32px;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+  padding: 150px 24px 56px;
   overflow: clip;
 }
 
 .hero__title {
-  font-size: clamp(2.75rem, 7.6vw, 5.5rem);
-  font-variation-settings: "wdth" 88;
-  letter-spacing: -0.035em;
-  line-height: 0.96;
-  color: var(--ink);
-  text-wrap: initial;
+  font-size: clamp(1.75rem, 5.1vw, 4rem);
+  line-height: 1.12;
+  letter-spacing: 0.005em;
 }
 
 .hero__line {
   display: block;
 }
 
+.hero__name {
+  position: relative;
+  display: inline-block;
+  color: var(--ink);
+}
+
+/* The wave sits under the name, inside its box, so it tracks the type. */
+.hero__wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.06em;
+  width: 100%;
+  height: 0.34em;
+  color: color-mix(in oklab, var(--ink) 30%, transparent);
+  pointer-events: none;
+}
+
 .hero__sub {
-  max-width: 54ch;
-  margin-top: 28px;
-  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
-  line-height: 1.45;
+  max-width: 46ch;
+  margin-top: 26px;
+  font-size: clamp(1rem, 1.2vw, 1.1875rem);
+  line-height: 1.5;
   color: var(--ink-2);
 }
 
@@ -381,18 +712,103 @@ svg {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  margin-top: 32px;
+  justify-content: center;
+  gap: 10px 28px;
+  margin-top: 30px;
 }
 
-/* ---------- Rolling phrase ---------- */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  transition:
+    color 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.link-arrow .icon {
+  width: 1.1em;
+  height: 1.1em;
+  transition: transform 200ms var(--ease-out);
+}
+
+.link-arrow:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link-arrow:hover {
+    color: var(--signal);
+  }
+  .link-arrow:hover .icon {
+    transform: translateX(4px);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding: 118px 20px 48px;
+    min-height: min(100svh, 620px);
+  }
+  .hero__title {
+    font-size: clamp(1.25rem, 5.9vw, 1.875rem);
+    line-height: 1.18;
+  }
+  /* The longest phrase cannot fit one phone line, so let it wrap rather than
+   * be clipped by the hero's overflow. */
+  .roll {
+    display: grid;
+    max-width: 100%;
+  }
+  .roll__item {
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__line,
+  .hero__sub,
+  .hero__actions,
+  .status {
+    animation: rise 600ms var(--ease-out) both;
+  }
+  /* Stagger steps stay 30–80ms; longer reads as the page being slow. */
+  .hero__line--roll {
+    animation-delay: 60ms;
+  }
+  .hero__sub {
+    animation-delay: 120ms;
+  }
+  .hero__actions {
+    animation-delay: 180ms;
+  }
+  .status {
+    animation-delay: 240ms;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* ==========================================================================
+   Rolling phrase
+   ========================================================================== */
 .roll {
   display: inline-grid;
+  justify-items: center;
   vertical-align: baseline;
   overflow: clip;
-  padding: 0.12em 0.1em 0.2em 0;
-  margin: -0.12em -0.1em -0.2em 0;
+  padding: 0.14em 0.1em 0.22em;
+  margin: -0.14em -0.1em -0.22em;
   cursor: default;
 }
 
@@ -418,6 +834,18 @@ svg {
   color: var(--signal);
 }
 
+/* The finale's lead keeps the outline treatment, in the accent. */
+.roll__item--accent .roll__lead {
+  color: var(--signal);
+}
+
+@supports (-webkit-text-stroke: 1px currentColor) {
+  .roll__item--accent .roll__lead {
+    color: transparent;
+    -webkit-text-stroke-color: var(--signal);
+  }
+}
+
 /* Until the client takes over, the glyphs are held back but the box is not,
  * so nothing reflows. If JS never arrives, the phrase reveals itself. */
 .roll[data-pretype] .roll__item {
@@ -433,8 +861,8 @@ svg {
 
 .roll__caret {
   display: inline-block;
-  width: 0.07em;
-  height: 0.8em;
+  width: 0.06em;
+  height: 0.78em;
   margin-left: 0.08em;
   background: currentColor;
   vertical-align: -0.04em;
@@ -474,143 +902,26 @@ svg {
   }
 }
 
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-@media (max-width: 720px) {
-  .hero {
-    padding-top: 116px;
-  }
-  .hero__sub {
-    font-size: 1.0625rem;
-  }
-  /* The phrase takes its own line(s) and carries the "I'm" itself. */
-  .hero__lead {
-    display: none;
-  }
-  .roll {
-    display: grid;
-    max-width: 100%;
-  }
-  .roll__item {
-    white-space: normal;
-  }
-  .roll__item::before {
-    content: "I\2019m ";
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero__line,
-  .hero__sub,
-  .hero__actions,
-  .status {
-    animation: rise 600ms var(--ease-out) both;
-  }
-  /* Stagger steps stay 30–80ms; longer reads as the page being slow. */
-  .hero__line--roll {
-    animation-delay: 60ms;
-  }
-  .hero__sub {
-    animation-delay: 120ms;
-  }
-  .hero__actions {
-    animation-delay: 180ms;
-  }
-  .status {
-    animation-delay: 240ms;
-  }
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-}
-
-/* ---------- Controls ---------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 22px;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1;
-  text-decoration: none;
-  transition:
-    transform 160ms var(--ease-out),
-    box-shadow 200ms var(--ease-out),
-    background 200ms var(--ease-out),
-    border-color 200ms var(--ease-out);
-}
-
-/* Instant press feedback: the interface confirms it heard you. */
-.btn:active {
-  transform: scale(0.97);
-}
-
-.btn--primary {
-  background: var(--ink);
-  color: var(--white);
-  box-shadow: 0 12px 26px -14px rgb(var(--shadow-ink) / 0.6);
-}
-
-.btn--ghost {
-  color: var(--ink);
-  border: 2px solid color-mix(in oklab, var(--ink) 30%, transparent);
-}
-
-.btn .icon {
-  transition: transform 200ms var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .btn--primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 18px 30px -14px rgb(var(--shadow-ink) / 0.65);
-  }
-
-  .btn--primary:active {
-    transform: translateY(-2px) scale(0.97);
-  }
-
-  .btn--ghost:hover {
-    border-color: var(--ink);
-    background: color-mix(in oklab, var(--white) 55%, transparent);
-  }
-
-  .btn:hover .icon {
-    transform: translateX(3px);
-  }
-}
-
+/* ==========================================================================
+   Status
+   ========================================================================== */
 .status {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-top: 22px;
-  font-weight: 600;
-  font-size: 0.9375rem;
+  margin-top: 24px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   line-height: 1;
-  color: var(--ink);
+  color: var(--ink-2);
 }
 
 .status__dot {
   position: relative;
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: var(--signal);
 }
@@ -643,16 +954,18 @@ svg {
   }
 }
 
-/* ---------- Sections ---------- */
+/* ==========================================================================
+   Sections
+   ========================================================================== */
 .section {
-  max-width: 1200px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 72px 24px 88px;
-  scroll-margin-top: 72px;
+  padding: 80px 24px 96px;
+  scroll-margin-top: 84px;
 }
 
 .section--work {
-  padding-top: 28px;
+  padding-top: 32px;
 }
 
 .section__head {
@@ -660,34 +973,38 @@ svg {
   align-items: flex-end;
   justify-content: space-between;
   gap: 32px;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .section__title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 1;
+  font-size: clamp(2rem, 4.4vw, 3.25rem);
 }
 
 .section__lede {
-  max-width: 44ch;
-  font-size: 1.1875rem;
-  line-height: 1.45;
+  max-width: 42ch;
+  font-size: 1.0625rem;
+  line-height: 1.5;
   color: var(--ink-2);
 }
 
 @media (max-width: 760px) {
+  .section {
+    padding: 64px 20px 72px;
+  }
   .section__head {
     flex-direction: column;
     align-items: flex-start;
-    gap: 14px;
+    gap: 12px;
   }
 }
 
-/* ---------- Work ---------- */
+/* ==========================================================================
+   Work
+   ========================================================================== */
 .work__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 18px;
 }
 
 .work__item--flagship {
@@ -700,41 +1017,63 @@ svg {
   }
 }
 
+/*
+ * Frosted, not decorative: the cards sit directly over saturated blobs, so the
+ * blur is what keeps the text legible. Elevation is declared once — an edge,
+ * no shadow — because a border under a soft shadow is the ghost-card look.
+ */
 .card {
-  --card: var(--paper);
-  --card-fg: var(--ink);
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 40%);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 38%);
   grid-template-rows: auto 1fr auto;
   column-gap: 24px;
   row-gap: 14px;
-  padding: 34px;
+  padding: 30px;
   border-radius: var(--radius-card);
-  background: var(--card);
-  color: var(--card-fg);
+  border: 1px solid var(--glass-edge);
+  background: var(--glass);
+  backdrop-filter: blur(22px) saturate(1.35);
+  -webkit-backdrop-filter: blur(22px) saturate(1.35);
+  color: var(--ink);
   overflow: hidden;
   transition:
     transform 200ms var(--ease-out),
-    box-shadow 200ms var(--ease-out);
+    border-color 200ms var(--ease-out),
+    background 200ms var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 26px 40px -26px rgb(var(--shadow-ink) / 0.45);
+    background: var(--glass-strong);
+    border-color: color-mix(in oklab, var(--signal) 40%, var(--glass-edge));
   }
 }
 
-.card--sand {
-  --card: var(--sand);
-}
-.card--stone {
-  --card: var(--stone);
-}
-.card--ink {
-  --card: var(--ink);
-  --card-fg: var(--cream);
+/* One card per row carries a gradient edge — the world's colour, used as
+ * emphasis rather than as another surface. */
+.card--gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    120deg,
+    var(--blob-c-1),
+    var(--blob-b-1),
+    var(--blob-a-2)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .card__head {
@@ -742,36 +1081,24 @@ svg {
   grid-row: 1;
 }
 
-.card__label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.3;
-  text-transform: uppercase;
-  color: var(--card-fg);
-  text-align: right;
-  margin-left: auto;
-}
-
 .card__name {
-  font-size: clamp(1.625rem, 2.4vw, 2.25rem);
-  letter-spacing: -0.025em;
-  line-height: 1.02;
+  font-size: clamp(1.25rem, 1.9vw, 1.625rem);
+  letter-spacing: 0.01em;
 }
 
 .card__tagline {
   grid-column: 1;
   grid-row: 2;
-  max-width: 42ch;
-  font-size: 1.125rem;
-  line-height: 1.45;
-  color: var(--card-fg);
+  max-width: 40ch;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink-2);
 }
 
 .card__note {
-  font-size: 0.9375rem;
-  line-height: 1.4;
-  color: var(--card-fg);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--ink-2);
 }
 
 .card__foot {
@@ -790,9 +1117,10 @@ svg {
   align-items: center;
   gap: 8px;
   font-weight: 600;
+  font-size: 0.9375rem;
   text-decoration: none;
-  padding: 10px 16px;
-  margin: -10px -16px;
+  padding: 8px 14px;
+  margin: -8px -14px;
   border-radius: 999px;
   transition:
     background 200ms var(--ease-out),
@@ -809,9 +1137,8 @@ svg {
 
 @media (hover: hover) and (pointer: fine) {
   .card__link:hover {
-    background: color-mix(in oklab, var(--card-fg) 12%, transparent);
+    background: color-mix(in oklab, var(--ink) 10%, transparent);
   }
-
   .card__link:hover .icon {
     transform: translate(2px, -2px);
   }
@@ -823,8 +1150,8 @@ svg {
   align-self: center;
   width: 100%;
   aspect-ratio: 1;
-  color: var(--card-fg);
-  opacity: 0.9;
+  color: var(--ink);
+  opacity: 0.72;
   transition: transform 200ms var(--ease-out);
 }
 
@@ -844,8 +1171,8 @@ svg {
   grid-template-rows: auto;
   align-items: center;
   column-gap: 32px;
-  min-height: 440px;
-  padding: 48px;
+  min-height: 400px;
+  padding: 40px;
 }
 
 .card--flagship .card__body {
@@ -858,55 +1185,55 @@ svg {
 }
 
 .card--flagship .card__name {
-  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  font-size: clamp(1.625rem, 3vw, 2.5rem);
 }
 
 .card--flagship .card__tagline {
-  font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
   max-width: 30ch;
+  color: var(--ink);
 }
 
 .card--flagship .card__desc {
   max-width: 52ch;
-  color: var(--card-fg);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink-2);
 }
 
 .card--flagship .card__art {
   grid-column: 2;
   grid-row: 1;
   aspect-ratio: 4 / 3;
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
 @media (max-width: 760px) {
   .card {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 36%);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 34%);
     column-gap: 16px;
-    padding: 26px;
-  }
-  .card__name {
-    font-size: 1.5rem;
-  }
-  .card__tagline {
-    font-size: 1.0625rem;
+    padding: 24px;
   }
   .card--flagship {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    padding: 30px;
+    min-height: 0;
+    padding: 26px;
   }
   .card--flagship .card__art {
     grid-column: 1;
     grid-row: 2;
-    max-width: 360px;
+    max-width: 320px;
     justify-self: center;
   }
 }
 
-/* ---------- About ---------- */
+/* ==========================================================================
+   About
+   ========================================================================== */
 .about__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
   gap: 48px;
   align-items: start;
 }
@@ -914,20 +1241,20 @@ svg {
 .about__body {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 62ch;
-  font-size: 1.1875rem;
-  line-height: 1.55;
+  gap: 18px;
+  max-width: 60ch;
+  font-size: 1.0625rem;
+  line-height: 1.6;
   color: var(--ink-2);
 }
 
 .about__body strong {
   color: var(--ink);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .about__range {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   padding: 0;
   list-style: none;
   display: flex;
@@ -935,52 +1262,43 @@ svg {
   gap: 8px;
 }
 
-.about__range li {
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--white) 70%, transparent);
-  font-weight: 600;
-  font-size: 0.9375rem;
-  color: var(--ink);
-}
-
 @media (max-width: 760px) {
   .about__grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
 }
 
-/* ---------- Contact ---------- */
+/* ==========================================================================
+   Contact
+   ========================================================================== */
 .contact {
   text-align: center;
-  padding-top: 120px;
-  padding-bottom: 140px;
+  padding-top: 96px;
+  padding-bottom: 128px;
 }
 
 .contact__title {
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-variation-settings: "wdth" 88;
-  letter-spacing: -0.035em;
-  line-height: 0.94;
+  font-size: clamp(2.25rem, 6.5vw, 4.5rem);
 }
 
 .contact__lede {
-  margin: 24px auto 0;
+  margin: 22px auto 0;
   max-width: 40ch;
-  font-size: 1.25rem;
+  font-size: 1.0625rem;
   color: var(--ink-2);
 }
 
 .contact__email {
   display: inline-block;
-  margin-top: 28px;
-  font-size: clamp(1.375rem, 3.2vw, 2.25rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  margin-top: 26px;
+  font-family: var(--font-display-stack);
+  font-size: clamp(1rem, 2.6vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: 0.005em;
   color: var(--ink);
   text-decoration: underline;
-  text-decoration-thickness: 4px;
+  text-decoration-thickness: 3px;
   text-decoration-color: var(--signal);
   text-underline-offset: 10px;
   transition: text-decoration-color 200ms var(--ease-out);
@@ -997,15 +1315,17 @@ svg {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
-  margin-top: 40px;
+  gap: 24px;
+  margin-top: 36px;
 }
 
-/* ---------- Footer ---------- */
+/* ==========================================================================
+   Footer
+   ========================================================================== */
 .footer {
-  padding: 32px 24px 40px;
+  padding: 28px 24px 40px;
   text-align: center;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--ink-2);
 }
 
@@ -1014,10 +1334,12 @@ svg {
   color: var(--ink);
 }
 
-/* ---------- Reveal ---------- */
+/* ==========================================================================
+   Reveal
+   ========================================================================== */
 [data-reveal="pending"] {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(24px);
 }
 
 [data-reveal="in"] {
@@ -1028,7 +1350,6 @@ svg {
     transform 450ms var(--ease-out);
 }
 
-/* ---------- Icons ---------- */
 .icon {
   width: 1em;
   height: 1em;
@@ -1036,8 +1357,8 @@ svg {
 }
 
 @theme inline {
-  --font-heading: var(--font-sans);
-  --font-sans: var(--font-sans);
+  --font-heading: var(--font-display);
+  --font-sans: var(--font-body);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -1076,66 +1397,6 @@ svg {
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-}
-
-/*
- * Dark inverts the ROLES, not the hues: the ground goes deep green, and the
- * standout card that was darkest in light becomes the lightest here, so the
- * "one standout per row" rhythm survives. Because .card--ink is written as
- * --card: var(--ink) / --card-fg: var(--cream), that inversion is automatic.
- */
-.dark {
-  color-scheme: dark;
-
-  --ink: #e9ece4;
-  --ink-2: #a3b0a6;
-  --paper: #0f1a15;
-  --white: #18241e;
-  --cream: #14201a;
-
-  --sand: #262418;
-  --stone: #232725;
-  --signal: #d98a3d;
-
-  --wash-a: #1b2418;
-  --wash-b: #16241d;
-  --wash-c: #24201a;
-  --wash-d: #1d211a;
-
-  --shadow-ink: 0 0 0;
-
-  /* --- shadcn bridge (dark) --- */
-  --background: var(--paper);
-  --foreground: var(--ink);
-  --card: var(--white);
-  --card-foreground: var(--ink);
-  --popover: var(--white);
-  --popover-foreground: var(--ink);
-  --primary: var(--ink);
-  --primary-foreground: var(--white);
-  --secondary: var(--sand);
-  --secondary-foreground: var(--ink);
-  --muted: var(--stone);
-  --muted-foreground: var(--ink-2);
-  --accent: var(--sand);
-  --accent-foreground: var(--ink);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: color-mix(in oklab, var(--ink) 16%, transparent);
-  --input: color-mix(in oklab, var(--ink) 22%, transparent);
-  --ring: var(--signal);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
 }
 
 @layer base {
