@@ -13,5 +13,5 @@
  */
 export const resume = {
   path: "/resume.pdf",
-  ready: false,
+  ready: true,
 } as const;
