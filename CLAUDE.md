@@ -36,6 +36,11 @@ Screenshots in `.impeccable/review/` (1440 and 390 wide, fold + full page) were 
 - The visual direction was **pinned by the user** to three reference screenshots in `.impeccable/references/` (Seán's warm-gradient, rounded-type portfolio leads). Light theme only. Don't re-propose a dark or "console/terminal" aesthetic; that direction was explicitly superseded (history in `.impeccable/surfaces/homepage.md`).
 - Every copy claim on the page traces to `PRODUCT.md`; when in doubt, soften rather than escalate ("improved", not "rebuilt").
 
+## Before pushing
+
+1. **Frontend changes get a polish pass first.** Any change to `app/`, `components/`, `data/`, or `DESIGN.md` runs `/polish` (the pinned shortcut for `/impeccable polish`) before it is pushed, and the findings it raises are fixed in the same push. Docs-only or config-only changes skip this.
+2. **Never push onto a merged PR's branch.** Before pushing, check the current branch's PR: `gh pr view --json state,mergedAt` (or `gh pr list --head <branch> --state all`). If it is `MERGED`, do not push to that branch — create a fresh branch from `main` (`git fetch origin && git switch -c <new-branch> origin/main`, bring the changes over), push that, and open a new PR. Only an `OPEN` PR receives additional commits.
+
 ## Design workflow (Impeccable)
 
 Design work on this repo runs through the Impeccable skill (`/impeccable <command>`; `$polish` is pinned as a shortcut). Its artifacts: `PRODUCT.md`, `DESIGN.md`, `.impeccable/surfaces/<surface>.md` (per-surface direction contracts), `.impeccable/config.json` (`buildPath: "code"` — this environment has no image generation, so comp-led builds aren't possible; don't offer that choice). After any visual change of substance, regenerate `DESIGN.md` rather than hand-editing it, so it keeps describing the real system.
