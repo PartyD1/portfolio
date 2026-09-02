@@ -40,6 +40,7 @@ Screenshots in `.impeccable/review/` (1440 and 390 wide, fold + full page) were 
 
 1. **Frontend changes get a polish pass first.** Any change to `app/`, `components/`, `data/`, or `DESIGN.md` runs `/polish` (the pinned shortcut for `/impeccable polish`) before it is pushed, and the findings it raises are fixed in the same push. Docs-only or config-only changes skip this.
 2. **Never push onto a merged PR's branch.** Before pushing, check the current branch's PR: `gh pr view --json state,mergedAt` (or `gh pr list --head <branch> --state all`). If it is `MERGED`, do not push to that branch — create a fresh branch from `main` (`git fetch origin && git switch -c <new-branch> origin/main`, bring the changes over), push that, and open a new PR. Only an `OPEN` PR receives additional commits.
+3. **Base every PR on `main`, never on another PR's branch.** PRs here get merged within minutes and in any order; a PR stacked on a branch is not retargeted when that branch merges (GitHub only retargets if the base branch is deleted), so its commits silently miss `main`. This happened with PR #4 — fixed by PR #5. If work truly depends on an unmerged PR, wait for that merge, then branch from `main`.
 
 ## Design workflow (Impeccable)
 
