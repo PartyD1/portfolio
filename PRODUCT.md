@@ -41,7 +41,8 @@ Visitors are doing fast technical screening (recruiters) or casual browsing (pee
 ## Brand Commitments
 
 - Name: Parth Doshi.
-- No existing logo, color system, or typographic identity — those are open for the visual-world phase, not fixed here.
+- No existing logo, color system, or typographic identity.
+- Pinned visual references (binding; added 2026-09-01): three portfolio screenshots at `.impeccable/references/` (`ref-1-sean-warm-gradient.png` leads; `ref-2-sharlee-holographic-blobs.png` and `ref-3-ram-editorial-serif.png` contribute details). Shared traits the user pinned: light airy ground, a big name-led typographic hero, a recurring lavender accent, rounded pill controls, playful decoration (sparkles, soft gradient blobs). Light theme only — no dark mode.
 
 ## Evidence on Hand
 
