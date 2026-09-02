@@ -1,6 +1,7 @@
 import { stack } from "@/data/stack";
 import Reveal from "@/components/Reveal";
 import OrbitScroller from "@/components/OrbitScroller";
+import { ArrowRight } from "@/components/Icon";
 
 /**
  * The stack as an orbit rather than a list: three concentric rings, inner to
@@ -75,6 +76,16 @@ export default function Stack() {
           </div>
         </OrbitScroller>
       </Reveal>
+
+      {/*
+        29 labels cannot be laid out legibly across 390px, so the diagram keeps
+        its size and scrolls. That needs saying out loud — a soft edge mask
+        alone reads as clipping rather than as an invitation.
+      */}
+      <p className="orbit__hint" aria-hidden="true">
+        Swipe the diagram
+        <ArrowRight />
+      </p>
 
       {/* The rings are decorative to a screen reader; this is the real content. */}
       <div className="visually-hidden">

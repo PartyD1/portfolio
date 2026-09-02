@@ -567,12 +567,6 @@ svg {
   transform: scale(0.98);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .menu__link:hover {
-    color: var(--signal);
-  }
-}
-
 .menu__key {
   font-family: var(--font-body-stack);
   font-size: 0.75rem;
@@ -686,21 +680,22 @@ svg {
   position: relative;
   min-height: min(100svh, 720px);
   display: grid;
-  place-content: center;
+  /* An explicit minmax(0, 1fr) column: `place-content: center` left the column
+   * max-content-sized, so `max-width: 100%` on the children measured against
+   * their own content and the headline could overflow the viewport. */
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
   justify-items: center;
   text-align: center;
   padding: 150px 24px 56px;
   overflow: clip;
 }
 
-/*
- * The block is centred in the hero, but its lines share a left edge. With the
- * rolling slot fixed to the widest phrase, centring each LINE would hang the
- * short ones visibly left of the name above them.
- */
 .hero__title {
-  display: inline-block;
-  text-align: left;
+  /* The hero centres its grid items rather than stretching them, so without
+   * this the h1 sizes to max-content and nothing inside it has a width to
+   * shrink against — the rolling slot then overflows the viewport. */
+  max-width: 100%;
   font-size: clamp(1.75rem, 5.1vw, 4rem);
   line-height: 1.12;
   letter-spacing: 0.005em;
@@ -770,7 +765,8 @@ svg {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .link-arrow:hover {
+  .link-arrow:hover,
+  .menu__link:hover {
     color: var(--signal-ink);
   }
   .link-arrow:hover .icon {
@@ -817,6 +813,26 @@ svg {
     font-size: clamp(1.25rem, 5.9vw, 1.875rem);
     line-height: 1.18;
   }
+  /*
+   * Keep the lead and the phrase on one row: as a plain inline sibling of a
+   * full-width slot, "I'm" was orphaned onto a line of its own.
+   */
+  .hero__line--roll {
+    display: flex;
+    /* nowrap on purpose: wrapping pushed the whole slot to its own line
+     * instead of letting it shrink, which is what orphaned "I'm". */
+    flex-wrap: nowrap;
+    align-items: baseline;
+    justify-content: center;
+    column-gap: 0.26em;
+  }
+  .roll {
+    min-width: 0;
+  }
+  /* 0.03em is sub-pixel at phone display sizes; hold a visible floor. */
+  .type-outline {
+    -webkit-text-stroke-width: max(1.1px, 0.03em);
+  }
   /* The longest phrase cannot fit one phone line, so let it wrap rather than
    * be clipped by the hero's overflow. */
   .roll {
@@ -861,8 +877,13 @@ svg {
    ========================================================================== */
 .roll {
   display: inline-grid;
-  /* Phrases start at the same x, so the lead beside them never shifts. */
-  justify-items: start;
+  /*
+   * The slot is a constant width (the longest phrase), so the lead beside it
+   * never moves and the line as a whole stays centred. Each phrase centres
+   * within the slot: the anchor is pinned, the axis holds, and only the space
+   * around a short phrase changes.
+   */
+  justify-items: center;
   vertical-align: baseline;
   overflow: clip;
   padding: 0.14em 0.1em 0.22em;
@@ -1390,7 +1411,28 @@ svg {
 /* The orbit keeps its form on a phone and scrolls inside its own container.
  * Collapsing it into stacked runs would ship the one shape this section
  * exists to avoid. */
+/* Only meaningful where the diagram actually overflows. */
+.orbit__hint {
+  display: none;
+}
+
 @media (max-width: 760px) {
+  .orbit__hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .orbit__hint .icon {
+    width: 1.1em;
+    height: 1.1em;
+  }
   .orbit {
     --orbit: 560px;
     margin-top: 4px;
