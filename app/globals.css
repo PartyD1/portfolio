@@ -1118,6 +1118,17 @@ svg {
   gap: 18px;
 }
 
+/* The Reveal wrapper IS the grid item; .card sits inside it as a plain block.
+ * Without this, `height: 100%` on .card resolves against nothing and the row
+ * bottoms go ragged — which is why `grid-template-rows` and `margin-top: auto`
+ * on the foot were both inert before. */
+.work__item {
+  display: grid;
+}
+
+/* ONLY weight 1 spans. This is an invariant, not a style choice: the
+ * two-column gradient parity in Work.tsx assumes exactly one spanning item, so
+ * giving weight 2 a span would silently break the alternation. */
 .work__item--flagship {
   grid-column: 1 / -1;
 }
@@ -1130,19 +1141,22 @@ svg {
 
 /*
  * Frosted, not decorative: the cards sit directly over saturated blobs, so the
- * blur is what keeps the text legible. Elevation is declared once — an edge,
- * no shadow — because a border under a soft shadow is the ghost-card look.
+ * blur is what keeps the text legible. Elevation is declared once - an edge,
+ * no shadow - because a border under a soft shadow is the ghost-card look.
+ *
+ * ONE structure for every card. Weight changes span, scale and media aspect;
+ * it never changes which fields render.
  */
 .card {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 38%);
-  /* head / tagline / use / foot. The `use` row carries the 1fr so the foot
-   * still sits at the bottom on cards that have no usage fact to state. */
-  grid-template-rows: auto auto 1fr auto;
   column-gap: 24px;
-  row-gap: 14px;
   padding: 30px;
+  /* The Reveal wrapper is the grid item and .card sits inside it, so this
+   * resolves against nothing unless .work__item is itself a grid container.
+   * The pair is what makes the cards in a row share a bottom edge. */
+  height: 100%;
   border-radius: var(--radius-card);
   border: 1px solid var(--glass-edge);
   background: var(--glass);
@@ -1156,6 +1170,22 @@ svg {
     background 200ms var(--ease-out);
 }
 
+/* Outside the hover guard on purpose: a touch device gets no hover state, so
+ * without this the largest tap target on the page acknowledges nothing. 0.98 is
+ * the documented value for a large surface, not a new third value. */
+.card:active {
+  transform: scale(0.98);
+}
+
+.card__body {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
     transform: translateY(-3px);
@@ -1164,10 +1194,18 @@ svg {
   }
 }
 
-/* One card per row carries a gradient edge — the world's colour, used as
- * emphasis rather than as another surface. */
-.card--gradient::before {
-  content: "";
+/*
+ * One card per row carries a gradient edge - the world's colour, used as
+ * emphasis rather than as another surface.
+ *
+ * Neither language can decide this alone. JS knows the two-column parity and
+ * proves it (see Work.tsx); only CSS knows when there is one column. So JS
+ * emits data-edge-2col and each rule below claims the case it can answer.
+ */
+.card::before {
+  /* Every property is declared once here; the two rules below only decide
+   * WHETHER it draws, by flipping `content`. */
+  content: none;
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -1189,9 +1227,20 @@ svg {
   pointer-events: none;
 }
 
-.card__head {
-  grid-column: 1;
-  grid-row: 1;
+/* Two columns: the JS parity owns it — one per row, alternating sides. */
+@media (min-width: 761px) {
+  .work__item[data-edge-2col] .card::before {
+    content: "";
+  }
+}
+
+/* One column: every other card down the stack — items 1, 3, 5, 7. This is what
+ * the original comment wanted and what the old JS rule failed to deliver: it
+ * produced 0, 1, 4, 5, which reads as two adjacent, a gap, two adjacent. */
+@media (max-width: 760px) {
+  .work__item:nth-child(odd) .card::before {
+    content: "";
+  }
 }
 
 .card__name {
@@ -1200,8 +1249,6 @@ svg {
 }
 
 .card__tagline {
-  grid-column: 1;
-  grid-row: 2;
   max-width: 40ch;
   font-size: 1rem;
   line-height: 1.5;
@@ -1215,37 +1262,57 @@ svg {
  * and full ink colour, directly under the tagline it qualifies.
  */
 .card__use {
-  grid-column: 1;
-  grid-row: 3;
-  align-self: start;
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--ink);
 }
 
+.card__desc {
+  max-width: 52ch;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
 .card__note {
+  max-width: 52ch;
   font-size: 0.875rem;
   line-height: 1.45;
   color: var(--ink-2);
 }
 
+/* Holds only the two links now. `margin-top: auto` pushes the whole foot
+ * region to the bottom of the flex column, which is what aligns the feet
+ * across a row once the cards are equal height. */
 .card__foot {
-  grid-column: 1 / -1;
-  grid-row: 4;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
   margin-top: auto;
   padding-top: 18px;
 }
 
-.card__link {
+/* Its own line, right-aligned. It used to be a nowrap, shrink-0 item in a
+ * space-between row inside `overflow: hidden`, where a long label was silently
+ * clipped at around 761px. */
+.card__label {
+  align-self: flex-end;
+  margin-top: -4px;
+}
+
+/*
+ * The whole card is the link. The overlay is a pseudo-element ON THE LINK, not
+ * an anchor wrapping the content: wrapping would make the tagline unselectable
+ * and would nest the repo anchor inside another anchor, which is invalid.
+ */
+.card__hit {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   font-weight: 600;
   font-size: 0.9375rem;
+  color: var(--ink);
   text-decoration: none;
   padding: 8px 14px;
   margin: -8px -14px;
@@ -1255,29 +1322,101 @@ svg {
     transform 160ms var(--ease-out);
 }
 
-.card__link:active {
+.card__hit::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/*
+ * .card__hit deliberately has NO :active transform, and this is load-bearing.
+ *
+ * The overlay above is a pseudo-element OF THIS ANCHOR, so a transform on the
+ * anchor transforms the overlay with it. The anchor is a small inline-flex box
+ * in the card's foot, so scaling it by 0.97 pulls the full-card overlay 3%
+ * toward that small box's centre — far enough that a press starting near the
+ * top of the card ends outside the overlay. The result: mousedown targets the
+ * link, mouseup targets the card, no click event is ever synthesised, and the
+ * card silently stops being clickable. It hit-tests correctly right up until
+ * you press it, which is why only a real press finds it.
+ *
+ * The press response lives on .card instead, which is both the correct feedback
+ * (the whole card is the control) and safe, because .card is the overlay's
+ * containing block rather than its parent.
+ */
+
+.card__hit .icon {
+  transition: transform 200ms var(--ease-out);
+}
+
+/* Above the overlay, so the repo link stays independently clickable. */
+.card__repo {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+  text-decoration: none;
+  padding: 8px 12px;
+  margin: -8px -12px;
+  border-radius: 999px;
+  transition:
+    color 200ms var(--ease-out),
+    background 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.card__repo:active {
   transform: scale(0.97);
 }
 
-.card__link .icon {
+.card__repo .icon {
   transition: transform 200ms var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .card__link:hover {
+  .card__hit:hover {
     background: color-mix(in oklab, var(--ink) 10%, transparent);
   }
-  .card__link:hover .icon {
+  .card__hit:hover .icon {
+    transform: translateX(3px);
+  }
+  .card__repo:hover {
+    color: var(--ink);
+    background: color-mix(in oklab, var(--ink) 8%, transparent);
+  }
+  .card__repo:hover .icon {
     transform: translate(2px, -2px);
   }
 }
 
-.card__art {
+/*
+ * The media frame. Same 1px edge and 22px radius as the case-study well, on the
+ * same opaque --media-well ground, so the authored Artifact mark inside it is a
+ * DESIGNED empty state rather than a soft grey rectangle standing in for
+ * content. When a screenshot arrives it replaces the mark inside an identical
+ * frame and nothing about the layout or the choreography changes.
+ */
+.card__media {
   grid-column: 2;
-  grid-row: 1 / 4;
+  grid-row: 1;
   align-self: center;
-  width: 100%;
+  display: grid;
+  place-items: center;
   aspect-ratio: 1;
+  padding: 14px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--glass-edge);
+  background: var(--media-well);
+  overflow: hidden;
+}
+
+.card__art {
+  width: 100%;
   color: var(--ink);
   opacity: 0.72;
   transition: transform 200ms var(--ease-out);
@@ -1296,20 +1435,10 @@ svg {
 
 .card--flagship {
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  grid-template-rows: auto;
   align-items: center;
   column-gap: 32px;
   min-height: 400px;
   padding: 40px;
-}
-
-.card--flagship .card__body {
-  grid-column: 1;
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  min-height: 100%;
 }
 
 .card--flagship .card__name {
@@ -1322,17 +1451,11 @@ svg {
   color: var(--ink);
 }
 
-.card--flagship .card__desc {
-  max-width: 52ch;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: var(--ink-2);
+.card--flagship .card__media {
+  aspect-ratio: 4 / 3;
 }
 
 .card--flagship .card__art {
-  grid-column: 2;
-  grid-row: 1;
-  aspect-ratio: 4 / 3;
   opacity: 0.8;
 }
 
@@ -1348,10 +1471,11 @@ svg {
     min-height: 0;
     padding: 26px;
   }
-  .card--flagship .card__art {
+  .card--flagship .card__media {
     grid-column: 1;
     grid-row: 2;
     max-width: 320px;
+    width: 100%;
     justify-self: center;
   }
 }

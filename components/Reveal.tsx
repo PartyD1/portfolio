@@ -13,11 +13,12 @@ export default function Reveal({
   children,
   delay = 0,
   className,
+  ...rest
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
-}) {
+} & React.HTMLAttributes<HTMLDivElement>) {
   const ref = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<State>("idle");
 
@@ -43,6 +44,7 @@ export default function Reveal({
 
   return (
     <div
+      {...rest}
       ref={ref}
       className={className}
       data-reveal={state === "idle" ? undefined : state}

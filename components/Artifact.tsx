@@ -81,7 +81,11 @@ function Scorely() {
               d="M10 21l4 4 8-9"
               transform={`translate(0 ${y - 12})`}
               fill="none"
-              stroke="var(--card)"
+              /* Knocked out against whatever is actually painted behind the
+                 mark. That is --media-well in both the card frame and the
+                 case-study well; --card was a token with no relationship to
+                 this surface and only happened to look right. */
+              stroke="var(--media-well)"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
