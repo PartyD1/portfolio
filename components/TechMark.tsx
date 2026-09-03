@@ -1,38 +1,46 @@
 import { stack } from "@/data/stack";
 import { techMarks, techTitles } from "@/components/tech-marks.generated";
+import { localMarks } from "@/components/tech-marks.local";
 
 /**
- * The per-project technology row.
+ * The per-project technology row, as a row of glass TILES rather than a
+ * hairline of names. Parth's call (2026-09-02): a recruiter scans logos, so
+ * the marks carry weight, and a tool with no mark is dropped from the list
+ * rather than shipped as a text pill.
  *
- * THE RECONCILIATION, stated as a decision rather than left implicit. Simple
- * Icons are solid single-path 24px silhouettes; every other mark on this site
- * is 2.25–2.5px open stroke in currentColor. Dropping filled brand glyphs
- * beside ArrowUpRight is two icon styles on one surface (`operate` L36) and a
- * head-on break of The Drawn-Not-Set Rule.
+ * THE RECONCILIATION, stated as a decision. Simple Icons are solid single-path
+ * silhouettes; every other mark on this site is 2.25px open stroke. So the
+ * exception is BOUNDED: one register, one surface, one size, one ink. Brand
+ * GEOMETRY ships and brand COLOUR does not, because ~25 uncontrolled accents
+ * would blow The One Accent Rule on a page whose identity is having exactly
+ * one accent colour.
  *
- * So the exception is BOUNDED: one register, one surface, one size, one ink.
- * Brand GEOMETRY ships — which is what was actually asked for — and brand
- * COLOUR does not, because ~25 uncontrolled accents would blow The One Accent
- * Rule and The Ground-Only Iridescence Rule on a page whose identity is having
- * exactly one accent colour. Case-study header only; never on homepage cards,
- * which keep the authored stroke vocabulary intact.
- *
- * Returns null on an empty list. The row is ABSENT, not a skeleton and not an
- * "empty state that teaches the interface" — there is nothing to teach, because
- * the fact does not exist yet. The tool→project mapping is blocked on Parth and
- * may not be inferred from repo language, README, or the framework you would
- * expect.
+ * Returns null on an empty list. The row is ABSENT, not a skeleton. The
+ * tool-to-project mapping may not be inferred from repo language or README.
  */
+type Mark = { d: string; viewBox: string };
+
+function resolve(name: string): { name: string; mark?: Mark } | null {
+  const item = stack
+    .flatMap((g) => g.items)
+    .find((i) => i.name === name || i.slug === name);
+  if (!item) return null;
+  if (item.slug && techMarks[item.slug]) {
+    return { name: item.name, mark: { d: techMarks[item.slug], viewBox: "0 0 24 24" } };
+  }
+  if (item.local && localMarks[item.local]) {
+    const m = localMarks[item.local];
+    return { name: item.name, mark: { d: m.d, viewBox: m.viewBox } };
+  }
+  return { name: item.name };
+}
+
 export function TechRow({ slugs }: { slugs: string[] }) {
   if (!slugs.length) return null;
 
   const items = slugs
-    .map((s) => {
-      const item = stack.flatMap((g) => g.items).find((i) => i.slug === s || i.name === s);
-      if (!item) return null;
-      return { name: item.name, mark: item.slug ? techMarks[item.slug] : undefined };
-    })
-    .filter(Boolean) as { name: string; mark?: string }[];
+    .map(resolve)
+    .filter((t): t is { name: string; mark?: Mark } => t !== null && !!t.mark);
 
   if (!items.length) return null;
 
@@ -40,24 +48,23 @@ export function TechRow({ slugs }: { slugs: string[] }) {
     <ul className="tech" aria-label="Built with">
       {items.map((t) => (
         <li className="tech__item" key={t.name}>
-          {t.mark ? (
-            <svg
-              className="tech__mark"
-              viewBox="0 0 24 24"
-              /* fill, never stroke: these are silhouettes, and currentColor is
-                 what keeps them inside the page's single-ink discipline. */
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d={t.mark} />
-            </svg>
-          ) : null}
-          <span className={t.mark ? "tech__name" : "tech__pill"}>{t.name}</span>
+          <svg
+            className="tech__mark"
+            viewBox={t.mark!.viewBox}
+            /* fill, never stroke: these are silhouettes, and currentColor is
+               what keeps them inside the page's single-ink discipline. */
+            fill="currentColor"
+            fillRule="evenodd"
+            aria-hidden="true"
+          >
+            <path d={t.mark!.d} />
+          </svg>
+          <span className="tech__name">{t.name}</span>
         </li>
       ))}
     </ul>
   );
 }
 
-/** Exported for the generator's sake — keeps the titles import live. */
+/** Exported for the generator's sake; keeps the titles import live. */
 export const markTitle = (slug: string) => techTitles[slug];

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-01T23:55:00Z",
+  "generatedAt": "2026-09-03T17:41:56Z",
   "title": "Design System: Parth Doshi Portfolio",
   "extensions": {
     "colorMeta": {
@@ -75,9 +75,9 @@
       "ink-2": {
         "role": "neutral",
         "displayName": "Muted Indigo",
-        "canonical": "#5f5f82",
+        "canonical": "#52527a",
         "dark": "#cbcae2",
-        "note": "Ledes, taglines, notes, footer, pending state. Chosen to clear 4.5:1 rather than sit under it; the dark value runs brighter than a conventional muted tone because it sits over lit blobs.",
+        "note": "Ledes, taglines, bullets, captions, footer. Darkened one step on 2026-09-02 when the light glass was thinned, so body runs over 0.40-alpha glass still clear 4.5:1 on the composited ground; the dark value runs brighter than a conventional muted tone because it sits over lit blobs.",
         "tonalRamp": [
           "oklch(15% 0.055 288)",
           "oklch(26% 0.055 288)",
@@ -109,21 +109,28 @@
       "glass": {
         "role": "neutral",
         "displayName": "Frosted Glass",
-        "canonical": "rgb(255 255 255 / 0.52)",
+        "canonical": "rgb(255 255 255 / 0.4)",
         "dark": "rgb(255 255 255 / 0.07)",
-        "note": "Rest fill for every floating surface. Alpha over the wash — no tonal ramp; the value only means anything with backdrop-filter behind it."
+        "note": "Rest fill for every floating panel: cards, timeline cards, flow nodes and bus. Thinned from 0.52 on 2026-09-02 so the light cards read as glass rather than paper. Alpha over the wash; the value only means anything with backdrop-filter behind it."
       },
       "glass-strong": {
         "role": "neutral",
         "displayName": "Frosted Glass, Lit",
-        "canonical": "rgb(255 255 255 / 0.72)",
+        "canonical": "rgb(255 255 255 / 0.58)",
         "dark": "rgb(255 255 255 / 0.11)",
-        "note": "Hover fill for cards; rest fill for the scroll ring."
+        "note": "Hover fill for cards; rest fill for the case-study header panel, the card media frame, the shell's menu pill, the theme toggle and the scroll ring."
+      },
+      "glass-raised": {
+        "role": "neutral",
+        "displayName": "Frosted Glass, Raised",
+        "canonical": "rgb(255 255 255 / 0.74)",
+        "dark": "rgb(255 255 255 / 0.16)",
+        "note": "An object ON glass: every pill (.pill, .live-link, .status, .tech__item, the timeline project chip, flow branch tags). Glass on glass disappears; this rung is what keeps a control visible inside a panel."
       },
       "glass-edge": {
         "role": "neutral",
         "displayName": "Glass Edge",
-        "canonical": "rgb(255 255 255 / 0.68)",
+        "canonical": "rgb(255 255 255 / 0.66)",
         "dark": "rgb(255 255 255 / 0.14)",
         "note": "The 1px border that declares elevation. This system's entire depth vocabulary."
       },
@@ -134,18 +141,90 @@
         "dark": "rgb(255 255 255 / 0.4)",
         "note": "Radial highlight at 34%/28%, r 46%, clipped to each blob path. A radial gradient on purpose — same look as a blurred spot, no filter pass. Fades to --blob-gloss-out, rgb(255 255 255 / 0), in both themes."
       },
-      "blob-a-1": { "role": "secondary", "displayName": "Blob A — Mint", "canonical": "#7fe0b4", "dark": "#4fd3a0", "note": "Top-left blob, stop 1 of 3. Gradient axis 8% 0% → 92% 100%." },
-      "blob-a-2": { "role": "secondary", "displayName": "Blob A — Sky", "canonical": "#6fc4ee", "dark": "#4bb4ec", "note": "Top-left blob, stop 2. Also the Stack orbit's Tools ring tone and the third stop of the card gradient edge." },
-      "blob-a-3": { "role": "secondary", "displayName": "Blob A — Lilac", "canonical": "#b295ea", "dark": "#a888ee", "note": "Top-left blob, stop 3. Also the Stack orbit's Languages ring tone." },
-      "blob-b-1": { "role": "secondary", "displayName": "Blob B — Apricot", "canonical": "#f4a97e", "dark": "#f2a273", "note": "Top-right blob, stop 1. Also the Stack orbit's Frameworks ring tone and the middle stop of the card gradient edge." },
-      "blob-b-2": { "role": "secondary", "displayName": "Blob B — Butter", "canonical": "#eed878", "dark": "#e8cf6a", "note": "Top-right blob, stop 2. Gradient axis 100% 10% → 0% 90%." },
-      "blob-b-3": { "role": "secondary", "displayName": "Blob B — Jade", "canonical": "#86ddba", "dark": "#63d6ab", "note": "Top-right blob, stop 3." },
-      "blob-c-1": { "role": "secondary", "displayName": "Blob C — Lilac", "canonical": "#b39ceb", "dark": "#a98cee", "note": "Bottom-left blob, stop 1. Also the first stop of the card gradient edge. Gradient axis 0% 20% → 100% 80%." },
-      "blob-c-2": { "role": "secondary", "displayName": "Blob C — Rose", "canonical": "#ee9dc0", "dark": "#ee8ab4", "note": "Bottom-left blob, stop 2." },
-      "blob-c-3": { "role": "secondary", "displayName": "Blob C — Peach", "canonical": "#f4b98c", "dark": "#f4ad7e", "note": "Bottom-left blob, stop 3." },
-      "blob-d-1": { "role": "secondary", "displayName": "Blob D — Sky", "canonical": "#7cc3ee", "dark": "#59b6ee", "note": "Bottom-right blob, stop 1. Gradient axis 20% 100% → 80% 0%." },
-      "blob-d-2": { "role": "secondary", "displayName": "Blob D — Mint", "canonical": "#7ddcb5", "dark": "#57d3a7", "note": "Bottom-right blob, stop 2." },
-      "blob-d-3": { "role": "secondary", "displayName": "Blob D — Butter", "canonical": "#ecd77f", "dark": "#e8d074", "note": "Bottom-right blob, stop 3." }
+      "blob-a-1": {
+        "role": "secondary",
+        "displayName": "Blob A — Mint",
+        "canonical": "#7fe0b4",
+        "dark": "#4fd3a0",
+        "note": "Top-left blob, stop 1 of 3. Gradient axis 8% 0% → 92% 100%."
+      },
+      "blob-a-2": {
+        "role": "secondary",
+        "displayName": "Blob A — Sky",
+        "canonical": "#6fc4ee",
+        "dark": "#4bb4ec",
+        "note": "Top-left blob, stop 2. Also the third stop of the card gradient edge."
+      },
+      "blob-a-3": {
+        "role": "secondary",
+        "displayName": "Blob A — Lilac",
+        "canonical": "#b295ea",
+        "dark": "#a888ee",
+        "note": "Top-left blob, stop 3."
+      },
+      "blob-b-1": {
+        "role": "secondary",
+        "displayName": "Blob B — Apricot",
+        "canonical": "#f4a97e",
+        "dark": "#f2a273",
+        "note": "Top-right blob, stop 1. Also the middle stop of the card gradient edge."
+      },
+      "blob-b-2": {
+        "role": "secondary",
+        "displayName": "Blob B — Butter",
+        "canonical": "#eed878",
+        "dark": "#e8cf6a",
+        "note": "Top-right blob, stop 2. Gradient axis 100% 10% → 0% 90%."
+      },
+      "blob-b-3": {
+        "role": "secondary",
+        "displayName": "Blob B — Jade",
+        "canonical": "#86ddba",
+        "dark": "#63d6ab",
+        "note": "Top-right blob, stop 3."
+      },
+      "blob-c-1": {
+        "role": "secondary",
+        "displayName": "Blob C — Lilac",
+        "canonical": "#b39ceb",
+        "dark": "#a98cee",
+        "note": "Bottom-left blob, stop 1. Also the first stop of the card gradient edge. Gradient axis 0% 20% → 100% 80%."
+      },
+      "blob-c-2": {
+        "role": "secondary",
+        "displayName": "Blob C — Rose",
+        "canonical": "#ee9dc0",
+        "dark": "#ee8ab4",
+        "note": "Bottom-left blob, stop 2."
+      },
+      "blob-c-3": {
+        "role": "secondary",
+        "displayName": "Blob C — Peach",
+        "canonical": "#f4b98c",
+        "dark": "#f4ad7e",
+        "note": "Bottom-left blob, stop 3."
+      },
+      "blob-d-1": {
+        "role": "secondary",
+        "displayName": "Blob D — Sky",
+        "canonical": "#7cc3ee",
+        "dark": "#59b6ee",
+        "note": "Bottom-right blob, stop 1. Gradient axis 20% 100% → 80% 0%."
+      },
+      "blob-d-2": {
+        "role": "secondary",
+        "displayName": "Blob D — Mint",
+        "canonical": "#7ddcb5",
+        "dark": "#57d3a7",
+        "note": "Bottom-right blob, stop 2."
+      },
+      "blob-d-3": {
+        "role": "secondary",
+        "displayName": "Blob D — Butter",
+        "canonical": "#ecd77f",
+        "dark": "#e8d074",
+        "note": "Bottom-right blob, stop 3."
+      }
     },
     "typographyMeta": {
       "display": {
@@ -170,27 +249,79 @@
       },
       "micro-label": {
         "displayName": "Micro-label",
-        "purpose": "The orbit's three ring labels — uppercase, tracked 0.1em. A third micro step (600 / 0.75rem / 0.08em, uppercase) carries the menu keycaps and the 'coming soon' pending flag."
+        "purpose": "Tracked caps, allowed only in a card foot: the project card's taxonomy label (.card__label) at 600 / 0.6875rem / 0.08em. A second micro step (600 / 0.75rem / 0.08em, uppercase) carries the menu keycaps."
       }
     },
     "shadows": [],
     "motion": [
-      { "name": "ease-out", "value": "cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "The default. Every hover, press, fade, rise and swap. The built-in keywords are too weak." },
-      { "name": "ease-in-out", "value": "cubic-bezier(0.77, 0, 0.175, 1)", "purpose": "Symmetric moves. ease-in on its own is banned." },
-      { "name": "ease-drawer", "value": "cubic-bezier(0.32, 0.72, 0, 1)", "purpose": "The menu sheet's slide, applied through shadcn's Sheet content class." },
-      { "name": "duration-press", "value": "160ms", "purpose": "transform on :active { scale(0.97) }, on every pressable element." },
-      { "name": "duration-hover", "value": "200ms", "purpose": "Colour, background, border-color and icon nudges." },
-      { "name": "duration-roll-in", "value": "360ms", "purpose": "Rolling phrase entrance from translateY(0.7em) + blur(3px). Must match ROLL_MS in RoleRoll.tsx." },
-      { "name": "duration-roll-out", "value": "200ms", "purpose": "Rolling phrase exit to translateY(-0.85em). Exits are faster than entrances." },
-      { "name": "duration-reveal", "value": "450ms", "purpose": "Scroll-in rise for below-the-fold blocks, 24px of travel, staggered 50ms per sibling." },
-      { "name": "duration-hero", "value": "600ms", "purpose": "Hero entrance rise, staggered 60 / 120 / 180 / 240ms." },
-      { "name": "drift", "value": "34s / 41s / 37s / 45s ease-in-out infinite alternate", "purpose": "Ambient blob drift, 5-7vmax translate and 7-11deg rotation. Disabled under 720px and under reduced motion." }
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "The default. Every hover, press, fade, rise and swap. The built-in keywords are too weak."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "Symmetric moves. ease-in on its own is banned."
+      },
+      {
+        "name": "ease-drawer",
+        "value": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "purpose": "The menu sheet's slide, applied through shadcn's Sheet content class."
+      },
+      {
+        "name": "duration-press",
+        "value": "160ms",
+        "purpose": "transform on :active { scale(0.97) }, on every pressable element."
+      },
+      {
+        "name": "duration-hover",
+        "value": "200ms",
+        "purpose": "Colour, background, border-color and icon nudges."
+      },
+      {
+        "name": "duration-roll-in",
+        "value": "360ms",
+        "purpose": "Rolling phrase entrance from translateY(0.7em) + blur(3px). Must match ROLL_MS in RoleRoll.tsx."
+      },
+      {
+        "name": "duration-roll-out",
+        "value": "200ms",
+        "purpose": "Rolling phrase exit to translateY(-0.85em). Exits are faster than entrances."
+      },
+      {
+        "name": "duration-reveal",
+        "value": "450ms",
+        "purpose": "Scroll-in rise for below-the-fold blocks, 24px of travel, staggered 50ms per sibling."
+      },
+      {
+        "name": "duration-hero",
+        "value": "600ms",
+        "purpose": "Hero entrance rise, staggered 60 / 120 / 180 / 240ms."
+      },
+      {
+        "name": "drift",
+        "value": "34s / 41s / 37s / 45s ease-in-out infinite alternate",
+        "purpose": "Ambient blob drift, 5-7vmax translate and 7-11deg rotation. Disabled under 720px and under reduced motion."
+      }
     ],
     "breakpoints": [
-      { "name": "sm", "value": "640px" },
-      { "name": "phone", "value": "720px" },
-      { "name": "md", "value": "760px" },
-      { "name": "container", "value": "1140px" }
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "phone",
+        "value": "720px"
+      },
+      {
+        "name": "md",
+        "value": "760px"
+      },
+      {
+        "name": "container",
+        "value": "1140px"
+      }
     ]
   },
   "components": [
@@ -227,14 +358,6 @@
       "css": ".ds-is-pending { color: var(--ink-2); cursor: default; } .ds-pending-note { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); border: 1px solid var(--border); border-radius: 999px; padding: 3px 8px; } @media (hover: hover) and (pointer: fine) { .ds-is-pending:hover { color: var(--ink-2); } }"
     },
     {
-      "name": "Badge",
-      "kind": "chip",
-      "refersTo": "badge-outline",
-      "description": "shadcn Badge with the project's tokens as its theme. Outline carries the factual card label; secondary carries the About range chips.",
-      "html": "<span class=\"ds-badge-outline\">Internship · Summer 2026</span> <span class=\"ds-badge-secondary\">Autonomous agents</span>",
-      "css": ".ds-badge-outline, .ds-badge-secondary { display: inline-flex; align-items: center; height: 20px; padding: 2px 8px; border-radius: 999px; font-family: var(--font-body-stack); font-size: 0.75rem; font-weight: 500; white-space: nowrap; } .ds-badge-outline { border: 1px solid var(--border); color: var(--ink); } .ds-badge-secondary { border: 1px solid transparent; background: color-mix(in oklab, var(--ink) 8%, var(--ground)); color: var(--ink); }"
-    },
-    {
       "name": "Status Line",
       "kind": "custom",
       "refersTo": "status-dot",
@@ -267,67 +390,168 @@
       "css": ".ds-scroll-ring { width: 44px; height: 44px; padding: 0; border: 0; border-radius: 999px; background: var(--glass-strong); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: var(--ink); cursor: pointer; opacity: 0; visibility: hidden; transition: opacity 250ms var(--ease-out), visibility 0s linear 250ms, transform 160ms var(--ease-out); } .ds-scroll-ring[data-visible=\"true\"] { opacity: 1; visibility: visible; transition-delay: 0s; } .ds-scroll-ring svg { display: block; width: 100%; height: 100%; transform: rotate(-90deg); } .ds-scroll-ring__track, .ds-scroll-ring__fill { fill: none; stroke-width: 2; } .ds-scroll-ring__track { stroke: color-mix(in oklab, var(--ink) 22%, transparent); } .ds-scroll-ring__fill { stroke: var(--signal); stroke-linecap: round; transition: stroke-dashoffset 120ms linear; } .ds-scroll-ring__dot { fill: var(--ink); } .ds-scroll-ring:active { transform: scale(0.97); } .ds-scroll-ring:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }"
     },
     {
-      "name": "Orbit Label",
+      "name": "Pill",
+      "kind": "badge",
+      "refersTo": "pill",
+      "description": "The one small-surface vocabulary, and what replaced the shadcn Badge everywhere: raised glass, 999px, 1px edge, sentence case at 500. .card__label adds tracked caps because a card foot is the only place the system allows them.",
+      "html": "<span class=\"ds-pill\">Assistive tech</span> <span class=\"ds-pill ds-pill--label\">Agentic operations</span>",
+      "css": ".ds-pill { display: inline-flex; align-items: center; width: fit-content; padding: 6px 13px; border-radius: 999px; border: 1px solid var(--glass-edge); background: var(--glass-raised); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-family: var(--font-body-stack); font-size: 0.8125rem; font-weight: 500; line-height: 1.2; color: var(--ink); white-space: nowrap; } .ds-pill--label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }"
+    },
+    {
+      "name": "Tech Tile",
       "kind": "custom",
-      "refersTo": "orbit-label",
-      "description": "The Stack orbit's two pill types. Each ring names itself just outside its track in a tracked micro-label, and each tool sits on the track in a lighter pill tinted with that ring's tone. Both take --tone from data/stack.ts, which draws from the blob palette.",
-      "html": "<span class=\"ds-ring-label\" style=\"--tone: var(--blob-a-3)\">Languages</span> <span class=\"ds-orbit-label\" style=\"--tone: var(--blob-a-3)\">TypeScript</span>",
-      "css": ".ds-ring-label { display: inline-block; padding: 4px 12px; border-radius: 999px; background: color-mix(in oklab, var(--tone) 62%, var(--ground)); border: 1.5px solid color-mix(in oklab, var(--tone) 92%, transparent); font-family: var(--font-body-stack); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; color: var(--ink); } .ds-orbit-label { display: inline-block; padding: 3px 9px; border-radius: 999px; background: color-mix(in oklab, var(--tone) 26%, var(--ground)); border: 1px solid color-mix(in oklab, var(--tone) 45%, transparent); font-family: var(--font-body-stack); font-size: 0.8125rem; font-weight: 600; line-height: 1.2; white-space: nowrap; color: var(--ink); transition: background 200ms var(--ease-out), border-color 200ms var(--ease-out); } @media (hover: hover) and (pointer: fine) { .ds-orbit-label:hover { background: color-mix(in oklab, var(--tone) 52%, var(--ground)); border-color: var(--tone); } }"
+      "refersTo": "tech-tile",
+      "description": "One tool on a case study: a raised glass pill with the brand's Simple Icons silhouette (or a locally drawn mark for OpenClaw and Twilio) at 22px in currentColor, then the name at 600. Brand geometry ships; brand colour does not.",
+      "html": "<span class=\"ds-tech\"><svg class=\"ds-tech__mark\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/></svg><span class=\"ds-tech__name\">Elixir</span></span>",
+      "css": ".ds-tech { display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 11px; border-radius: 999px; border: 1px solid var(--glass-edge); background: var(--glass-raised); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: var(--ink); font-family: var(--font-body-stack); transition: border-color 200ms var(--ease-out); } .ds-tech__mark { width: 22px; height: 22px; flex: none; } .ds-tech__name { font-size: 0.9375rem; font-weight: 600; line-height: 1; } @media (hover: hover) and (pointer: fine) { .ds-tech:hover { border-color: color-mix(in oklab, var(--signal) 45%, var(--glass-edge)); } }"
     }
   ],
   "narrative": {
     "northStar": "The Holographic Introduction",
-    "overview": "A person who is several things at once, introducing himself on a sheet of iridescent film. The ground is a cool lavender-grey with four soft gradient blobs pushed hard into the corners and a real film-grain tile over everything; the centre of the viewport stays calm so wide display capitals can sit on it without fighting colour. The page's whole argument is made twice — once by the words, once by the material: the blobs are three-stop gradients on four different axes, so nothing repeats, and the frosted cards that float over them borrow their colour rather than adding a new one.\n\nDensity is low and deliberate. One 1140px column, generous vertical air (80px in, 96px out per section), an 18px grid gap, and long unbroken measures (40–46ch on ledes, 60ch on About). The register is adult and editorial, never bubbly: no sparkles, no candy pastels, no 40px pillow corners, no glossy mascot shapes. Colour lives in the ground; the foreground is ink, glass and one coral.\n\nTwo complete themes ship. Dark is not an inverted filter — it is a second token set with a deep indigo ground, a second full set of blob stops mixed brighter, and the blobs held to 62% opacity so body text still survives over them. Every visual decision is expressed as a custom property in app/globals.css, which is the normative source for both.",
+    "overview": "A person who is several things at once, introducing himself on a sheet of iridescent film. The ground is a cool lavender-grey with four soft gradient blobs pushed hard into the corners and a real film-grain tile over everything; the centre of the viewport stays calm so wide display capitals can sit on it without fighting colour. The page's whole argument is made twice, once by the words and once by the material: the blobs are three-stop gradients on four different axes, so nothing repeats, and the frosted cards that float over them borrow their colour rather than adding a new one.\n\nDensity is low and deliberate. One 1140px column, generous vertical air (80px in, 96px out per section), an 18px grid gap, and long unbroken measures (40–46ch on ledes, 60ch on About). The register is adult and editorial, never bubbly: no sparkles, no candy pastels, no 40px pillow corners, no glossy mascot shapes. Colour lives in the ground; the foreground is ink, glass and one coral.\n\nTwo complete themes ship. Dark is not an inverted filter. It is a second token set with a deep indigo ground, a second full set of blob stops mixed brighter, and the blobs held to 62% opacity so body text still survives over them. Every visual decision is expressed as a custom property in app/globals.css, which is the normative source for both.",
     "keyCharacteristics": [
       "Iridescent gradient blobs in all four corners, calm ground in the middle",
       "Wide uppercase display capitals with an outline-and-fill contrast device",
       "Frosted glass surfaces whose blur is legibility, not decoration",
+      "Glass on every pill, control and panel; the only opaque surface is the screenshot well",
       "Exactly one accent colour, split into a shape token and a text token",
       "A real 128px grain raster, not an SVG filter",
       "Flat by construction: edges and blur convey depth, never shadows",
       "Two full themes, both first-class"
     ],
     "rules": [
-      { "name": "The Two Corals Rule", "body": "--signal draws shapes; --signal-ink writes words. Never swap them. The light accent fails text contrast (2.65:1) and the dark ground makes a second value unnecessary, which is exactly why the split is a token and not a judgement call.", "section": "colors" },
-      { "name": "The One Accent Rule", "body": "Coral appears in six places and no more: the finale phrase, the status dot and its pulse, the email underline, the scroll-ring fill, the focus outline, and the caret/selection tint. Anything else that wants colour takes it from the blob range instead.", "section": "colors" },
-      { "name": "The Calm Centre Rule", "body": "Iridescence lives in the four corners at negative offsets; the middle band of every viewport stays ground. Type is never composited over a gradient peak, which is what lets 4.9:1 ink hold on a coloured page.", "section": "colors" },
-      { "name": "The Ground-Only Iridescence Rule", "body": "Blob colours are for the wash, the card gradient edge, and the orbit ring tones. They never become body text, a card background, or a button fill.", "section": "colors" },
-      { "name": "The Outline-Lead Rule", "body": "Only the lead-in words are outlined — \"HEY, I'M\" and the standalone \"I'M\". The subject is always filled. Outline is a contrast device between the greeting and the person, never a decoration applied to a whole heading.", "section": "typography" },
-      { "name": "The Never-Stroke-Bold Rule", "body": "Outlined type runs at weight 400 inside the @supports guard, and the solid fallback runs at 700. Raising the outline weight to match the fill re-introduces the self-overlap artefacts the guard exists to avoid.", "section": "typography" },
-      { "name": "The Uppercase Display Rule", "body": "h1, h2 and h3 are uppercase Unbounded at 700 with positive tracking (0.015em base). Body copy is never uppercase; only the three micro-label steps are, and they always carry ≥0.06em tracking to stay legible.", "section": "typography" },
-      { "name": "The 1140 Rule", "body": "Content lives in a 1140px column with a 24px gutter (20px under 760px). The only full-bleed layers are the fixed wash and the fixed header.", "section": "layout" },
-      { "name": "The Fixed-Ground Rule", "body": "The wash is position: fixed; inset: 0; z-index: -1, aria-hidden, and pointer-events: none. It scrolls with nothing and intercepts nothing.", "section": "layout" },
-      { "name": "The Portrait-vmax Rule", "body": "Blobs are sized in vmax on desktop (40–46vmax) but in vw under 720px (76–84vw), because on a phone vmax is the viewport height — which makes the blobs full-bleed and swallows the body copy.", "section": "layout" },
-      { "name": "The Edge-Not-Shadow Rule", "body": "A surface declares its elevation once, as an edge. A 1px border under a soft drop shadow is the ghost-card look this world refuses.", "section": "elevation" },
-      { "name": "The Blur-Is-Legibility Rule", "body": "Any surface that floats over the wash must carry backdrop-filter: blur() saturate(). The blur is what keeps text readable over a saturated blob; it is a functional requirement, not a finish.", "section": "elevation" },
-      { "name": "The Held-Back-Blob Rule", "body": "In dark, .wash__blob runs at opacity: 0.62. The blobs are far brighter than the deep indigo ground, and body text has to survive over them.", "section": "elevation" },
-      { "name": "The One Radius Family Rule", "body": "22px card, 999px pill, 1rem control, 4px focus. A new value needs a new reason.", "section": "shapes" },
-      { "name": "The Drawn-Not-Set Rule", "body": "Every mark on this page is authored SVG in currentColor — the monogram, the dot grid, the arrows, the sun and moon, the seven project marks. No icon fonts, no glyph characters standing in for icons, no raster illustration.", "section": "shapes" }
+      {
+        "name": "The Two Corals Rule",
+        "body": "--signal draws shapes; --signal-ink writes words. Never swap them. The light accent fails text contrast (2.65:1) and the dark ground makes a second value unnecessary, which is exactly why the split is a token and not a judgement call.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Accent Rule",
+        "body": "Coral appears in eight KINDS of place and no more: the finale phrase, the live dot, the email underline, the scroll-ring fill, the focus outline, the caret/selection tint, the arrow-link hover tint, and the hover edge tint.",
+        "section": "colors"
+      },
+      {
+        "name": "The Calm Centre Rule",
+        "body": "Iridescence lives in the four corners at negative offsets; the middle band of every viewport stays ground. Type is never composited over a gradient peak, which is what lets 4.9:1 ink hold on a coloured page.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ground-Only Iridescence Rule",
+        "body": "Blob colours are for the wash and for the two gradient lines (card edge, timeline rail). They never become body text, a surface background, or a control fill.",
+        "section": "colors"
+      },
+      {
+        "name": "The Outline-Lead Rule",
+        "body": "Only the lead-in words are outlined: \"HEY, I'M\". The subject is always filled. Outline is a contrast device between the greeting and the person, never a decoration applied to a whole heading.",
+        "section": "typography"
+      },
+      {
+        "name": "The Never-Stroke-Bold Rule",
+        "body": "Outlined type runs at weight 400 inside the @supports guard, and the solid fallback runs at 700. Raising the outline weight to match the fill re-introduces the self-overlap artefacts the guard exists to avoid.",
+        "section": "typography"
+      },
+      {
+        "name": "The Uppercase Display Rule",
+        "body": "h1, h2 and h3 are uppercase Unbounded at 700 with positive tracking (0.015em base). Body copy is never uppercase; only the status line, the two micro steps and the timeline period are, and they always carry at least 0.02em tracking (0.06em and up below 15px) to stay legible.",
+        "section": "typography"
+      },
+      {
+        "name": "The 1140 Rule",
+        "body": "Content lives in a 1140px column with the gutter outside it: max-width: calc(1140px + var(--gutter) * 2) with padding: … var(--gutter). Writing it as max-width: 1140px with border-box padding yields a 1092px column and quietly contradicts the rule. The only full-bleed layers are the fixed wash and the fixed header.",
+        "section": "layout"
+      },
+      {
+        "name": "The Fixed-Ground Rule",
+        "body": "The wash is position: fixed; inset: 0; z-index: -1, aria-hidden, and pointer-events: none. It scrolls with nothing and intercepts nothing.",
+        "section": "layout"
+      },
+      {
+        "name": "The Portrait-vmax Rule",
+        "body": "Blobs are sized in vmax on desktop (40 to 46vmax) but in vw under 720px (76 to 84vw), because on a phone vmax is the viewport *height*, which makes the blobs full-bleed and swallows the body copy.",
+        "section": "layout"
+      },
+      {
+        "name": "The Edge-Not-Shadow Rule",
+        "body": "A surface declares its elevation once, as an edge. A 1px border *under* a soft drop shadow is the ghost-card look this world refuses. The scroll ring is the one glass object that carries no edge (border: 0); it is a control on the page, not a panel on the wash.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Blur-Is-Legibility Rule",
+        "body": "Any surface that carries text over the wash must carry backdrop-filter: blur() saturate(). The blur is what keeps text readable over a saturated blob; it is a functional requirement, not a finish.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Held-Back-Blob Rule",
+        "body": "In dark, .wash__blob runs at opacity: 0.62. The blobs are far brighter than the deep indigo ground, and body text has to survive over them.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Radius Family Rule",
+        "body": "22px panel, 999px pill, 1rem control, 0.6rem branch, 6px keycap, 4px focus. A new value needs a new reason.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Drawn-Not-Set Rule",
+        "body": "Every mark on this page is authored SVG in currentColor: the monogram, the three-rule menu glyph, the arrows, the sun and moon, the seven project marks, the case-study bullet and the flow arrowheads. No icon fonts, no glyph characters standing in for icons, no raster illustration.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Glass Ladder Rule",
+        "body": "Four opacities and no fifth: --glass rest, --glass-strong lit, --glass-raised for an object on glass, --glass-edge for the line. A surface picks its rung by what it sits on, not by taste: a pill inside a card takes raised because glass on glass disappears. There is no color-mix of white into anything; the ladder is the whole vocabulary.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Tracked-Caps-In-The-Foot Rule",
+        "body": "The .pill carries no tracking and no uppercase by default. .card__label adds both, because a card foot is the only place this system allows tracked caps as a label. A pill anywhere else (About's range, the status line's own tracking aside) is sentence case at 500.",
+        "section": "components"
+      },
+      {
+        "name": "The Live-Link Rule",
+        "body": "A project with a public, working deployment gets a demo, and that link is the loudest affordance on its card and repeats at the TOP of its case study, not only in the footer. A thing a visitor can *use* outranks a thing they can read. It renders as a raised glass pill (.live-link: {colors.glass-raised} behind blur(12px), 1px edge, 999px, 9px 15px, 0.9375rem at 600, 9px gap) carrying a static 8px coral dot, the text \"Try it live\" on the card and \"Try {name} live\" on the case study, and a trailing ArrowUpRight. Hover mixes 55% signal into the edge and nudges the arrow; press scales 0.97. The case-study instance (.case__live) sits 22px under the title, before every other fact. This system has no buttons; the pill is the strongest control shape it owns.",
+        "section": "components"
+      },
+      {
+        "name": "The No-Eyebrow Rule",
+        "body": "CaseStudySection takes exactly { id, title, children }. There is no label, kicker, eyebrow, number or index prop and none may be added. The eyebrow above a heading is the one ban no brief earns back, and the section sequence carries no information the reader needs; the headings do. Making the slot structurally unavailable is stronger than leaving it unused.",
+        "section": "components"
+      }
     ],
     "dos": [
       "Do put every new colour through the token layer in app/globals.css, and define it in both :root and .dark. A value that only exists in one theme is a bug.",
       "Do use --signal for marks and --signal-ink for text (The Two Corals Rule).",
-      "Do give any surface that floats over the wash a backdrop-filter: blur() saturate() and a 1px --glass-edge border.",
-      "Do keep new sections inside .section (1140px / 24px gutter / 80px–96px vertical) and give them an id plus aria-labelledby, so the menu and the 1/2/3/4 shortcuts can reach them.",
-      "Do wrap below-the-fold content in <Reveal> and stagger siblings at 50ms.",
+      "Do build every new surface from the glass ladder: --glass for a panel, --glass-strong for a lit or heavy one, --glass-raised for a pill or control sitting on glass, always with a 1px --glass-edge and a backdrop-filter matched to its size.",
+      "Do reach for .pill before inventing a small surface; it is the taxonomy label, the range chip and the base shape for every small control.",
+      "Do keep new sections inside .section (a 1140px column with var(--gutter) outside it, 80px to 96px vertical) and give them an id plus aria-labelledby, so the menu and the number shortcuts can reach them.",
+      "Do wrap below-the-fold content in <Reveal> and stagger siblings at 50 to 70ms; drive any choreography inside it off data-reveal with transitions, the way the timeline and the flow do.",
       "Do author new icons as SVG in currentColor at the established stroke weights (2.25 for UI arrows, 2.5 for project marks), round caps and joins.",
-      "Do put every hover rule behind @media (hover: hover) and (pointer: fine) and give every pressable a :active { scale(0.97) }.",
+      "Do put every hover rule behind @media (hover: hover) and (pointer: fine) and give every pressable a :active { scale(0.97) }, 0.98 on large surfaces, and outside the hover guard, since touch devices have no hover state.",
+      "Do ship blocked content by ABSENCE. An unwritten case-study section does not render, tech: [] renders no row, media: [] renders no band. Never a placeholder, a skeleton or \"coming soon\" on a case study.",
+      "Do put text that sits outside the calm band on a surface rather than trying to move it (The Surface-Not-Spacing Rule).",
+      "Do write copy with commas, colons, periods, middle dots and hyphens. There are no em dashes anywhere in user-visible text.",
       "Do regenerate the grain with node scripts/make-grain.mjs public/textures/grain.png rather than hand-editing the PNG; the seed is the provenance.",
-      "Do cap measures — 40–46ch for ledes and taglines, 60ch for long-form body.",
+      "Do cap measures: 40 to 46ch for ledes and taglines, 52 to 62ch for bullets and notes, 60ch for long-form body.",
       "Do keep the outline device on lead-in words only, at weight 400 inside the @supports guard."
     ],
     "donts": [
       "Don't add a box-shadow. This system has none; elevation is an edge over blur (The Edge-Not-Shadow Rule).",
-      "Don't paint blob colours onto text, card fills or buttons. They are ground, gradient edge and orbit tone only.",
-      "Don't stroke display type at 700 — Unbounded's heavy contours self-overlap and the stroke exposes the construction lines.",
+      "Don't paint blob colours onto text, surfaces or controls. They are ground and the two gradient lines (card edge, timeline rail) only.",
+      "Don't mix white into a surface by hand or add a fifth glass opacity; the ladder is the whole vocabulary (The Glass Ladder Rule).",
+      "Don't stroke display type at 700; Unbounded's heavy contours self-overlap and the stroke exposes the construction lines.",
       "Don't size the blobs in vmax below 720px; portrait vmax is the viewport height and the blobs swallow the copy.",
       "Don't animate anything interruptible with a keyframe. Use a transition so it can retarget mid-flight.",
       "Don't let a stagger exceed 80ms per step, or an exit run longer than its entrance.",
       "Don't animate a keyboard-initiated scroll, and don't put scroll-behavior: smooth outside the reduced-motion guard.",
-      "Don't rotate the Stack orbit or add a fourth continuous ambient motion; two (the roll, the blob drift) is the budget.",
-      "Don't collapse the orbit into a stacked list on mobile — it scrolls instead.",
+      "Don't add a fourth continuous ambient motion; three families (the blob drift, the caret blink, the status pulse) is the budget. A second live indicator stays static.",
+      "Don't bring the Stack section or its orbit back. Tools appear only on the case study where they were used, as tiles, and data/stack.ts has exactly that one consumer.",
       "Don't ship a dead link. An unavailable action takes the designed pending state (.is-pending plus a .pending-note pill), inert to pointer, keyboard and screen reader.",
-      "Don't introduce a fifth radius, a second accent, or a new display face.",
+      "Don't introduce a seventh radius, a second accent, or a new display face.",
+      "Don't put tracked caps anywhere but a card foot. A pill is sentence case by default.",
+      "Don't animate transform: from a scroll timeline. Scroll gets translate:/scale:; interaction keeps transform:, or the scroll animation silently eats the hover.",
+      "Don't put a :active transform on an element that owns a full-card overlay pseudo-element; it drags the overlay out from under the cursor and the card stops being clickable (The Card-As-Link Rule).",
+      "Don't infer a tool→project mapping, a role, a date, or a metric. If it was not supplied, the field stays empty and the UI omits it.",
+      "Don't add a label, kicker, eyebrow or number prop to CaseStudySection, and don't add a standfirst or a description paragraph back to the header or the card.",
+      "Don't give Operations Agent a repo affordance of any kind, including a disabled one.",
+      "Don't render a shadcn Badge; the .pill class is the badge.",
       "Don't override shadcn's --accent expecting the page accent; that slot belongs to shadcn, ours is --signal."
     ]
   }

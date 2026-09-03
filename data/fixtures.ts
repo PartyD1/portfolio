@@ -33,24 +33,24 @@ export const FIXTURES =
   process.env.VERCEL_ENV !== "production";
 
 /**
- * Deliberately carries no `src`, so it renders the same authored Artifact mark
- * that the real empty state renders. That is the point: the choreography is
- * identical with a fixture, with an empty state, and with tomorrow's
- * screenshot, because the motion is driven by the frame's aspect ratio and
- * never by pixel content.
+ * Two real frames, so the pinned sequence can be exercised on a route that
+ * has no media of its own. The choreography is driven by the frame, never by
+ * pixel content, so which screenshot sits inside does not matter.
  */
 export const fixtureMedia: ProjectMedia[] = [
   {
-    alt: "FIXTURE — not real content",
-    kind: "diagram",
+    src: "/work/santaclaws/dashboard.png",
+    alt: "FIXTURE: not real content",
+    kind: "image",
     width: 1600,
-    height: 1000,
+    height: 812,
   },
   {
-    alt: "FIXTURE — not real content",
-    kind: "diagram",
+    src: "/work/santaclaws/mockup.png",
+    alt: "FIXTURE: not real content",
+    kind: "image",
     width: 1600,
-    height: 1000,
+    height: 956,
   },
 ];
 

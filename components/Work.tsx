@@ -37,10 +37,6 @@ export default function Work() {
         <h2 className="section__title" id="work-title">
           Work
         </h2>
-        <p className="section__lede">
-          Seven things I&rsquo;ve made. Every one opens into how it was built,
-          what it cost, and what I&rsquo;d change.
-        </p>
       </div>
       <div className="work__grid">
         {projects.map((project, i) => (
