@@ -1827,9 +1827,32 @@ svg {
   }
 }
 
+/* Headline and, when the engagement leads, the organisation under it. The
+ * gap is tighter than the body's 14px on purpose: the two lines are one
+ * unit, not two facts. */
+.card__head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .card__name {
   font-size: clamp(1.25rem, 1.9vw, 1.625rem);
   letter-spacing: 0.01em;
+}
+
+/*
+ * Who the engagement was with, directly under the headline that replaced the
+ * project name. Display type so it reads as the second half of the title,
+ * one step down in size and to --ink-2 so the headline still leads.
+ */
+.card__org {
+  font-family: var(--font-display-stack);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: 0.015em;
+  line-height: 1.1;
+  color: var(--ink-2);
 }
 
 .card__tagline {
@@ -2165,6 +2188,10 @@ svg {
 
 .card--flagship .card__name {
   font-size: clamp(1.625rem, 3vw, 2.5rem);
+}
+
+.card--flagship .card__org {
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
 }
 
 .card--flagship .card__tagline {

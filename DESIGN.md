@@ -93,6 +93,12 @@ typography:
     fontWeight: 700
     lineHeight: 1.02
     letterSpacing: "0.01em"
+  organisation:
+    fontFamily: "Unbounded, 'Trebuchet MS', system-ui, sans-serif"
+    fontSize: "1.0625rem"
+    fontWeight: 700
+    lineHeight: 1.1
+    letterSpacing: "0.015em"
   body:
     fontFamily: "'Hanken Grotesk', system-ui, -apple-system, sans-serif"
     fontSize: "1.0625rem"
@@ -188,6 +194,9 @@ components:
     textColor: "{colors.ink}"
     rounded: "{rounded.pill}"
     padding: "6px 13px"
+  card-org:
+    textColor: "{colors.ink-2}"
+    typography: "{typography.organisation}"
   card-label:
     backgroundColor: "{colors.glass-raised}"
     textColor: "{colors.ink-2}"
@@ -371,7 +380,8 @@ The band is measurable, and it is narrower than it looks. With the wash fixed an
 - **Descriptor** (700, `clamp(14px, 3vw, 32px)`, line-height 1.2, tracking 0.005em, uppercase, display face): the rolling secondary line under the name. See The Name-Then-Descriptor Rule. **Both bounds are px, never rem, and that is a rule rather than a preference**; see The Px-Bound Display Rule.
 - **Headline** (700, `clamp(32px, 4.4vw, 52px)`, line-height 1.02, tracking 0.015em, uppercase): section titles: WORK, EXPERIENCE, ABOUT. Contact overrides to `clamp(2.25rem, 6.5vw, 4.5rem)`; the case-study title runs `clamp(32px, 6vw, 64px)` at line-height 1.08; the case-study foot title runs `clamp(1.75rem, 4vw, 2.75rem)`; the menu's section links run `clamp(1.25rem, 10cqw, 2.5rem)` against the sheet, not the viewport (see The Fit-The-Box Rule).
 - **Case-study section title** (700, `clamp(24px, 2.6vw, 32px)`, tracking 0.005em, uppercase): the five case-study section headings and the flow diagram's "How it works". There is no eyebrow, kicker or number above any of them, ever.
-- **Title** (700, `clamp(1.25rem, 1.9vw, 1.625rem)`, tracking 0.01em, uppercase): project card names. The flagship card scales up to `clamp(1.625rem, 3vw, 2.5rem)`.
+- **Title** (700, `clamp(1.25rem, 1.9vw, 1.625rem)`, tracking 0.01em, uppercase): project card names, and the engagement headline that replaces one. The flagship card scales up to `clamp(1.625rem, 3vw, 2.5rem)`.
+- **Organisation** (700, 1.0625rem, line-height 1.1, tracking 0.015em, display face, sentence case): the organisation printed under an engagement headline (`.card__org`), at `--ink-2`. The flagship scales it to `clamp(1.25rem, 1.8vw, 1.5rem)`. It is the second half of a title rather than a fact, which is why it takes the display face and no tracking-caps treatment; the one card that carries it is the only place it appears.
 - **Period** (600, `clamp(0.9375rem, 1.4vw, 1.0625rem)`, line-height 1.2, tracking 0.02em, uppercase, display face): the timeline's date ranges, right-aligned against the rail. The one place the display face runs at 600 below headline size, so the dates read as part of the heading system rather than as body copy.
 - **Body** (400, 1.0625rem / 17px, line-height 1.5): every paragraph. Measures are capped: 46ch on the hero subline and the case foot lede, 40ch on card taglines and the contact lede, 30ch on the flagship tagline, 52ch on case-study bullets, 62ch on timeline ownership and the case note, 60ch on About (which runs line-height 1.6).
 - **Small** (400, 1rem, line-height 1.5 to 1.55): card taglines, case-study bullets, timeline title and ownership, flow node titles (at 600). The step under body, used wherever copy sits inside a glass surface rather than on the page.
@@ -511,7 +521,8 @@ Frosted panes floating over the wash. Character: quiet, wide, and lit only at th
 - **Shadow Strategy:** none; see Elevation & Depth
 - **Internal Padding:** 30px (24px under 760px); the flagship runs 40px (26px under 760px)
 - **Layout:** `minmax(0, 1fr) minmax(0, 38%)`, 24px column gap. `.card__body` is a flex column (14px gap) in column 1; the media frame sits in column 2. The flagship is `minmax(0, 1.15fr) minmax(0, 1fr)`, 32px gap, `min-height: 400px`, media in a 4/3 box; under 760px it stacks and the media centres at `max-width: 320px`.
-- **Fields, in order:** name, tagline (1rem, `--ink-2`, 40ch), the one usage fact where supplied (`.card__use`, 0.9375rem at 500 in full `--ink`, because somebody other than the author using the thing is the strongest fact on the site), the foot, and the taxonomy pill on its own right-aligned line. **No description and no note:** those came off on 2026-09-02 as clutter, and the case study is one click away.
+- **Fields, in order:** name (or the engagement headline and its organisation, below), tagline (1rem, `--ink-2`, 40ch), the one usage fact where supplied (`.card__use`, 0.9375rem at 500 in full `--ink`, because somebody other than the author using the thing is the strongest fact on the site), the foot, and the taxonomy pill on its own right-aligned line. **No description and no note:** those came off on 2026-09-02 as clutter, and the case study is one click away.
+- **Engagement headline** (`cardHeadline` in `data/projects.ts`, added 2026-09-03): a card may lead with the ENGAGEMENT instead of the project's name, with the organisation on the line under it at a 6px gap - the two are one unit, not two facts. Operations Agent reads SUMMER 2026 INTERNSHIP / InstaService, because a paid internship is what a recruiter scans a card for and it outranks the name of a system nobody has heard of yet. The organisation is never typed on the project: it is read from the matching `data/experience.ts` row, so the company is spelled in one place and the card cannot drift from the timeline. The fact line under the tagline then carries the ROLE and the dates (`AI/ML Engineer Intern · Jun - Aug 2026`) rather than the company, because the company is already the line above it and no card says a thing twice. The project keeps its real name everywhere else - the timeline, the case study, the route.
 - **One structure, always.** Weight changes classes, span, type scale and media aspect. It **never changes which fields render**.
 - **Media frame** (`.card__media`): a square (4/3 on the flagship) glass well, `{colors.glass-strong}` on the same 1px edge and 22px radius as every other panel, 14px padding. The authored `Artifact` mark renders inside it at 0.72 opacity (0.8 on the flagship); on card hover it comes forward `translate(-6px, -6px) scale(1.05)` and rises to full ink over 320ms, and a real screenshot in the same frame scales 1.03 over 300ms. Nothing here is a new value.
 - **Foot** (`.card__foot`): a wrapping flex row, 12px/18px gaps, `margin-top: auto` so all feet in a row share a baseline, 18px above. Order: the live-link pill where a `demo` exists, then the `case study` arrow link, then `GitHub ↗`.
