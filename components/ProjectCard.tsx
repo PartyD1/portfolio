@@ -3,7 +3,6 @@ import Image from "next/image";
 import type { Project } from "@/data/projects";
 import { experience } from "@/data/experience";
 import Artifact from "@/components/Artifact";
-import TiltCard from "@/components/TiltCard";
 import { ArrowRight, ArrowUpRight } from "@/components/Icon";
 
 /**
@@ -46,10 +45,9 @@ export default function ProjectCard({
     .join(" ");
 
   return (
-    // The <article> itself, rendered by the one client component in a card so
-    // the pointer can drive the tilt and the highlight. Everything inside stays
-    // on the server.
-    <TiltCard className={classes}>
+    // Fully server-rendered. The hover lift is CSS on .card and nothing else,
+    // so a card ships no JavaScript of its own.
+    <article className={classes}>
       <div className="card__body">
         <div className="card__head">
           <h3 className="card__name">{name}</h3>
@@ -129,6 +127,6 @@ export default function ProjectCard({
           <Artifact slug={slug} className="card__art" />
         )}
       </div>
-    </TiltCard>
+    </article>
   );
 }

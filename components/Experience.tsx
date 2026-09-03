@@ -39,6 +39,7 @@ export default function Experience() {
             return (
               <Reveal
                 key={e.id}
+                as="li"
                 delay={120 + i * 70}
                 className="timeline__item"
                 data-live={e.end ? undefined : ""}

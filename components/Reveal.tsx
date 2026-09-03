@@ -13,13 +13,20 @@ export default function Reveal({
   children,
   delay = 0,
   className,
+  as: Tag = "div",
   ...rest
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
-} & React.HTMLAttributes<HTMLDivElement>) {
-  const ref = useRef<HTMLDivElement>(null);
+  /**
+   * The element to render. Defaults to a div; the timeline passes "li" so the
+   * items stay direct children of their <ol> and assistive tech still hears
+   * the sequence the section is built around.
+   */
+  as?: "div" | "li";
+} & React.HTMLAttributes<HTMLElement>) {
+  const ref = useRef<HTMLElement>(null);
   const [state, setState] = useState<State>("idle");
 
   useEffect(() => {
@@ -43,14 +50,14 @@ export default function Reveal({
   }, []);
 
   return (
-    <div
+    <Tag
       {...rest}
-      ref={ref}
+      ref={ref as React.RefObject<HTMLDivElement & HTMLLIElement>}
       className={className}
       data-reveal={state === "idle" ? undefined : state}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}
-    </div>
+    </Tag>
   );
 }
