@@ -46,7 +46,15 @@ function Wave({ className }: { className?: string }) {
 
 export default function Hero() {
   return (
-    <section className="hero" id="top" aria-labelledby="hero-title">
+    // data-scrub: the WAAPI fallback for the recede (ScrollScrub.tsx) where
+    // CSS scroll-driven animations are missing. The end matches the CSS range.
+    <section
+      className="hero"
+      id="top"
+      aria-labelledby="hero-title"
+      data-scrub="exit"
+      data-scrub-end="0.85"
+    >
       <h1 className="hero__title" id="hero-title">
         {/* The one readable copy: assistive tech gets the whole introduction
             as a sentence, including every phrase the slot cycles through. */}

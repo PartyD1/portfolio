@@ -134,6 +134,34 @@
         "dark": "rgb(255 255 255 / 0.14)",
         "note": "The 1px border that declares elevation. This system's entire depth vocabulary."
       },
+      "spot-core": {
+        "role": "tertiary",
+        "displayName": "Spotlight Core",
+        "canonical": "rgb(255 255 255 / 0.55)",
+        "dark": "rgb(255 255 255 / 0.1)",
+        "note": "Stop 1 of the pointer spotlight (.wash__spot). It lives inside the fixed wash, under everything, so it is ground and takes blob colour: The Ground-Only Iridescence Rule holds."
+      },
+      "spot-hue": {
+        "role": "tertiary",
+        "displayName": "Spotlight Hue",
+        "canonical": "color-mix(in oklab, color-mix(in oklab, var(--blob-c-2) 50%, white) 36%, transparent)",
+        "dark": "color-mix(in oklab, var(--blob-a-2) 24%, transparent)",
+        "note": "Stop 2 of the spotlight, at 26%. In light the blob hue is pulled 50% toward white first, so the light lightens the ground under text rather than saturating it."
+      },
+      "spot-hue-2": {
+        "role": "tertiary",
+        "displayName": "Spotlight Hue, Outer",
+        "canonical": "color-mix(in oklab, color-mix(in oklab, var(--blob-a-2) 50%, white) 22%, transparent)",
+        "dark": "color-mix(in oklab, var(--blob-c-1) 16%, transparent)",
+        "note": "Stop 3 of the spotlight, at 48%, repeated at 35% strength at 72% before transparent. Five stops, not three: evenly spaced stops read as rings and the eye finds the outer edge; the long near-clear tail is what makes it a glow."
+      },
+      "card-glow": {
+        "role": "tertiary",
+        "displayName": "Card Specular Highlight",
+        "canonical": "rgb(255 255 255 / 0.55)",
+        "dark": "rgb(255 255 255 / 0.1)",
+        "note": "The soft light that follows the pointer across frosted glass: a 380px circle on .card::after, 300px on .flow__node::after, centred on --mx/--my and fading to transparent at 62%. A gloss on the glass, never a colour."
+      },
       "blob-gloss": {
         "role": "tertiary",
         "displayName": "Specular Gloss",
@@ -303,6 +331,46 @@
         "name": "drift",
         "value": "34s / 41s / 37s / 45s ease-in-out infinite alternate",
         "purpose": "Ambient blob drift, 5-7vmax translate and 7-11deg rotation. Disabled under 720px and under reduced motion."
+      },
+      {
+        "name": "duration-card-transform",
+        "value": "320ms",
+        "purpose": "The card's one composed transform: perspective(1100px) translateY(--lift) rotateX(--rx) rotateY(--ry) scale(--press). Hover sets --lift: -6px, TiltCard.tsx writes --rx/--ry, :active sets --press: 0.98 and shortens the transition to 160ms. Retargeted on every pointer move so the tilt trails the pointer instead of snapping to it. The card mark's translate(-6px, -6px) scale(1.05) and opacity 0.72 to 1 run at the same 320ms."
+      },
+      {
+        "name": "tilt",
+        "value": "4deg",
+        "purpose": "Peak card tilt at an edge, as --rx/--ry from TiltCard.tsx; the top or right edge tips away so the card leans toward the hand. Mouse only, fine pointer only; dropped under reduced motion while the highlight stays. Flow nodes take the highlight but never the tilt: their connectors are pseudo-elements aligned to the node edges, so a rotated node pulls its edge off the arrow pointing at it."
+      },
+      {
+        "name": "duration-card-glow",
+        "value": "320ms in / 200ms out",
+        "purpose": "Opacity of the specular highlight (.card::after at 380px, .flow__node::after at 300px): a circle of --card-glow at --mx/--my fading to transparent at 62%, z-index -1 inside the surface's own backdrop-filter stacking context, so it sits above the frosted fill and below every child. Position is written by TiltCard.tsx and FlowGlow.tsx; only opacity transitions. On leave --mx/--my are left where they were, so the light fades out in place rather than jumping to centre."
+      },
+      {
+        "name": "spotlight-spring",
+        "value": "K=160 D=22",
+        "purpose": "The pointer spotlight (.wash__spot, Spotlight.tsx): omega ~12.6 rad/s, zeta ~0.87, just under critical, settles in about a third of a second with no visible overshoot. Semi-implicit Euler, dt clamped to 32ms so a waking tab does not fling the light across the screen; the loop stops at rest (0.15px, 2px/s), which is what keeps it out of the ambient budget. translate3d written directly on the element, never a custom property on an ancestor."
+      },
+      {
+        "name": "duration-spotlight",
+        "value": "480ms in / 240ms out",
+        "purpose": "Opacity of .wash__spot via [data-on]. It appears where the pointer first is rather than flying in from a corner. Hidden on window blur, on a hidden tab and when the pointer leaves the window; never mounted without a fine pointer or under reduced motion."
+      },
+      {
+        "name": "duration-underline",
+        "value": "260ms in / 160ms out",
+        "purpose": "The 2px --signal rule under .link-arrow and .case__back: scaleX(0) to scaleX(1) with transform-origin left on hover, exiting with transform-origin right, so the line sweeps through rather than retreating the way it came. transform only. Never drawn on .is-pending, which is not a control. The Experience timeline's project chip is excluded: it is a bordered pill and takes a coral border instead, because a rule drawn inside a pill reads as a slip. The arrow moves 6px alongside it, the one nudge distance in the system."
+      },
+      {
+        "name": "recede",
+        "value": "exit 0%-85% on .hero, exit 0%-100% on .case__headline",
+        "purpose": "The scroll handoff at the top of each route: opacity to 0, scale to 0.9, translate to 0 22%, filter blur to --recede-blur (10px above 760px, 0px below), transform-origin 50% 45%, linear, view() timeline. Finished state is the default, so a refresh mid-page renders the right frame with no flash and no JS. Runs on the 404's headline panel too. ScrollScrub.tsx mirrors these frames through WAAPI on [data-scrub] elements where animation-timeline is missing; change both together."
+      },
+      {
+        "name": "card-unveil",
+        "value": "entry 0%-100% on .work__item--flagship .card",
+        "purpose": "The other half of the handoff: clip-path inset(0 0 100% 0 round --radius-card) to inset(0 0 80% 0) at 50% to inset(0 0 0 0), scale 0.96 to 1, opacity 0.5 to 0.85 to 1, linear, view() timeline. It lags the viewport edge then catches up, so the card is seen being drawn rather than merely arriving. The flagship's Reveal is neutralised inside the guard so one element has one entrance."
       }
     ],
     "breakpoints": [
@@ -331,7 +399,7 @@
       "refersTo": "card",
       "description": "The project card: a frosted pane floating over the blob wash. Elevation is declared once, as an edge — this system has no shadows.",
       "html": "<article class=\"ds-card\"><div class=\"ds-card__head\"><h3 class=\"ds-card__name\">ScorelyAI</h3></div><p class=\"ds-card__tagline\">An AI, rubric-based evaluator for DECA reports — high-school competitors use it to get feedback on their written work.</p><div class=\"ds-card__foot\"><a class=\"ds-card__link\" href=\"#\">GitHub<svg class=\"ds-icon\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 15 15 5M7 5h8v8\"/></svg></a><span class=\"ds-badge-outline\">In use by DECA competitors</span></div></article>",
-      "css": ".ds-card { position: relative; display: flex; flex-direction: column; gap: 14px; max-width: 460px; padding: 30px; border-radius: var(--radius-card, 22px); border: 1px solid var(--glass-edge); background: var(--glass); backdrop-filter: blur(22px) saturate(1.35); -webkit-backdrop-filter: blur(22px) saturate(1.35); color: var(--ink); font-family: var(--font-body-stack); overflow: hidden; transition: transform 200ms var(--ease-out), border-color 200ms var(--ease-out), background 200ms var(--ease-out); } .ds-card__name { margin: 0; font-family: var(--font-display-stack); font-size: 1.5rem; font-weight: 700; line-height: 1.02; letter-spacing: 0.01em; text-transform: uppercase; } .ds-card__tagline { margin: 0; max-width: 40ch; font-size: 1rem; line-height: 1.5; color: var(--ink-2); } .ds-card__foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-top: auto; padding-top: 18px; } .ds-card__link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; margin: -8px -14px; border-radius: 999px; font-size: 0.9375rem; font-weight: 600; color: var(--ink); text-decoration: none; transition: background 200ms var(--ease-out), transform 160ms var(--ease-out); } .ds-card__link .ds-icon { width: 1em; height: 1em; transition: transform 200ms var(--ease-out); } .ds-badge-outline { display: inline-flex; align-items: center; height: 20px; padding: 2px 8px; border: 1px solid var(--border); border-radius: 999px; font-size: 0.75rem; font-weight: 500; white-space: nowrap; color: var(--ink); } .ds-card__link:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 999px; } .ds-card__link:active { transform: scale(0.97); } @media (hover: hover) and (pointer: fine) { .ds-card:hover { transform: translateY(-3px); background: var(--glass-strong); border-color: color-mix(in oklab, var(--signal) 40%, var(--glass-edge)); } .ds-card__link:hover { background: color-mix(in oklab, var(--ink) 10%, transparent); } .ds-card__link:hover .ds-icon { transform: translate(2px, -2px); } }"
+      "css": ".ds-card { position: relative; display: flex; flex-direction: column; gap: 14px; max-width: 460px; padding: 30px; border-radius: var(--radius-card, 22px); border: 1px solid var(--glass-edge); background: var(--glass); backdrop-filter: blur(22px) saturate(1.35); -webkit-backdrop-filter: blur(22px) saturate(1.35); color: var(--ink); font-family: var(--font-body-stack); overflow: hidden; transition: transform 320ms var(--ease-out), border-color 200ms var(--ease-out), background 200ms var(--ease-out); } .ds-card__name { margin: 0; font-family: var(--font-display-stack); font-size: 1.5rem; font-weight: 700; line-height: 1.02; letter-spacing: 0.01em; text-transform: uppercase; } .ds-card__tagline { margin: 0; max-width: 40ch; font-size: 1rem; line-height: 1.5; color: var(--ink-2); } .ds-card__foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-top: auto; padding-top: 18px; } .ds-card__link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; margin: -8px -14px; border-radius: 999px; font-size: 0.9375rem; font-weight: 600; color: var(--ink); text-decoration: none; transition: background 200ms var(--ease-out), transform 160ms var(--ease-out); } .ds-card__link .ds-icon { width: 1em; height: 1em; transition: transform 200ms var(--ease-out); } .ds-badge-outline { display: inline-flex; align-items: center; height: 20px; padding: 2px 8px; border: 1px solid var(--border); border-radius: 999px; font-size: 0.75rem; font-weight: 500; white-space: nowrap; color: var(--ink); } .ds-card__link:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 999px; } .ds-card__link:active { transform: scale(0.97); } @media (hover: hover) and (pointer: fine) { .ds-card:hover { transform: translateY(-6px); background: var(--glass-strong); border-color: color-mix(in oklab, var(--signal) 55%, var(--glass-edge)); } .ds-card__link:hover { background: color-mix(in oklab, var(--ink) 10%, transparent); } .ds-card__link:hover .ds-icon { transform: translate(2px, -2px); } }"
     },
     {
       "name": "Gradient-Edge Card",
@@ -345,9 +413,9 @@
       "name": "Arrow Link",
       "kind": "nav",
       "refersTo": "link-arrow",
-      "description": "The page's primary action shape. Arrow leads on in-page navigation, trails on outbound. Hover nudges the arrow 4px and turns the text the accent's text sibling.",
+      "description": "The page's primary action shape. Arrow leads on in-page navigation, trails on outbound. Hover nudges the arrow 6px, draws a 2px coral rule under the label, and turns the text the accent's text sibling.",
       "html": "<a class=\"ds-link-arrow\" href=\"#\"><svg class=\"ds-icon\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 10h13M11 5l5 5-5 5\"/></svg>see my work</a>",
-      "css": ".ds-link-arrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 4px; font-family: var(--font-body-stack); font-size: 1.0625rem; font-weight: 500; color: var(--ink); text-decoration: none; transition: color 200ms var(--ease-out), transform 160ms var(--ease-out); } .ds-link-arrow .ds-icon { width: 1.1em; height: 1.1em; flex: none; transition: transform 200ms var(--ease-out); } .ds-link-arrow:active { transform: scale(0.97); } .ds-link-arrow:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 4px; } @media (hover: hover) and (pointer: fine) { .ds-link-arrow:hover { color: var(--signal-ink); } .ds-link-arrow:hover .ds-icon { transform: translateX(4px); } }"
+      "css": ".ds-link-arrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 4px; font-family: var(--font-body-stack); font-size: 1.0625rem; font-weight: 500; color: var(--ink); text-decoration: none; transition: color 200ms var(--ease-out), transform 160ms var(--ease-out); } .ds-link-arrow .ds-icon { width: 1.1em; height: 1.1em; flex: none; transition: transform 200ms var(--ease-out); } .ds-link-arrow:active { transform: scale(0.97); } .ds-link-arrow:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 4px; } @media (hover: hover) and (pointer: fine) { .ds-link-arrow:hover { color: var(--signal-ink); } .ds-link-arrow:hover .ds-icon { transform: translateX(6px); } }"
     },
     {
       "name": "Pending Flag",
@@ -525,6 +593,8 @@
       "Do wrap below-the-fold content in <Reveal> and stagger siblings at 50 to 70ms; drive any choreography inside it off data-reveal with transitions, the way the timeline and the flow do.",
       "Do author new icons as SVG in currentColor at the established stroke weights (2.25 for UI arrows, 2.5 for project marks), round caps and joins.",
       "Do put every hover rule behind @media (hover: hover) and (pointer: fine) and give every pressable a :active { scale(0.97) }, 0.98 on large surfaces, and outside the hover guard, since touch devices have no hover state.",
+      "Do drive any new state on .card through --lift, --rx/--ry or --press rather than a second transform declaration; a second one silently wins over all of them (The One Composed Transform Rule).",
+      "Do make pointer-driven and scroll-driven motion stop when the user does: a loop tests for rest and cancels its frame, a scrub defaults to its finished state, and the resting page is complete (The User-Is-The-Clock Rule).",
       "Do ship blocked content by ABSENCE. An unwritten case-study section does not render, tech: [] renders no row, media: [] renders no band. Never a placeholder, a skeleton or \"coming soon\" on a case study.",
       "Do put text that sits outside the calm band on a surface rather than trying to move it (The Surface-Not-Spacing Rule).",
       "Do write copy with commas, colons, periods, middle dots and hyphens. There are no em dashes anywhere in user-visible text.",
@@ -541,6 +611,9 @@
       "Don't animate anything interruptible with a keyframe. Use a transition so it can retarget mid-flight.",
       "Don't let a stagger exceed 80ms per step, or an exit run longer than its entrance.",
       "Don't animate a keyboard-initiated scroll, and don't put scroll-behavior: smooth outside the reduced-motion guard.",
+      "Don't give ScrollScrub.tsx a second range or a second keyframe set. It mirrors @keyframes recede and nothing else; a change to either is a change to both, and anything wider is the polyfill this system refuses.",
+      "Don't tilt a card or show the spotlight for a touch or pen pointer, or under reduced motion (the highlight may stay; the tilt and the light may not).",
+      "Don't draw the arrow underline inside a bordered pill. It belongs on unbounded links (.link-arrow, .case__back); a pill takes a coral border instead.",
       "Don't add a fourth continuous ambient motion; three families (the blob drift, the caret blink, the status pulse) is the budget. A second live indicator stays static.",
       "Don't bring the Stack section or its orbit back. Tools appear only on the case study where they were used, as tiles, and data/stack.ts has exactly that one consumer.",
       "Don't ship a dead link. An unavailable action takes the designed pending state (.is-pending plus a .pending-note pill), inert to pointer, keyboard and screen reader.",

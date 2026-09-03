@@ -15,7 +15,10 @@ export default function NotFound() {
   return (
     <article className="case">
       <header className="case__header">
-        <div className="case__headline">
+        {/* Same recede as a real case study's headline, so a stale link lands
+            somewhere that behaves like the rest of the site rather than an
+            inert page. */}
+        <div className="case__headline" data-scrub="exit">
           <Link className="case__back" href="/#work">
             <ArrowLeft />
             back to the work

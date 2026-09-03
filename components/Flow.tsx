@@ -1,5 +1,6 @@
 import type { Flow as FlowData } from "@/data/projects";
 import Reveal from "@/components/Reveal";
+import FlowGlow from "@/components/FlowGlow";
 import { ArrowRight } from "@/components/Icon";
 
 /**
@@ -24,7 +25,9 @@ export default function Flow({ flow }: { flow: FlowData }) {
       <h2 className="flow__heading" id="flow-t">
         How it works
       </h2>
-      <ol className="flow__steps" aria-labelledby="flow-t">
+      {/* FlowGlow is the list itself: the only client code here, and only to
+          place the pointer highlight on the hovered node. */}
+      <FlowGlow className="flow__steps" aria-labelledby="flow-t">
         {steps.map((s, i) => (
           <li
             className="flow__step"
@@ -54,7 +57,7 @@ export default function Flow({ flow }: { flow: FlowData }) {
             )}
           </li>
         ))}
-      </ol>
+      </FlowGlow>
       {bus && (
         <div className="flow__bus">
           <p className="flow__bus-title">{bus.title}</p>
