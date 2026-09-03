@@ -5,14 +5,22 @@ import { FIXTURES, fixtureAvailability } from "@/data/fixtures";
 
 const avail = FIXTURES ? fixtureAvailability : availability;
 
-/** Parth's own words. The slot owns the article and the period. */
+/**
+ * Parth's own words, as bare descriptors.
+ *
+ * They used to carry an article and a period ("a developer.") because they
+ * completed the spoken sentence "And I'm ___". With the lead gone the roll is a
+ * secondary descriptor rather than the end of a sentence, so the articles and
+ * the full stops go with it — "developer", not "a developer.". Same six words,
+ * same order, same finale.
+ */
 const phrases: Phrase[] = [
-  { text: "a developer." },
-  { text: "a researcher." },
-  { text: "a computer scientist.", widest: true },
-  { text: "an athlete." },
-  { text: "a mentor." },
-  { text: "obsessed with AI.", accent: true, hold: 4200 },
+  { text: "developer" },
+  { text: "researcher" },
+  { text: "computer scientist", widest: true },
+  { text: "athlete" },
+  { text: "mentor" },
+  { text: "obsessed with AI", accent: true, hold: 4200 },
 ];
 
 /** Two sine passes behind the name, echoing the reference's wave. */
@@ -40,9 +48,11 @@ export default function Hero() {
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
       <h1 className="hero__title" id="hero-title">
+        {/* The one readable copy: assistive tech gets the whole introduction
+            as a sentence, including every phrase the slot cycles through. */}
         <span className="visually-hidden">
-          Hey, I&rsquo;m Parth Doshi, and I&rsquo;m a developer, a researcher, a
-          computer scientist, an athlete, a mentor — and obsessed with AI.
+          Hey, I&rsquo;m Parth Doshi — developer, researcher, computer
+          scientist, athlete, mentor, and obsessed with AI.
         </span>
 
         <span className="hero__line" aria-hidden="true">
@@ -53,26 +63,24 @@ export default function Hero() {
           </span>
         </span>
 
-        {/*
-          The lead sits OUTSIDE the typing slot so it never moves: only the
-          phrase after it changes width. "And I'm" rather than a second "I'm",
-          which read as a stutter directly under the name.
-
-          It also sits on its own LINE. Sharing a line box with the slot is what
-          made the headline unfittable: lead plus slot needs ~21em, which at
-          5.1vw is wider than the viewport by construction across the whole
-          fluid range and only clears above ~1384px. No amount of wrap-tuning
-          fixes an arithmetic impossibility. An orphaned outlined lead-in on a
-          left-aligned line reads as composition rather than as a widow, which
-          is what left-aligning buys.
-        */}
-        <span className="hero__line hero__line--lead" aria-hidden="true">
-          <span className="type-outline hero__lead">And I&rsquo;m</span>
-        </span>
-        <span className="hero__line hero__line--roll" aria-hidden="true">
-          <RoleRoll phrases={phrases} />
-        </span>
       </h1>
+
+      {/*
+        The descriptor, and it is deliberately SECONDARY.
+
+        It used to be a third display line preceded by an outlined "AND I'M",
+        which made the name and the role compete at the same weight. The name is
+        the headline; what he is qualifies it. So the roll drops out of the h1
+        to its own line at roughly a third the size — still the display face, so
+        it reads as part of the headline system rather than as body copy.
+
+        This also dissolves the arithmetic problem the three-line version was
+        built to solve: the slot no longer sits at display size, so it clears the
+        column by a wide margin at every width.
+      */}
+      <p className="hero__role" aria-hidden="true">
+        <RoleRoll phrases={phrases} />
+      </p>
 
       <p className="hero__sub">
         CS student at UC Santa Cruz building autonomous agents that do real

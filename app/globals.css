@@ -755,10 +755,29 @@ svg {
   display: block;
 }
 
-/* The lead is one unit: without this it breaks across lines ("AND" / "I'M")
- * once the row is squeezed, and the slot shrinks instead. */
-.hero__lead {
-  white-space: nowrap;
+/*
+ * The descriptor line. Secondary by size, not by face: still Unbounded, so it
+ * reads as part of the headline system rather than as body copy, but at roughly
+ * a third the display size so the NAME is unambiguously the headline and this
+ * qualifies it.
+ */
+.hero__role {
+  /* Enough to clear the sine wave sitting under the name. */
+  margin-top: 18px;
+  font-family: var(--font-display-stack);
+  /*
+   * px-bounded like the display clamp above it, and tuned so the RATIO to the
+   * name stays legible rather than the absolute size: ~0.50x at 1440, ~0.59x at
+   * 768, ~0.61x at 390, compressing to ~0.82x only at 280 where both are near
+   * their floors. A flat rem floor made it LARGER than the name at 280px, which
+   * is not a hierarchy — it just looked like the headline had wrapped.
+   */
+  font-size: clamp(14px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
 
 .hero__name {
@@ -877,10 +896,15 @@ svg {
     min-height: min(100svh, 620px);
   }
   .hero__title {
-    /* px-bounded for the same reason as the desktop clamp. 5.2vw, with the
-     * gutter also proportional below 400px, holds the clearance flat at 7.7%
-     * across the entire phone range instead of falling off toward 280px. */
-    font-size: clamp(14px, 5.2vw, 30px);
+    /*
+     * The 14px floor here existed only because the OLD three-line headline put
+     * the typing slot on a display line, and the slot's width set the ceiling
+     * for the whole clamp. With the descriptor demoted to its own secondary
+     * line, the binding constraint is just "HEY, I'M PARTH DOSHI" (~12.97em),
+     * which clears the column at 17px even at 280px — so the phone headline
+     * gets to be a headline instead of shrinking to fit a slot that has left.
+     */
+    font-size: clamp(17px, 5.9vw, 30px);
     line-height: 1.18;
   }
   /* 0.03em is sub-pixel at phone display sizes; hold a visible floor. */
@@ -888,21 +912,20 @@ svg {
     -webkit-text-stroke-width: max(1.1px, 0.03em);
   }
   /*
-   * Deliberately absent here, and both deletions are the point of this change:
-   *
-   *   .hero__line--roll { display: flex; flex-wrap: nowrap; column-gap: .26em }
-   *     existed to keep the lead and the phrase on one row. Line 3 now holds
-   *     exactly one item, so there is no row to keep.
+   * Deliberately absent here:
    *
    *   .roll { min-width: 0; max-width: 100% }
    *     existed so the longest phrase would wrap rather than be clipped.
-   *     Wrapping is now the failure we want to be visible: see .roll.
+   *     Wrapping is now the failure we want to be VISIBLE, not absorbed —
+   *     see the nowrap note on .roll.
    */
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .hero__line,
+  .hero__role,
   .hero__sub,
+  .hero__avail,
   .hero__actions,
   .status {
     animation: rise 600ms var(--ease-out) both;
@@ -911,13 +934,13 @@ svg {
    * headline is three lines now, so the ladder gained a rung — the step is
    * still 60ms, and without the lead's own delay lines 1 and 2 rose together
    * and the ladder had a hole in it. */
-  .hero__line--lead {
+  .hero__role {
     animation-delay: 60ms;
   }
-  .hero__line--roll {
+  .hero__sub {
     animation-delay: 120ms;
   }
-  .hero__sub {
+  .hero__avail {
     animation-delay: 180ms;
   }
   .hero__actions {

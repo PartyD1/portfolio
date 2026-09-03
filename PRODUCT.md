@@ -19,7 +19,7 @@ Two primary audiences, both browsing to quickly assess Parth Doshi as a software
 
 Parth is a student at UC Santa Cruz (email domain `ucsc.edu`).
 
-How Parth describes himself (his words, 2026-09-01, used verbatim in the hero rotation): a developer, a researcher, a computer scientist, an athlete, a mentor — and "obsessed with AI." The sport and the mentoring context were supplied 2026-09-02 (see Evidence on Hand): volleyball, and mentoring younger kids. **No team, league, level or program was supplied — do not invent one.**
+How Parth describes himself (his words, 2026-09-01, used in the hero rotation): a developer, a researcher, a computer scientist, an athlete, a mentor — and "obsessed with AI." They render as bare descriptors ("developer", not "a developer.") since 2026-09-02, when the hero's "and I'm" lead was removed at his request and the roll became a secondary descriptor rather than the end of a spoken sentence. Same six, same order. The sport and the mentoring context were supplied 2026-09-02 (see Evidence on Hand): volleyball, and mentoring younger kids. **No team, league, level or program was supplied — do not invent one.**
 
 ## Product Purpose
 

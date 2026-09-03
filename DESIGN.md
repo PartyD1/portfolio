@@ -275,7 +275,8 @@ The band is measurable, and it is narrower than it looks. With the wash fixed an
 
 ### Hierarchy
 
-- **Display** (700, `clamp(28px, 5.1vw, 64px)`, line-height 1.12, tracking 0.005em, uppercase): the hero headline only. Drops to `clamp(14px, 5.2vw, 30px)` / line-height 1.18 under 720px. **Both bounds are px, never rem, and that is a rule rather than a preference** — see The Px-Bound Display Rule.
+- **Display** (700, `clamp(28px, 5.1vw, 64px)`, line-height 1.12, tracking 0.005em, uppercase): the hero headline only — the name. Drops to `clamp(17px, 5.9vw, 30px)` / line-height 1.18 under 720px.
+- **Descriptor** (700, `clamp(14px, 3vw, 32px)`, line-height 1.2, tracking 0.005em, uppercase, display face): the rolling secondary line under the name. See The Name-Then-Descriptor Rule. **Both bounds are px, never rem, and that is a rule rather than a preference** — see The Px-Bound Display Rule.
 - **Headline** (700, `clamp(2rem, 4.4vw, 3.25rem)`, line-height 1.02, tracking 0.015em, uppercase): section titles — WORK, EXPERIENCE, STACK, ABOUT. Contact overrides to `clamp(2.25rem, 6.5vw, 4.5rem)`; the case-study title runs `clamp(2.25rem, 6vw, 4rem)` at line-height 1.08; the menu's section links run `clamp(1.75rem, 5vw, 2.5rem)`.
 - **Case-study section title** (700, `clamp(1.5rem, 2.6vw, 2rem)`, tracking 0.005em, uppercase): the five case-study section headings. There is no eyebrow, kicker or number above any of them, ever.
 - **Title** (700, `clamp(1.25rem, 1.9vw, 1.625rem)`, tracking 0.01em, uppercase): project card names. The flagship card scales up to `clamp(1.625rem, 3vw, 2.5rem)`.
@@ -291,9 +292,13 @@ The light weight is not a style choice. Unbounded's heavy weights are drawn with
 
 ### Named Rules
 
-**The Outline-Lead Rule.** Only the lead-in words are outlined — "HEY, I'M" and the standalone "AND I'M". The subject is always filled. Outline is a contrast device between the greeting and the person, never a decoration applied to a whole heading.
+**The Outline-Lead Rule.** Only the lead-in words are outlined — "HEY, I'M". The subject is always filled. Outline is a contrast device between the greeting and the person, never a decoration applied to a whole heading.
 
-The headline is **three lines**: the name, the outlined lead alone, and the typing slot alone. The lead used to share a line box with the slot, which is what made the headline unfittable — see The No-Wrap Slot Rule. On a left-aligned line an orphaned outlined lead-in reads as composition rather than as a widow, which is part of what left-aligning buys.
+**The Name-Then-Descriptor Rule.** The headline is **one display line — the name**. What Parth *is* follows on its own secondary line (`.hero__role`), at roughly half the name's size on desktop, still in the display face so it reads as part of the headline system rather than as body copy.
+
+An earlier version made this a three-line headline preceded by an outlined "AND I'M", which put the name and the role at the same weight and left the reader to work out which was the point. It also created the arithmetic problem The No-Wrap Slot Rule was built to solve: the slot sat at display size, so the widest phrase set the ceiling for the entire headline clamp. Demoting the descriptor dissolves that — the slot now clears the column by 18.7% at its worst width instead of 7.3%, and the phone headline gained a 17px floor it could not previously afford.
+
+The descriptor is sized by its RATIO to the name, not by an absolute step: ~0.50× at 1440, ~0.59× at 768, ~0.61× at 390, compressing to ~0.82× only at 280 where both are near their floors. A flat rem floor made it *larger* than the name at 280px, which is not a hierarchy — it just looked like the headline had wrapped. Asserted at every width in both themes.
 
 **The Px-Bound Display Rule.** Every bound of a display clamp is expressed in px, never rem. The display size is one side of an invariant whose other side is measured in vw; a root-relative bound lets a large default font size inflate the type without inflating the column, and under `overflow: clip` that is a silent-overflow generator. It applies to the mobile floor exactly as much as to the desktop cap. The assertion suite runs twice — once at the default root size and once at a simulated 20px root — and the two runs must produce identical numbers.
 
@@ -452,11 +457,13 @@ The menu is a shadcn/Radix `Sheet` from the right, styled `.menu`: 86% ground wi
 
 ### Signature Component: the typewriter headline
 
-The hero's memorable moment. `"HEY, I'M"` in outline plus `PARTH DOSHI` filled over a two-pass sine wave; below it an outlined `"AND I'M"` and a slot that **types a phrase, holds it, backspaces it away, and types the next**, cycling six self-descriptions and landing on "obsessed with AI." in `{colors.signal-ink}`.
+The hero's memorable moment. `"HEY, I'M"` in outline plus `PARTH DOSHI` filled over a two-pass sine wave; on a secondary line below it, a slot that **types a phrase, holds it, backspaces it away, and types the next**, cycling six bare descriptors — developer, researcher, computer scientist, athlete, mentor — and landing on "obsessed with AI" in `{colors.signal-ink}`.
+
+The phrases carry no article and no full stop. They used to ("a developer.") because they completed the spoken sentence "And I'm ___"; with the lead gone the roll is a descriptor rather than the end of a sentence, and the punctuation went with it.
 
 Two structural rules make the shape work:
 
-**The lead sits outside the slot.** `.roll` is an `inline-grid` with `justify-items: start`; a hidden `.roll__sizer` holding the longest phrase reserves the width, and `.roll__live` sits in the same `1 / 1` cell. The slot is therefore a constant width and "And I'm" never moves — measured drift across a full cycle is 4px. `.hero__lead` is `white-space: nowrap` so it can't break into "AND" / "I'M" when the row is squeezed.
+**The slot is a fixed box.** `.roll` is an `inline-grid` with `justify-items: start`; a hidden `.roll__sizer` holding the widest phrase reserves the width, and `.roll__live` sits in the same `1 / 1` cell. The slot is therefore a constant width and nothing after it moves — measured drift across a full cycle is **0.000px**.
 
 **The caret is what licenses the trailing space.** Because text is left-aligned in a fixed slot, short phrases leave room on the right. With a caret at the end of the typed text that reads as a text field rather than a gap — which is exactly why an earlier centred-swap version looked broken and this does not.
 
@@ -525,7 +532,7 @@ The motion system is bound to the `emil-design-eng` framework and is not negotia
 - **Press feedback:** every pressable element carries `:active { transform: scale(0.97) }` (0.98 on the large menu links).
 - **Hover behind capability:** every hover rule sits inside `@media (hover: hover) and (pointer: fine)`.
 - **Exits are faster than entrances.** The typewriter backspaces at 26ms/char against 52ms/char typing.
-- **Staggers stay 30–80ms** per step (hero 60/120/180/240ms, cards 50ms, menu links 40ms). Longer reads as the page being slow.
+- **Staggers stay 30–80ms** per step (hero 60/120/180/240/300ms across name → descriptor → subline → availability → actions → status, cards 50ms, menu links 40ms). Longer reads as the page being slow.
 - **Reduced motion:** `scroll-behavior: smooth` is gated behind `prefers-reduced-motion: no-preference`; blob drift, the roll's translate/blur, the dot pulse, the toggle's icon rotation, the hero rise and the Reveal all disappear. Typing survives — it is not spatial motion — and only slows. Keyboard-initiated jumps are always instant regardless of preference.
 - **Off-screen and hidden work is paused:** the roll checks `document.hidden`, an IntersectionObserver and pointer hover before advancing; the scroll ring reads progress inside a single rAF on a passive listener.
 - **Theme switching:** `disableTransitionOnChange` on the provider, so flipping themes doesn't animate every transitioned property at once.
