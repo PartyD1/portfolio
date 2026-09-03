@@ -56,6 +56,9 @@ export const stack: StackGroup[] = [
       { name: "Bash", slug: "gnubash" },
       { name: "Tailwind", slug: "tailwindcss" },
       { name: "Elixir", slug: "elixir" },
+      // Per-project only: the runtime under Elixir, and the actual source
+      // of the Operations Agent's autonomy. See StackItem.orbit.
+      { name: "Erlang/OTP", slug: "erlang", orbit: false },
     ],
   },
   {

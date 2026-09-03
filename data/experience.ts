@@ -39,9 +39,9 @@ export const experience: ExperienceEntry[] = [
     id: "operations-agent",
     period: "Jun — Aug 2026",
     company: "InstaService",
-    title: "Machine Learning Engineer Intern",
+    title: "AI/ML Engineer Intern",
     ownership:
-      "Built a multi-modal agentic framework for the operations team: three specialised agents evaluating every booking in parallel, a continuous risk score that turned silent failures into a ranked queue, and autonomous SMS, call and email escalation.",
+      "Built a booking-monitoring system on Elixir and OTP: every booking gets its own supervised process that checks itself on a schedule, three checks run in parallel, and anything that crosses a threshold escalates over SMS, voice or email on its own.",
     href: "/work/operations-agent",
   },
 ];

@@ -33,8 +33,17 @@ export const links = {
  * supplying these tomorrow is a data edit and not a design decision made under
  * time pressure.
  */
+/*
+ * WHAT he is looking for leads, not WHEN he graduates. A December 2028
+ * graduation read first makes a recruiter assume he is years from hiring and
+ * leave; the actual ask is a Summer 2027 internship, and winter/spring too.
+ */
 export const availability = {
-  gradTerm: "Graduating December 2028" as string | null,
+  gradTerm: "Seeking Summer 2027 internships — winter and spring too" as
+    | string
+    | null,
   location: "Bay Area, California" as string | null,
-  target: "Software, ML/AI and full-stack roles" as string | null,
+  target: "Software, ML/AI and full-stack · graduating Dec 2028" as
+    | string
+    | null,
 };
