@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { projects, bySlug } from "@/data/projects";
-import { FIXTURES, fixtureStudy } from "@/data/fixtures";
+import { FIXTURES, fixtureMedia, fixtureStudy } from "@/data/fixtures";
 import { links } from "@/data/site";
 import { ArrowUpRight } from "@/components/Icon";
 import CaseStudyHeader from "@/components/CaseStudyHeader";
 import CaseStudySection from "@/components/CaseStudySection";
 import Flow from "@/components/Flow";
+import Slideshow from "@/components/Slideshow";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -42,8 +43,12 @@ export async function generateMetadata({
 /**
  * One page per project, and it is a portfolio page, not a blog post.
  *
- * ORDER: header, screenshots, the flow diagram, then short bullets. The
- * governing rule of this surface is ABSENT, NOT EMPTY. A section whose
+ * ORDER: header, the flow diagram, short bullets, then the screens. The
+ * screenshots moved to the foot on 2026-09-03 — they used to sit directly
+ * under the headline, which spent the first screen of a case study on
+ * pictures before the reader had been told what they were looking at.
+ *
+ * The governing rule of this surface is ABSENT, NOT EMPTY. A section whose
  * content has not been written does not render at all: there is no "coming
  * soon", no skeleton, no greyed placeholder anywhere on a case study.
  *
@@ -93,6 +98,10 @@ export default async function CaseStudyPage({
           );
         })}
       </div>
+
+      {/* The screens come last, after the argument they illustrate. A reader
+          who has got this far is looking on purpose. */}
+      <Slideshow media={FIXTURES ? fixtureMedia : p.media} name={p.name} />
 
       {/* The bottom of a case study is the highest-intent moment on the site,
           so it carries the same email treatment Contact does. */}

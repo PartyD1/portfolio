@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Project } from "@/data/projects";
 import { experience } from "@/data/experience";
 import Artifact from "@/components/Artifact";
@@ -24,9 +23,12 @@ import { ArrowRight, ArrowUpRight } from "@/components/Icon";
  * in the row's own words. That is what lets the flagship out-argue the cards
  * beneath it without a single new claim.
  *
- * The media frame shows the project's first screenshot when one exists and
- * the authored mark when none does. The mark is the empty state; the
- * screenshot is the default.
+ * The media frame carries the project's authored MARK, always, and never a
+ * screenshot. A card is 400px wide at most: a full product screenshot shrunk
+ * into it is a grey rectangle with unreadable type in it, which is a picture
+ * of a thing rather than a thing. Two of the seven had one and they were the
+ * two weakest cards on the page (Parth, 2026-09-03). The screenshots live at
+ * full width in the case study's slideshow, where they can be read.
  */
 export default function ProjectCard({
   project,
@@ -36,11 +38,10 @@ export default function ProjectCard({
   /** One card per row carries the world's gradient as an edge. */
   gradient?: boolean;
 }) {
-  const { slug, name, cardHeadline, tagline, href, demo, label, use, weight, media } =
+  const { slug, name, cardHeadline, tagline, href, demo, label, use, weight } =
     project;
   const flagship = weight === 1;
   const job = experience.find((e) => e.project === slug);
-  const shot = media[0];
 
   /*
    * A card whose `cardHeadline` is set leads with the engagement instead of
@@ -134,19 +135,8 @@ export default function ProjectCard({
         <span className="pill card__label">{label}</span>
       </div>
 
-      <div className={shot ? "card__media card__media--shot" : "card__media"}>
-        {shot ? (
-          <Image
-            src={shot.src}
-            alt=""
-            width={shot.width}
-            height={shot.height}
-            sizes="(max-width: 760px) 34vw, 400px"
-            className="card__shot"
-          />
-        ) : (
-          <Artifact slug={slug} className="card__art" />
-        )}
+      <div className="card__media">
+        <Artifact slug={slug} className="card__art" />
       </div>
     </article>
   );

@@ -59,74 +59,85 @@ function OperationsAgent() {
   );
 }
 
+/**
+ * ScorelyAI's own mark, redrawn.
+ *
+ * The product's icon is three centred rules that widen as they descend: the
+ * document getting longer, the score climbing. Geometry traced from
+ * scorely-ai/frontend/app/icon.svg — rules at y 8/16/24 of a 32 box, half
+ * widths 3/7/11 — scaled into this 120 box and re-inked. Brand GEOMETRY ships
+ * and brand COLOUR does not, which is the rule the tech row already runs on.
+ */
 function Scorely() {
-  const rows = [12, 40, 68, 96];
-  const widths = [70, 88, 56, 80];
-  const done = [true, true, false, false];
+  const rules: Array<[number, number]> = [
+    [24, 14],
+    [60, 33],
+    [96, 52],
+  ];
   return (
     <svg viewBox="0 0 120 120" aria-hidden="true">
-      {rows.map((y, i) => (
-        <g key={y}>
-          <rect
-            x="6"
-            y={y}
-            width="18"
-            height="18"
-            rx="5"
-            {...stroke}
-            fill={done[i] ? "currentColor" : "none"}
-          />
-          {done[i] && (
-            <path
-              d="M10 21l4 4 8-9"
-              transform={`translate(0 ${y - 12})`}
-              fill="none"
-              /* Knocked out against whatever is actually painted behind the
-                 mark. That is --media-well in both the card frame and the
-                 case-study well; --card was a token with no relationship to
-                 this surface and only happened to look right. */
-              stroke="var(--media-well)"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          )}
-          <rect
-            x="32"
-            y={y + 4}
-            width={widths[i]}
-            height="10"
-            rx="5"
-            fill="currentColor"
-            opacity={done[i] ? 0.6 : 0.3}
-          />
-        </g>
+      {rules.map(([y, half]) => (
+        <line
+          key={y}
+          x1={60 - half}
+          y1={y}
+          x2={60 + half}
+          y2={y}
+          stroke="currentColor"
+          strokeWidth="12"
+          strokeLinecap="round"
+        />
       ))}
     </svg>
   );
 }
 
+/**
+ * OpenClaw's lobster in a Santa hat, which is the joke the project's name is
+ * already making and so the only honest mark for it.
+ *
+ * DRAWN, not the tech row's silhouette rescaled. That mark
+ * (components/tech-marks.local.ts) is a solid single path tuned to read at
+ * 20px in a row of logos; blown up to 400px in a card it is a dark blob whose
+ * claws have collapsed into nubs. So the lobster is redrawn here in this
+ * file's own open-stroke geometry, at the size it is actually seen, with the
+ * two pincers opening OUTWARD where they can be read.
+ *
+ * SOLID HAT ON AN OUTLINED BODY. One ink, two materials, and the contrast is
+ * doing the work a second colour would otherwise do: the hat is the only
+ * filled thing in the mark, so it separates from the head without a knockout
+ * — which matters, because this frame is translucent glass over a moving
+ * gradient and there is no reliable colour to knock out against.
+ */
 function SantaClaws() {
   return (
     <svg viewBox="0 0 120 120" aria-hidden="true">
-      <rect
-        x="30"
-        y="8"
-        width="82"
-        height="60"
-        rx="10"
+      {/* Body. Open at the top: the hat is the head's crown, so drawing one
+          under it would only show through the fur. */}
+      <path
+        d="M40 52C34 62 32 74 35 85c4 14 14 21 25 21s21-7 25-21c3-11 1-23-5-33"
         {...stroke}
-        strokeDasharray="5 6"
-        opacity="0.6"
       />
-      <rect x="8" y="44" width="82" height="66" rx="10" {...stroke} />
-      <path d="M8 62h82" {...stroke} />
-      <circle cx="20" cy="53" r="2.5" fill="currentColor" />
-      <circle cx="29" cy="53" r="2.5" fill="currentColor" />
-      <circle cx="38" cy="53" r="2.5" fill="currentColor" />
-      <rect x="20" y="74" width="34" height="22" rx="6" fill="currentColor" opacity="0.5" />
-      <rect x="60" y="74" width="20" height="6" rx="3" fill="currentColor" opacity="0.5" />
-      <rect x="60" y="86" width="14" height="6" rx="3" fill="currentColor" opacity="0.5" />
+      <circle cx="51" cy="68" r="3.5" fill="currentColor" />
+      <circle cx="69" cy="68" r="3.5" fill="currentColor" />
+      {/* The two claws, each an arc left OPEN on its outward side. That gap is
+          the entire reason this reads as a claw and not as a bead.
+          LOW AND OUT, on a visible arm: level with the eyes and stubbed
+          straight onto the head they read as ears, which is exactly what the
+          first pass drew. A claw is a thing on the end of an arm. */}
+      <path d="M9 85a10 10 0 1 1 0 14" {...stroke} />
+      <path d="M26 90l11-5" {...stroke} />
+      <path d="M111 85a10 10 0 1 0 0 14" {...stroke} />
+      <path d="M94 90l-11-5" {...stroke} />
+      <path d="M53 106v8M60 106v9M67 106v8" {...stroke} />
+      {/* The cap leans right and its tip flops, which is the whole difference
+          between a Santa hat and a beanie once the colour is gone. */}
+      <path
+        d="M32 44C31 26 42 14 58 13c14-1 28 2 36 5-4 6-8 16-10 26Z"
+        fill="currentColor"
+      />
+      <circle cx="99" cy="18" r="7.5" {...stroke} />
+      <rect x="30" y="42" width="58" height="12" rx="6" {...stroke} />
     </svg>
   );
 }
