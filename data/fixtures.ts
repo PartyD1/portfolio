@@ -83,7 +83,7 @@ export const fixtureStudy = {
 };
 
 export const fixtureAvailability = {
-  gradTerm: "FIXTURE — June 2027",
-  location: "FIXTURE — Santa Cruz, CA · open to relocation",
-  target: "FIXTURE — Software engineering, applied AI",
+  focus: "FIXTURE — Software engineering, applied AI",
+  gradTerm: "FIXTURE — Graduating June 2027",
+  location: "FIXTURE — Santa Cruz, CA",
 };

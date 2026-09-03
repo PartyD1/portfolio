@@ -34,16 +34,24 @@ export const links = {
  * time pressure.
  */
 /*
- * WHAT he is looking for leads, not WHEN he graduates. A December 2028
- * graduation read first makes a recruiter assume he is years from hiring and
- * leave; the actual ask is a Summer 2027 internship, and winter/spring too.
+ * THREE facts, and only three: what he does, when he is free, where he is.
+ *
+ * The hero used to carry a fourth — "Seeking Summer 2027 internships, winter
+ * and spring too" — plus a subheadline and an "open to opportunities" badge.
+ * Four competing claims in one fold is no claim at all, so the ask moved to
+ * Contact, where someone who wants to act on it already is. What is left is
+ * the shortest set a recruiter needs to decide whether to keep reading.
  */
 export const availability = {
-  gradTerm: "Seeking Summer 2027 internships, winter and spring too" as
-    | string
-    | null,
+  focus: "Software, ML/AI and full-stack" as string | null,
+  gradTerm: "Graduating Dec 2028" as string | null,
   location: "Bay Area, California" as string | null,
-  target: "Software, ML/AI and full-stack · graduating Dec 2028" as
+  /**
+   * The ask itself, and it renders ONLY in Contact. It is the one line here
+   * that is a request rather than a fact, which is exactly why it does not
+   * belong in the fold beside the other three.
+   */
+  seeking: "Seeking Summer 2027 internships, winter and spring too." as
     | string
     | null,
 };

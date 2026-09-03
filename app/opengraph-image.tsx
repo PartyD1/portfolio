@@ -1,6 +1,15 @@
 import { ImageResponse } from "next/og";
 import { availability } from "@/data/site";
 
+/** Whichever of the three facts are supplied, in the hero's order. */
+const ogFacts = [
+  availability.focus,
+  availability.gradTerm,
+  availability.location,
+]
+  .filter(Boolean)
+  .join(" · ");
+
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt =
@@ -139,7 +148,10 @@ export default function OpengraphImage() {
             that do real work.
           </div>
 
-          {availability.gradTerm && (
+          {/* The same three facts the hero carries, in the same order and
+              joined the same way. The card keeps its sentence above because a
+              share preview is read cold, with no page around it. */}
+          {ogFacts && (
             <div
               style={{
                 display: "flex",
@@ -153,7 +165,7 @@ export default function OpengraphImage() {
                 color: "#3f3f68",
               }}
             >
-              {availability.gradTerm}
+              {ogFacts}
             </div>
           )}
         </div>
