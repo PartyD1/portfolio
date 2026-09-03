@@ -22,8 +22,18 @@ export default function ProjectCard({
   /** One card per row carries the world's gradient as an edge. */
   gradient?: boolean;
 }) {
-  const { slug, name, tagline, description, href, note, label, use, weight } =
-    project;
+  const {
+    slug,
+    name,
+    tagline,
+    description,
+    href,
+    demo,
+    note,
+    label,
+    use,
+    weight,
+  } = project;
   const flagship = weight === 1;
 
   const classes = [
@@ -46,6 +56,25 @@ export default function ProjectCard({
         {note && <p className="card__note">{note}</p>}
 
         <div className="card__foot">
+          {/*
+            A thing you can USE outranks a thing you can read, so the live link
+            leads the foot and is the only pill in it. It sits above the card
+            overlay on z-index, like the repo link.
+          */}
+          {demo && (
+            <a
+              className="live-link"
+              href={demo}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Try ${name} live (opens in a new tab)`}
+            >
+              <span className="live-link__dot" aria-hidden="true" />
+              Try it live
+              <ArrowUpRight />
+            </a>
+          )}
+
           {/*
             The whole card is the link, via a pseudo-element on the <Link>
             rather than an anchor wrapping the content. Wrapping would make the
@@ -72,7 +101,6 @@ export default function ProjectCard({
               <ArrowUpRight />
             </a>
           )}
-
         </div>
 
         {/*

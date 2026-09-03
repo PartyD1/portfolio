@@ -71,7 +71,12 @@ export type Project = {
   media: ProjectMedia[];
   /** Public repo. Absent on operations-agent, permanently. */
   href?: string;
-  /** BLOCKED — no project has a confirmed live URL. */
+  /**
+   * A live, publicly usable deployment. The strongest single affordance on
+   * the site — it lets a visitor USE the work instead of reading about it — so
+   * it renders on the homepage card AND at the top of the case study, not just
+   * in the footer. Only ScorelyAI has one so far.
+   */
   demo?: string;
   note?: string;
   /** BLOCKED — the prose. Absent sections do not render. */

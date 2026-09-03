@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft } from "@/components/Icon";
+import { ArrowLeft, ArrowUpRight } from "@/components/Icon";
 import MediaBand from "@/components/MediaBand";
 import { TechRow } from "@/components/TechMark";
 import { FIXTURES, fixtureMedia } from "@/data/fixtures";
@@ -26,6 +26,7 @@ export default function CaseStudyHeader({ project }: { project: Project }) {
     media,
     description,
     tech,
+    demo,
   } = project;
 
   // Order matters: what kind of system, then what he was, then when, then who
@@ -69,6 +70,22 @@ export default function CaseStudyHeader({ project }: { project: Project }) {
         off-site verification of the employment.
       */}
         {note && <p className="case__note">{note}</p>}
+
+        {/* Near the top, not only in the foot. Someone who can try the thing
+            should not have to read to the bottom of the page to find out. */}
+        {demo && (
+          <a
+            className="live-link case__live"
+            href={demo}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Try ${name} live (opens in a new tab)`}
+          >
+            <span className="live-link__dot" aria-hidden="true" />
+            Try {name} live
+            <ArrowUpRight />
+          </a>
+        )}
 
         {/* Absent, not skeletal, until the tool→project mapping is supplied. */}
         <TechRow slugs={tech} />
