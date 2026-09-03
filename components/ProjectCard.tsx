@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Project } from "@/data/projects";
 import { experience } from "@/data/experience";
 import Artifact from "@/components/Artifact";
+import GitHubMark from "@/components/GitHubMark";
 import { ArrowRight, ArrowUpRight } from "@/components/Icon";
 
 /**
@@ -107,17 +108,22 @@ export default function ProjectCard({
           </Link>
 
           {/* Operations Agent renders no repo affordance at all, not even a
-              disabled one. */}
+              disabled one.
+
+              The mark IS the label. It is the one link in the foot whose
+              destination is a logo people already read at a glance, so the
+              word "GitHub" beside it was restating the picture. The accessible
+              name moves to aria-label and the visible control becomes a round
+              icon button, above the card overlay like the live-link pill. */}
           {href && (
             <a
               className="card__repo"
               href={href}
               target="_blank"
               rel="noreferrer"
-              aria-label={`${name} on GitHub`}
+              aria-label={`${name} on GitHub (opens in a new tab)`}
             >
-              GitHub
-              <ArrowUpRight />
+              <GitHubMark gradientId={`gh-${slug}`} />
             </a>
           )}
         </div>
