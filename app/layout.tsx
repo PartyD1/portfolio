@@ -4,6 +4,7 @@ import "./globals.css";
 import Wash from "@/components/Wash";
 import Shell from "@/components/Shell";
 import ScrollRing from "@/components/ScrollRing";
+import ScrollScrub from "@/components/ScrollScrub";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 
@@ -41,6 +42,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
           <ScrollRing />
+          <ScrollScrub />
         </ThemeProvider>
       </body>
     </html>

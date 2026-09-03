@@ -38,7 +38,7 @@ export default function CaseStudyHeader({ project }: { project: Project }) {
       {/* Everything textual sits on one frosted panel — see .case__headline.
           The back link included: left outside it, it was the single worst
           contrast on the site, with 96.8% of its glyph run below 4.5:1. */}
-      <div className="case__headline">
+      <div className="case__headline" data-scrub="exit">
         {/* Leading arrow: this link stays on the site. */}
         <Link className="case__back" href="/#work">
           <ArrowLeft />

@@ -18,6 +18,13 @@ colors:
   glass: "rgb(255 255 255 / 0.52)"
   glass-strong: "rgb(255 255 255 / 0.72)"
   glass-edge: "rgb(255 255 255 / 0.68)"
+  # The pointer spotlight (ground, so it takes blob colour) and the specular
+  # highlight that follows the pointer across a hovered card (a gloss, never a
+  # colour). All four are defined in both themes.
+  spot-core: "rgb(255 255 255 / 0.55)"
+  spot-hue: "color-mix(in oklab, color-mix(in oklab, var(--blob-c-2) 50%, white) 36%, transparent)"
+  spot-hue-2: "color-mix(in oklab, color-mix(in oklab, var(--blob-a-2) 50%, white) 22%, transparent)"
+  card-glow: "rgb(255 255 255 / 0.55)"
   blob-gloss: "rgb(255 255 255 / 0.7)"
   blob-a-1: "#7fe0b4"
   blob-a-2: "#6fc4ee"
@@ -40,6 +47,10 @@ colors:
   glass-dark: "rgb(255 255 255 / 0.07)"
   glass-strong-dark: "rgb(255 255 255 / 0.11)"
   glass-edge-dark: "rgb(255 255 255 / 0.14)"
+  spot-core-dark: "rgb(255 255 255 / 0.1)"
+  spot-hue-dark: "color-mix(in oklab, var(--blob-a-2) 24%, transparent)"
+  spot-hue-2-dark: "color-mix(in oklab, var(--blob-c-1) 16%, transparent)"
+  card-glow-dark: "rgb(255 255 255 / 0.1)"
   blob-gloss-dark: "rgb(255 255 255 / 0.4)"
   blob-a-1-dark: "#4fd3a0"
   blob-a-2-dark: "#4bb4ec"
@@ -226,7 +237,7 @@ A cool lavender-grey world with slate-indigo ink, a mint→sky→lilac→apricot
 
 ### Primary
 
-- **Coral Signal** (`{colors.signal}`): The one accent. Reserved for the status dot, the scroll-ring fill, the email underline, the focus ring, the caret and the selection tint. It measures 2.65:1 on the light ground — correct as a mark, unusable as text.
+- **Coral Signal** (`{colors.signal}`): The one accent. Reserved for the status dot, the scroll-ring fill, the email underline, the underline that draws under an arrow link on hover, the focus ring, the caret and the selection tint. It measures 2.65:1 on the light ground — correct as a mark, unusable as text.
 - **Burnt Coral Ink** (`{colors.signal-ink}`): The text-only sibling of the accent (4.92:1 on the light ground). Carries the finale phrase "obsessed with AI." and the arrow-link hover colour. In dark it is aliased straight to `{colors.signal-dark}`, which already clears contrast on the deep ground.
 
 ### Secondary
@@ -253,11 +264,11 @@ Three of these stops are re-used as the Stack orbit's ring tones (`data/stack.ts
 
 **The Two Corals Rule.** `--signal` draws shapes; `--signal-ink` writes words. Never swap them. The light accent fails text contrast (2.65:1) and the dark ground makes a second value unnecessary, which is exactly why the split is a token and not a judgement call.
 
-**The One Accent Rule.** Coral appears in eight KINDS of place and no more: the finale phrase, the status dot, the email underline, the scroll-ring fill, the focus outline, the caret/selection tint, the arrow-link hover tint, and the hover edge tint.
+**The One Accent Rule.** Coral appears in eight KINDS of place and no more: the finale phrase, the status dot, the email underline, the scroll-ring fill, the focus outline, the caret/selection tint, the arrow-link hover (the text tint plus the 2px underline that draws in beneath it), and the hover edge tint.
 
 Two of those cover more than one element, and that is the rule working rather than being bent. **The status dot** is any dot saying something is live right now — the hero's status line and the live-project pill; only the hero's pulses, because two pulsing dots on one screen compete. **The hover edge tint** is any interactive surface tinting its edge on hover — the project card and the live-link pill.
 
-The rule counts **kinds, not instances** — that distinction is load-bearing. "The email underline" is one kind that appears on two surfaces (Contact and the foot of every case study) through a single CSS rule, and that is not a second accent. Likewise the arrow-link hover tint is one kind covering `.link-arrow`, `.menu__link`, `.exp__link` and `.case__back`.
+The rule counts **kinds, not instances** — that distinction is load-bearing. "The email underline" is one kind that appears on two surfaces (Contact and the foot of every case study) through a single CSS rule, and that is not a second accent. Likewise the arrow-link hover is one kind covering `.link-arrow`, `.menu__link`, `.exp__link` and `.case__back`: the text takes `--signal-ink` and, on the three that carry it, the drawn underline takes `--signal`. Same kind, two corals, per The Two Corals Rule.
 
 It was documented as six kinds for some time, which was simply a miscount: the arrow-link hover tint and the card hover edge both predate the count and were missed. Verified by an automated census that classifies every `--signal` / `--signal-ink` use in `app/globals.css` by the selector it sits on and fails on anything unclassified.
 
@@ -350,7 +361,7 @@ Breakpoints in use: **640px** (shell and scroll-ring insets), **720px** (hero ty
 
 ## Elevation & Depth
 
-There are no shadows in this system. Not "few" — none. Depth comes from three stacked materials: the fixed blob wash at `z-index: -1`, the grain tile over it, and frosted glass surfaces above with `backdrop-filter: blur(22px) saturate(1.35)` (28px / 1.3 on the menu sheet, 12px on the scroll ring). Elevation is declared exactly once per surface, as a 1px `--glass-edge` border. Hover adds a 3px lift and swaps `--glass` for `--glass-strong`; it never adds a shadow.
+There are no shadows in this system. Not "few" — none. Depth comes from three stacked materials: the fixed blob wash at `z-index: -1`, the grain tile over it, and frosted glass surfaces above with `backdrop-filter: blur(22px) saturate(1.35)` (28px / 1.3 on the menu sheet, 12px on the scroll ring). Elevation is declared exactly once per surface, as a 1px `--glass-edge` border. Hover adds a 6px lift, a tilt toward the pointer and a specular highlight on the glass, and swaps `--glass` for `--glass-strong`; it never adds a shadow.
 
 The grain is a real raster: `public/textures/grain.png`, 128×128, 8-bit grayscale, tiled at `background-size: 128px 128px`, `mix-blend-mode: multiply` at 0.055 opacity in light and `screen` at 0.05 in dark. It is generated by `scripts/make-grain.mjs` (`node scripts/make-grain.mjs public/textures/grain.png`) from a seeded mulberry32 PRNG (seed `20260901`), averaging three samples per pixel so it reads as film grain rather than salt-and-pepper. Same seed, same bytes — the asset is reproducible and carries its provenance in the generator.
 
@@ -407,19 +418,22 @@ Icon data is CC0-1.0; the marks remain the trademarks of their owners, used to i
 
 ### Cards (project cards)
 
-Frosted panes floating over the wash. Character: quiet, wide, and lit only at their edge.
+Frosted panes floating over the wash. Character: quiet, wide, and lit only at their edge until a pointer arrives; then a glass tile that tilts toward the hand and catches the light.
 
 - **Corner Style:** 22px (`{rounded.card}`)
 - **Background:** `{colors.glass}` at rest, `{colors.glass-strong}` on hover
-- **Border:** 1px `{colors.glass-edge}`; on hover it mixes 40% signal into the edge
+- **Border:** 1px `{colors.glass-edge}`; on hover it mixes 55% signal into the edge
 - **Shadow Strategy:** none — see Elevation & Depth
 - **Internal Padding:** 30px (24px under 760px); the flagship runs 40px (26px under 760px)
 - **Layout:** `minmax(0, 1fr) minmax(0, 38%)`. `.card__body` is a flex column in column 1; the media frame sits in column 2. The flagship is `minmax(0, 1.15fr) minmax(0, 1fr)`, `min-height: 400px`, media in a 4/3 box; under 760px it stacks and the media centres at `max-width: 320px`.
 - **One structure, always.** Weight changes classes, span, type scale and media aspect. It **never changes which fields render** — a card with two hand-written branches meant a data edit could silently produce nothing on five of seven cards.
 - **Media frame** (`.card__media`): the same 1px `--glass-edge`, 22px radius and opaque `--media-well` ground as the case-study well. The authored `Artifact` mark renders inside it as a **designed empty state**, not a grey rectangle standing in for content; a screenshot later replaces the mark inside an identical frame, so neither layout nor choreography changes.
-- **Hover:** `translateY(-3px)` plus the background/border swap, all at 200ms `--ease-out`; the mark inside drifts `translate(-3px, -3px)`. Every hover rule sits behind `@media (hover: hover) and (pointer: fine)`.
-- **Press:** `.card:active { transform: scale(0.98) }`, deliberately **outside** the hover guard — a touch device gets no hover state, so without it the largest tap target on the page acknowledges nothing. 0.98 is the documented value for a large surface, matching menu links; small controls use 0.97.
+- **Hover:** the card lifts 6px (`--lift: -6px`), swaps to `{colors.glass-strong}`, tints its edge to 55% coral, and tilts toward the pointer. `components/TiltCard.tsx` writes `--rx`/`--ry` from the pointer's position over the card, peaking at 4deg at an edge, with the top or right edge tipping *away* so the card leans toward the hand. The tilt is nothing but the 320ms `--ease-out` transition on the card's one composed transform, retargeted on every pointer move, so it trails the pointer instead of snapping to it: no rAF, no spring, nothing on the main thread between events. The mark inside comes forward `translate(-6px, -6px) scale(1.05)` and rises from 0.72 to full ink over the same 320ms (6px matches the lift; nothing here is a new value), and the case-study arrow nudges 4px from a hover anywhere on the card. Every hover rule sits behind `@media (hover: hover) and (pointer: fine)`; the tilt checks the same query in JS and is additionally mouse-only (`pointerType === "mouse"`), because a card that tilts under the finger trying to press it is worse than a card that does not tilt.
+- **Specular highlight** (`.card::after`): a 380px circle of `--card-glow` (white at 0.55 in light, 0.1 in dark) fading to transparent at 62%, centred on `--mx`/`--my`, which TiltCard writes as percentages of the card. It sits at `z-index: -1` inside the card's own stacking context (the `backdrop-filter` makes it one), so it is above the frosted fill and below every child, including the full-card link overlay. Only its opacity transitions: 320ms in, 200ms out. On leave `--mx`/`--my` are left where they were, so the light fades out in place rather than jumping to centre. It is a light, not a movement: under reduced motion the tilt is dropped and the highlight stays. A gloss on the glass, never a colour.
+- **Press:** `.card:active { --press: 0.98 }` with the transform transition shortened to 160ms, deliberately **outside** the hover guard: a touch device gets no hover state, so without it the largest tap target on the page acknowledges nothing. 0.98 is the documented value for a large surface, matching menu links; small controls use 0.97.
 - **Gradient edge:** one card per row carries a 2px `linear-gradient(120deg, --blob-c-1, --blob-b-1, --blob-a-2)` painted into `.card::before` and masked with `mask-composite: exclude` so only the border shows. See The Gradient Hand-Off Rule.
+
+**The One Composed Transform Rule.** `.card` declares its transform exactly once: `perspective(1100px) translateY(var(--lift)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--press))`, with `--lift: 0px` and `--press: 1` at rest. Hover sets `--lift`, TiltCard writes `--rx`/`--ry`, `:active` sets `--press`, and the scroll-driven unveil uses `scale:` and `clip-path`, so lift, tilt, press and scrub compose instead of replacing one another in the cascade. A second `transform` declaration on `.card`, in any state, silently wins over all of them. The orbit labels follow the same pattern with `--s` (1 at rest, 1.1 on hover) appended to their placement chain.
 
 **The Card-As-Link Rule.** The whole card opens its case study, via a pseudo-element overlay on the `<Link>` (`.card__hit::after { inset: 0 }`) rather than an anchor wrapping the content — wrapping would nest the repo anchor inside another anchor, which is invalid. The nested repo link sits at `z-index: 1` above the overlay and stays independently clickable.
 
@@ -439,11 +453,13 @@ shadcn `Badge`, themed by the project's tokens. `outline` carries the factual ca
 
 ### Links
 
-- **Arrow link** (`.link-arrow`): the page's primary action shape — an authored arrow, then a lowercase sentence-case label at 17px/500. Hover moves the arrow 4px and turns the text `{colors.signal-ink}`; `:active` scales to 0.97.
+- **Arrow link** (`.link-arrow`): the page's primary action shape — an authored arrow, then a lowercase sentence-case label at 17px/500. Hover moves the arrow 6px, turns the text `{colors.signal-ink}` and draws a 2px `{colors.signal}` rule under the label (see The Drawn Underline Rule); `:active` scales to 0.97.
 
 **The Arrow Grammar Rule**, in three cases. A **leading** arrow means the link **stays on the site** — `→ see my work`, `→ case study`, `← back to the work` (which points back, and whose hover moves it left rather than right). A **trailing `ArrowUpRight`** means the link **leaves** — `GitHub ↗`. A **trailing `ArrowDown`** means it downloads — `Résumé ↓`. That distinction is what makes `case study` and `GitHub ↗` read as different promises rather than as two links of equal weight.
 
-- **Pending state** (`.link-arrow.is-pending`): a designed state, not a stopgap. Text drops to `--ink-2`, cursor stays `default`, hover is explicitly suppressed, and a `.pending-note` pill spells out "coming soon". It is inert to pointer, keyboard and screen reader alike (`aria-disabled`). Gated by `resume.ready` in `data/site.ts`.
+**The Drawn Underline Rule.** Every arrow link (`.link-arrow`, `.exp__link`, `.case__back`) carries a `::after` rule, 2px tall, `--signal`, inset 4px from each end and 2px above the bottom, held at `scaleX(0)`. On hover it draws in from the left (`transform-origin: left`, 260ms) and on leave it exits to the right (`transform-origin: right`, 160ms): the origin flips with the state, so the line sweeps through rather than retreating the way it came. `transform` only, so it costs nothing, and the exit is faster than the entrance. It is `--signal` and not `--signal-ink` because it is a mark, not text (The Two Corals Rule). The arrow travels with it: 6px right on `.link-arrow` and `.exp__link`, 6px left on `.case__back`. The menu links, the footer links and `.card__hit` do not draw the rule; the menu link steps 8px toward the pointer instead, since it is seen only when the sheet is open and can afford to move.
+
+- **Pending state** (`.link-arrow.is-pending`): a designed state, not a stopgap. Text drops to `--ink-2`, cursor stays `default`, hover is explicitly suppressed, the underline is never drawn (`.is-pending::after { content: none }`, because pending is not a control), and a `.pending-note` pill spells out "coming soon". It is inert to pointer, keyboard and screen reader alike (`aria-disabled`). Gated by `resume.ready` in `data/site.ts`.
 - **Contact email**: display face, `clamp(1rem, 2.6vw, 1.75rem)` at 600, underlined with a 3px coral rule at 10px offset. Hover swaps the underline to ink — the text colour never moves.
 - **Card link** (`.card__hit`): 15px/600 in a pill hit area created with negative margins (`padding: 8px 14px; margin: -8px -14px`), so the tap target is generous without changing layout. It also owns the full-card overlay — see The Card-As-Link Rule.
 
@@ -530,36 +546,46 @@ The reference's circled dot made functional. A 44px glass pill fixed bottom-righ
 
 The motion system is bound to the `emil-design-eng` framework and is not negotiable per-component.
 
-- **Easings:** `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)` for almost everything; `--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1)`; `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)` for the sheet. The built-in keywords are too weak, and `ease-in` is banned.
-- **Durations:** 160ms press, 200ms colour/background/hover, 250ms scroll-ring fade, 52ms/char typing, 26ms/char erasing, 420ms menu link rise, 450ms reveal, 600ms hero rise.
-- **Transitions, not keyframes,** for anything interruptible — a transition retargets from wherever it is; a keyframe restarts from zero. Keyframes are reserved for the ambient loops (blob drift, dot pulse, caret blink) and one-shot entrances.
-- **Press feedback:** every pressable element carries `:active { transform: scale(0.97) }` (0.98 on the large menu links).
-- **Hover behind capability:** every hover rule sits inside `@media (hover: hover) and (pointer: fine)`.
-- **Exits are faster than entrances.** The typewriter backspaces at 26ms/char against 52ms/char typing.
+- **Easings:** `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)` for almost everything; `--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1)`; `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)` for the sheet. The built-in keywords are too weak, and `ease-in` is banned. Scroll scrubs are `linear`, because the finger is the clock. There is exactly one spring, in JS, for the one thing a curve cannot do: the pointer spotlight, at `K = 160`, `D = 22` (omega ≈ 12.6 rad/s, zeta ≈ 0.87, just under critical), which trails the pointer and settles in roughly a third of a second with no visible overshoot.
+- **Durations:** 160ms press, 200ms colour/background/hover, 250ms scroll-ring fade, 52ms/char typing, 26ms/char erasing, 260ms underline in / 160ms out, 320ms card transform and card mark, 320ms card highlight in / 200ms out, 420ms menu link rise, 450ms reveal, 480ms spotlight in / 240ms out, 600ms hero rise.
+- **Transitions, not keyframes,** for anything interruptible — a transition retargets from wherever it is; a keyframe restarts from zero. The card tilt is the clearest case: every pointer move retargets the 320ms transition, which is what makes it trail the pointer and interrupt cleanly. Keyframes are reserved for the ambient loops (blob drift, dot pulse, caret blink), one-shot entrances, and the scroll scrubs (`recede`, `card-unveil`, `media-drift`, `beat`), where the timeline is the scroll position and there is nothing to interrupt.
+- **Press feedback:** every pressable element carries `:active { transform: scale(0.97) }` (0.98 on the large menu links and, through `--press`, on the card).
+- **Hover behind capability:** every hover rule sits inside `@media (hover: hover) and (pointer: fine)`. The two pointer-driven pieces (`Spotlight.tsx`, `TiltCard.tsx`) check the same query in JS and additionally require `pointerType === "mouse"`, so a touch or pen never tilts a card or summons the light.
+- **Exits are faster than entrances.** The typewriter backspaces at 26ms/char against 52ms/char typing; the underline leaves in 160ms after arriving in 260ms; the spotlight fades out in 240ms after fading in over 480ms; the card highlight leaves in 200ms after 320ms in.
 - **Staggers stay 30–80ms** per step (hero 60/120/180/240/300ms across name → descriptor → subline → availability → actions → status, cards 50ms, menu links 40ms). Longer reads as the page being slow.
-- **Reduced motion:** `scroll-behavior: smooth` is gated behind `prefers-reduced-motion: no-preference`; blob drift, the roll's translate/blur, the dot pulse, the toggle's icon rotation, the hero rise and the Reveal all disappear. Typing survives — it is not spatial motion — and only slows. Keyboard-initiated jumps are always instant regardless of preference.
-- **Off-screen and hidden work is paused:** the roll checks `document.hidden`, an IntersectionObserver and pointer hover before advancing; the scroll ring reads progress inside a single rAF on a passive listener.
+- **Reduced motion:** `scroll-behavior: smooth` is gated behind `prefers-reduced-motion: no-preference`; blob drift, the roll's translate/blur, the dot pulse, the toggle's icon rotation, the hero rise and the Reveal all disappear. So do the scroll scrubs (`recede`, `card-unveil`, `media-drift`, the pin), whose finished state is the default, and `ScrollScrub.tsx` returns before it attaches a listener. The spotlight never mounts: it is movement with no job other than looking good, which is exactly what the preference asks to remove. The card tilt is dropped while the pointer-following highlight stays (TiltCard's `glow` mode), because a light is not a movement. Typing survives — it is not spatial motion — and only slows. Keyboard-initiated jumps are always instant regardless of preference.
+- **Off-screen and hidden work is paused:** the roll checks `document.hidden`, an IntersectionObserver and pointer hover before advancing; the scroll ring and `ScrollScrub.tsx` read position inside a single rAF on a passive listener; the spotlight's loop runs only while its spring is moving (rest is 0.15px and 2px/s), clamps `dt` to 32ms so a waking tab does not fling the light across the screen, and hides on window blur, on a hidden tab, and when the pointer leaves the window.
 - **Theme switching:** `disableTransitionOnChange` on the provider, so flipping themes doesn't animate every transitioned property at once.
 - **Ambient drift:** four blobs on 34s / 41s / 37s / 45s `ease-in-out infinite alternate` loops, each translating 5–7vmax and rotating 7–11°. Disabled outright under 720px — four animated blobs is not a mobile budget — and under reduced motion.
-- **The ambient budget** is three *families* at rest, not three animations: the blob drift (four keyframe animations, one motion), the roll's caret blink, and the status dot's pulse. Anything still moving after the finger lifts that is not one of those three is a defect. Counting raw animation objects fails on a correct page, which is why the gate counts families.
+- **The ambient budget** is three *families* at rest, not three animations: the blob drift (four keyframe animations, one motion), the roll's caret blink, and the status dot's pulse. Anything still moving after the finger lifts that is not one of those three is a defect. Counting raw animation objects fails on a correct page, which is why the gate counts families. Scroll-linked and pointer-linked motion are exempt for the same reason: the user is the clock. The spotlight's loop stops at pointer rest and the tilt is a transition that ends where the pointer stopped, so at rest neither is a running animation (The User-Is-The-Clock Rule).
+
+**The User-Is-The-Clock Rule.** Motion whose timeline is the user's own hand, a scroll position or a pointer position, does not count against the ambient budget, because when the hand stops the page is still. Two conditions make the exemption honest and both are in the code: the loop must actually stop (the spotlight tests for rest every frame and cancels its rAF; the tilt has no loop at all), and the resting frame must be a complete page (the scrubs default to their finished state; the card defaults to flat).
+
+#### Pointer motion
+
+Two pieces, both `"use client"`, both writing values that CSS then renders:
+
+- **The spotlight** (`.wash__spot`, `components/Spotlight.tsx`): a 780px disc, margined `-390px` so its centre is the pointer, painted as a five-stop radial gradient: `--spot-core` at 0%, `--spot-hue` at 26%, `--spot-hue-2` at 48%, 35% of `--spot-hue-2` at 72%, transparent at 100%. Three evenly spaced stops read as rings and the eye finds the outer edge; the long near-clear tail is what makes it a glow. In light the core is white at 0.55 and the hues are `--blob-c-2` and `--blob-a-2` pulled 50% toward white before being made translucent (36% and 22%), so the light *lightens* the ground under text rather than saturating it; in dark the core drops to 0.1 and the hues are `--blob-a-2` at 24% and `--blob-c-1` at 16%, held under the 0.62 blobs so it reads as a glow and not a torch. It lives inside the fixed wash, so it is `aria-hidden`, `pointer-events: none`, and paints under everything. It is ground, not surface, and takes blob colour, so The Ground-Only Iridescence Rule holds. Position is a `translate3d` written directly on the one element, never a custom property on an ancestor, because a variable recalculates every descendant's style. It appears where the pointer first is rather than flying in from the corner, fades in over 480ms via `[data-on]` and out over 240ms.
+- **The tilt** (`components/TiltCard.tsx`): the card's `<article>`, wired to four custom properties. `--mx`/`--my` place the specular highlight; `--rx`/`--ry` tilt the card, up to 4deg. Only the variables are written here; the motion itself is the card's transition. Its mode is resolved once, on first use: `off` without a fine pointer, `glow` under reduced motion, `tilt` otherwise.
 
 #### Scroll motion
 
 **Position-linked motion is exempt from the ambient budget: the user is the clock, and at scroll rest the page is still.** It is governed by its own ruleset:
 
-- **One authored scroll moment per route.** The case-study media well drifts inside its frame (`media-drift`, ±3% on a layer that is 106% tall, so no edge is ever exposed); when a project has ≥2 media the drift is **replaced** by a pinned cross-fade sequence, never stacked under it.
-- **Zero pins on the homepage, ever.** Hero → cards → email is the conversion path and nothing choreographed may lengthen it.
+- **A handoff at the top of every route, then at most one authored media moment.** The handoff is the `recede` keyframe: as the first block scrolls away it falls back, lagging the scroll (`translate: 0 22%`), shrinking toward its own centre (`scale: 0.9`, `transform-origin: 50% 45%`), fading to `opacity: 0` and, above 760px only, softening to `blur(10px)` through `--recede-blur` (0px below 761px, so a phone gets everything but the one expensive property). On the homepage it runs on `.hero` over `exit 0%` to `exit 85%`, and the flagship card completes the same moment by unveiling in the same scroll span (`card-unveil`, next bullet), so the eye is handed from one to the other rather than watching the first leave and then the second arrive. On a case study it runs on `.case__headline` over `exit 0%` to `exit 100%`, the panel falling back as the media well comes up under it; that is the entrance-to-media handoff, not a new choreography. The media moment is the case-study well drifting inside its frame (`media-drift`, ±3% on a layer that is 106% tall, so no edge is ever exposed); when a project has ≥2 media the drift is **replaced** by a pinned cross-fade sequence, never stacked under it. The homepage has no media moment.
+- **The flagship unveil** (`card-unveil`, on `.work__item--flagship .card` over `entry 0%` to `entry 100%`): a `clip-path: inset(0 0 100% 0 round var(--radius-card))` opens to `inset(0 0 0 0 round var(--radius-card))`, lagging so that halfway into the viewport only a fifth of the card is drawn (`inset(0 0 80% 0)` at 50%) and the clip edge closes the gap over the second half, so the card is seen being drawn rather than merely arriving; `scale:` settles 0.96 → 1 and opacity rises 0.5 → 0.85 → 1. Inside the guard the flagship's `Reveal` wrapper is neutralised (`opacity: 1; transform: none; transition: none`), because two entrances on one element is one too many; outside it the Reveal rise remains the entrance, so nothing is ever hidden without something to show it. The card's own `transform` (lift, tilt, press) is untouched and composes.
+- **Zero pins on the homepage, ever.** Hero → cards → email is the conversion path and nothing choreographed may lengthen it. The recede is not a pin: it runs on the section's own `exit` range and the route gains no length.
 - **The pin is spent on media only** — never on Problem & context, What I built & how, or Outcome & impact, which are read, not watched. Caps at 3 beats; further media fall to a static strip.
-- **`translate:` and `scale:`, never `transform:`.** A scroll animation on `transform` is last in the cascade and silently replaces the hover transform on any element that has one. Interaction keeps `transform:`; scroll gets `translate:`/`scale:`, so they compose instead of fighting. Grep gate: no `transform:` inside any keyframe referenced by an `animation-timeline`.
-- **`linear` scrub, always.** An eased scrub is how cinematic scroll starts feeling laggy — the element stops tracking the finger.
-- **`@supports (animation-timeline: view())` gated, with the finished state as the default.** The pin is purely additive inside the guard, so there is no reduced-motion undo block to keep in sync — without the guard the stage is a plain stacked grid at full opacity and normal length.
-- **Collapsed under reduced motion and below 761px.** Mobile gets less by rule, not by accident.
-- **Numeric ceilings, so "cinematic" is testable rather than a vibe:** ≤150svh of sticky travel (100svh sticky child + 50svh per beat → 200svh at 2 beats, 250svh at 3), 40–80svh of travel per beat, ≤+25% route length, ≤8% drift on any layer.
+- **`translate:` and `scale:`, never `transform:`.** A scroll animation on `transform` is last in the cascade and silently replaces the hover transform on any element that has one. Interaction keeps `transform:`; scroll gets `translate:`/`scale:`, so they compose instead of fighting. `recede` animates `translate:`, `scale:`, `opacity` and `filter`; `card-unveil` animates `clip-path`, `scale:` and `opacity`; neither touches the hero children's entrance transforms or the card's composed one. Grep gate: no `transform:` inside any keyframe referenced by an `animation-timeline`.
+- **`linear` scrub, always.** An eased scrub is how cinematic scroll starts feeling laggy — the element stops tracking the finger. The WAAPI fallback is built with `easing: "linear"` for the same reason.
+- **`@supports (animation-timeline: view())` gated, with the finished state as the default.** The pin is purely additive inside the guard, so there is no reduced-motion undo block to keep in sync — without the guard the stage is a plain stacked grid at full opacity and normal length. The recede and the unveil follow the same shape: the start state exists only inside the guard, the range is on the element itself (`exit` for the recede, `entry` for the unveil), so the frame is a pure function of where the element is, and a refresh that lands mid-page, or a deep link to `/#work`, renders the right frame with no flash and no JS.
+- **Media motion collapses under reduced motion and below 761px; the handoff collapses under reduced motion only.** Below 761px the recede runs without its blur and the unveil runs unchanged, since a clip and a 4% settle are within a phone's budget where a moving media layer is not. Mobile gets less by rule, not by accident.
+- **Numeric ceilings, so "cinematic" is testable rather than a vibe:** ≤150svh of sticky travel (100svh sticky child + 50svh per beat → 200svh at 2 beats, 250svh at 3), 40–80svh of travel per beat, ≤+25% route length, ≤8% drift on any layer. The recede adds zero route length and the unveil is a clip on one card, so neither moves any of these numbers. The drift ceiling measures a layer travelling inside a frame, where an edge can be exposed; the recede is a whole block leaving the viewport and arriving at zero opacity, which is a different thing from a layer in a frame.
 - **`svh`, never `vh` or `dvh`.** `vh` jumps when the mobile URL bar hides; `dvh` resizes continuously *during* the scroll, which is jitter.
 - **No focusable element inside a pinned stage.** That is what licenses a beat's opacity reaching 0 — frames carry captions, never links.
-- **No `backdrop-filter` on anything that moves.** See The Opaque-Media Rule.
+- **No `backdrop-filter` on anything that travels.** See The Opaque-Media Rule. The recede runs on the bare hero and on the opaque `--media-well` headline panel, neither of which carries one. The unveil's `scale:` 0.96 → 1 is the one scroll-driven change on a frosted surface; it is a 4% settle inside a clip, and the edge the eye follows is the clip, not a travelling pane.
 - **Sticky preconditions are asserted, not assumed.** `position: sticky` dies silently under an `overflow` / `transform` / `filter` / `backdrop-filter` / `contain` ancestor, so the gate walks the full ancestor chain and samples the stage's offset across the pin's span.
-- **No motion library and no polyfill.** CSS scroll-driven animations only; `package.json` is grepped for gsap / lenis / framer-motion / scroll-timeline-polyfill.
+- **No motion library, no polyfill, and one hand-written fallback.** CSS scroll-driven animations first; `package.json` is grepped for gsap / lenis / framer-motion / scroll-timeline-polyfill. `components/ScrollScrub.tsx` is neither a polyfill nor a library: it knows exactly one range (`exit`) and one set of keyframes, a hand-written mirror of `@keyframes recede` that reads `--recede-blur` from the element so the 761px rule holds there too, and it exists so the hero handoff is the same motion everywhere rather than a feature some visitors get. It builds a paused WAAPI animation per `[data-scrub]` element (`.hero` with `data-scrub-end="0.85"`, `.case__headline` defaulting to 1), sets `currentTime` from the element's position inside a single rAF on a passive scroll listener, and lets WAAPI keep the interpolation on the compositor. It returns early where `CSS.supports("animation-timeline: view()")` is true, under reduced motion, and where `Element.prototype.animate` is missing, and re-runs on route change because the layout outlives the page. The two keyframe sets are changed together or not at all; the media well's drift and the pin have no fallback and none is owed.
 
 ### shadcn/ui
 
@@ -576,6 +602,8 @@ shadcn is installed with **this world as its theme, not the reverse**. `app/glob
 - **Do** wrap below-the-fold content in `<Reveal>` and stagger siblings at 50ms.
 - **Do** author new icons as SVG in `currentColor` at the established stroke weights (2.25 for UI arrows, 2.5 for project marks), round caps and joins.
 - **Do** put every hover rule behind `@media (hover: hover) and (pointer: fine)` and give every pressable a `:active { scale(0.97) }` — 0.98 on large surfaces, and **outside** the hover guard, since touch devices have no hover state.
+- **Do** drive any new state on `.card` through `--lift`, `--rx`/`--ry` or `--press`, and any new state on an orbit label through `--s`, rather than a second `transform` declaration (The One Composed Transform Rule).
+- **Do** make pointer-driven and scroll-driven motion stop when the user does: a loop tests for rest and cancels its frame, a scrub defaults to its finished state, and the resting page is complete (The User-Is-The-Clock Rule).
 - **Do** ship blocked content by ABSENCE. An unwritten case-study section does not render, `tech: []` renders no row, `media: []` renders the authored mark. Never a placeholder, a skeleton or "coming soon" on a case study.
 - **Do** put text that sits outside the calm band on a surface rather than trying to move it (The Surface-Not-Spacing Rule).
 - **Do** regenerate the grain with `node scripts/make-grain.mjs public/textures/grain.png` rather than hand-editing the PNG; the seed is the provenance.
@@ -591,7 +619,9 @@ shadcn is installed with **this world as its theme, not the reverse**. `app/glob
 - **Don't** animate anything interruptible with a keyframe. Use a transition so it can retarget mid-flight.
 - **Don't** let a stagger exceed 80ms per step, or an exit run longer than its entrance.
 - **Don't** animate a keyboard-initiated scroll, and don't put `scroll-behavior: smooth` outside the reduced-motion guard.
-- **Don't** rotate the Stack orbit or add a fourth continuous ambient motion; three families (the blob drift, the caret blink, the status pulse) is the budget.
+- **Don't** rotate the Stack orbit or add a fourth continuous ambient motion; three families (the blob drift, the caret blink, the status pulse) is the budget. Scroll-linked and pointer-linked motion are exempt only because they stop at rest; a spotlight or tilt that kept moving after the pointer stopped would be a fourth family.
+- **Don't** give `ScrollScrub.tsx` a second range or a second keyframe set. It mirrors `@keyframes recede` and nothing else; a change to either is a change to both, and anything wider is the polyfill this system refuses.
+- **Don't** tilt a card or show the spotlight for a touch or pen pointer, or under reduced motion (the highlight may stay; the tilt and the light may not).
 - **Don't** collapse the orbit into a stacked list on mobile — it scrolls instead.
 - **Don't** ship a dead link. An unavailable action takes the designed pending state (`.is-pending` plus a `.pending-note` pill), inert to pointer, keyboard and screen reader.
 - **Don't** introduce a fifth radius, a second accent, or a new display face.

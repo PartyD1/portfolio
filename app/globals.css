@@ -55,6 +55,28 @@
   --grain-opacity: 0.055;
   --grain-blend: multiply;
 
+  /* The pointer spotlight: a lit patch of ground that trails the cursor. Ground,
+   * not surface, so it takes blob colour (The Blob-Colours-Are-Ground Rule). A
+   * white core over a hue, so it LIGHTENS the ground under text on the pale
+   * theme rather than saturating it. */
+  --spot-core: rgb(255 255 255 / 0.55);
+  /* The hues are pulled toward white before they are made translucent, so the
+   * light stays a light: pale, not a saturated ring. Body ink over the lit
+   * ground still clears 4.5:1. */
+  --spot-hue: color-mix(
+    in oklab,
+    color-mix(in oklab, var(--blob-c-2) 50%, white) 36%,
+    transparent
+  );
+  --spot-hue-2: color-mix(
+    in oklab,
+    color-mix(in oklab, var(--blob-a-2) 50%, white) 22%,
+    transparent
+  );
+  /* The specular highlight that follows the pointer across a hovered card. A
+   * gloss on the glass, never a colour. */
+  --card-glow: rgb(255 255 255 / 0.55);
+
   --radius-card: 22px;
 
   /* The media well's ground. Defined ONCE, against an already-themed value, so
@@ -161,6 +183,12 @@
   --grain-opacity: 0.05;
   --grain-blend: screen;
 
+  /* On the deep ground the blobs are already held to 0.62; the spotlight has to
+   * sit under them in brightness or it reads as a torch, not a glow. */
+  --spot-core: rgb(255 255 255 / 0.1);
+  --spot-hue: color-mix(in oklab, var(--blob-a-2) 24%, transparent);
+  --spot-hue-2: color-mix(in oklab, var(--blob-c-1) 16%, transparent);
+  --card-glow: rgb(255 255 255 / 0.1);
 
   --background: var(--ground);
   --foreground: var(--ink);
@@ -364,6 +392,50 @@ svg {
     width: 76vw;
     height: 76vw;
   }
+}
+
+/*
+ * The pointer spotlight. Above the blobs and UNDER the grain, so it is part of
+ * the ground and the film sits over it like everything else.
+ *
+ * It is positioned by JS writing `transform` directly on this one element
+ * (Spotlight.tsx) — never a CSS variable, which would recalc every descendant
+ * of wherever it was set. A radial gradient does the softness; there is no
+ * filter, so the layer rasterises once and only moves. It is a spring, so it
+ * trails the cursor and settles; the loop stops when it settles, which is what
+ * keeps it out of the ambient budget — at pointer rest the page is still.
+ *
+ * Pointer-linked motion is exempt from the ambient budget the same way
+ * scroll-linked motion is: the user is the clock.
+ */
+.wash__spot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 780px;
+  height: 780px;
+  margin: -390px 0 0 -390px;
+  border-radius: 50%;
+  /* Five stops, the last two nearly clear: a gradient with three evenly spaced
+   * stops reads as rings (a target), and the eye finds the outer edge. The
+   * long, near-transparent tail is what makes it a glow. */
+  background: radial-gradient(
+    closest-side,
+    var(--spot-core) 0%,
+    var(--spot-hue) 26%,
+    var(--spot-hue-2) 48%,
+    color-mix(in oklab, var(--spot-hue-2) 35%, transparent) 72%,
+    transparent 100%
+  );
+  opacity: 0;
+  /* Exit faster than entry. */
+  transition: opacity 240ms var(--ease-out);
+  will-change: transform;
+}
+
+.wash__spot[data-on] {
+  opacity: 1;
+  transition-duration: 480ms;
 }
 
 .grain {
@@ -590,13 +662,17 @@ svg {
   letter-spacing: 0.01em;
   text-decoration: none;
   color: var(--ink);
+  /* Shift (hover) and press compose; see .card. */
+  --shift: 0px;
+  --press: 1;
+  transform: translateX(var(--shift)) scale(var(--press));
   transition:
     color 200ms var(--ease-out),
     transform 160ms var(--ease-out);
 }
 
 .menu__link:active {
-  transform: scale(0.98);
+  --press: 0.98;
 }
 
 .menu__key {
@@ -850,13 +926,59 @@ svg {
   transform: scale(0.97);
 }
 
+/*
+ * The drawn underline, shared by every arrow link (.link-arrow, .exp__link,
+ * .case__back). A 2px coral rule that draws in from the left on hover and
+ * leaves to the RIGHT — the origin flips with the state, so the line sweeps
+ * through rather than retreating the way it came. transform-only, so it costs
+ * nothing, and the exit (160ms) is faster than the entrance (260ms).
+ * --signal, not --signal-ink: this is a mark, not text (The Two Corals Rule).
+ */
+.link-arrow,
+.exp__link,
+.case__back {
+  position: relative;
+}
+
+.link-arrow::after,
+.exp__link::after,
+.case__back::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 2px;
+  height: 2px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 160ms var(--ease-out);
+}
+
+/* Pending is not a control: it never draws a line. */
+.link-arrow.is-pending::after {
+  content: none;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .link-arrow:hover,
   .menu__link:hover {
     color: var(--signal-ink);
   }
   .link-arrow:hover .icon {
-    transform: translateX(4px);
+    transform: translateX(6px);
+  }
+  .link-arrow:hover::after,
+  .exp__link:hover::after,
+  .case__back:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+    transition-duration: 260ms;
+  }
+  /* The menu link steps toward the pointer. Seen only when the sheet is open,
+   * so it can afford to move. */
+  .menu__link:hover {
+    --shift: 8px;
   }
   /* Pending is not a control: no hover response, no pointer. */
   .link-arrow.is-pending:hover {
@@ -955,6 +1077,58 @@ svg {
   from {
     opacity: 0;
     transform: translateY(24px);
+  }
+}
+
+/*
+ * The handoff: the hero recedes as the work rises.
+ *
+ * The homepage's ONE authored scroll moment, and it is not a pin — the route
+ * gains no length. As the first viewport scrolls away the whole hero falls
+ * back: it lags the scroll (translate), shrinks toward its own centre (scale),
+ * fades, and above 760px softens (blur). The flagship card below unveils in the
+ * same scroll span (see card-unveil), so the eye is handed from one to the
+ * other rather than watching the first leave and then the second arrive.
+ *
+ * Every rule from the case-study media well applies: `translate:`/`scale:`
+ * never `transform:` (the hero's children own their `transform` entrances);
+ * `linear`, because the finger is the clock; `exit` range on the section
+ * itself, so the state is a pure function of scroll position — a refresh that
+ * lands mid-page renders the right frame with no flash and no JS. The blur is a
+ * `var()` so a phone gets everything but the one expensive property.
+ *
+ * Finished state is the default. ScrollScrub.tsx drives the same keyframes by
+ * hand only where `animation-timeline` is missing; change both together.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero {
+      animation: recede linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 85%;
+    }
+  }
+}
+
+.hero,
+.case__headline {
+  --recede-blur: 0px;
+  transform-origin: 50% 45%;
+}
+
+@media (min-width: 761px) {
+  .hero,
+  .case__headline {
+    --recede-blur: 10px;
+  }
+}
+
+@keyframes recede {
+  to {
+    opacity: 0;
+    scale: 0.9;
+    translate: 0 22%;
+    filter: blur(var(--recede-blur));
   }
 }
 
@@ -1196,6 +1370,55 @@ svg {
 }
 
 /*
+ * The other half of the handoff (see `recede`): the flagship unveils as it
+ * enters. A clip that draws the card in from its top edge, trailing the
+ * viewport's bottom edge and catching up as the card completes its entry, with
+ * a settle from 0.96 and a fade from half. The Reveal rise steps aside for
+ * this one item inside the guard — two entrances on one element is one too
+ * many — and remains the entrance everywhere the guard is not met, so nothing
+ * is ever hidden without something to show it.
+ *
+ * `entry` range on the card itself: the state is a function of where the card
+ * is, so a refresh mid-page or a deep link to /#work renders the right frame.
+ * clip-path and the individual `scale:` are both compositor properties; the
+ * card's own `transform` (lift, tilt, press) is untouched and composes.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .work__item--flagship[data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .work__item--flagship .card {
+      animation: card-unveil linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+  }
+}
+
+@keyframes card-unveil {
+  0% {
+    clip-path: inset(0 0 100% 0 round var(--radius-card));
+    scale: 0.96;
+    opacity: 0.5;
+  }
+  /* The lag: half-way into the viewport, only a fifth of the card is drawn.
+   * The clip edge then closes the gap over the second half, so the card is
+   * seen being drawn rather than merely arriving. */
+  50% {
+    clip-path: inset(0 0 80% 0 round var(--radius-card));
+    opacity: 0.85;
+  }
+  100% {
+    clip-path: inset(0 0 0 0 round var(--radius-card));
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+/*
  * Frosted, not decorative: the cards sit directly over saturated blobs, so the
  * blur is what keeps the text legible. Elevation is declared once - an edge,
  * no shadow - because a border under a soft shadow is the ghost-card look.
@@ -1220,8 +1443,20 @@ svg {
   -webkit-backdrop-filter: blur(22px) saturate(1.35);
   color: var(--ink);
   overflow: hidden;
+  /*
+   * ONE transform, composed from variables, so lift, tilt and press never
+   * replace each other in the cascade. Hover sets --lift, TiltCard.tsx writes
+   * --rx/--ry from the pointer, :active sets --press. Each pointer move
+   * retargets the transition from wherever the card is, which is what makes
+   * the tilt trail the pointer instead of snapping to it — a transition, not
+   * a spring library, and it interrupts cleanly.
+   */
+  --lift: 0px;
+  --press: 1;
+  transform: perspective(1100px) translateY(var(--lift))
+    rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--press));
   transition:
-    transform 200ms var(--ease-out),
+    transform 320ms var(--ease-out),
     border-color 200ms var(--ease-out),
     background 200ms var(--ease-out);
 }
@@ -1230,7 +1465,31 @@ svg {
  * without this the largest tap target on the page acknowledges nothing. 0.98 is
  * the documented value for a large surface, not a new third value. */
 .card:active {
-  transform: scale(0.98);
+  --press: 0.98;
+  transition-duration: 160ms;
+}
+
+/*
+ * The specular highlight: a soft white light that follows the pointer across
+ * the glass. z-index -1 inside the card's own stacking context (it has
+ * backdrop-filter, so it is one) puts it above the frosted fill and below every
+ * child, including the full-card link overlay. Opacity is the only thing that
+ * transitions; position is written by TiltCard.tsx as --mx/--my.
+ */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    var(--card-glow),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity 200ms var(--ease-out);
+  pointer-events: none;
 }
 
 .card__body {
@@ -1244,9 +1503,18 @@ svg {
 
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
-    transform: translateY(-3px);
+    --lift: -6px;
     background: var(--glass-strong);
-    border-color: color-mix(in oklab, var(--signal) 40%, var(--glass-edge));
+    border-color: color-mix(in oklab, var(--signal) 55%, var(--glass-edge));
+  }
+  .card:hover::after {
+    opacity: 1;
+    transition-duration: 320ms;
+  }
+  /* The whole card is the link, so the card-study arrow answers a hover
+   * anywhere on the card, not only on its own label. */
+  .card:hover .card__hit .icon {
+    transform: translateX(4px);
   }
 }
 
@@ -1388,6 +1656,11 @@ svg {
   color: var(--ink);
   text-decoration: none;
   white-space: nowrap;
+  /* Lift and press compose (same pattern as .card), so a press mid-hover
+   * keeps its scale instead of losing it to whichever rule comes later. */
+  --lift: 0px;
+  --press: 1;
+  transform: translateY(var(--lift)) scale(var(--press));
   transition:
     transform 160ms var(--ease-out),
     border-color 200ms var(--ease-out);
@@ -1399,6 +1672,7 @@ svg {
   flex: none;
   border-radius: 999px;
   background: var(--signal);
+  transition: transform 200ms var(--ease-out);
 }
 
 .live-link .icon {
@@ -1408,15 +1682,21 @@ svg {
 }
 
 .live-link:active {
-  transform: scale(0.97);
+  --press: 0.97;
 }
 
 @media (hover: hover) and (pointer: fine) {
+  /* The pill rises off the glass and the live dot swells: the one control on
+   * the site that lets you USE something should be the one that answers most. */
   .live-link:hover {
-    border-color: color-mix(in oklab, var(--signal) 55%, var(--glass-edge));
+    --lift: -2px;
+    border-color: color-mix(in oklab, var(--signal) 75%, var(--glass-edge));
+  }
+  .live-link:hover .live-link__dot {
+    transform: scale(1.4);
   }
   .live-link:hover .icon {
-    transform: translate(2px, -2px);
+    transform: translate(3px, -3px);
   }
 }
 
@@ -1547,7 +1827,9 @@ svg {
   width: 100%;
   color: var(--ink);
   opacity: 0.72;
-  transition: transform 200ms var(--ease-out);
+  transition:
+    transform 320ms var(--ease-out),
+    opacity 320ms var(--ease-out);
 }
 
 .card__art svg {
@@ -1556,8 +1838,11 @@ svg {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  /* The mark comes forward: up-left against the card's tilt, a touch larger,
+   * and to full ink. Nothing here is a new value — 6px matches the lift. */
   .card:hover .card__art {
-    transform: translate(-3px, -3px);
+    transform: translate(-6px, -6px) scale(1.05);
+    opacity: 1;
   }
 }
 
@@ -1694,7 +1979,7 @@ svg {
     color: var(--signal-ink);
   }
   .exp__link:hover .icon {
-    transform: translateX(4px);
+    transform: translateX(6px);
   }
 }
 
@@ -1796,8 +2081,12 @@ svg {
   position: absolute;
   left: 50%;
   top: 50%;
+  /* --s is the hover scale, appended to the placement chain so it composes
+   * with it instead of replacing it. */
+  --s: 1;
   transform: translate(-50%, -50%) rotate(var(--a))
-    translateY(calc(var(--r) * -1)) rotate(calc(var(--a) * -1));
+    translateY(calc(var(--r) * -1)) rotate(calc(var(--a) * -1))
+    scale(var(--s));
   padding: 3px 9px;
   border-radius: 999px;
   background: color-mix(in oklab, var(--tone) 26%, var(--ground));
@@ -1809,11 +2098,13 @@ svg {
   color: var(--ink);
   transition:
     background 200ms var(--ease-out),
-    border-color 200ms var(--ease-out);
+    border-color 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .orbit__label:hover {
+    --s: 1.1;
     background: color-mix(in oklab, var(--tone) 52%, var(--ground));
     border-color: var(--tone);
   }
@@ -2013,6 +2304,20 @@ svg {
   background: var(--media-well);
 }
 
+/* The same recede as the hero, on the headline panel: it falls back as the
+ * media well comes up under it. Opaque, so it is allowed to move. The media
+ * well keeps its own drift/pin; this is the route's second moment, and it is
+ * the entrance-to-media handoff rather than a new choreography. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .case__headline {
+      animation: recede linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+  }
+}
+
 @media (max-width: 760px) {
   .case__headline {
     padding: 24px 22px 26px;
@@ -2051,7 +2356,7 @@ svg {
     color: var(--signal-ink);
   }
   .case__back:hover .icon {
-    transform: translateX(-4px);
+    transform: translateX(-6px);
   }
 }
 
@@ -2434,6 +2739,13 @@ svg {
 .footer a {
   font-weight: 600;
   color: var(--ink);
+  transition: color 200ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footer a:hover {
+    color: var(--signal-ink);
+  }
 }
 
 /* ==========================================================================
