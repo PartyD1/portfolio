@@ -47,6 +47,22 @@
   --blob-gloss: rgb(255 255 255 / 0.7);
   --blob-gloss-out: rgb(255 255 255 / 0);
 
+  /* The GitHub mark's hover gradient: the same three hues the card edge and the
+   * experience rail wear - violet, warm, blue - at the saturation a 19px mark
+   * on white glass needs.
+   *
+   * Two failed passes are worth recording, because both look correct in a
+   * token list and wrong on the page. The blob values THEMSELVES are the
+   * wash's colours seen THROUGH glass; painted straight onto white glass the
+   * mark came out paler than the --ink-2 it replaces, so hover made it
+   * quieter, which is backwards. Mixing them toward --ink fixed the weight and
+   * destroyed the hue: peach blended into indigo is mud, the same failure
+   * --blob-b-2 and --blob-d-3 hit in the dark theme. Hand-picked deeper
+   * cousins keep both. */
+  --gh-hue-1: #7d5bd0;
+  --gh-hue-2: #dd7448;
+  --gh-hue-3: #2b93cf;
+
   /* Frosted glass: the cards sit over the blobs, so blur is legibility.
    * Lowered 2026-09-02 on Parth's call (the light cards read too solid);
    * --ink-2 was darkened one step in the same change so body runs over the
@@ -191,6 +207,14 @@
   --blob-d-3: #f2b268;
   --blob-gloss: rgb(255 255 255 / 0.4);
   --blob-gloss-out: rgb(255 255 255 / 0);
+
+  /* Undiluted here, and this is the one place the mark uses the blob tokens
+   * directly. On the dark ground these pastels are already the brightest thing
+   * the button can hold; deepening them the way the light theme has to would
+   * only push them toward the ground they sit on. */
+  --gh-hue-1: var(--blob-c-1);
+  --gh-hue-2: var(--blob-b-1);
+  --gh-hue-3: var(--blob-a-2);
 
   /* Dark glass is a GROUND-coloured tint, not white. White glass over a lit
    * blob brightens the backdrop, and light text on a brightened backdrop is
@@ -2019,7 +2043,6 @@ svg {
  * visual baseline: padding, not margin, and the negative margin absorbs it. */
 @media (pointer: coarse) {
   .card__hit,
-  .card__repo,
   .link-arrow,
   .case__back {
     min-height: 44px;
@@ -2028,38 +2051,65 @@ svg {
     padding: 10px 14px;
     margin: -10px -14px;
   }
-  .card__repo {
-    padding: 10px 12px;
-    margin: -10px -12px;
-  }
 }
 
-/* Above the overlay, so the repo link stays independently clickable. */
+/*
+ * The repo control: a round icon button, above the overlay so it stays
+ * independently clickable. It borrows the live-link pill's raised-glass
+ * treatment - same edge, same ground, same blur - so the foot has ONE
+ * vocabulary for "a control that leaves this page", at two weights: the pill
+ * says "use this", the circle says "read the source".
+ *
+ * It is the one place the mark is allowed to carry colour, and only on hover.
+ * See .gh-mark below for why that does not break The One Accent Rule.
+ */
 .card__repo {
   position: relative;
   z-index: 1;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-weight: 500;
-  font-size: 0.9375rem;
+  justify-content: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-edge);
+  background: var(--glass-raised);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: var(--ink-2);
   text-decoration: none;
-  padding: 8px 12px;
-  margin: -8px -12px;
-  border-radius: 999px;
+  /* Lift and press compose, the same pattern .card and .live-link use, so a
+   * press mid-hover keeps its scale instead of losing it to whichever rule
+   * comes later in the cascade. */
+  --lift: 0px;
+  --press: 1;
+  transform: translateY(var(--lift)) scale(var(--press));
   transition:
-    color 200ms var(--ease-out),
-    background 200ms var(--ease-out),
-    transform 160ms var(--ease-out);
+    transform 160ms var(--ease-out),
+    border-color 200ms var(--ease-out);
 }
 
 .card__repo:active {
-  transform: scale(0.97);
+  --press: 0.97;
 }
 
-.card__repo .icon {
-  transition: transform 200ms var(--ease-out);
+/*
+ * The touch size, and it has to live BELOW the base rule rather than up in the
+ * shared `pointer: coarse` block, which sits above it. Both selectors are a
+ * single class, so specificity cannot break the tie and source order decides:
+ * declared in that block, `width: 40px` below simply won and the button stayed
+ * 40px on every touch device. Measured, not reasoned about.
+ *
+ * It grows in BOTH axes because it is a circle, and it carries no negative
+ * margin to absorb the growth: this is 40px of drawn button, not a text link
+ * wearing an invisible hit area, so the 4px it gains is real.
+ */
+@media (pointer: coarse) {
+  .card__repo {
+    width: 44px;
+    height: 44px;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -2082,11 +2132,78 @@ svg {
    * fires only on itself and is kept.
    */
   .card__repo:hover {
-    color: var(--ink);
-    background: color-mix(in oklab, var(--ink) 8%, transparent);
+    border-color: color-mix(in oklab, var(--blob-c-1) 55%, var(--glass-edge));
   }
-  .card__repo:hover .icon {
-    transform: translate(2px, -2px);
+
+  /* The rise is the only part of this hover that MOVES, so it is the only part
+   * behind the motion preference. The edge tint above and the mark's colour
+   * below both still arrive under `reduce`, which is what makes reduced motion
+   * gentler here rather than mute. */
+  @media (prefers-reduced-motion: no-preference) {
+    .card__repo:hover {
+      --lift: -2px;
+    }
+  }
+}
+
+/* ==========================================================================
+   The GitHub mark
+   ==========================================================================
+   Two stacked paints of the same path. At rest the mark is monochrome ink,
+   quieter than the case-study link beside it, because the source is the
+   third-most interesting thing a card offers. Hovered, it takes THIS SITE'S
+   colour: the same violet-to-warm-to-blue reading the card edge
+   (.card::before) and the experience rail wear, at the saturation a 19px mark
+   needs. See --gh-hue-1..3 for why those are their own tokens rather than the
+   blob values the edge uses directly.
+
+   That is the whole trick, and it is why this does not break The One Accent
+   Rule: the mark does not get GitHub's brand hex (#181717, dropped exactly as
+   scripts/vendor-icons.mjs drops every brand hex) and it does not get a ninth
+   accent. It gets the world's own colour, which is already this system's
+   vocabulary for emphasis.
+
+   A `fill` cannot transition from a flat colour to a paint server, so the two
+   paints cross-fade on opacity instead - one of the only two properties this
+   project animates, and it runs off the main thread.
+   ========================================================================== */
+.gh-mark {
+  width: 19px;
+  height: 19px;
+  display: block;
+}
+
+.gh-mark__stop-1 {
+  stop-color: var(--gh-hue-1);
+}
+.gh-mark__stop-2 {
+  stop-color: var(--gh-hue-2);
+}
+.gh-mark__stop-3 {
+  stop-color: var(--gh-hue-3);
+}
+
+/* The gradient paint sits ON TOP of the ink paint and shares its geometry
+   exactly, so only the top layer moves. The ink stays at full opacity
+   throughout, which is what stops the octocat thinning out mid-transition the
+   way a true crossfade of two opacities would. */
+.gh-mark__hue {
+  opacity: 0;
+  transition: opacity 220ms var(--ease-out);
+}
+
+/*
+ * Keyboard parity: :focus-visible gets the same coloured state as :hover, and
+ * deliberately lives OUTSIDE the (hover: hover) gate - a keyboard reaches this
+ * button on a touch device too.
+ */
+.card__repo:focus-visible .gh-mark__hue {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card__repo:hover .gh-mark__hue {
+    opacity: 1;
   }
 }
 
