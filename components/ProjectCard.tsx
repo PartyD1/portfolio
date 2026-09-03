@@ -14,6 +14,10 @@ import { ArrowRight, ArrowUpRight } from "@/components/Icon";
  * paragraphs came off on 2026-09-02: they were the clutter, and the case
  * study is one click away.
  *
+ * One card leads with its ENGAGEMENT rather than its name: `cardHeadline` in
+ * data/projects.ts replaces the headline, and the organisation printed under
+ * it comes from the employment row, not from a second string.
+ *
  * The employer line is derived from data/experience.ts, never typed here: a
  * project that an employment row points at says where and when it was built,
  * in the row's own words. That is what lets the flagship out-argue the cards
@@ -31,10 +35,20 @@ export default function ProjectCard({
   /** One card per row carries the world's gradient as an edge. */
   gradient?: boolean;
 }) {
-  const { slug, name, tagline, href, demo, label, use, weight, media } = project;
+  const { slug, name, cardHeadline, tagline, href, demo, label, use, weight, media } =
+    project;
   const flagship = weight === 1;
   const job = experience.find((e) => e.project === slug);
   const shot = media[0];
+
+  /*
+   * A card whose `cardHeadline` is set leads with the engagement instead of
+   * the project name, and the employment row supplies the organisation under
+   * it. The fact line then carries the ROLE rather than the company, because
+   * the company is already the line above it and no card says a thing twice.
+   */
+  const headline = cardHeadline ?? name;
+  const org = cardHeadline ? job?.company : undefined;
 
   const classes = [
     "card",
@@ -50,12 +64,13 @@ export default function ProjectCard({
     <article className={classes}>
       <div className="card__body">
         <div className="card__head">
-          <h3 className="card__name">{name}</h3>
+          <h3 className="card__name">{headline}</h3>
+          {org && <p className="card__org">{org}</p>}
         </div>
         <p className="card__tagline">{tagline}</p>
         {job && (
           <p className="card__fact">
-            {job.company}
+            {org ? job.title : job.company}
             <span className="card__fact-sep" aria-hidden="true">
               ·
             </span>

@@ -65,6 +65,16 @@ export type Project = {
    * them: `use` for third-party usage, data/experience.ts for employment.
    */
   label: string;
+  /**
+   * Replaces the project NAME in the card headline when the ENGAGEMENT is the
+   * stronger fact. A paid summer internship is what a recruiter scans a card
+   * for, and it outranks any title a self-directed project can carry. The
+   * organisation printed under it is NOT typed here: it comes from the
+   * matching data/experience.ts row, so the company is spelled in one place
+   * and the card cannot drift from the timeline. The project keeps its real
+   * `name` everywhere else, case study included.
+   */
+  cardHeadline?: string;
   tagline: string;
   /**
    * Third-party usage, sourced. Somebody other than the author used the thing,
@@ -109,6 +119,7 @@ export const projects: Project[] = [
     slug: "operations-agent",
     name: "Operations Agent",
     label: "Agentic operations",
+    cardHeadline: "Summer 2026 Internship",
     tagline: "An agentic workflow that keeps a company's bookings healthy.",
     ownership: "Built with a partner",
     /*
