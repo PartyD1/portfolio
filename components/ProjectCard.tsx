@@ -1,19 +1,28 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Project } from "@/data/projects";
+import { experience } from "@/data/experience";
 import Artifact from "@/components/Artifact";
 import TiltCard from "@/components/TiltCard";
 import { ArrowRight, ArrowUpRight } from "@/components/Icon";
-import { Badge } from "@/components/ui/badge";
 
 /**
  * ONE structure, not two.
  *
  * Weight changes classes, grid span and type scale. It never changes WHICH
- * FIELDS RENDER. The two hand-written branches this replaces rendered
- * `description` and `note` only on the flagship, which meant tomorrow's content
- * would silently vanish on the other six — a data edit producing no visible
- * result and no error. That is the defect being fixed here, and it is worth
- * more than the branch symmetry it costs.
+ * FIELDS RENDER. A card is name, tagline, the facts (who used it, who paid
+ * for it), the links, and the taxonomy pill. The description and note
+ * paragraphs came off on 2026-09-02: they were the clutter, and the case
+ * study is one click away.
+ *
+ * The employer line is derived from data/experience.ts, never typed here: a
+ * project that an employment row points at says where and when it was built,
+ * in the row's own words. That is what lets the flagship out-argue the cards
+ * beneath it without a single new claim.
+ *
+ * The media frame shows the project's first screenshot when one exists and
+ * the authored mark when none does. The mark is the empty state; the
+ * screenshot is the default.
  */
 export default function ProjectCard({
   project,
@@ -23,19 +32,10 @@ export default function ProjectCard({
   /** One card per row carries the world's gradient as an edge. */
   gradient?: boolean;
 }) {
-  const {
-    slug,
-    name,
-    tagline,
-    description,
-    href,
-    demo,
-    note,
-    label,
-    use,
-    weight,
-  } = project;
+  const { slug, name, tagline, href, demo, label, use, weight, media } = project;
   const flagship = weight === 1;
+  const job = experience.find((e) => e.project === slug);
+  const shot = media[0];
 
   const classes = [
     "card",
@@ -55,16 +55,21 @@ export default function ProjectCard({
           <h3 className="card__name">{name}</h3>
         </div>
         <p className="card__tagline">{tagline}</p>
+        {job && (
+          <p className="card__fact">
+            {job.company}
+            <span className="card__fact-sep" aria-hidden="true">
+              ·
+            </span>
+            {job.period}
+          </p>
+        )}
         {use && <p className="card__use">{use}</p>}
-        {description && <p className="card__desc">{description}</p>}
-        {note && <p className="card__note">{note}</p>}
 
         <div className="card__foot">
-          {/*
-            A thing you can USE outranks a thing you can read, so the live link
-            leads the foot and is the only pill in it. It sits above the card
-            overlay on z-index, like the repo link.
-          */}
+          {/* A thing you can USE outranks a thing you can read, so the live
+              link leads the foot. It sits above the card overlay on z-index,
+              like the repo link. */}
           {demo && (
             <a
               className="live-link"
@@ -79,19 +84,16 @@ export default function ProjectCard({
             </a>
           )}
 
-          {/*
-            The whole card is the link, via a pseudo-element on the <Link>
-            rather than an anchor wrapping the content. Wrapping would make the
-            tagline unselectable and would nest the repo anchor inside another
-            anchor, which is invalid. This way the text stays selectable and the
-            repo link simply sits above the overlay on z-index.
-          */}
+          {/* The whole card is the link, via a pseudo-element on the <Link>
+              rather than an anchor wrapping the content. Wrapping would make
+              the tagline unselectable and would nest the repo anchor inside
+              another anchor, which is invalid. */}
           <Link className="card__hit" href={`/work/${slug}`}>
             <ArrowRight />
             case study
           </Link>
 
-          {/* Operations Agent renders no repo affordance at all — not even a
+          {/* Operations Agent renders no repo affordance at all, not even a
               disabled one. */}
           {href && (
             <a
@@ -107,20 +109,25 @@ export default function ProjectCard({
           )}
         </div>
 
-        {/*
-          Below the links rather than beside them, and it is the foot region
-          either way — which is the only place this system allows tracked caps.
-          Sharing the links' row made it wrap on some cards and not others
-          purely on label length, so the seven cards disagreed about where their
-          last line sat. Its own line is the same on all seven.
-        */}
-        <Badge variant="outline" className="card__label">
-          {label}
-        </Badge>
+        {/* The foot is the only place this system allows tracked caps. Its
+            own line, so all seven cards agree about where their last line
+            sits. */}
+        <span className="pill card__label">{label}</span>
       </div>
 
-      <div className="card__media">
-        <Artifact slug={slug} className="card__art" />
+      <div className={shot ? "card__media card__media--shot" : "card__media"}>
+        {shot ? (
+          <Image
+            src={shot.src}
+            alt=""
+            width={shot.width}
+            height={shot.height}
+            sizes="(max-width: 760px) 34vw, 400px"
+            className="card__shot"
+          />
+        ) : (
+          <Artifact slug={slug} className="card__art" />
+        )}
       </div>
     </TiltCard>
   );

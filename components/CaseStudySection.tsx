@@ -1,15 +1,14 @@
 /**
- * One section of a case study.
+ * One section of a case study: a heading and a short list of points.
  *
  * The API is exactly { id, title, children }. There is no `label`, `kicker`,
- * `eyebrow`, `number` or `index` prop and NONE MAY BE ADDED.
+ * `eyebrow`, `number` or `index` prop and NONE MAY BE ADDED. craft-floor L27
+ * marks the eyebrow above a heading as the one ban no brief earns back, and
+ * L28 refuses 01/02/03 here specifically: the headings already say what each
+ * section is.
  *
- * craft-floor L27 marks the eyebrow above a heading as the one ban no brief
- * earns back, and L28 refuses 01/02/03 here specifically: the sequence carries
- * no information the reader needs, because the headings already say what each
- * section is. Making the slot structurally unavailable is stronger than leaving
- * it unused — a future genuine need then costs an API change plus an argument,
- * which is the point.
+ * Children are <li>s. Bullets, not paragraphs, because this is a portfolio
+ * and not a blog (Parth, 2026-09-02).
  */
 export default function CaseStudySection({
   id,
@@ -25,7 +24,7 @@ export default function CaseStudySection({
       <h2 className="case__section-title" id={`${id}-t`}>
         {title}
       </h2>
-      <div className="case__prose">{children}</div>
+      <ul className="case__points">{children}</ul>
     </section>
   );
 }

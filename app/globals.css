@@ -23,7 +23,7 @@
    * clears it for real. Ground-only is now 5.30:1 and the worst blob-tinted
    * run 4.73:1.
    */
-  --ink-2: #5a5a7d;
+  --ink-2: #52527a;
   --white: #f7f6fa;
   /* Our one accent. shadcn owns --accent, so ours is --signal. */
   --signal: #d9705a;
@@ -47,10 +47,15 @@
   --blob-gloss: rgb(255 255 255 / 0.7);
   --blob-gloss-out: rgb(255 255 255 / 0);
 
-  /* Frosted glass: the cards sit over the blobs, so blur is legibility. */
-  --glass: rgb(255 255 255 / 0.52);
-  --glass-strong: rgb(255 255 255 / 0.72);
-  --glass-edge: rgb(255 255 255 / 0.68);
+  /* Frosted glass: the cards sit over the blobs, so blur is legibility.
+   * Lowered 2026-09-02 on Parth's call (the light cards read too solid);
+   * --ink-2 was darkened one step in the same change so body runs over the
+   * thinner glass still clear 4.5:1 on the composited ground. `raised` is the
+   * pill and control surface that has to read as a separate object ON glass. */
+  --glass: rgb(255 255 255 / 0.4);
+  --glass-strong: rgb(255 255 255 / 0.58);
+  --glass-raised: rgb(255 255 255 / 0.74);
+  --glass-edge: rgb(255 255 255 / 0.66);
 
   --grain-opacity: 0.055;
   --grain-blend: multiply;
@@ -155,7 +160,7 @@
   --ink: #ecebf4;
   /* Secondary text has to survive sitting over a lit blob, so it runs brighter
    * here than a plain dark-mode muted tone would. */
-  --ink-2: #cbcae2;
+  --ink-2: #d3d2e8;
   --white: #23243d;
   --signal: #f0a48f;
   /* On the deep ground the accent already clears contrast as text. */
@@ -176,9 +181,17 @@
   --blob-gloss: rgb(255 255 255 / 0.4);
   --blob-gloss-out: rgb(255 255 255 / 0);
 
-  --glass: rgb(255 255 255 / 0.07);
-  --glass-strong: rgb(255 255 255 / 0.11);
-  --glass-edge: rgb(255 255 255 / 0.14);
+  /* Dark glass is a GROUND-coloured tint, not white. White glass over a lit
+   * blob brightens the backdrop, and light text on a brightened backdrop is
+   * exactly what failed at 2.4 to 3.0:1 in the 2026-09-03 critique (back
+   * link, flow details, tech names). Tinting toward the ground darkens the
+   * blob behind the panel instead: the same pink blob goes from 2.4:1 to
+   * about 5:1 under `glass` and 6.5:1 under `glass-strong`. The edge stays a
+   * thin white line so the panel still reads as glass. */
+  --glass: rgb(25 26 46 / 0.5);
+  --glass-strong: rgb(25 26 46 / 0.66);
+  --glass-raised: rgb(35 36 61 / 0.78);
+  --glass-edge: rgb(255 255 255 / 0.16);
 
   --grain-opacity: 0.05;
   --grain-blend: screen;
@@ -362,7 +375,7 @@ svg {
 /* On the dark ground the blobs are far brighter than the page, so they are
  * held back to keep body text over them readable. */
 .dark .wash__blob {
-  opacity: 0.62;
+  opacity: 0.56;
 }
 
 /* On a phone vmax is the viewport HEIGHT, which makes the blobs full-bleed and
@@ -515,17 +528,50 @@ svg {
   pointer-events: auto;
 }
 
+/*
+ * The mark IS the menu. One glass pill, roughly twice the old mark's size,
+ * with three short rules beside the PD so it reads as a control and not a
+ * logo. The sheet opens from this same edge (side="left"), so it scales in
+ * from its trigger rather than from the far side of the screen.
+ */
 .shell__mark {
-  display: block;
-  width: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 58px;
+  padding: 0 16px 0 10px;
+  border: 1px solid var(--glass-edge);
+  border-radius: 999px;
+  background: var(--glass-strong);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
   color: var(--ink);
-  border-radius: 10px;
-  transition: transform 160ms var(--ease-out);
+  cursor: pointer;
+  transition:
+    transform 160ms var(--ease-out),
+    background 200ms var(--ease-out),
+    border-color 200ms var(--ease-out);
 }
 
-.shell__mark svg {
-  width: 100%;
+.shell__mark-glyph {
+  width: 62px;
   height: auto;
+}
+
+.shell__mark-lines {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.shell__mark-lines svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
 }
 
 .shell__mark:active {
@@ -538,62 +584,44 @@ svg {
   gap: 6px;
 }
 
-.shell__menu {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  color: var(--ink);
-  cursor: pointer;
-  transition:
-    background 200ms var(--ease-out),
-    transform 160ms var(--ease-out);
-}
-
-.shell__menu svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-.shell__menu:active {
-  transform: scale(0.97);
-}
-
 @media (hover: hover) and (pointer: fine) {
-  .shell__menu:hover,
+  .shell__mark:hover,
   .theme-toggle:hover {
-    background: color-mix(in oklab, var(--ink) 10%, transparent);
+    background: var(--glass-raised);
+    border-color: color-mix(in oklab, var(--signal) 40%, var(--glass-edge));
   }
 }
 
 @media (max-width: 640px) {
   .shell {
-    padding: 16px 18px;
+    padding: 14px 16px;
   }
   .shell__mark {
-    width: 38px;
+    height: 50px;
+    padding: 0 12px 0 8px;
+  }
+  .shell__mark-glyph {
+    width: 50px;
   }
 }
 
-/* Theme toggle */
+/* Theme toggle: the same glass as the mark, so the two corners agree. */
 .theme-toggle {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   padding: 0;
-  border: 0;
+  border: 1px solid var(--glass-edge);
   border-radius: 999px;
-  background: transparent;
+  background: var(--glass-strong);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
   color: var(--ink);
   cursor: pointer;
   transition:
     background 200ms var(--ease-out),
+    border-color 200ms var(--ease-out),
     transform 160ms var(--ease-out);
 }
 
@@ -640,7 +668,7 @@ svg {
   background: color-mix(in oklab, var(--ground) 86%, transparent);
   backdrop-filter: blur(28px) saturate(1.3);
   -webkit-backdrop-filter: blur(28px) saturate(1.3);
-  border-left: 1px solid var(--glass-edge);
+  border-right: 1px solid var(--glass-edge);
 }
 
 .menu__nav {
@@ -882,15 +910,23 @@ svg {
   color: var(--ink-2);
 }
 
-/* Body face, never display; --ink-2, never coral. Email is the only element on
- * the site that gets display type and the coral underline, and availability is
- * a fact rather than an action. */
+/* The recruiter's three facts (when, what, where) as glass pills in --ink,
+ * one fact each, so none of them wraps mid-thought and none of them is the
+ * quietest text in the fold. Body face, never display; never coral: a fact,
+ * not an action. */
 .hero__avail {
-  max-width: 46ch;
-  margin-top: 10px;
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  color: var(--ink-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 60ch;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero__avail-pill {
+  font-size: 0.875rem;
+  white-space: normal;
 }
 
 .hero__actions {
@@ -927,21 +963,21 @@ svg {
 }
 
 /*
- * The drawn underline, shared by every arrow link (.link-arrow, .exp__link,
- * .case__back). A 2px coral rule that draws in from the left on hover and
+ * The drawn underline, shared by every unbounded arrow link (.link-arrow,
+ * .case__back). The Experience timeline's project link is a bordered pill and
+ * carries its own hover instead — a rule drawn inside a pill reads as a slip.
+ * A 2px coral rule that draws in from the left on hover and
  * leaves to the RIGHT — the origin flips with the state, so the line sweeps
  * through rather than retreating the way it came. transform-only, so it costs
  * nothing, and the exit (160ms) is faster than the entrance (260ms).
  * --signal, not --signal-ink: this is a mark, not text (The Two Corals Rule).
  */
 .link-arrow,
-.exp__link,
 .case__back {
   position: relative;
 }
 
 .link-arrow::after,
-.exp__link::after,
 .case__back::after {
   content: "";
   position: absolute;
@@ -969,7 +1005,6 @@ svg {
     transform: translateX(6px);
   }
   .link-arrow:hover::after,
-  .exp__link:hover::after,
   .case__back:hover::after {
     transform: scaleX(1);
     transform-origin: left;
@@ -1242,7 +1277,9 @@ svg {
   padding: 9px 16px 9px 14px;
   border-radius: 999px;
   border: 1px solid var(--glass-edge);
-  background: var(--media-well);
+  background: var(--glass-raised);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -1337,6 +1374,31 @@ svg {
     align-items: flex-start;
     gap: 12px;
   }
+}
+
+/* ==========================================================================
+   Pill
+   ==========================================================================
+   The one small-surface vocabulary: glass, 999px, 1px edge. Taxonomy labels,
+   the About range, and anything else that used to be a shadcn Badge. Tracked
+   caps are NOT here by default; .card__label adds them, because a card foot
+   is the only place this system allows them.
+   ========================================================================== */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-edge);
+  background: var(--glass-raised);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink);
+  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -1439,8 +1501,8 @@ svg {
   border-radius: var(--radius-card);
   border: 1px solid var(--glass-edge);
   background: var(--glass);
-  backdrop-filter: blur(22px) saturate(1.35);
-  -webkit-backdrop-filter: blur(22px) saturate(1.35);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
   color: var(--ink);
   overflow: hidden;
   /*
@@ -1579,6 +1641,19 @@ svg {
   color: var(--ink-2);
 }
 
+/* Where and when it was built, from data/experience.ts. Same weight as the
+ * usage fact: both are evidence. */
+.card__fact {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.card__fact-sep {
+  padding: 0 8px;
+  opacity: 0.55;
+}
+
 /*
  * The strongest single fact on this site: somebody other than the author used
  * the thing. It used to live in `label` and render as a tracked-caps badge,
@@ -1589,20 +1664,6 @@ svg {
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--ink);
-}
-
-.card__desc {
-  max-width: 52ch;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: var(--ink-2);
-}
-
-.card__note {
-  max-width: 52ch;
-  font-size: 0.875rem;
-  line-height: 1.45;
-  color: var(--ink-2);
 }
 
 /* Holds only the two links now. `margin-top: auto` pushes the whole foot
@@ -1617,14 +1678,14 @@ svg {
   padding-top: 18px;
 }
 
-/* Its own line, right-aligned. It used to be a nowrap, shrink-0 item in a
- * space-between row inside `overflow: hidden`, where a long label was silently
- * clipped at around 761px. */
-/* No negative margin: it pulled the label's box up into the links row, so the
- * two overlapped by 4px. Harmless to look at, but overlapping boxes are how
- * pointer and measurement surprises start. */
+/* Its own line, right-aligned, and the one place tracked caps are allowed. */
 .card__label {
   align-self: flex-end;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
 }
 
 /* ==========================================================================
@@ -1650,7 +1711,9 @@ svg {
   padding: 9px 15px;
   border-radius: 999px;
   border: 1px solid var(--glass-edge);
-  background: var(--media-well);
+  background: var(--glass-raised);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--ink);
@@ -1700,13 +1763,9 @@ svg {
   }
 }
 
-/* On the case study it sits under the metadata line, ON the header panel —
- * which is also --media-well, so the pill would share its ground and read as
- * a border and nothing else. It takes the page ground instead: same palette,
- * visibly a separate raised object. */
+/* On the case study it leads the header, directly under the name. */
 .case__live {
-  margin-top: 18px;
-  background: var(--ground);
+  margin-top: 22px;
 }
 
 /*
@@ -1756,6 +1815,25 @@ svg {
 
 .card__hit .icon {
   transition: transform 200ms var(--ease-out);
+}
+
+/* On touch, the small foot links grow to a 44px target without moving their
+ * visual baseline: padding, not margin, and the negative margin absorbs it. */
+@media (pointer: coarse) {
+  .card__hit,
+  .card__repo,
+  .link-arrow,
+  .case__back {
+    min-height: 44px;
+  }
+  .card__hit {
+    padding: 10px 14px;
+    margin: -10px -14px;
+  }
+  .card__repo {
+    padding: 10px 12px;
+    margin: -10px -12px;
+  }
 }
 
 /* Above the overlay, so the repo link stays independently clickable. */
@@ -1819,7 +1897,7 @@ svg {
   padding: 14px;
   border-radius: var(--radius-card);
   border: 1px solid var(--glass-edge);
-  background: var(--media-well);
+  background: var(--glass-strong);
   overflow: hidden;
 }
 
@@ -1830,6 +1908,27 @@ svg {
   transition:
     transform 320ms var(--ease-out),
     opacity 320ms var(--ease-out);
+}
+
+/* A real screenshot fills the frame edge to edge, top-anchored so the
+ * product's own header is what shows. Opaque, so no blur behind it. */
+.card__media--shot {
+  padding: 0;
+  background: var(--media-well);
+}
+
+.card__shot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 300ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .card__shot {
+    transform: scale(1.03);
+  }
 }
 
 .card__art svg {
@@ -1894,273 +1993,572 @@ svg {
 }
 
 /* ==========================================================================
-   Experience
+   Experience: the timeline
    ==========================================================================
-   A dense ruled list. Not cards (craft-floor L25: same-size cards of icon plus
-   heading plus text as the page's structure), and not a timeline (L35: a
-   coloured border-left heavier than 1px). Hairlines only, and the date range is
-   the sequence signal — never 01/02/03.
-
-   This is the THIRD grid shape in a system that had exactly two: Work's
-   repeat(2, minmax(0,1fr)) and About's minmax(0,1fr) minmax(0,1.5fr). It lives
-   inside The 1140 Rule and collapses at 760px like the others.
+   One rail, a node per role, the period in display type, a glass card per
+   role that ends in the project it produced. The date range is the sequence
+   signal; never 01/02/03. Sits tight under Work because the two are one
+   story: what was built, then who paid for it.
    ========================================================================== */
-.exp__row {
+.section--exp {
+  padding-top: 16px;
+}
+
+/* Column geometry, shared by the rail, the node and the items. */
+.timeline {
+  --tl-period: 236px;
+  --tl-gap: 44px;
+  --tl-rail: calc(var(--tl-period) + var(--tl-gap) / 2);
+}
+
+.timeline__list {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 18ch) minmax(0, 1fr);
-  column-gap: 48px;
-  padding-block: 26px;
-  border-top: 1px solid var(--glass-edge);
+  gap: 28px;
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
 }
 
-.exp__row:last-child {
-  border-bottom: 1px solid var(--glass-edge);
+/* The rail, in the world's colour: the one gradient stripe this page allows,
+ * and it is the same gradient the card edges wear. Drawn once on reveal. */
+.timeline__list::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--tl-rail) - 1px);
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    var(--blob-c-1),
+    var(--blob-b-1),
+    var(--blob-a-2)
+  );
+  transform-origin: top;
 }
 
-.exp__period {
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--ink-2);
+.timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--tl-period) minmax(0, 1fr);
+  column-gap: var(--tl-gap);
+  align-items: start;
 }
 
-.exp__detail {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  min-width: 0;
-}
-
-.exp__company {
-  font-size: 1.0625rem;
+.timeline__period {
+  padding-top: 24px;
+  font-family: var(--font-display-stack);
+  font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);
   font-weight: 600;
+  line-height: 1.2;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: var(--ink);
 }
 
-.exp__title {
+/* The node sits ON the rail, level with the period. Ground-filled so the
+ * rail visibly passes behind it. */
+.timeline__node {
+  position: absolute;
+  left: var(--tl-rail);
+  top: 30px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2.5px solid var(--ink);
+  background: var(--ground);
+  translate: -50% 0;
+}
+
+/* The ongoing role: the accent, plus a static ring. Static, because the pulse
+ * belongs to exactly one element on this page and that is the hero's dot. */
+.timeline__item[data-live] .timeline__node {
+  border-color: var(--signal);
+}
+
+.timeline__item[data-live] .timeline__node::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid var(--signal);
+  opacity: 0.45;
+}
+
+.timeline__card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 26px 28px 28px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--glass-edge);
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  color: var(--ink);
+  transition: border-color 200ms var(--ease-out);
+}
+
+.timeline__company {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.timeline__title {
   font-size: 1rem;
   color: var(--ink-2);
 }
 
-.exp__ownership {
+.timeline__ownership {
   max-width: 62ch;
-  font-size: 1.0625rem;
+  margin-top: 8px;
+  font-size: 1rem;
   line-height: 1.55;
-  color: var(--ink);
+  color: var(--ink-2);
 }
 
-.exp__link {
+/* The link back to Work: the project's own mark in a raised pill, so the
+ * reader recognises the card they scrolled past. */
+.timeline__project {
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
-  gap: 8px;
-  margin-top: 6px;
-  padding: 8px 4px;
-  font-size: 0.9375rem;
-  font-weight: 500;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 8px 18px 8px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-edge);
+  background: var(--glass-raised);
   color: var(--ink);
   text-decoration: none;
   transition:
-    color 200ms var(--ease-out),
-    transform 160ms var(--ease-out);
+    transform 160ms var(--ease-out),
+    border-color 200ms var(--ease-out);
 }
 
-.exp__link .icon {
-  width: 1.05em;
-  height: 1.05em;
-  transition: transform 200ms var(--ease-out);
-}
-
-.exp__link:active {
+.timeline__project:active {
   transform: scale(0.97);
 }
 
+.timeline__project-mark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 5px;
+  border-radius: var(--radius);
+  background: var(--glass-strong);
+  color: var(--ink);
+}
+
+.timeline__project-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.timeline__project-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.timeline__project .icon {
+  margin-left: 2px;
+  transition: transform 200ms var(--ease-out);
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .exp__link:hover {
-    color: var(--signal-ink);
+  .timeline__project:hover {
+    border-color: color-mix(in oklab, var(--signal) 55%, var(--glass-edge));
   }
-  .exp__link:hover .icon {
+  /* 6px, the one nudge distance every arrow in the system travels. */
+  .timeline__project:hover .icon {
     transform: translateX(6px);
   }
 }
 
+/*
+ * Motion. Seen once per visit, on scroll-in, so it may animate: the rail
+ * draws top-down (transform only), and each node settles in after its card
+ * has risen. Transitions, not keyframes, so an interrupted scroll retargets
+ * instead of restarting. Reduced motion keeps the opacity change and drops
+ * the movement.
+ */
+.timeline[data-reveal="pending"] .timeline__list::before {
+  opacity: 0;
+}
+.timeline[data-reveal="in"] .timeline__list::before {
+  opacity: 1;
+  transition: opacity 300ms var(--ease-out) 80ms;
+}
+.timeline__item[data-reveal="pending"] .timeline__node {
+  opacity: 0;
+}
+.timeline__item[data-reveal="in"] .timeline__node {
+  opacity: 1;
+  transition: opacity 260ms var(--ease-out) 240ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .timeline[data-reveal="pending"] .timeline__list::before {
+    transform: scaleY(0);
+  }
+  .timeline[data-reveal="in"] .timeline__list::before {
+    transform: scaleY(1);
+    transition:
+      transform 800ms var(--ease-out) 80ms,
+      opacity 300ms var(--ease-out) 80ms;
+  }
+  .timeline__item[data-reveal="pending"] .timeline__node {
+    transform: scale(0.6);
+  }
+  .timeline__item[data-reveal="in"] .timeline__node {
+    transform: none;
+    transition:
+      transform 260ms var(--ease-out) 240ms,
+      opacity 260ms var(--ease-out) 240ms;
+  }
+}
+
 @media (max-width: 760px) {
-  .exp__row {
+  .timeline {
+    --tl-period: 0px;
+    --tl-gap: 36px;
+    --tl-rail: 9px;
+  }
+  .timeline__list {
+    gap: 24px;
+  }
+  .timeline__item {
     grid-template-columns: minmax(0, 1fr);
     row-gap: 10px;
-    column-gap: 0;
+    padding-left: var(--tl-gap);
+  }
+  .timeline__period {
+    padding-top: 0;
+    text-align: left;
+  }
+  .timeline__node {
+    top: 3px;
+    width: 12px;
+    height: 12px;
+  }
+  .timeline__card {
+    padding: 22px 22px 24px;
   }
 }
 
 /* ==========================================================================
-   Stack orbit
+   Flow: the system, drawn
+   ==========================================================================
+   A chain of glass nodes with connectors, an optional fan of branches under
+   a node, and an optional bus beneath the whole chain. HTML, not SVG, so the
+   labels wrap, reflow to one column on a phone, and read to a screen reader.
    ========================================================================== */
-/* `safe center` centres the orbit when it fits and still lets the whole
- * diagram be reached when it overflows on a narrow screen. */
-.orbit-scroll {
-  display: flex;
-  justify-content: safe center;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-  padding-block: 4px;
+.flow {
+  margin-top: 64px;
 }
 
-.orbit-scroll::-webkit-scrollbar {
-  display: none;
+.flow__heading {
+  margin-bottom: 22px;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  letter-spacing: 0.005em;
 }
 
-.orbit {
-  --orbit: min(620px, 88vw);
+.flow__steps {
+  display: grid;
+  grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-items: stretch;
+}
+
+.flow[data-steps="3"] { --n: 3; }
+.flow[data-steps="4"] { --n: 4; }
+.flow[data-steps="5"] { --n: 5; }
+.flow[data-steps="6"] { --n: 6; }
+
+/* Each step owns the connector to its right, in its own padding. */
+.flow__step {
   position: relative;
-  flex: none;
-  width: var(--orbit);
-  height: var(--orbit);
-  margin: 8px auto 0;
+  display: grid;
+  padding-right: 30px;
 }
 
-.orbit__core {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-display-stack);
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--ink-2);
+.flow__step:last-child {
+  padding-right: 0;
 }
 
-.orbit__ring--1 {
-  --r: calc(var(--orbit) * 0.175);
-}
-.orbit__ring--2 {
-  --r: calc(var(--orbit) * 0.305);
-}
-/* Pulled in slightly so the outer ring's label clears the container edge. */
-.orbit__ring--3 {
-  --r: calc(var(--orbit) * 0.415);
-}
-
-/* The ring line itself: one hairline, in the group's tone. */
-/* The ring has to be legible as a ring: the grouping is the whole point of
- * the form, and a hairline at 55% tone disappeared on the pale ground. */
-.orbit__track {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: calc(var(--r) * 2);
-  height: calc(var(--r) * 2);
-  transform: translate(-50%, -50%);
-  border: 1.5px solid color-mix(in oklab, var(--tone) 92%, transparent);
-  border-radius: 50%;
-}
-
-/* Each ring names itself at the top, so the diagram needs no legend. */
-.orbit__ring-label {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) translateY(calc(var(--r) * -1 - 22px));
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--tone) 62%, var(--ground));
-  border: 1.5px solid color-mix(in oklab, var(--tone) 92%, transparent);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
+.flow__node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 18px 20px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--glass-edge);
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
   color: var(--ink);
+  transition: border-color 200ms var(--ease-out);
 }
 
 /*
- * Each label is placed by rotating out to its radius and then un-rotating
- * itself, so the type stays upright whatever the angle.
+ * The same specular highlight the cards carry (see .card::after), on the same
+ * glass, so the diagram answers the pointer the way everything else does. The
+ * node has backdrop-filter and is therefore its own stacking context, so
+ * z-index -1 sits the light above the frosted fill and below the copy.
+ * Position is written by FlowGlow.tsx as --mx/--my; opacity is the only thing
+ * that transitions. No tilt: the connectors are aligned to these edges.
  */
-.orbit__label {
+.flow__node::after {
+  content: "";
   position: absolute;
-  left: 50%;
-  top: 50%;
-  /* --s is the hover scale, appended to the placement chain so it composes
-   * with it instead of replacing it. */
-  --s: 1;
-  transform: translate(-50%, -50%) rotate(var(--a))
-    translateY(calc(var(--r) * -1)) rotate(calc(var(--a) * -1))
-    scale(var(--s));
-  padding: 3px 9px;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--tone) 26%, var(--ground));
-  border: 1px solid color-mix(in oklab, var(--tone) 45%, transparent);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  line-height: 1.2;
-  white-space: nowrap;
-  color: var(--ink);
-  transition:
-    background 200ms var(--ease-out),
-    border-color 200ms var(--ease-out),
-    transform 200ms var(--ease-out);
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    300px circle at var(--mx, 50%) var(--my, 50%),
+    var(--card-glow),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity 200ms var(--ease-out);
+  pointer-events: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .orbit__label:hover {
-    --s: 1.1;
-    background: color-mix(in oklab, var(--tone) 52%, var(--ground));
-    border-color: var(--tone);
+  .flow__node:hover {
+    border-color: color-mix(in oklab, var(--signal) 40%, var(--glass-edge));
+  }
+  .flow__node:hover::after {
+    opacity: 1;
+    transition-duration: 320ms;
   }
 }
 
-/* The orbit keeps its form on a phone and scrolls inside its own container.
- * Collapsing it into stacked runs would ship the one shape this section
- * exists to avoid. */
-/* Only meaningful where the diagram actually overflows. */
-.orbit__hint {
-  display: none;
+.flow__index {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  font-family: var(--font-display-stack);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink-2);
+}
+
+.flow__title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.flow__detail {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+/* The fan: parallel things under one node. */
+.flow__branches {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow__branch {
+  position: relative;
+  padding: 7px 10px 7px 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-edge);
+  background: var(--glass-raised);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.flow__branch::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal);
+  translate: 0 -50%;
+}
+
+/* The connector: a rule and an arrowhead, level with the node's title. */
+.flow__link {
+  position: absolute;
+  right: 0;
+  top: 44px;
+  width: 30px;
+  height: 20px;
+  display: grid;
+  place-items: end center;
+  color: color-mix(in oklab, var(--ink) 55%, transparent);
+  transform-origin: left center;
+}
+
+.flow__link::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 6px;
+  top: 50%;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  translate: 0 -50%;
+}
+
+.flow__arrow {
+  position: absolute;
+  right: 1px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  translate: 0 -50%;
+}
+
+/* The bus: what every step sits on. Dashed, so it reads as a substrate
+ * rather than a sixth node. */
+.flow__bus {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 4px 22px;
+  align-items: baseline;
+  margin-top: 16px;
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  border: 1px dashed color-mix(in oklab, var(--ink) 32%, transparent);
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+}
+
+.flow__bus-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.flow__bus-detail {
+  max-width: 70ch;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+/*
+ * Motion: seen once, on scroll-in. Nodes rise on a 60ms stagger (the --i the
+ * markup sets), each connector draws after the node it leaves, and the bus
+ * comes last. Transform and opacity only; reduced motion keeps the fades.
+ */
+.flow[data-reveal="pending"] .flow__node,
+.flow[data-reveal="pending"] .flow__link,
+.flow[data-reveal="pending"] .flow__bus {
+  opacity: 0;
+}
+.flow[data-reveal="in"] .flow__node {
+  opacity: 1;
+  transition: opacity 400ms var(--ease-out) calc(var(--i) * 60ms);
+}
+.flow[data-reveal="in"] .flow__link {
+  opacity: 1;
+  transition: opacity 300ms var(--ease-out) calc(var(--i) * 60ms + 200ms);
+}
+.flow[data-reveal="in"] .flow__bus {
+  opacity: 1;
+  transition: opacity 400ms var(--ease-out) 360ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .flow[data-reveal="pending"] .flow__node {
+    transform: translateY(14px);
+  }
+  .flow[data-reveal="in"] .flow__node {
+    transform: none;
+    transition:
+      opacity 400ms var(--ease-out) calc(var(--i) * 60ms),
+      transform 400ms var(--ease-out) calc(var(--i) * 60ms);
+  }
+  .flow[data-reveal="pending"] .flow__link {
+    transform: scaleX(0.3);
+  }
+  .flow[data-reveal="in"] .flow__link {
+    transform: none;
+    transition:
+      opacity 300ms var(--ease-out) calc(var(--i) * 60ms + 200ms),
+      transform 300ms var(--ease-out) calc(var(--i) * 60ms + 200ms);
+  }
+}
+
+/* One column: the chain turns downward, and so do the connectors. */
+@media (max-width: 900px) {
+  .flow__steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .flow__step {
+    padding-right: 0;
+    padding-bottom: 30px;
+  }
+  .flow__step:last-child {
+    padding-bottom: 0;
+  }
+  .flow__link {
+    right: auto;
+    top: auto;
+    left: 24px;
+    bottom: 0;
+    width: 20px;
+    height: 30px;
+    transform-origin: center top;
+  }
+  .flow__link::before {
+    left: 50%;
+    right: auto;
+    top: 2px;
+    bottom: 6px;
+    width: 2px;
+    height: auto;
+    translate: -50% 0;
+  }
+  .flow__arrow {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 1px;
+    translate: -50% 0;
+    transform: rotate(90deg);
+  }
+  .flow[data-reveal="pending"] .flow__link {
+    transform: scaleY(0.3);
+  }
+  .flow__bus {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 760px) {
-  .orbit__hint {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 14px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-2);
-  }
-  .orbit__hint .icon {
-    width: 1.1em;
-    height: 1.1em;
-  }
-  .orbit {
-    --orbit: 560px;
-    margin-top: 4px;
-  }
-  .orbit__label {
-    font-size: 0.75rem;
-    padding: 3px 8px;
-  }
-  /* Fade the edges so it's legible that the diagram continues past them. */
-  .orbit-scroll {
-    -webkit-mask: linear-gradient(
-      to right,
-      transparent,
-      #000 28px,
-      #000 calc(100% - 28px),
-      transparent
-    );
-    mask: linear-gradient(
-      to right,
-      transparent,
-      #000 28px,
-      #000 calc(100% - 28px),
-      transparent
-    );
+  .flow {
+    margin-top: 48px;
   }
 }
+
 
 /* ==========================================================================
    About
@@ -2294,14 +2692,13 @@ svg {
   padding: 32px 34px 34px;
   border-radius: var(--radius-card);
   border: 1px solid var(--glass-edge);
-  /* OPAQUE, not glass, and measured rather than chosen. Frosted at --glass got
-   * the note and standfirst clear but left the back link and metadata line
-   * still failing at the panel's top edge, where blob A's core is: light glass
-   * is 0.52 alpha (4.34:1, just short) and DARK glass is 0.07, which cannot
-   * mask a lit blob at all (2.53:1). An opaque well is deterministic in both
-   * themes at every viewport size, and it is the same surface as the media
-   * frame directly below it. */
-  background: var(--media-well);
+  /* Glass, like every other panel on the site (Parth, 2026-09-02). It was an
+   * opaque well because the back link and meta line sat over blob A's core;
+   * so this is the STRONG glass at a heavier blur than a card, and the meta
+   * line runs in --ink rather than --ink-2 to hold the floor. */
+  background: var(--glass-strong);
+  backdrop-filter: blur(30px) saturate(1.4);
+  -webkit-backdrop-filter: blur(30px) saturate(1.4);
 }
 
 /* The same recede as the hero, on the headline panel: it falls back as the
@@ -2334,7 +2731,7 @@ svg {
   margin: 0 0 10px -4px;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--ink-2);
+  color: var(--ink);
   text-decoration: none;
   transition:
     color 200ms var(--ease-out),
@@ -2362,18 +2759,31 @@ svg {
 
 .case__title {
   margin-top: 0;
-  font-size: clamp(2.25rem, 6vw, 4rem);
+  /* 2rem floor: "SANTACLAWS" at 2.25rem drew 25px past its box at 390. */
+  font-size: clamp(2rem, 6vw, 4rem);
   line-height: 1.08;
   letter-spacing: 0.005em;
+  overflow-wrap: anywhere;
+}
+
+/* The one sentence: what this is. The tagline the card carried, so the reader
+ * who tapped through is not left with a name and a row of logos. */
+.case__tagline {
+  max-width: 46ch;
+  margin-top: 14px;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--ink);
 }
 
 /* A hairline of facts, and only the facts that exist. Nothing here renders a
- * placeholder — an unsupplied field is simply not in the line. */
+ * placeholder; an unsupplied field is simply not in the line. */
 .case__meta {
-  margin-top: 16px;
+  margin-top: 22px;
   font-size: 0.9375rem;
+  font-weight: 500;
   line-height: 1.6;
-  color: var(--ink-2);
+  color: var(--ink);
 }
 
 .case__meta-sep {
@@ -2389,29 +2799,18 @@ svg {
   color: var(--ink-2);
 }
 
-.case__standfirst {
-  max-width: 62ch;
-  margin: 28px 0 0;
-  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
-  line-height: 1.55;
-  color: var(--ink);
-}
-
-.case__standfirst p {
-  margin: 0;
-}
-
 /* --- the tech row --------------------------------------------------------
- * A bounded exception to The Drawn-Not-Set Rule: one register, one surface,
- * one size, one ink. Brand geometry ships; brand colour does not, because ~25
- * uncontrolled accents would blow The One Accent Rule on a page whose identity
- * is having exactly one. Case-study header only. */
+ * Glass tiles, one per tool, mark first. A bounded exception to The
+ * Drawn-Not-Set Rule: one register, one surface, one size, one ink. Brand
+ * geometry ships; brand colour does not, because ~25 uncontrolled accents
+ * would blow The One Accent Rule on a page whose identity is having exactly
+ * one. Case-study header only. */
 .tech {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px 22px;
-  margin: 22px 0 0;
+  gap: 10px;
+  margin: 26px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -2419,34 +2818,46 @@ svg {
 .tech__item {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: var(--ink-2);
-  transition: color 200ms var(--ease-out);
-}
-
-.tech:hover .tech__item,
-.tech:focus-within .tech__item {
+  gap: 10px;
+  padding: 9px 16px 9px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-edge);
+  background: var(--glass-raised);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: var(--ink);
+  transition: border-color 200ms var(--ease-out);
 }
 
 .tech__mark {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   flex: none;
 }
 
 .tech__name {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
 }
 
-/* A supplied tool with no official mark is never silently dropped. */
-.tech__pill {
-  font-size: 0.875rem;
-  font-weight: 500;
-  padding: 3px 10px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
+@media (hover: hover) and (pointer: fine) {
+  .tech__item:hover {
+    border-color: color-mix(in oklab, var(--signal) 45%, var(--glass-edge));
+  }
+}
+
+@media (max-width: 760px) {
+  .tech__item {
+    padding: 8px 13px 8px 9px;
+  }
+  .tech__mark {
+    width: 19px;
+    height: 19px;
+  }
+  .tech__name {
+    font-size: 0.875rem;
+  }
 }
 
 /* --- the media well ------------------------------------------------------
@@ -2480,24 +2891,20 @@ svg {
 .case__media__img {
   width: 100%;
   height: 100%;
+  /* contain, on a frame that already matches the image: the only time a
+   * band shows is when the 62svh cap wins, and the well is opaque. */
+  object-fit: contain;
+}
+
+/* A portrait screenshot in a landscape frame shows its top, where the page's
+ * own header is, rather than a slice from its middle. */
+.case__media[data-tall] .case__media__img {
   object-fit: cover;
-}
-
-/* Sized to compose the frame rather than sit in the middle of it. A small mark
- * in a large well reads as a missing screenshot; a large one reads as the
- * authored empty state it actually is. */
-.case__media__mark {
-  width: min(64%, 520px);
-  color: var(--ink);
-  opacity: 0.7;
-}
-
-.case__media__mark svg {
-  width: 100%;
-  height: 100%;
+  object-position: top;
 }
 
 .case__media__cap {
+  max-width: 70ch;
   margin-top: 12px;
   font-size: 0.875rem;
   color: var(--ink-2);
@@ -2655,9 +3062,17 @@ svg {
   }
 }
 
-/* --- sections ----------------------------------------------------------- */
+/* --- sections -----------------------------------------------------------
+ * Two columns of short sections, so a case study reads as a spread and not a
+ * scroll. Bullets, not paragraphs. */
+.case__sections {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 56px;
+}
+
 .case__section {
-  padding: 80px 0 0;
+  padding: 64px 0 0;
   scroll-margin-top: 84px;
 }
 
@@ -2666,21 +3081,41 @@ svg {
   letter-spacing: 0.005em;
 }
 
-.case__prose {
-  /* craft-floor 65-75ch. */
-  max-width: 70ch;
-  margin-top: 18px;
+.case__points {
+  display: grid;
+  gap: 12px;
+  max-width: 52ch;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.case__prose p {
-  margin: 0 0 18px;
-  font-size: 1.0625rem;
-  line-height: 1.65;
+.case__points li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 1rem;
+  line-height: 1.55;
   color: var(--ink-2);
+  text-wrap: pretty;
 }
 
-.case__prose p:last-child {
-  margin-bottom: 0;
+/* A drawn bullet in the page's ink, not a glyph and not the accent: a dot
+ * that says "here is a point" is not a dot that says "this is live". */
+.case__points li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--ink) 45%, transparent);
+}
+
+@media (max-width: 760px) {
+  .case__sections {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* --- the foot: the highest-intent moment on the site --------------------- */
@@ -2730,20 +3165,47 @@ svg {
    Footer
    ========================================================================== */
 .footer {
+  display: flex;
+  justify-content: center;
   padding: 28px 24px 40px;
-  text-align: center;
   font-size: 0.875rem;
   color: var(--ink-2);
 }
 
+.footer__line {
+  gap: 10px;
+  padding: 0 4px 0 16px;
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+
+.footer__sep {
+  opacity: 0.55;
+}
+
+/* A 44px target, inside the pill. */
 .footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 999px;
   font-weight: 600;
   color: var(--ink);
-  transition: color 200ms var(--ease-out);
+  text-decoration: none;
+  transition:
+    background 200ms var(--ease-out),
+    color 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.footer a:active {
+  transform: scale(0.97);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .footer a:hover {
+    background: color-mix(in oklab, var(--ink) 10%, transparent);
     color: var(--signal-ink);
   }
 }

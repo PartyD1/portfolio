@@ -59,7 +59,7 @@ export default function Hero() {
         {/* The one readable copy: assistive tech gets the whole introduction
             as a sentence, including every phrase the slot cycles through. */}
         <span className="visually-hidden">
-          Hey, I&rsquo;m Parth Doshi — developer, researcher, computer
+          Hey, I&rsquo;m Parth Doshi: developer, researcher, computer
           scientist, athlete, mentor, and obsessed with AI.
         </span>
 
@@ -92,7 +92,7 @@ export default function Hero() {
 
       <p className="hero__sub">
         CS student at UC Santa Cruz building autonomous agents that do real
-        work — and getting more out of AI than most.
+        work, and getting more out of AI than most.
       </p>
 
       {/*
@@ -107,11 +107,15 @@ export default function Hero() {
         design decision made under time pressure.
       */}
       {(avail.gradTerm || avail.target || avail.location) && (
-        <p className="hero__avail">
+        <ul className="hero__avail" aria-label="Availability">
           {[avail.gradTerm, avail.target, avail.location]
             .filter(Boolean)
-            .join(" · ")}
-        </p>
+            .map((fact) => (
+              <li className="pill hero__avail-pill" key={fact as string}>
+                {fact}
+              </li>
+            ))}
+        </ul>
       )}
 
       <div className="hero__actions">

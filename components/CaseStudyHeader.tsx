@@ -6,38 +6,36 @@ import { FIXTURES, fixtureMedia } from "@/data/fixtures";
 import type { Project } from "@/data/projects";
 
 /**
- * The top of a case study: back affordance, name, the metadata line, and the
- * media well.
- *
- * No eyebrow above the name, ever. No metric band. The metadata line renders
- * ONLY the fields that exist — nothing here emits a placeholder, and a field
- * that has not been supplied is simply not in the line.
+ * The top of a case study, in Parth's order (2026-09-02): the name, then the
+ * thing you can USE, then what it is built with, then the one-line facts.
+ * The tagline is the one sentence under the name, then the facts. No eyebrow,
+ * no metric band. The metadata line renders ONLY the fields that exist;
+ * nothing here emits a placeholder.
  */
 export default function CaseStudyHeader({ project }: { project: Project }) {
   const {
     name,
+    tagline,
     label,
     role,
     dates,
     use,
     ownership,
     note,
-    slug,
     media,
-    description,
     tech,
     demo,
   } = project;
 
-  // Order matters: what kind of system, then what he was, then when, then who
-  // else, then who used it.
+  // What kind of system, then what he was, then when, then who else, then
+  // who used it.
   const meta = [label, role, dates, ownership, use].filter(Boolean) as string[];
 
   return (
     <header className="case__header">
-      {/* Everything textual sits on one frosted panel — see .case__headline.
-          The back link included: left outside it, it was the single worst
-          contrast on the site, with 96.8% of its glyph run below 4.5:1. */}
+      {/* Everything textual sits on one frosted panel. The back link included:
+          left outside it, it was the single worst contrast on the site.
+          data-scrub: the headline recedes over its own exit on scroll. */}
       <div className="case__headline" data-scrub="exit">
         {/* Leading arrow: this link stays on the site. */}
         <Link className="case__back" href="/#work">
@@ -46,6 +44,29 @@ export default function CaseStudyHeader({ project }: { project: Project }) {
         </Link>
 
         <h1 className="case__title">{name}</h1>
+
+        {/* The one sentence that says what this is. Already-supplied data, the
+            same line the card carried, so a reader who tapped through is not
+            left with a name and a row of logos. */}
+        <p className="case__tagline">{tagline}</p>
+
+        {/* Someone who can try the thing should not have to read anything
+            first, so the live link comes before every other fact. */}
+        {demo && (
+          <a
+            className="live-link case__live"
+            href={demo}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Try ${name} live (opens in a new tab)`}
+          >
+            <span className="live-link__dot" aria-hidden="true" />
+            Try {name} live
+            <ArrowUpRight />
+          </a>
+        )}
+
+        <TechRow slugs={tech} />
 
         {meta.length > 0 && (
           <p className="case__meta">
@@ -62,51 +83,13 @@ export default function CaseStudyHeader({ project }: { project: Project }) {
           </p>
         )}
 
-        {/*
-        Operations Agent renders NO repo affordance of any kind here — not a
-        link, not a disabled link, not a greyed pill. A disabled control implies
-        the thing exists and is being withheld from you. Its note says the true
-        thing calmly instead, and the Experience row plus LinkedIn carry the
-        off-site verification of the employment.
-      */}
+        {/* Operations Agent renders NO repo affordance of any kind here: not a
+            link, not a disabled link, not a greyed pill. Its note says the true
+            thing calmly instead. */}
         {note && <p className="case__note">{note}</p>}
-
-        {/* Near the top, not only in the foot. Someone who can try the thing
-            should not have to read to the bottom of the page to find out. */}
-        {demo && (
-          <a
-            className="live-link case__live"
-            href={demo}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`Try ${name} live (opens in a new tab)`}
-          >
-            <span className="live-link__dot" aria-hidden="true" />
-            Try {name} live
-            <ArrowUpRight />
-          </a>
-        )}
-
-        {/* Absent, not skeletal, until the tool→project mapping is supplied. */}
-        <TechRow slugs={tech} />
-
-        {/*
-        The standfirst sits ABOVE the media, not below it. Until the case-study
-        prose is written this is the only real prose on the page, and putting it
-        under a ~560px frame buries the one thing worth reading below the fold.
-      */}
-        {description && (
-          <div className="case__standfirst">
-            <p>{description}</p>
-          </div>
-        )}
       </div>
 
-      {/* Fixtures are dead code with NEXT_PUBLIC_FIXTURES unset — Next inlines
-          the constant at build time — and there is a grep gate on .next/ to
-          prove it. They exist so the pin's every check can run against real
-          pinned DOM before any media is supplied. */}
-      <MediaBand slug={slug} media={FIXTURES ? fixtureMedia : media} />
+      <MediaBand media={FIXTURES ? fixtureMedia : media} />
     </header>
   );
 }

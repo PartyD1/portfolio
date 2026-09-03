@@ -1,5 +1,3 @@
-import { Badge } from "@/components/ui/badge";
-
 const range = [
   "Autonomous agents",
   "Game systems & physics",
@@ -19,7 +17,7 @@ export default function About() {
             I&rsquo;m a computer science student at UC Santa Cruz. The thread
             through everything I make is <strong>leverage</strong>: using AI
             and solid engineering to take a real problem off someone&rsquo;s
-            plate — an operations team&rsquo;s broken bookings, a DECA
+            plate: an operations team&rsquo;s broken bookings, a DECA
             competitor&rsquo;s unscored report, a small business without a
             website.
           </p>
@@ -32,14 +30,14 @@ export default function About() {
             with motor impairments.
           </p>
           <p>
-            Away from the screen I play volleyball, and I mentor younger kids —
+            Away from the screen I play volleyball, and I mentor younger kids,
             passing on the things I&rsquo;ve worked out about adulting, which
             nobody hands you a manual for.
           </p>
           <ul className="about__range" aria-label="Areas of work">
             {range.map((r) => (
               <li key={r}>
-                <Badge variant="secondary">{r}</Badge>
+                <span className="pill">{r}</span>
               </li>
             ))}
           </ul>
