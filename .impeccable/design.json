@@ -350,7 +350,7 @@
       {
         "name": "spotlight-spring",
         "value": "K=300 D=31",
-        "purpose": "The pointer spotlight (.wash__spot, Spotlight.tsx): omega ~17.3 rad/s, zeta ~0.90, just under critical, settles in about a fifth of a second with no visible overshoot. Semi-implicit Euler, dt clamped to 32ms so a waking tab does not fling the light across the screen; the loop stops at rest (0.15px, 2px/s), which is what keeps it out of the ambient budget. translate3d written directly on the element, never a custom property on an ancestor."
+        "purpose": "The pointer spotlight (.wash__spot, Spotlight.tsx): omega ~17.3 rad/s, zeta ~0.90, just under critical, no visible overshoot. Time constant ~64ms, so it covers 95% of any distance in about 190ms and then runs on while the invisible remainder decays under the rest threshold (measured 420ms to rest after 60px, 530ms after 800px). Semi-implicit Euler, dt clamped to 32ms so a waking tab does not fling the light across the screen; the loop stops at rest (0.15px, 2px/s), which is what keeps it out of the ambient budget. translate3d written directly on the element, never a custom property on an ancestor."
       },
       {
         "name": "duration-spotlight",
