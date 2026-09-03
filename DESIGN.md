@@ -24,7 +24,7 @@ colors:
   # The pointer spotlight (ground, so it takes blob colour) and the specular
   # highlight that follows the pointer across a hovered card or flow node (a
   # gloss, never a colour). All four are defined in both themes.
-  spot-core: "rgb(255 255 255 / 0.55)"
+  spot-core: "rgb(255 255 255 / 0.62)"
   spot-hue: "color-mix(in oklab, color-mix(in oklab, var(--blob-c-2) 50%, white) 36%, transparent)"
   spot-hue-2: "color-mix(in oklab, color-mix(in oklab, var(--blob-a-2) 50%, white) 22%, transparent)"
   card-glow: "rgb(255 255 255 / 0.55)"
@@ -51,9 +51,9 @@ colors:
   glass-strong-dark: "rgb(255 255 255 / 0.11)"
   glass-raised-dark: "rgb(255 255 255 / 0.16)"
   glass-edge-dark: "rgb(255 255 255 / 0.14)"
-  spot-core-dark: "rgb(255 255 255 / 0.1)"
-  spot-hue-dark: "color-mix(in oklab, var(--blob-a-2) 24%, transparent)"
-  spot-hue-2-dark: "color-mix(in oklab, var(--blob-c-1) 16%, transparent)"
+  spot-core-dark: "rgb(255 255 255 / 0.16)"
+  spot-hue-dark: "color-mix(in oklab, var(--blob-a-2) 16%, transparent)"
+  spot-hue-2-dark: "color-mix(in oklab, var(--blob-c-1) 11%, transparent)"
   card-glow-dark: "rgb(255 255 255 / 0.1)"
   blob-gloss-dark: "rgb(255 255 255 / 0.4)"
   blob-a-1-dark: "#4fd3a0"
@@ -329,7 +329,7 @@ The iridescent blob range: twelve stops in light, twelve in dark, three per blob
 - **Blob C, Lilac / Rose / Peach** (`{colors.blob-c-1}` → `{colors.blob-c-3}`): bottom-left, axis 0% 20% → 100% 80%.
 - **Blob D, Sky / Mint / Butter** (`{colors.blob-d-1}` → `{colors.blob-d-3}`): bottom-right, axis 20% 100% → 80% 0%.
 - **Specular Gloss** (`{colors.blob-gloss}` → transparent): a radial highlight at 34% / 28%, r 46%, clipped to each blob so it reads as an inflated object rather than a flat shape. It is a radial gradient on purpose: same look as a blurred spot, no filter pass.
-- **Pointer spotlight** (`{colors.spot-core}`, `{colors.spot-hue}`, `{colors.spot-hue-2}`): a white core over two blob-derived hues, painted inside the wash, so the light is ground rather than surface. In light the hues are `--blob-c-2` and `--blob-a-2` pulled 50% toward white before being made translucent (36% and 22%), so the light *lightens* the ground under text rather than saturating it; in dark the core drops to 0.1 and the hues are `--blob-a-2` at 24% and `--blob-c-1` at 16%, held under the blobs (see `--blob-opacity`) so it reads as a glow and not a torch. It is painted at `z-index: 2` inside the wash, above the calm veil and under the grain: beneath the veil it was a smudge rather than a light, since the veil is heaviest at the centre of the viewport, which is exactly where a pointer usually is. See Pointer motion.
+- **Pointer spotlight** (`{colors.spot-core}`, `{colors.spot-hue}`, `{colors.spot-hue-2}`): a white core over two blob-derived hues, painted inside the wash, so the light is ground rather than surface. In light the hues are `--blob-c-2` and `--blob-a-2` pulled 50% toward white before being made translucent (36% and 22%), so the light *lightens* the ground under text rather than saturating it; in dark the core is 0.16 and the hues are `--blob-a-2` at 16% and `--blob-c-1` at 11%, held under the blobs (see `--blob-opacity`) so it reads as a glow and not a torch. The dark stops are ordered by *luminance*, not alpha: at a 0.1 core under a 24% blue the centre measured dimmer than its own ring (0.032 against 0.047 on the plain ground) and the light rendered as a donut, which is the one thing a light can never look like. The light is a 420px circle whose stops sit at 15/32/58%, weighted inward so the bright part is a point rather than a disc. It is painted at `z-index: 2` inside the wash, above the calm veil and under the grain: beneath the veil it was a smudge rather than a light, since the veil is heaviest at the centre of the viewport, which is exactly where a pointer usually is. See Pointer motion.
 
 Three of these stops form the world's one gradient line, `lilac → apricot → sky` (`--blob-c-1`, `--blob-b-1`, `--blob-a-2`). It is painted exactly twice: at 120° as the 2px card edge, and top-to-bottom as the 2px timeline rail.
 
@@ -653,7 +653,7 @@ The reference's circled dot made functional. A 44px glass pill (`{colors.glass-s
 
 The motion system is bound to the `emil-design-eng` framework and is not negotiable per-component.
 
-- **Easings:** `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)` for almost everything; `--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1)`; `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)` for the sheet. The built-in keywords are too weak, and `ease-in` is banned. Scroll scrubs are `linear`, because the finger is the clock. There is exactly one spring, in JS, for the one thing a curve cannot do: the pointer spotlight, at `K = 160`, `D = 22` (omega ≈ 12.6 rad/s, zeta ≈ 0.87, just under critical), which trails the pointer and settles in roughly a third of a second with no visible overshoot.
+- **Easings:** `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)` for almost everything; `--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1)`; `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)` for the sheet. The built-in keywords are too weak, and `ease-in` is banned. Scroll scrubs are `linear`, because the finger is the clock. There is exactly one spring, in JS, for the one thing a curve cannot do: the pointer spotlight, at `K = 300`, `D = 31` (omega ≈ 17.3 rad/s, zeta ≈ 0.90, just under critical), which trails the pointer with no visible overshoot. Its time constant is ~64ms, so it covers 95% of any distance in about 190ms (against ~270ms before) and then runs on for a few hundred ms while the invisible remainder decays under the 0.15px rest threshold — measured at 420ms to rest after a 60px move and 530ms after 800px. It is stiffer than a soft glow would want because the light is small: a wide glow can lag a long way behind the cursor and still read as light, and a small one that lags reads as a second object.
 - **Durations:** 160ms press, 200ms colour/background/border/icon nudge, 250ms scroll-ring fade, 260ms timeline node settle, 260ms underline in / 160ms out, 300ms flow connector, rail fade and card screenshot scale, 320ms card transform and card mark, 320ms specular highlight in / 200ms out, 400ms flow node and bus, 420ms menu link rise, 450ms reveal, 480ms spotlight in / 240ms out, 600ms hero rise, 800ms rail draw; 52ms/char typing, 26ms/char erasing.
 - **Transitions, not keyframes,** for anything interruptible: a transition retargets from wherever it is; a keyframe restarts from zero. The timeline and flow reveals are transitions on `data-reveal` for exactly this reason, and the card lift is the clearest case: a pointer crossing a row of cards retargets each one's 240ms transition from wherever it currently is, rather than restarting it. Keyframes are reserved for the ambient loops (blob drift, dot pulse, caret blink), the one-shot entrances (hero rise, menu links), and the scroll scrubs (`recede`, `card-unveil`, `media-drift`, `beat`), where the timeline is the scroll position and there is nothing to interrupt.
 - **Press feedback:** every pressable element carries `:active { transform: scale(0.97) }` (0.98 on the menu links and, through `--press`, on the card).
