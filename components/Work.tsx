@@ -16,7 +16,7 @@ import Reveal from "@/components/Reveal";
  * arithmetic silently breaks.
  *
  * The ONE-COLUMN case is not decidable here: JavaScript does not know the
- * column count, and duplicating the 760px breakpoint in JS to find out is the
+ * column count, and duplicating the 1000px breakpoint in JS to find out is the
  * coupling worth avoiding. So this emits the fact and CSS picks the rule. See
  * .work__item[data-edge-2col] and the :nth-child(odd) rule beside it.
  */

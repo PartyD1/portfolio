@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-03T17:41:56Z",
+  "generatedAt": "2026-09-03T21:10:00Z",
   "title": "Design System: Parth Doshi Portfolio",
   "extensions": {
     "colorMeta": {
@@ -273,11 +273,11 @@
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Captions, flow details, the footer and the mobile tech name, at normal tracking in sentence case. The tracked-caps 0.06em variant of this step belonged to the hero's status line and was removed with it on 2026-09-03; the two tracked-caps labels that remain (.card__label, .pending-note) sit smaller and at 0.08em."
+        "purpose": "Captions, flow details, the footer and the mobile tech name, at normal tracking in sentence case. The tracked-caps 0.06em variant of this step belonged to the hero's status line and was removed with it on 2026-09-03; the tracked caps that remain (the menu keycap and .pending-note) sit smaller and at 0.08em."
       },
       "micro-label": {
         "displayName": "Micro-label",
-        "purpose": "Tracked caps, allowed only in a card foot: the project card's taxonomy label (.card__label) at 600 / 0.6875rem / 0.08em. A second micro step (600 / 0.75rem / 0.08em, uppercase) carries the menu keycaps."
+        "purpose": "The last tracked-caps step: 600 / 0.75rem / 0.08em uppercase on the menu keycaps and the \"coming soon\" pending flag; the same size at 700 in the display face numbers the flow diagram's nodes. The 0.6875rem step below it carried the project card's taxonomy label (.card__label) and nothing else, and went with the label on 2026-09-03. No .pill carries tracking or uppercase any more."
       }
     },
     "shadows": [],
@@ -387,6 +387,10 @@
         "value": "760px"
       },
       {
+        "name": "work-grid",
+        "value": "1000px"
+      },
+      {
         "name": "container",
         "value": "1140px"
       }
@@ -397,9 +401,9 @@
       "name": "Glass Project Card",
       "kind": "card",
       "refersTo": "card",
-      "description": "The project card: a frosted pane floating over the blob wash. Elevation is declared once, as an edge — this system has no shadows.",
-      "html": "<article class=\"ds-card\"><div class=\"ds-card__head\"><h3 class=\"ds-card__name\">ScorelyAI</h3></div><p class=\"ds-card__tagline\">An AI, rubric-based evaluator for DECA reports — high-school competitors use it to get feedback on their written work.</p><div class=\"ds-card__foot\"><a class=\"ds-card__link\" href=\"#\">GitHub<svg class=\"ds-icon\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 15 15 5M7 5h8v8\"/></svg></a><span class=\"ds-badge-outline\">In use by DECA competitors</span></div></article>",
-      "css": ".ds-card { position: relative; display: flex; flex-direction: column; gap: 14px; max-width: 460px; padding: 30px; border-radius: var(--radius-card, 22px); border: 1px solid var(--glass-edge); background: var(--glass); backdrop-filter: blur(22px) saturate(1.35); -webkit-backdrop-filter: blur(22px) saturate(1.35); color: var(--ink); font-family: var(--font-body-stack); overflow: hidden; transition: transform 320ms var(--ease-out), border-color 200ms var(--ease-out), background 200ms var(--ease-out); } .ds-card__name { margin: 0; font-family: var(--font-display-stack); font-size: 1.5rem; font-weight: 700; line-height: 1.02; letter-spacing: 0.01em; text-transform: uppercase; } .ds-card__tagline { margin: 0; max-width: 40ch; font-size: 1rem; line-height: 1.5; color: var(--ink-2); } .ds-card__foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-top: auto; padding-top: 18px; } .ds-card__link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; margin: -8px -14px; border-radius: 999px; font-size: 0.9375rem; font-weight: 600; color: var(--ink); text-decoration: none; transition: background 200ms var(--ease-out), transform 160ms var(--ease-out); } .ds-card__link .ds-icon { width: 1em; height: 1em; transition: transform 200ms var(--ease-out); } .ds-badge-outline { display: inline-flex; align-items: center; height: 20px; padding: 2px 8px; border: 1px solid var(--border); border-radius: 999px; font-size: 0.75rem; font-weight: 500; white-space: nowrap; color: var(--ink); } .ds-card__link:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 999px; } .ds-card__link:active { transform: scale(0.97); } @media (hover: hover) and (pointer: fine) { .ds-card:hover { transform: translateY(-6px); background: var(--glass-strong); border-color: color-mix(in oklab, var(--signal) 55%, var(--glass-edge)); } .ds-card__link:hover { background: color-mix(in oklab, var(--ink) 10%, transparent); } .ds-card__link:hover .ds-icon { transform: translate(2px, -2px); } }"
+      "description": "The project card: a frosted pane floating over the blob wash. Elevation is declared once, as an edge; the one shadow is drawn only while the card is lifted. Since 2026-09-03 it is a two-column grid: the head spans both columns, the body and the foot stack in the text column, and the mark sits beside them.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card__head\"><h3 class=\"ds-card__name\">ScorelyAI</h3></div><div class=\"ds-card__body\"><p class=\"ds-card__tagline\">An AI, rubric-based evaluator for DECA reports: high-school competitors use it to get feedback on their written work.</p><span class=\"ds-badge-outline\">In use by DECA competitors</span></div><div class=\"ds-card__foot\"><a class=\"ds-card__link\" href=\"#\">case study<svg class=\"ds-icon\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 10h13M11 5l5 5-5 5\"/></svg></a></div><div class=\"ds-card__media\"><svg viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"24\" cy=\"24\" r=\"14\"/><path d=\"M10 24h28M24 10v28\"/></svg></div></article>",
+      "css": ".ds-card { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 38%); grid-template-rows: auto 1fr auto; column-gap: 24px; row-gap: 14px; max-width: 560px; padding: 30px; border-radius: var(--radius-card, 22px); border: 1px solid var(--glass-edge); background: var(--glass); backdrop-filter: blur(24px) saturate(1.4); -webkit-backdrop-filter: blur(24px) saturate(1.4); color: var(--ink); font-family: var(--font-body-stack); overflow: hidden; transition: transform 240ms var(--ease-out), border-color 200ms var(--ease-out), background 200ms var(--ease-out); } .ds-card__head { grid-column: 1 / -1; grid-row: 1; display: flex; flex-direction: column; gap: 6px; } .ds-card__name { margin: 0; font-family: var(--font-display-stack); font-size: 1.5rem; font-weight: 700; line-height: 1.02; letter-spacing: 0.01em; text-transform: uppercase; } .ds-card__body { grid-column: 1; grid-row: 2; display: flex; flex-direction: column; gap: 14px; min-width: 0; } .ds-card__tagline { margin: 0; max-width: 40ch; font-size: 1rem; line-height: 1.5; color: var(--ink-2); } .ds-card__foot { grid-column: 1; grid-row: 3; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding-top: 18px; } .ds-card__media { grid-column: 2; grid-row: 2 / 4; align-self: center; display: grid; place-items: center; aspect-ratio: 1; padding: 14px; border-radius: var(--radius-card, 22px); border: 1px solid var(--glass-edge); background: var(--glass-strong); color: var(--ink); opacity: 0.72; } .ds-card__media svg { width: 100%; height: 100%; } .ds-card__link { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; margin: -8px -14px; border-radius: 999px; font-size: 0.9375rem; font-weight: 600; color: var(--ink); text-decoration: none; transition: background 200ms var(--ease-out), transform 160ms var(--ease-out); } .ds-card__link .ds-icon { width: 1em; height: 1em; transition: transform 200ms var(--ease-out); } .ds-badge-outline { display: inline-flex; align-items: center; width: fit-content; height: 20px; padding: 2px 8px; border: 1px solid var(--border); border-radius: 999px; font-size: 0.75rem; font-weight: 500; white-space: nowrap; color: var(--ink); } .ds-card__link:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 999px; } @media (max-width: 760px) { .ds-card { grid-template-columns: minmax(0, 1fr) minmax(0, 34%); column-gap: 16px; padding: 24px; } .ds-card__foot { grid-column: 1 / -1; } .ds-card__media { grid-row: 2; } } @media (hover: hover) and (pointer: fine) { .ds-card:hover { transform: translateY(-8px); background: var(--glass-strong); border-color: color-mix(in oklab, var(--signal) 55%, var(--glass-edge)); } .ds-card:hover .ds-card__link .ds-icon { transform: translateX(4px); } }"
     },
     {
       "name": "Gradient-Edge Card",
@@ -453,9 +457,25 @@
       "name": "Pill",
       "kind": "badge",
       "refersTo": "pill",
-      "description": "The one small-surface vocabulary, and what replaced the shadcn Badge everywhere: raised glass, 999px, 1px edge, sentence case at 500. .card__label adds tracked caps because a card foot is the only place the system allows them.",
-      "html": "<span class=\"ds-pill\">Assistive tech</span> <span class=\"ds-pill ds-pill--label\">Agentic operations</span>",
-      "css": ".ds-pill { display: inline-flex; align-items: center; width: fit-content; padding: 6px 13px; border-radius: 999px; border: 1px solid var(--glass-edge); background: var(--glass-raised); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-family: var(--font-body-stack); font-size: 0.8125rem; font-weight: 500; line-height: 1.2; color: var(--ink); white-space: nowrap; } .ds-pill--label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }"
+      "description": "The one small-surface vocabulary, and what replaced the shadcn Badge everywhere: raised glass, 999px, 1px edge, sentence case at 500. Its users are About's range chips and the footer line. No tracking and no uppercase: the card's taxonomy label, the one pill that carried both, came off the card foot on 2026-09-03.",
+      "html": "<span class=\"ds-pill\">Assistive tech</span> <span class=\"ds-pill\">Agentic operations</span>",
+      "css": ".ds-pill { display: inline-flex; align-items: center; width: fit-content; padding: 6px 13px; border-radius: 999px; border: 1px solid var(--glass-edge); background: var(--glass-raised); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-family: var(--font-body-stack); font-size: 0.8125rem; font-weight: 500; line-height: 1.2; color: var(--ink); white-space: nowrap; max-width: 100%; }"
+    },
+    {
+      "name": "Live Link",
+      "kind": "button",
+      "refersTo": "live-link",
+      "description": "The one control that lets a visitor USE the work, so the loudest thing in a card foot and the first fact under a case-study title. A raised glass pill that, alone among pills, wears the world's gradient at rest: a 1.5px ring of --gh-hue-1..3 on ::before (padding-box mask, the .card::before technique) and a translucent wash of the same hues on ::after at half opacity, full on hover. The coral dot is static and haloed. Restyled 2026-09-03.",
+      "html": "<a class=\"ds-live\" href=\"#\"><span class=\"ds-live__dot\" aria-hidden=\"true\"></span>Try it live<svg class=\"ds-icon\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 15 15 5M7 5h8v8\"/></svg></a>",
+      "css": ".ds-live { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px 13px 17px; border-radius: 999px; border: 1px solid transparent; background: var(--glass-raised); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-family: var(--font-body-stack); font-size: 1rem; font-weight: 600; line-height: 1.25; color: var(--ink); text-decoration: none; white-space: nowrap; --lift: 0px; --press: 1; transform: translateY(var(--lift)) scale(var(--press)); transition: transform 160ms var(--ease-out); } .ds-live::before { content: \"\"; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; background: linear-gradient(120deg, var(--gh-hue-1), var(--gh-hue-2), var(--gh-hue-3)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude; pointer-events: none; } .ds-live::after { content: \"\"; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: linear-gradient(120deg, color-mix(in oklab, var(--gh-hue-1) 22%, transparent), color-mix(in oklab, var(--gh-hue-2) 16%, transparent), color-mix(in oklab, var(--gh-hue-3) 22%, transparent)); opacity: 0.5; transition: opacity 200ms var(--ease-out); pointer-events: none; } .ds-live__dot { width: 9px; height: 9px; flex: none; border-radius: 999px; background: var(--signal); box-shadow: 0 0 0 3px color-mix(in oklab, var(--signal) 26%, transparent); transition: transform 200ms var(--ease-out); } .ds-live .ds-icon { width: 1em; height: 1em; transition: transform 200ms var(--ease-out); } .ds-live:active { --press: 0.97; } .ds-live:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; } @media (hover: hover) and (pointer: fine) { .ds-live:hover::after { opacity: 1; } .ds-live:hover .ds-live__dot { transform: scale(1.35); } .ds-live:hover .ds-icon { transform: translate(3px, -3px); } @media (prefers-reduced-motion: no-preference) { .ds-live:hover { --lift: -2px; } } }"
+    },
+    {
+      "name": "Repo Button",
+      "kind": "button",
+      "refersTo": "card-repo",
+      "description": "The card's icon-only GitHub control: a 56px raised-glass circle (up from 40 on 2026-09-03; it clears the 44px touch size everywhere, so there is no coarse-pointer override) holding a 28px mark in --ink-2. The mark is the label; the accessible name is on aria-label. Hover tints the edge toward --gh-hue-1 and, with motion allowed, lifts 2px; the mark's gradient paint cross-fades in on hover and on focus.",
+      "html": "<a class=\"ds-repo\" href=\"#\" aria-label=\"ScorelyAI on GitHub (opens in a new tab)\"><svg class=\"ds-repo__mark\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3\"/></svg></a>",
+      "css": ".ds-repo { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; flex: none; width: 56px; height: 56px; border-radius: 999px; border: 1px solid var(--glass-edge); background: var(--glass-raised); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: var(--ink-2); text-decoration: none; --lift: 0px; --press: 1; transform: translateY(var(--lift)) scale(var(--press)); transition: transform 160ms var(--ease-out), border-color 200ms var(--ease-out); } .ds-repo__mark { width: 28px; height: 28px; display: block; } .ds-repo:active { --press: 0.97; } .ds-repo:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; } @media (hover: hover) and (pointer: fine) { .ds-repo:hover { border-color: color-mix(in oklab, var(--blob-c-1) 55%, var(--glass-edge)); } @media (prefers-reduced-motion: no-preference) { .ds-repo:hover { --lift: -2px; } } }"
     },
     {
       "name": "Tech Tile",
@@ -497,7 +517,7 @@
       },
       {
         "name": "The Ground-Only Iridescence Rule",
-        "body": "Blob colours are for the wash and for the two gradient lines (card edge, timeline rail). They never become body text, a surface background, or a control fill.",
+        "body": "Blob colours are for the wash and for the two gradient lines (card edge, timeline rail). They never become body text, a surface background, or a control fill. The one amendment (2026-09-03): the live-link wears the gradient at rest, as a 1.5px ring of --gh-hue-1 to --gh-hue-3 on its edge and a translucent wash of the same hues over its raised glass, at half opacity at rest and full on hover. Blob-derived colour on a control's edge and over its surface, allowed the way the card edge and the hovered GitHub mark are: a line and a tint, never a text colour and never a solid fill.",
         "section": "colors"
       },
       {
@@ -562,12 +582,12 @@
       },
       {
         "name": "The Tracked-Caps-In-The-Foot Rule",
-        "body": "The .pill carries no tracking and no uppercase by default. .card__label adds both, because a card foot is the only place this system allows tracked caps as a label. A pill anywhere else (About's range) is sentence case at 500.",
+        "body": "Retired 2026-09-03. It used to read: the .pill carries no tracking and no uppercase by default, and .card__label adds both because a card foot is the only place the system allows tracked caps as a label. The label came off the card, so the exception has no user and the rule is now simply its first clause: no .pill carries tracking or uppercase. About's range and the footer line are sentence case at 500. The tracked caps that survive, the menu keycap and the pending flag, are neither .pills nor in a card foot, and the card foot is now the card's last line.",
         "section": "components"
       },
       {
         "name": "The Live-Link Rule",
-        "body": "A project with a public, working deployment gets a demo, and that link is the loudest affordance on its card and repeats at the TOP of its case study, not only in the footer. A thing a visitor can *use* outranks a thing they can read. It renders as a raised glass pill (.live-link: {colors.glass-raised} behind blur(12px), 1px edge, 999px, 9px 15px, 0.9375rem at 600, 9px gap) carrying a static 8px coral dot, the text \"Try it live\" on the card and \"Try {name} live\" on the case study, and a trailing ArrowUpRight. Hover mixes 55% signal into the edge and nudges the arrow; press scales 0.97. The case-study instance (.case__live) sits 22px under the title, before every other fact. This system has no buttons; the pill is the strongest control shape it owns.",
+        "body": "A project with a public, working deployment gets a demo, and that link is the loudest affordance on its card and repeats at the TOP of its case study, not only in the footer. A thing a visitor can *use* outranks a thing they can read. It renders as a raised glass pill (.live-link: {colors.glass-raised} behind blur(12px), 999px, padding 13px 20px 13px 17px, 1rem at 600, line-height 1.25, 10px gap) carrying a static 9px coral dot with a 3px halo ring (--signal at 26%), the text \"Try it live\" on the card and \"Try {name} live\" on the case study, and a trailing ArrowUpRight. Restyled 2026-09-03: it is the one pill that wears the world's colour at rest. Its 1px border is a transparent spacer; the edge is a 1.5px ring on ::before (linear-gradient 120deg of --gh-hue-1, --gh-hue-2, --gh-hue-3, padding-box masked like .card::before) and a ::after wash of the same hues (color-mix 22% / 16% / 22% into transparent) sits at opacity 0.5. Hover brings the wash to full, swells the dot to 1.35 and moves the arrow translate(3px, -3px); the 2px lift alone is gated behind prefers-reduced-motion: no-preference. No coral edge tint any more. Press scales 0.97. The case-study instance (.case__live) sits 22px under the title, before every other fact. This system has no buttons; the pill is the strongest control shape it owns.",
         "section": "components"
       },
       {
@@ -580,12 +600,12 @@
       "Do put every new colour through the token layer in app/globals.css, and define it in both :root and .dark. A value that only exists in one theme is a bug.",
       "Do use --signal for marks and --signal-ink for text (The Two Corals Rule).",
       "Do build every new surface from the glass ladder: --glass for a panel, --glass-strong for a lit or heavy one, --glass-raised for a pill or control sitting on glass, always with a 1px --glass-edge and a backdrop-filter matched to its size.",
-      "Do reach for .pill before inventing a small surface; it is the taxonomy label, the range chip and the base shape for every small control.",
+      "Do reach for .pill before inventing a small surface; it is the range chip, the footer line and the base shape for every small control.",
       "Do keep new sections inside .section (a 1140px column with var(--gutter) outside it, 80px to 96px vertical) and give them an id plus aria-labelledby, so the menu and the number shortcuts can reach them.",
       "Do wrap below-the-fold content in <Reveal> and stagger siblings at 50 to 70ms; drive any choreography inside it off data-reveal with transitions, the way the timeline and the flow do.",
       "Do author new icons as SVG in currentColor at the established stroke weights (2.25 for UI arrows, 2.5 for project marks), round caps and joins.",
       "Do put every hover rule behind @media (hover: hover) and (pointer: fine) and give every pressable a :active { scale(0.97) }, 0.98 on large surfaces, and outside the hover guard, since touch devices have no hover state.",
-      "Do drive any new state on .card through --lift, --rx/--ry or --press rather than a second transform declaration; a second one silently wins over all of them (The One Composed Transform Rule).",
+      "Do drive any new state on .card through --lift or --press, and any new state on the menu link, the live-link or the repo button through their own --shift / --lift / --press, rather than a second transform declaration (The One Composed Transform Rule).",
       "Do make pointer-driven and scroll-driven motion stop when the user does: a loop tests for rest and cancels its frame, a scrub defaults to its finished state, and the resting page is complete (The User-Is-The-Clock Rule).",
       "Do ship blocked content by ABSENCE. An unwritten case-study section does not render, tech: [] renders no row, media: [] renders no band. Never a placeholder, a skeleton or \"coming soon\" on a case study.",
       "Do put text that sits outside the calm band on a surface rather than trying to move it (The Surface-Not-Spacing Rule).",
@@ -596,7 +616,7 @@
     ],
     "donts": [
       "Don't add a box-shadow. This system has none; elevation is an edge over blur (The Edge-Not-Shadow Rule).",
-      "Don't paint blob colours onto text, surfaces or controls. They are ground and the two gradient lines (card edge, timeline rail) only.",
+      "Don't paint blob colours onto text or use them as a solid fill. They are ground and the gradient line: the card edge, the timeline rail, the hovered GitHub mark and, since 2026-09-03, the live-link's 1.5px ring and its translucent wash (The Ground-Only Iridescence Rule and its one amendment).",
       "Don't mix white into a surface by hand or add a fifth glass opacity; the ladder is the whole vocabulary (The Glass Ladder Rule).",
       "Don't stroke display type at 700; Unbounded's heavy contours self-overlap and the stroke exposes the construction lines.",
       "Don't size the blobs in vmax below 720px; portrait vmax is the viewport height and the blobs swallow the copy.",
@@ -610,7 +630,7 @@
       "Don't bring the Stack section or its orbit back. Tools appear only on the case study where they were used, as tiles, and data/stack.ts has exactly that one consumer.",
       "Don't ship a dead link. An unavailable action takes the designed pending state (.is-pending plus a .pending-note pill), inert to pointer, keyboard and screen reader.",
       "Don't introduce a seventh radius, a second accent, or a new display face.",
-      "Don't put tracked caps anywhere but a card foot. A pill is sentence case by default.",
+      "Don't put tracked caps on a .pill. Every pill is sentence case at 500; the only tracked caps left are the menu keycap and the pending flag, and the card foot carries none (The Tracked-Caps-In-The-Foot Rule, retired).",
       "Don't animate transform: from a scroll timeline. Scroll gets translate:/scale:; interaction keeps transform:, or the scroll animation silently eats the hover.",
       "Don't put a :active transform on an element that owns a full-card overlay pseudo-element; it drags the overlay out from under the cursor and the card stops being clickable (The Card-As-Link Rule).",
       "Don't infer a tool→project mapping, a role, a date, or a metric. If it was not supplied, the field stays empty and the UI omits it.",
