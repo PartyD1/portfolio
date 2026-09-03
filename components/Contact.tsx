@@ -13,7 +13,7 @@ export default function Contact() {
         Let&rsquo;s talk.
       </h2>
       <p className="contact__lede">
-        Hiring, collaborating, or just curious about something I built —
+        Hiring, collaborating, or just curious about something I built?
         I&rsquo;d love to hear from you.
       </p>
       <a className="contact__email" href={`mailto:${links.email}`}>

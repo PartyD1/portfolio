@@ -6,6 +6,7 @@ import { links } from "@/data/site";
 import { ArrowUpRight } from "@/components/Icon";
 import CaseStudyHeader from "@/components/CaseStudyHeader";
 import CaseStudySection from "@/components/CaseStudySection";
+import Flow from "@/components/Flow";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -20,23 +21,31 @@ export async function generateMetadata({
   const p = bySlug(slug);
   if (!p) return {};
   return {
-    title: `${p.name} — Parth Doshi`,
+    title: `${p.name} · Parth Doshi`,
     description: p.tagline,
   };
 }
 
 /**
- * One page per project.
+ * One page per project, and it is a portfolio page, not a blog post.
  *
- * The governing rule of this surface is ABSENT, NOT EMPTY. A section whose
- * prose has not been written does not render at all: there is no "coming soon",
- * no skeleton, no greyed placeholder anywhere on a case study. A visible
- * admission of incompleteness is worse to a recruiter than a shorter page.
+ * ORDER: header, screenshots, the flow diagram, then short bullets. The
+ * governing rule of this surface is ABSENT, NOT EMPTY. A section whose
+ * content has not been written does not render at all: there is no "coming
+ * soon", no skeleton, no greyed placeholder anywhere on a case study.
  *
- * There is also no hero-metric template. Outcome & impact is prose. Where
- * nothing is documented the section is absent; it never renders an invented
- * number, a bar, a ring, or a count-up.
+ * There is also no hero-metric template. Where nothing is documented the
+ * section is absent; it never renders an invented number, a bar, a ring, or a
+ * count-up.
  */
+const sections: { id: string; title: string; key: keyof Omit<NonNullable<ReturnType<typeof bySlug>>["study"] & object, "flow"> }[] = [
+  { id: "problem", title: "Problem", key: "problem" },
+  { id: "build", title: "What I built", key: "build" },
+  { id: "outcome", title: "Outcome", key: "outcome" },
+  { id: "challenge", title: "Hardest part", key: "challenge" },
+  { id: "limitations", title: "Limitations", key: "limitations" },
+];
+
 export default async function CaseStudyPage({
   params,
 }: {
@@ -48,67 +57,38 @@ export default async function CaseStudyPage({
 
   // Fixture prose exists only so the pin's scroll budget can be measured
   // against a representative route. Never active in production.
-  const s = FIXTURES ? fixtureStudy : p.study;
+  const s = FIXTURES ? { ...p.study, ...fixtureStudy } : p.study;
 
   return (
     <article className="case">
       <CaseStudyHeader project={p} />
 
-      {s?.problem && (
-        <CaseStudySection id="problem" title="Problem &amp; context">
-          {s.problem.map((t) => (
-            <p key={t}>{t}</p>
-          ))}
-        </CaseStudySection>
-      )}
+      {s?.flow && <Flow flow={s.flow} />}
 
-      {s?.build && (
-        <CaseStudySection id="build" title="What I built &amp; how">
-          {s.build.map((t) => (
-            <p key={t}>{t}</p>
-          ))}
-        </CaseStudySection>
-      )}
+      {/* Two columns of short sections on a wide screen, so the page reads as
+          a spread rather than a scroll. */}
+      <div className="case__sections">
+        {sections.map(({ id, title, key }) => {
+          const points = s?.[key];
+          if (!points?.length) return null;
+          return (
+            <CaseStudySection id={id} title={title} key={id}>
+              {points.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </CaseStudySection>
+          );
+        })}
+      </div>
 
-      {s?.outcome && (
-        <CaseStudySection id="outcome" title="Outcome &amp; impact">
-          {s.outcome.map((t) => (
-            <p key={t}>{t}</p>
-          ))}
-        </CaseStudySection>
-      )}
-
-      {s?.challenge && (
-        <CaseStudySection id="challenge" title="Hardest technical challenge">
-          {s.challenge.map((t) => (
-            <p key={t}>{t}</p>
-          ))}
-        </CaseStudySection>
-      )}
-
-      {/* Rare in a student portfolio, and it reads as seniority: it is the
-          section that proves the author has a view of his own work rather than
-          only a memory of it. */}
-      {s?.limitations && (
-        <CaseStudySection id="limitations" title="Current limitations">
-          {s.limitations.map((t) => (
-            <p key={t}>{t}</p>
-          ))}
-        </CaseStudySection>
-      )}
-
-      {/*
-        The bottom of a case study is the highest-intent moment on the site, so
-        it carries the same email treatment Contact does. This is not a seventh
-        accent: The One Accent Rule counts KINDS of place, not instances, and
-        "the email underline" is one kind now appearing on two surfaces.
-      */}
+      {/* The bottom of a case study is the highest-intent moment on the site,
+          so it carries the same email treatment Contact does. */}
       <section className="case__foot" aria-labelledby="case-cta">
         <h2 className="case__foot-title" id="case-cta">
           Want the detail?
         </h2>
         <p className="case__foot-lede">
-          I can walk through any decision on this page — why it was built this
+          I can walk through any decision on this page: why it was built this
           way, what broke, and what I&rsquo;d change.
         </p>
         <a className="contact__email" href={`mailto:${links.email}`}>

@@ -4,18 +4,22 @@
  * Several fields below are typed and empty because the fact does not exist yet,
  * not because nobody got round to it. Those are marked BLOCKED. The rule for
  * every one of them is the same: it ships by ABSENCE. An unwritten case-study
- * section does not render, `tech: []` renders no row, `media: []` renders the
- * authored Artifact mark inside an identical frame. Nothing renders a
- * placeholder, a skeleton, or the words "coming soon" — a visible admission of
- * incompleteness is worse to a recruiter than a shorter page.
+ * section does not render, `tech: []` renders no row, `media: []` renders no
+ * media band at all. Nothing renders a placeholder, a skeleton, or the words
+ * "coming soon": a visible admission of incompleteness is worse to a recruiter
+ * than a shorter page.
  *
  * And nothing here may be inferred. Not the tech list from the repo's language
  * bar, not the dates from the internship, not a metric from a description.
+ *
+ * A case study is VISUAL FIRST (Parth, 2026-09-02): a flow diagram, then
+ * screenshots where they exist, then short bullets. Nobody is reading an essay
+ * about a student project. Every bullet below was cut down from prose Parth
+ * supplied; none says anything the prose did not.
  */
 
 export type ProjectMedia = {
-  /** Absent = render the authored Artifact mark as the frame's empty state. */
-  src?: string;
+  src: string;
   alt: string;
   kind: "image" | "gif" | "diagram";
   width: number;
@@ -24,10 +28,27 @@ export type ProjectMedia = {
 };
 
 /**
- * The case-study body. Each field is an array of paragraphs, and each renders
- * as a section ONLY when present — see app/work/[slug]/page.tsx.
+ * One node in the flow diagram. `branches` renders as a fan of parallel
+ * sub-nodes under the title (three checks, five gestures, three channels).
+ */
+export type FlowStep = {
+  title: string;
+  detail?: string;
+  branches?: string[];
+};
+
+export type Flow = {
+  steps: FlowStep[];
+  /** The thing underneath the whole chain: the runtime, the queue, the rule. */
+  bus?: { title: string; detail?: string };
+};
+
+/**
+ * The case-study body. Each field is an array of short bullets, and each
+ * renders as a section ONLY when present. See app/work/[slug]/page.tsx.
  */
 export type CaseStudy = {
+  flow?: Flow;
   problem?: string[];
   build?: string[];
   outcome?: string[];
@@ -41,45 +62,45 @@ export type Project = {
   /**
    * ONE taxonomy: the domain of system. Never a role, never a date, never a
    * claim. Facts that used to live here have moved to the field that owns
-   * them — `use` for third-party usage, data/experience.ts for employment.
+   * them: `use` for third-party usage, data/experience.ts for employment.
    */
   label: string;
   tagline: string;
-  description?: string;
   /**
    * Third-party usage, sourced. Somebody other than the author used the thing,
    * which is the strongest single fact on this site. Never a number that was
    * not supplied, never embellished, never softened.
    */
   use?: string;
-  /** BLOCKED — no per-project role has been supplied. */
+  /** BLOCKED: no per-project role has been supplied. */
   role?: string;
-  /** BLOCKED — no per-project dates have been supplied. */
+  /** BLOCKED: no per-project dates have been supplied. */
   dates?: string;
   /** Who built it, when it was not solely Parth. Renders in the metadata line. */
   ownership?: string;
   /**
    * 1 = flagship. 2 is defined and currently unused. Weight NEVER changes grid
-   * span — only weight 1 spans a row — because the gradient-edge parity math
+   * span (only weight 1 spans a row) because the gradient-edge parity math
    * depends on exactly one spanning item. Weight 2 changes type scale and media
    * aspect only.
    */
   weight: 1 | 2 | 3;
   /** Names into data/stack.ts, the one tool list. Supplied 2026-09-02. */
   tech: string[];
-  /** BLOCKED — no screenshots or diagrams supplied yet. */
+  /** Screenshots. Empty = no media band; never a stand-in. */
   media: ProjectMedia[];
   /** Public repo. Absent on operations-agent, permanently. */
   href?: string;
   /**
    * A live, publicly usable deployment. The strongest single affordance on
-   * the site — it lets a visitor USE the work instead of reading about it — so
-   * it renders on the homepage card AND at the top of the case study, not just
-   * in the footer. Only ScorelyAI has one so far.
+   * the site, because it lets a visitor USE the work instead of reading about
+   * it, so it leads the case-study header and the card foot. Only ScorelyAI
+   * has one so far.
    */
   demo?: string;
+  /** One calm sentence for the case-study header. Never an apology. */
   note?: string;
-  /** BLOCKED — the prose. Absent sections do not render. */
+  /** BLOCKED where absent. Absent sections do not render. */
   study?: CaseStudy;
 };
 
@@ -89,58 +110,75 @@ export const projects: Project[] = [
     name: "Operations Agent",
     label: "Agentic operations",
     tagline: "An agentic workflow that keeps a company's bookings healthy.",
-    description:
-      "Built with a partner for the operations team. It manages bookings, autonomously flags the ones that need attention, and works on fixing them — so the team spends its time on the exceptions, not the queue.",
     ownership: "Built with a partner",
     /*
      * Says the true thing calmly, and turns the absence into an invitation
-     * rather than an apology. It is deliberately NOT phrased as "no repo" — the
-     * thing a hiring manager wants here was never in the repo anyway.
+     * rather than an apology. It is deliberately NOT phrased as "no repo";
+     * the thing a hiring manager wants here was never in the repo anyway.
      */
     note: "The code and the company's data stay internal. The architecture and the decisions I can walk through in detail.",
     weight: 1,
-    tech: [
-      "Elixir",
-      "Erlang/OTP",
-      "Phoenix LiveView",
-      "Twilio",
-      "Resend",
-      "Apify",
-    ],
+    tech: ["Elixir", "Erlang/OTP", "Phoenix LiveView", "Twilio", "Resend"],
     media: [],
     /*
      * Supplied by Parth 2026-09-02.
      *
-     * Deliberately carries NO percentages. His résumé bullets quote 70% / 25% /
+     * Deliberately carries NO percentages. His resume bullets quote 70% / 25% /
      * 40% / 90%, and he confirmed those are estimates rather than measurements.
      * An unmeasured number is the one thing on a portfolio an interviewer is
-     * guaranteed to probe, and "I estimated it" turns the strongest project on
-     * the site into a credibility problem. The mechanism is more convincing
-     * than the numbers were, and it is all defensible.
+     * guaranteed to probe. The mechanism is more convincing than the numbers
+     * were, and it is all defensible.
      */
     study: {
+      flow: {
+        steps: [
+          { title: "A booking", detail: "Gets its own small, independent worker" },
+          {
+            title: "Wakes on a schedule",
+            detail: "Checks that one booking, then goes back to sleep",
+          },
+          {
+            title: "Three checks, side by side",
+            branches: ["Risk detection", "Provider tracking", "Chat monitoring"],
+          },
+          {
+            title: "A small model at the edge",
+            detail: "Two short JSON calls classify the awkward judgement calls",
+          },
+          {
+            title: "Crosses a threshold",
+            detail: "Escalates itself over whichever channel fits",
+            branches: ["SMS", "Voice", "Email"],
+          },
+        ],
+        bus: {
+          title: "Erlang/OTP underneath",
+          detail:
+            "Every worker is a supervised process. It owns its state, schedules its own next check, and restarts alone if it crashes.",
+        },
+      },
       problem: [
-        "InstaService's operations team watched its bookings by hand. The failure that actually costs money is never the booking that errors loudly — those get noticed. It is the one that goes quiet: a provider who stops replying, a chat thread that stalls, a job drifting toward its start time with something unresolved.",
-        "Nothing surfaces those. Finding them meant a person re-reading the same queue over and over, hoping to notice what had changed since the last pass — and noticing late, usually because a customer called first.",
+        "The operations team watched bookings by hand, and the failures that cost money were the quiet ones: a provider who stops replying, a chat thread that stalls, a job drifting toward its start time with something unresolved.",
+        "Finding them meant re-reading the same queue over and over, and noticing late, usually because a customer called first.",
       ],
       build: [
-        "Every booking gets its own small, independent worker. It wakes on a schedule, checks the state of that one booking, decides whether anything needs attention, and goes back to sleep. Three checks run side by side for each booking: risk detection, provider tracking, and chat monitoring.",
-        "The part worth explaining is where the autonomy actually comes from, because it is not a prompt-orchestration framework. It is Erlang/OTP — the runtime Elixir is built on. Each booking's worker is a supervised process: it owns its state, schedules its own next check, and if it falls over it is restarted on its own without disturbing any other booking. I tuned the supervisor's restart limits so that a single booking stuck in a crash loop cannot cascade and take the whole tree down with it.",
-        "The language model is deliberately small and sits at the edge — two short JSON calls used as a classifier for the judgement calls that are awkward to write as rules, like reading whether a chat thread has gone wrong. Everything structural is the runtime, not the model: scheduling, state, retries, escalation, isolation. The system runs end to end with no API key at all; the classifier degrades and the rest carries on.",
-        "When a booking crosses a threshold it escalates itself over whichever channel fits — SMS and voice through Twilio, email through Resend — so the team is told rather than having to look.",
+        "One small worker per booking. It wakes on a schedule, checks the state of that booking, decides whether anything needs attention, and sleeps.",
+        "The autonomy is Erlang/OTP, not a prompt framework. Each worker is a supervised process, and the supervisor's restart limits are tuned so one booking stuck in a crash loop cannot take the tree down.",
+        "The language model is small and sits at the edge, as a classifier. Scheduling, state, retries, escalation and isolation are all the runtime. The system runs end to end with no API key at all.",
+        "Past a threshold, a booking escalates itself: SMS and voice through Twilio, email through Resend.",
       ],
       outcome: [
-        "The queue stopped being something a person had to re-read. Bookings that were failing silently surface on their own, ranked, and the ones that need a human get escalated to one over a channel they will actually see.",
-        "I have not measured that rigorously, and I would rather say so than quote a number I cannot defend — see the limitations below.",
+        "The queue stopped being something a person had to re-read. Silently failing bookings surface on their own, ranked, and the ones that need a human reach one.",
+        "Not measured rigorously, and I would rather say so than quote a number I cannot defend.",
       ],
       challenge: [
-        "Deciding what the model was allowed to be responsible for. It is tempting to let it drive control flow, and that produces a system that is non-deterministic, awkward to test, and broken the moment the API is slow or down — for something whose entire job is to run unattended, that is disqualifying.",
-        "Pushing every structural decision into OTP and demoting the model to a classifier at the boundary is what makes the system trustworthy: failure is local, restarts are automatic, and the worst case when the model is unavailable is that one class of judgement gets less nuanced, not that monitoring stops.",
+        "Deciding what the model was allowed to be responsible for. Letting it drive control flow produces a system that is non-deterministic, hard to test, and broken the moment the API is slow. For something that runs unattended, that is disqualifying.",
+        "Every structural decision went into OTP and the model became a classifier at the boundary. Failure is local, restarts are automatic, and an unavailable model costs nuance, not monitoring.",
       ],
       limitations: [
-        "The impact was never formally instrumented. I know the workflow it replaced and I can describe what it does, but I did not run a controlled before-and-after, so I will not put a percentage on it. If I picked it up again that is the first thing I would build — the measurement, before any more features.",
-        "The classifier is only as good as two short prompts, and it has no evaluation set behind it. I would want a labelled set of real chat threads and a regression check before trusting it with anything heavier than a nudge.",
-        "The risk score's six signals are weighted by hand. They were tuned by judgement rather than fitted to outcomes, which is fine at this size and would not survive many more signals.",
+        "The impact was never formally instrumented. No controlled before-and-after, so no percentage. If I picked it up again, the measurement comes before any more features.",
+        "The classifier is two short prompts with no evaluation set behind it.",
+        "The risk score's six signals are weighted by hand, which is fine at this size and would not survive many more signals.",
       ],
     },
   },
@@ -149,44 +187,79 @@ export const projects: Project[] = [
     name: "ScorelyAI",
     label: "AI evaluation",
     tagline:
-      "An AI, rubric-based evaluator for DECA reports — high-school competitors use it to get feedback on their written work.",
+      "An AI, rubric-based evaluator for DECA reports. High-school competitors use it to get feedback on their written work.",
     use: "In use by DECA competitors",
     href: "https://github.com/PartyD1/scorely-ai",
     demo: "https://scorelyai.app",
     weight: 3,
-    tech: [
-      "Python",
-      "FastAPI",
-      "Next.js",
-      "TypeScript",
-      "Tailwind",
-      "PostgreSQL",
-      "OpenAI API",
-      "PyMuPDF",
+    tech: ["Python", "FastAPI", "Next.js", "TypeScript", "Tailwind", "PostgreSQL"],
+    media: [
+      {
+        src: "/work/scorely-ai/home.png",
+        alt: "The ScorelyAI landing page: Audit your DECA report, with a Start Audit button.",
+        kind: "image",
+        width: 1600,
+        height: 629,
+        caption: "Upload a report, pick the event, get a score in under twenty seconds.",
+      },
+      {
+        src: "/work/scorely-ai/audit.png",
+        alt: "A completed ScorelyAI audit: an overall score, a section breakdown with per-section scores, and a DECA penalty checklist.",
+        kind: "image",
+        width: 1133,
+        height: 1600,
+        caption: "A finished audit: section scores against the official rubric, then the penalty checklist.",
+      },
     ],
-    media: [],
     study: {
+      flow: {
+        steps: [
+          { title: "Upload a PDF", detail: "And pick the event" },
+          {
+            title: "Graded asynchronously",
+            detail: "The upload returns a job ID and the frontend polls",
+          },
+          {
+            title: "Rubric injected",
+            detail: "That event's official rubric and required outline go into the prompt",
+          },
+          {
+            title: "Two kinds of check",
+            branches: ["Schema-validated JSON score", "Key pages checked visually"],
+          },
+          {
+            title: "Section scores",
+            detail: "Comments per section, then the penalty checklist",
+          },
+        ],
+        bus: {
+          title: "Sixteen events, three clusters",
+          detail: "Each with its own rubric and its own document outline, so a missing section is penalised rather than ignored.",
+        },
+      },
       problem: [
-        "A DECA written report is graded against a published rubric, but a competitor only finds out how they did after the competition. Between drafts there is no feedback loop at all — you either know a judge willing to read forty pages, or you guess.",
-        "The rubric is public. The scoring is structured. That combination is the whole opportunity: it is a grading problem with an answer key, which makes it tractable in a way that most \u201cAI feedback\u201d products are not.",
+        "A DECA report is graded against a published rubric, but a competitor only finds out how they did after the competition. Between drafts there is no feedback loop.",
+        "The rubric is public and the scoring is structured. That makes it a grading problem with an answer key.",
       ],
       build: [
-        "Upload a PDF, pick your event, get a section-by-section score with comments against the official rubric for that event. It covers sixteen events across three clusters, each with its own rubric and its own required document outline injected into the prompt, so a missing section is actually penalised rather than quietly ignored.",
-        "Grading is asynchronous. The upload returns a job ID immediately and the frontend polls, because a synchronous request for a forty-page document is a request that times out.",
-        "Two things in it are worth more than the rest. The scoring comes back as schema-validated JSON through OpenAI structured outputs rather than parsed out of prose, so a malformed response is a caught error instead of a plausible-looking wrong score. And text extraction alone misses things a judge would not \u2014 whether the Statement of Assurances is actually signed, whether the document looks presentable \u2014 so key pages are rendered as images and checked visually as well.",
-        "The page-count penalty only excludes a title page, table of contents or Statement of Assurances if that page was actually detected in the document, rather than assuming three free pages every time.",
+        "Upload a PDF, pick the event, get a section-by-section score with comments against that event's official rubric.",
+        "Grading is asynchronous: a job ID comes back immediately and the frontend polls, because a synchronous request for a forty-page document times out.",
+        "Scores come back as schema-validated JSON through structured outputs, so a malformed response is a caught error rather than a plausible wrong score.",
+        "Key pages are rendered as images and checked visually, for the things text extraction misses: whether the Statement of Assurances is actually signed, whether the document looks presentable.",
+        "The page-count penalty only exempts a title page, table of contents or Statement of Assurances when that page was actually detected.",
       ],
       outcome: [
-        "It is live at scorelyai.app and high-school DECA competitors use it to get feedback on drafts before they submit them. Signed-in users keep a history per event, so a second draft can be compared against the first.",
+        "Live at scorelyai.app, and high-school DECA competitors use it on drafts before they submit.",
+        "Signed-in users keep a history per event, so a second draft can be compared against the first.",
       ],
       challenge: [
-        "Making the model\u2019s output trustworthy enough to show someone a number. An LLM will happily produce a confident score for a rubric it has half-understood, and a wrong score presented as a real one is worse than no score.",
-        "The answer was to give it as little room as possible: the rubric and the required outline are injected rather than recalled, the response is schema-validated rather than parsed, and the checks that do not suit a language model \u2014 page counts, signature detection \u2014 are computed separately and merged in.",
+        "Making the output trustworthy enough to show someone a number. A confident score for a half-understood rubric is worse than no score.",
+        "So the model gets as little room as possible: rubric and outline injected rather than recalled, response schema-validated rather than parsed, page counts and signature detection computed separately and merged in.",
       ],
       limitations: [
-        "Documents over 25,000 tokens are truncated, with a warning shown to the user. A long report is therefore graded on part of itself, which is a real ceiling rather than a rare edge case.",
-        "There is no evaluation set. Scores have never been compared against real judge scores on the same documents, so I can say the output is well-formed and rubric-grounded, but not that it is accurate. That comparison is the obvious next piece of work.",
-        "History is capped at five submissions per user per event to keep storage small.",
+        "Documents over 25,000 tokens are truncated, with a warning. A long report is graded on part of itself.",
+        "No evaluation set. Scores have never been compared against real judge scores on the same documents.",
+        "History is capped at five submissions per user per event.",
       ],
     },
   },
@@ -204,32 +277,76 @@ export const projects: Project[] = [
       "Next.js",
       "TypeScript",
       "OpenClaw",
-      "NemoClaw",
-      "Nemotron",
       "Supabase",
-      "Apify",
       "Resend",
       "Discord",
       "Vercel",
       "NVIDIA Brev",
     ],
-    media: [],
+    media: [
+      {
+        src: "/work/santaclaws/dashboard.png",
+        alt: "The SantaClaws dashboard: four agent cards named Rudolph Scout, Workshop Elves, Snowball Pitcher and Cookie Closer, all active, above a row of live counts.",
+        kind: "image",
+        width: 1600,
+        height: 812,
+        caption: "The workshop: four agents, each owning one stage, with live counts from Supabase.",
+      },
+      {
+        src: "/work/santaclaws/mockup.png",
+        alt: "A landscaping company website generated and deployed by the Designer agent.",
+        kind: "image",
+        width: 1600,
+        height: 956,
+        caption: "A site Designer built and deployed for a lead, before Pitcher wrote the email.",
+      },
+      {
+        src: "/work/santaclaws/leads.png",
+        alt: "The nice-list leads table with scores and statuses beside the workshop activity log.",
+        kind: "image",
+        width: 892,
+        height: 1600,
+        caption: "Every lead, its score, and which agent has it, next to the audit log.",
+      },
+    ],
     study: {
+      flow: {
+        steps: [
+          { title: "Scout", detail: "Finds and qualifies local businesses" },
+          {
+            title: "Designer",
+            detail: "Builds website mockups and deploys the pick to Vercel",
+          },
+          {
+            title: "Pitcher",
+            detail: "Drafts outreach with that exact deployed URL in it",
+          },
+          {
+            title: "Closer",
+            detail: "Handles replies and moves warm leads toward a meeting",
+          },
+        ],
+        bus: {
+          title: "Supabase is the queue, the memory and the audit log",
+          detail:
+            "The agents never call each other. Each one claims a row, runs a tool, writes the result, logs it, and sleeps until its next heartbeat. Approvals route through Discord.",
+        },
+      },
       problem: [
-        "A small business with no website, or a visibly outdated one, is an easy lead to describe and a slow one to act on. Finding them, judging which are worth approaching, building something to show, and writing an email that is not obviously a template are four different jobs, and doing all four by hand is why the lead never gets contacted.",
+        "A small business with no website, or a visibly outdated one, is an easy lead to describe and a slow one to act on. Finding them, judging them, building something to show, and writing an email that is not obviously a template are four jobs, and doing all four by hand is why the lead never gets contacted.",
       ],
       build: [
-        "Four agents, each owning one stage: Scout finds and qualifies local businesses through Apify, Designer builds website mockups and deploys the chosen one to Vercel, Pitcher drafts outreach with that exact deployed URL in it, and Closer handles replies and moves warm leads toward a meeting.",
-        "The design decision that matters is that the agents never call each other. Supabase is the queue, the shared memory and the audit log, and every agent runs the same loop: select work, claim a row, run a tool, write the result, log the action, sleep until the next heartbeat. Coordination is a database transaction rather than a conversation between models, which is what makes the pipeline restartable and inspectable.",
-        "Every meaningful action writes a human-readable row, so a live dashboard can show what the system is doing while it does it. Approvals route through Discord \u2014 approve, skip, edit, or run an agent on demand \u2014 with a fully autonomous mode for demo runs.",
+        "Four agents, one stage each: Scout finds and qualifies leads, Designer builds mockups and deploys the chosen one, Pitcher drafts outreach with that URL, Closer handles replies.",
+        "Coordination is a database transaction, not a conversation between models. That is what makes the pipeline restartable and inspectable.",
+        "Every meaningful action writes a human-readable row, so the live dashboard shows what the system is doing while it does it. Approve, skip, edit, or run an agent on demand from Discord, with a fully autonomous mode for demos.",
       ],
       challenge: [
-        "The hard part was never a single model call. It was making a multi-agent system reliable enough to demo: persistent memory, visible logs, clear queues, exact external links, careful environment loading, and simple human controls.",
-        "The dashboard ended up mattering as much as the agents did, because autonomous work that nobody can see reads as broken even when it is working.",
+        "Never a single model call. The hard part was making a multi-agent system reliable enough to demo: persistent memory, visible logs, clear queues, exact links, careful environment loading, simple human controls.",
+        "The dashboard mattered as much as the agents. Autonomous work nobody can see reads as broken even when it is working.",
       ],
       limitations: [
-        "It is a hackathon build. There are seed-data fallbacks specifically so a failed live API call does not take the demo down with it, which is the right call under a deadline and the wrong one in production.",
-        "Nothing here has been run at volume or measured for outreach quality, and lead qualification is rules over an Apify result set rather than anything learned.",
+        "A hackathon build. Seed-data fallbacks keep a failed live API call from taking the demo down, which is right under a deadline and wrong in production.",
+        "Nothing has run at volume or been measured for outreach quality. Lead qualification is rules over a result set, not anything learned.",
       ],
     },
   },
@@ -238,7 +355,7 @@ export const projects: Project[] = [
     name: "Wave Function Collapse",
     label: "Procedural generation",
     /*
-     * UNRESOLVED — do not "fix" this by making it more impressive.
+     * UNRESOLVED. Do not "fix" this by making it more impressive.
      *
      * The linked repo's README says it is a starter scaffold and lists the WFC
      * grid state, tile compatibility checks, and collapse/propagation logic
@@ -248,12 +365,12 @@ export const projects: Project[] = [
      * A recruiter clicks through; the repo has to agree with the page.
      */
     tagline:
-      "A tile-based map generator in Phaser, assembling a map from tile adjacency rules one cell at a time.",
+      "A tile-based map generator, assembling a map from tile adjacency rules one cell at a time.",
     ownership: "A research probe for the Augmented Design Lab",
     href: "https://github.com/PartyD1/wave-function",
     weight: 3,
     /* JavaScript, per the repo. See the tagline note above. */
-    tech: ["JavaScript", "Phaser", "HTML"],
+    tech: ["JavaScript", "HTML"],
     media: [],
   },
   {
@@ -263,11 +380,11 @@ export const projects: Project[] = [
     tagline:
       "Better movement physics, plus tools that let an LLM understand them well enough to design levels that are hard but still playable.",
     /* The whole Augmented Design Lab worked on this one. Saying so is not
-     * modesty — leaving it implied-solo would be the fabrication. */
+     * modesty; leaving it implied-solo would be the fabrication. */
     ownership: "Built with the Augmented Design Lab",
     href: "https://github.com/PartyD1/Pewter-The-Platformer",
     weight: 3,
-    tech: ["TypeScript", "Phaser", "LangChain", "CSS"],
+    tech: ["TypeScript", "LangChain", "CSS"],
     media: [],
   },
   {
@@ -282,18 +399,44 @@ export const projects: Project[] = [
     tech: ["TypeScript", "React", "Vite", "MediaPipe", "Tailwind", "CSS"],
     media: [],
     study: {
+      flow: {
+        steps: [
+          { title: "Webcam", detail: "MediaPipe Hands tracks landmarks in the browser" },
+          { title: "Count extended fingers" },
+          {
+            title: "Hold to confirm",
+            detail: "A ring fills before anything fires",
+          },
+          {
+            title: "One count, one action",
+            branches: [
+              "1 · volume down",
+              "2 · volume up",
+              "3 · previous",
+              "4 · next",
+              "open hand · play / pause",
+            ],
+          },
+        ],
+        bus: {
+          title: "Calibrated per person, and nothing leaves the machine",
+          detail:
+            "On first visit you hold a fist, then one through five fingers, then verify. The thresholds are stored in the browser. No backend, no keys, no accounts.",
+        },
+      },
       problem: [
-        "Someone with a motor impairment who cannot comfortably use a keyboard or a mouse still wants to control their own music. The controls are small, close together, and require precision that the interface simply assumes you have.",
+        "Someone with a motor impairment who cannot comfortably use a keyboard or a mouse still wants to control their own music. The controls are small, close together, and assume a precision the person may not have.",
       ],
       build: [
-        "A music player driven entirely by how many fingers you hold up to a webcam. MediaPipe Hands tracks landmarks in the browser, the app counts extended fingers, and the count maps to an action: one is volume down, two volume up, three previous, four next, an open hand plays or pauses.",
-        "Two decisions do most of the accessibility work. Every gesture is hold-to-confirm \u2014 a ring fills before anything fires \u2014 so a hand passing through a position never triggers playback. And the thresholds are calibrated per person: on first visit you hold a fist, then one through five fingers, then verify, and the result is stored in the browser. A fixed threshold works for the hands it was tuned on and fails for everyone else, which is exactly the wrong failure mode for assistive software.",
-        "It runs entirely in the browser \u2014 no backend, no API keys, no accounts \u2014 so the camera feed never leaves the machine. Controls carry ARIA labels and the gesture HUD announces politely, because a tool for this audience that is unusable by a screen reader has missed the point.",
+        "A music player driven by how many fingers you hold up to a webcam. MediaPipe Hands tracks landmarks in the browser and the count maps to an action.",
+        "Every gesture is hold-to-confirm, so a hand passing through a position never triggers playback.",
+        "Thresholds are calibrated per person on first visit. A fixed threshold works for the hands it was tuned on and fails for everyone else, which is the wrong failure mode for assistive software.",
+        "Controls carry ARIA labels and the gesture HUD announces politely. A tool for this audience that a screen reader cannot use has missed the point.",
       ],
       limitations: [
-        "It needs a webcam, reasonable lighting, and a modern browser; recalibration is manual when conditions change.",
-        "Five discrete gestures is a small vocabulary, and finger counting is the least expressive thing MediaPipe can do \u2014 it was chosen because it is legible and forgiving, not because it is capable.",
-        "It has not been tested with the users it is designed for. That is the honest gap: everything above is a reasoned guess about what would help, and it needs contact with reality before it is more than that.",
+        "Needs a webcam, reasonable lighting, and a modern browser. Recalibration is manual when conditions change.",
+        "Five gestures is a small vocabulary. Finger counting was chosen because it is legible and forgiving, not because it is expressive.",
+        "Not yet tested with the users it is designed for. Everything above is a reasoned guess until it meets reality.",
       ],
     },
   },
@@ -304,27 +447,41 @@ export const projects: Project[] = [
     tagline: "A Wordle recreation with full statistics and game history.",
     href: "https://github.com/PartyD1/wordplay",
     weight: 3,
-    tech: [
-      "TypeScript",
-      "Next.js",
-      "React",
-      "Tailwind",
-      "Firebase",
-      "Nix",
-      "HTML",
-    ],
+    tech: ["TypeScript", "Next.js", "React", "Tailwind", "Firebase", "Nix", "HTML"],
     media: [],
     study: {
+      flow: {
+        steps: [
+          { title: "Today, in UTC", detail: "The same word for everyone, no server deciding it" },
+          {
+            title: "Deterministic index",
+            detail: "Into a list of about 2,315 answers",
+          },
+          {
+            title: "Guess validated",
+            detail: "Against roughly 13,000 accepted words",
+          },
+          {
+            title: "Tiles flip on a stagger",
+            detail: "An invalid guess shakes; both keyboards work",
+          },
+          {
+            title: "Stats build up",
+            detail: "Game state and the guess distribution live in localStorage",
+          },
+        ],
+      },
       problem: [
         "A Wordle clone is a deceptively good exercise. The game is five minutes of work; everything that makes it feel like the real thing is not.",
       ],
       build: [
-        "One puzzle a day, the same word for everyone, chosen by a deterministic index derived from the current UTC day against a list of about 2,315 answers \u2014 so the daily is consistent globally without a server deciding it. Guesses are validated against a combined set of roughly 13,000 accepted words, so a real word is never rejected and a keyboard mash never counts as a turn.",
-        "Game state and statistics live in localStorage, so a day in progress survives a refresh and the guess distribution builds up over time. Tiles flip on a stagger, an invalid guess shakes, and the on-screen and physical keyboards both work.",
+        "One puzzle a day, chosen by a deterministic index derived from the current UTC day, so the daily is consistent globally without a server.",
+        "Guesses are validated against a combined set of about 13,000 accepted words, so a real word is never rejected and a keyboard mash never counts as a turn.",
+        "Game state and statistics live in localStorage, so a day in progress survives a refresh and the guess distribution builds up over time.",
       ],
       limitations: [
-        "Everything is client-side. Statistics live in the browser, so they do not follow you to another device and clearing site data clears your history \u2014 fine for a puzzle, not a pattern to carry into anything that matters.",
-        "There is no account, no sharing, and no server-side validation, which means the answer is technically discoverable by anyone who wants to look for it.",
+        "Everything is client-side. Statistics do not follow you to another device, and clearing site data clears your history.",
+        "No account, no sharing, no server-side validation, so the answer is discoverable by anyone who looks.",
       ],
     },
   },

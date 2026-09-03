@@ -39,7 +39,7 @@ export const links = {
  * leave; the actual ask is a Summer 2027 internship, and winter/spring too.
  */
 export const availability = {
-  gradTerm: "Seeking Summer 2027 internships — winter and spring too" as
+  gradTerm: "Seeking Summer 2027 internships, winter and spring too" as
     | string
     | null,
   location: "Bay Area, California" as string | null,
