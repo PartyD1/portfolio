@@ -253,7 +253,9 @@ Three of these stops are re-used as the Stack orbit's ring tones (`data/stack.ts
 
 **The Two Corals Rule.** `--signal` draws shapes; `--signal-ink` writes words. Never swap them. The light accent fails text contrast (2.65:1) and the dark ground makes a second value unnecessary, which is exactly why the split is a token and not a judgement call.
 
-**The One Accent Rule.** Coral appears in eight KINDS of place and no more: the finale phrase, the status dot and its pulse, the email underline, the scroll-ring fill, the focus outline, the caret/selection tint, the arrow-link hover tint, and the card's hover edge.
+**The One Accent Rule.** Coral appears in eight KINDS of place and no more: the finale phrase, the status dot, the email underline, the scroll-ring fill, the focus outline, the caret/selection tint, the arrow-link hover tint, and the hover edge tint.
+
+Two of those cover more than one element, and that is the rule working rather than being bent. **The status dot** is any dot saying something is live right now — the hero's status line and the live-project pill; only the hero's pulses, because two pulsing dots on one screen compete. **The hover edge tint** is any interactive surface tinting its edge on hover — the project card and the live-link pill.
 
 The rule counts **kinds, not instances** — that distinction is load-bearing. "The email underline" is one kind that appears on two surfaces (Contact and the foot of every case study) through a single CSS rule, and that is not a second accent. Likewise the arrow-link hover tint is one kind covering `.link-arrow`, `.menu__link`, `.exp__link` and `.case__back`.
 
@@ -444,6 +446,8 @@ shadcn `Badge`, themed by the project's tokens. `outline` carries the factual ca
 - **Pending state** (`.link-arrow.is-pending`): a designed state, not a stopgap. Text drops to `--ink-2`, cursor stays `default`, hover is explicitly suppressed, and a `.pending-note` pill spells out "coming soon". It is inert to pointer, keyboard and screen reader alike (`aria-disabled`). Gated by `resume.ready` in `data/site.ts`.
 - **Contact email**: display face, `clamp(1rem, 2.6vw, 1.75rem)` at 600, underlined with a 3px coral rule at 10px offset. Hover swaps the underline to ink — the text colour never moves.
 - **Card link** (`.card__hit`): 15px/600 in a pill hit area created with negative margins (`padding: 8px 14px; margin: -8px -14px`), so the tap target is generous without changing layout. It also owns the full-card overlay — see The Card-As-Link Rule.
+
+**The Live-Link Rule.** A project with a public, working deployment gets a `demo`, and that link is the loudest affordance on its card and repeats at the TOP of its case study — not only in the footer. A thing a visitor can *use* outranks a thing they can read, and burying it below the fold wastes the strongest proof the site has. It renders as a pill (this system has no buttons) on the opaque `--media-well` ground, carrying a static coral dot; on the case-study header, where the panel is already `--media-well`, it takes `--ground` instead so it stays a visibly separate object rather than becoming a border.
 
 **The Email-Is-The-Loudest-Thing Rule.** Email is the only element on the site that gets the display face *and* the coral underline. That combination **is** the CTA hierarchy — there is no button, because an email button above the fold asks for contact before any evidence has been shown. Résumé and social links are never given display type and never given coral at rest; their only coral is the arrow-link hover tint every link shares. The same email treatment repeats at the foot of every case study, which is the highest-intent moment on the site, and that is one kind of accent place on two surfaces rather than a second accent.
 

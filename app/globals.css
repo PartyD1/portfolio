@@ -1359,6 +1359,76 @@ svg {
   align-self: flex-end;
 }
 
+/* ==========================================================================
+   Live link
+   ==========================================================================
+   The one affordance on this site that lets a visitor USE the work instead of
+   reading about it, so it is the loudest thing in a card foot and it repeats at
+   the top of the case study rather than waiting in the footer.
+
+   It is a pill, not a button — this system has no buttons — and it borrows the
+   opaque --media-well ground so it reads as a raised control against glass.
+   The coral dot is the SAME accent kind as the hero's status dot (a dot that
+   says something is live right now), not a ninth kind; it is deliberately
+   static, because the pulse belongs to exactly one element and two pulsing dots
+   on one screen compete.
+   ========================================================================== */
+.live-link {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-edge);
+  background: var(--media-well);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 160ms var(--ease-out),
+    border-color 200ms var(--ease-out);
+}
+
+.live-link__dot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--signal);
+}
+
+.live-link .icon {
+  width: 1em;
+  height: 1em;
+  transition: transform 200ms var(--ease-out);
+}
+
+.live-link:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .live-link:hover {
+    border-color: color-mix(in oklab, var(--signal) 55%, var(--glass-edge));
+  }
+  .live-link:hover .icon {
+    transform: translate(2px, -2px);
+  }
+}
+
+/* On the case study it sits under the metadata line, ON the header panel —
+ * which is also --media-well, so the pill would share its ground and read as
+ * a border and nothing else. It takes the page ground instead: same palette,
+ * visibly a separate raised object. */
+.case__live {
+  margin-top: 18px;
+  background: var(--ground);
+}
+
 /*
  * The whole card is the link. The overlay is a pseudo-element ON THE LINK, not
  * an anchor wrapping the content: wrapping would make the tagline unselectable

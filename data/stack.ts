@@ -80,6 +80,7 @@ export const stack: StackGroup[] = [
       { name: "Phoenix LiveView", slug: "phoenixframework", orbit: false },
       { name: "Phaser", orbit: false },
       { name: "MediaPipe", slug: "mediapipe", orbit: false },
+      { name: "Vite", slug: "vite", orbit: false },
     ],
   },
   {
@@ -110,6 +111,8 @@ export const stack: StackGroup[] = [
       { name: "Nemotron", orbit: false },
       { name: "NVIDIA Brev", slug: "nvidia", orbit: false },
       { name: "Nix", slug: "nixos", orbit: false },
+      { name: "Discord", slug: "discord", orbit: false },
+      { name: "Firebase", slug: "firebase", orbit: false },
     ],
   },
 ];

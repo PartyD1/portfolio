@@ -114,17 +114,32 @@ export default async function CaseStudyPage({
         <a className="contact__email" href={`mailto:${links.email}`}>
           {links.email}
         </a>
-        {p.href && (
+        {(p.demo || p.href) && (
           <div className="case__foot-links">
-            <a
-              className="link-arrow"
-              href={p.href}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {p.name} on GitHub
-              <ArrowUpRight />
-            </a>
+            {/* A thing a recruiter can USE outranks a thing they can read, so
+                the live link leads where one exists. */}
+            {p.demo && (
+              <a
+                className="link-arrow"
+                href={p.demo}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Try {p.name} live
+                <ArrowUpRight />
+              </a>
+            )}
+            {p.href && (
+              <a
+                className="link-arrow"
+                href={p.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {p.name} on GitHub
+                <ArrowUpRight />
+              </a>
+            )}
           </div>
         )}
       </section>
