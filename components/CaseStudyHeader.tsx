@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "@/components/Icon";
-import MediaBand from "@/components/MediaBand";
 import { TechRow } from "@/components/TechMark";
-import { FIXTURES, fixtureMedia } from "@/data/fixtures";
 import type { Project } from "@/data/projects";
 
 /**
@@ -11,6 +9,10 @@ import type { Project } from "@/data/projects";
  * The tagline is the one sentence under the name, then the facts. No eyebrow,
  * no metric band. The metadata line renders ONLY the fields that exist;
  * nothing here emits a placeholder.
+ *
+ * The screenshots are NOT here any more (2026-09-03). They used to hang under
+ * this panel as a scroll-pinned band, which meant a reader met the pictures
+ * before the argument; they are a slideshow at the foot of the route now.
  */
 export default function CaseStudyHeader({ project }: { project: Project }) {
   const {
@@ -22,7 +24,6 @@ export default function CaseStudyHeader({ project }: { project: Project }) {
     use,
     ownership,
     note,
-    media,
     tech,
     demo,
   } = project;
@@ -88,8 +89,6 @@ export default function CaseStudyHeader({ project }: { project: Project }) {
             thing calmly instead. */}
         {note && <p className="case__note">{note}</p>}
       </div>
-
-      <MediaBand media={FIXTURES ? fixtureMedia : media} />
     </header>
   );
 }

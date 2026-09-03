@@ -47,19 +47,21 @@ Plus one added section that earns its place:
 
 **Operations Agent renders no repo affordance of any kind** — not a link, not a disabled link, not a greyed pill, not a tooltip. A disabled control implies the thing exists and is being withheld from *you*. Its `note` renders instead as calm prose in the header: the code and the company's data stay internal; the architecture and the decisions can be walked through in detail. The Experience row and LinkedIn carry the off-site verification of the employment.
 
-**The media well is opaque.** See The Opaque-Media Rule below.
+**The screenshot frame is opaque.** See The Opaque-Media Rule below.
 
-**One pin per route, spent on the media band only,** and only when there are ≥2 media items. Never on Problem & context, What I built & how, or Outcome & impact — those are read, not watched.
+**The screens come LAST, and they are a slideshow** (2026-09-03). They used to hang under the header as a scroll-pinned band, which spent the reader's first screen on pictures before the argument and spent the route's one pin allowance on them. Words first; the screens are what you look at once you have decided to care. The pin is now unspent, and it is not to be spent on Problem & context, What I built & how, or Outcome & impact — those are read, not watched.
+
+**The slideshow is scrolled, not translated,** and the reader drives it. A native scroll-snap track buys touch swipe, momentum and a focusable region; the arrows animate `scrollLeft` on the site's one easing rather than handing the curve to `scrollTo({ behavior: "smooth" })`; and the active index is read back out of the scroll position so no input can desync the dots.
 
 ## Direction contract
 
 THESIS: The page that makes the card's promise good. It is dense, text-carried and quiet, because the thing being sold here is judgement, and judgement does not photograph. It refuses the marketing case-study genre — the full-bleed hero shot, the three-metric band, the pull-quote from nobody.
 
-OWN-WORLD: Inherited from the homepage without amendment — same wash, same grain, same Unbounded caps, same one coral accent, both themes. The single new element is the **media well**: an opaque `--media-well` frame at 16/10, 22px radius, 1px `--glass-edge`, holding either a screenshot or, until one exists, the project's authored `Artifact` mark as a designed empty state.
+OWN-WORLD: Inherited from the homepage without amendment — same wash, same grain, same Unbounded caps, same one coral accent, both themes. The single new element is the **screenshot frame**: opaque `--media-well`, 22px radius, 1px `--glass-edge`, taking the picture's own shape inside a stage every slide shares the height of, so the border is drawn around the screenshot and not around a box it sits in.
 
-STORY: Reader arrives from a card, is told in one metadata line what this was and when; sees the thing (or its authored mark); reads the problem, the build, the outcome, the hardest part, and what he would do differently; and finds an email link exactly where the argument finishes.
+STORY: Reader arrives from a card, is told in one metadata line what this was and when; reads how it works, then the problem, the build, the outcome, the hardest part, and what he would do differently; then sees the screens, having been told what he is looking at; and finds an email link exactly where the argument finishes.
 
-FIRST VIEWPORT: Back affordance (`← back to the work`) on the 1140 column at the same left edge as everything else; the project name in display caps; the hairline metadata line rendering only fields that exist; the tech row when a mapping exists; then the media well beginning to enter. No eyebrow above the name. No metric band.
+FIRST VIEWPORT: Back affordance (`← back to the work`) on the 1140 column at the same left edge as everything else; the project name in display caps; the hairline metadata line rendering only fields that exist; the tech row when a mapping exists; then the flow diagram beginning to enter. No eyebrow above the name. No metric band. **No screenshot** — that is the 2026-09-03 change, and it is the whole point of it.
 
 FORM: The homepage's system, one new component vocabulary (`.case__*`), one new token (`--media-well`), one named amendment (Opaque-Media), zero new radii, zero `box-shadow`.
 
@@ -67,7 +69,7 @@ FINISH: Every section reads correctly with its prose absent. The reduced-motion 
 
 ## Named amendments this surface introduces
 
-**The Opaque-Media Rule** — an amendment to The Blur-Is-Legibility Rule. A media well is opaque, because its content is opaque. Blur exists to keep *text* legible over the animated wash; a screenshot has no such job, and blurring behind it would be finish rather than function. An opaque well is also the only surface that may travel under scroll motion — a moving `backdrop-filter` element re-samples and re-blurs its backdrop every frame over the blob wash with a `mix-blend-mode: multiply` grain layer on top, which is the single worst thing this page could ask a compositor to do.
+**The Opaque-Media Rule** — an amendment to The Blur-Is-Legibility Rule. A screenshot frame is opaque, because its content is opaque. Blur exists to keep *text* legible over the animated wash; a screenshot has no such job, and blurring behind it would be finish rather than function. The rule's second clause said an opaque surface is the only one that may travel under scroll motion — a moving `backdrop-filter` element re-samples and re-blurs its backdrop every frame over the blob wash with a `mix-blend-mode: multiply` grain layer on top, which is the single worst thing this page could ask a compositor to do. Nothing travels since the band became a slideshow, but the clause stands for whatever asks next.
 
 **The Simple Icons bounded exception** — an amendment to The Drawn-Not-Set Rule, spelled out in full in DESIGN.md. Brand *geometry* ships; brand *colour* does not. Case-study header only, one size, `currentColor`.
 

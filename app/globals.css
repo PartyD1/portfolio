@@ -2171,11 +2171,14 @@ svg {
 }
 
 /*
- * The media frame. Same 1px edge and 22px radius as the case-study well, on the
- * same opaque --media-well ground, so the authored Artifact mark inside it is a
- * DESIGNED empty state rather than a soft grey rectangle standing in for
- * content. When a screenshot arrives it replaces the mark inside an identical
- * frame and nothing about the layout or the choreography changes.
+ * The mark frame. Same 1px edge and 22px radius as the case-study well.
+ *
+ * It holds the project's authored MARK and nothing else. It used to swap in
+ * the first screenshot where one existed, which made exactly two of the seven
+ * cards different from the other five and worse than them: a 1600px product
+ * capture inside a 400px card is a grey rectangle with type too small to
+ * read. Removed 2026-09-03; the screenshots are in the case study's slideshow
+ * at a size that can be read.
  */
 .card__media {
   grid-column: 2;
@@ -2198,27 +2201,6 @@ svg {
   transition:
     transform 320ms var(--ease-out),
     opacity 320ms var(--ease-out);
-}
-
-/* A real screenshot fills the frame edge to edge, top-anchored so the
- * product's own header is what shows. Opaque, so no blur behind it. */
-.card__media--shot {
-  padding: 0;
-  background: var(--media-well);
-}
-
-.card__shot {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-  transition: transform 300ms var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .card:hover .card__shot {
-    transform: scale(1.03);
-  }
 }
 
 .card__art svg {
@@ -3198,205 +3180,255 @@ svg {
   }
 }
 
-/* --- the media well ------------------------------------------------------
- * OPAQUE. The Opaque-Media Rule, a named amendment to The Blur-Is-Legibility
- * Rule: blur keeps TEXT legible over the wash, and a screenshot has no such
- * job. It is also the only surface allowed to travel under scroll motion,
- * because a moving backdrop-filter re-blurs its backdrop every frame. */
-.case__band {
-  margin-top: 40px;
+/* --- the screens, as a slideshow -----------------------------------------
+ * At the FOOT of a case study, not the head. What used to live here was a
+ * scroll-pinned band of screenshots hanging under the headline: it spent the
+ * reader's first screen on pictures, and it spent the route's one pin
+ * allowance on them too. Parth's call (2026-09-03): words first, screens
+ * last, and the pin budget goes back in the drawer.
+ *
+ * The track is a REAL SCROLL CONTAINER with snap points, so touch swipe,
+ * momentum, trackpad flicks and a focusable region all come from the engine
+ * rather than from a gesture implementation. Slideshow.tsx animates
+ * scrollLeft by hand on top of it, because scrollTo({ behavior: "smooth" })
+ * would introduce a second easing curve and this site has one.
+ *
+ * The well stays OPAQUE, which is the same amendment to The Blur-Is-Legibility
+ * Rule the old band carried: blur exists to keep TEXT legible over the wash,
+ * and a screenshot has no such job. */
+.shots {
+  /* The one height every slide agrees on. See .shots__stage. */
+  --shots-h: min(62svh, 620px);
+  padding: 64px 0 0;
+  scroll-margin-top: 84px;
 }
 
-.case__media {
+.shots__title {
+  margin: 0 0 24px;
+}
+
+.shots__track {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  /* The arrows and the dots ARE the affordance; a scrollbar under a framed
+   * screenshot is chrome the frame already promised. */
+  scrollbar-width: none;
+}
+
+.shots__track::-webkit-scrollbar {
+  display: none;
+}
+
+.shots__track:focus-visible {
+  outline-offset: 6px;
+}
+
+.shots__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  /* start, not centre: differing caption heights must not move the frames
+   * relative to one another as the track scrolls. */
+  align-self: start;
+}
+
+.shots__figure {
+  margin: 0;
+}
+
+/* THE SLIDES SHARE A HEIGHT, NOT A RATIO, and that is the whole trick.
+ *
+ * These captures are a 2.5:1 landing page and a 0.56:1 full-page scroll in
+ * the same set. One frame ratio for all of them has to pick a loser: at 16/10
+ * the tall one became a 397px sliver adrift in 1140px of empty well, and
+ * cropping it to fit would have cut off the audit log the caption points at.
+ *
+ * So the STAGE is a fixed height every slide agrees on — which is what keeps
+ * the captions on one line and stops the controls moving as you page — and
+ * the frame inside it takes its own picture's shape, as large as fits. The
+ * border ends up drawn around the screenshot rather than around a box the
+ * screenshot is sitting in, which is the thing that reads as deliberate. */
+/* Centred vertically, LEFT aligned horizontally. A narrow frame — the tall
+ * full-page captures — centred in the column left its own caption and the
+ * controls stranded at the far left, three left edges disagreeing. One edge:
+ * the heading, the picture, the caption and the arrows all start together. */
+.shots__stage {
+  display: grid;
+  align-items: center;
+  justify-items: start;
+  height: var(--shots-h);
+}
+
+/* The frame takes this picture's own shape, so the border is drawn around the
+ * screenshot and not around a box the screenshot is sitting in. Nothing is
+ * cropped and nothing is letterboxed, because no box is left over to
+ * letterbox into.
+ *
+ * Its shape comes from --ar, the media's own ratio, handed in by
+ * Slideshow.tsx — RATHER than from letting the image size itself. Slides two
+ * and three are lazy, so an auto-sized frame is 0x0 until its image decodes
+ * and then pops to full size as you page onto it. Declared geometry is
+ * correct before a byte of the image has arrived. */
+.shots__frame {
   position: relative;
   overflow: clip;
-  aspect-ratio: 16 / 10;
-  max-height: 62svh;
-  margin: 0;
+  aspect-ratio: var(--ar);
+  /* As wide as this picture's ratio makes it at the stage's height, or the
+   * column, whichever runs out first. */
+  width: min(100%, calc((var(--shots-h) - 2px) * var(--ar)));
   border-radius: var(--radius-card);
   border: 1px solid var(--glass-edge);
   background: var(--media-well);
 }
 
-/* 106% tall, so a +-3% drift never exposes an edge at either end of its range. */
-.case__media__inner {
+.shots__img {
   position: absolute;
-  inset: -3% 0;
-  display: grid;
-  place-items: center;
-}
-
-.case__media__img {
+  inset: 0;
   width: 100%;
   height: 100%;
-  /* contain, on a frame that already matches the image: the only time a
-   * band shows is when the 62svh cap wins, and the well is opaque. */
+  /* The frame is already this picture's ratio, so contain crops nothing and
+   * letterboxes nothing; it is here as the guarantee, not as the layout. */
   object-fit: contain;
 }
 
-/* A portrait screenshot in a landscape frame shows its top, where the page's
- * own header is, rather than a slice from its middle. */
-.case__media[data-tall] .case__media__img {
-  object-fit: cover;
-  object-position: top;
-}
-
-.case__media__cap {
+.shots__cap {
   max-width: 70ch;
   margin-top: 12px;
   font-size: 0.875rem;
   color: var(--ink-2);
 }
 
-/*
- * The media well drifts inside its frame as it passes.
- *
- * A TRAVERSAL DRIVEN BY THE FRAME'S ASPECT RATIO, NOT BY PIXEL CONTENT — which
- * is what makes it bit-identical with the authored empty-state mark, with a
- * fixture, and with tomorrow's screenshot. The choreography never has to be
- * redesigned when the content lands.
- *
- * Every value is deliberate:
- *  - `translate:`, never `transform:`. A scroll animation on `transform` is the
- *    last animation in the cascade and silently REPLACES the hover transform on
- *    any element that has one. Interaction keeps `transform:`; scroll gets
- *    `translate:`/`scale:`. They compose instead of fighting.
- *  - 6% total on a layer that is 106% tall (inset: -3% 0), so no edge is ever
- *    exposed at either end of the range, and well inside the 8% ceiling.
- *  - `linear`, always. This is constant motion tied to the scroll position, and
- *    an eased scrub is exactly how cinematic scroll starts feeling laggy —
- *    the element stops tracking the finger.
- *  - min-width 761px: mobile gets less by rule, not by accident. The blob drift
- *    is already disabled under 720px.
- *  - The start state lives ONLY inside the @supports + no-preference guard, so
- *    the finished state is the default. No JS, no scroll listener, no polyfill,
- *    and no reduced-motion undo block to get wrong.
- *  - .case__media is opaque and carries no backdrop-filter, so nothing
- *    re-samples and re-blurs per frame.
- *  - The :not(--pinned) scope keeps the route at ONE authored scroll moment
- *    when the pinned sequence lands: the drift is REPLACED by the pin, never
- *    stacked under it.
- *
- * will-change is deliberately not set: Chromium already promotes
- * scroll-timeline-driven elements, and a blanket hint costs memory and can
- * reduce framerate on mobile.
- */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) and (min-width: 761px) {
-    .case__band:not(.case__band--pinned) .case__media__inner {
-      animation: media-drift linear both;
-      animation-timeline: view();
-      animation-range: cover 0% cover 100%;
-    }
-  }
+.shots__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-@keyframes media-drift {
-  from {
-    translate: 0 -3%;
-  }
-  to {
-    translate: 0 3%;
-  }
-}
-
-/* --- the pinned media sequence -------------------------------------------
- * DEFAULT FIRST, AND UNGUARDED: a readable, stacked band. This is what ships
- * to every engine without view(), to every reduced-motion reader, and below
- * 761px — which is why there is no "undo" block anywhere below. The pin is
- * purely ADDITIVE inside the guard, so there are not two structures to keep in
- * sync, only one that gains a behaviour. */
-.case__stage {
+.shots__arrow {
   display: grid;
-  gap: 18px;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--glass-edge);
+  background: var(--glass-strong);
+  color: var(--ink);
+  cursor: pointer;
 }
 
-.case__pin {
-  scroll-margin-top: 84px;
+/* An end of the set is a fact about the set, so the control says so rather
+ * than wrapping silently and losing the reader's place. */
+.shots__arrow:disabled {
+  opacity: 0.32;
+  cursor: default;
 }
 
-.case__strip {
+/* No gap: the 24px hit areas already hold the dots 15px apart, and adding a
+ * gap on top of the padding is how a dot row ends up looking sparse. */
+.shots__dots {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The DOT is 9px; the BUTTON is 24. A 9px control is under the 24px minimum
+ * target on any input and impossible on a thumb, so the hit area is a
+ * transparent square and the dot is drawn inside it. Same picture, a target
+ * you can actually hit, and a focus ring with room to sit. */
+.shots__dot {
   display: grid;
-  gap: 18px;
-  margin-top: 18px;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  cursor: pointer;
 }
 
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) and (min-width: 761px) {
-    /* Height follows the beat count rather than being fixed, so two beats do
-     * not buy the scroll length of three. 100svh of sticky child plus 50svh of
-     * travel per beat: 2 -> 200svh (100svh travel), 3 -> 250svh (150svh travel,
-     * exactly the ceiling and not over it). 50svh per beat sits inside the
-     * 40-80svh window, so nothing twitches and nothing feels stuck.
-     *
-     * svh, never vh or dvh: vh jumps when the mobile URL bar hides, and dvh
-     * resizes continuously DURING the scroll, which is jitter. */
-    .case__pin[data-beats="2"] {
-      height: 200svh;
-    }
-    .case__pin[data-beats="3"] {
-      height: 250svh;
-    }
+.shots__dot::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--ink) 26%, transparent);
+}
 
-    .case__stage {
-      position: sticky;
-      top: 0;
-      height: 100svh;
-      align-content: center;
-      gap: 0;
-      overflow: clip;
-      padding-block: 84px 24px;
-    }
+/* Ink, never --signal. The accent means "this is live" everywhere else on the
+ * site and a position indicator is not a live thing. */
+.shots__dot[aria-current]::before {
+  background: var(--ink);
+  transform: scale(1.35);
+}
 
-    /* All beats stack in one cell and cross-fade. */
-    .case__beat {
-      grid-area: 1 / 1;
-      animation: beat linear both;
-      animation-timeline: view();
-    }
+.shots__count {
+  margin: 0 0 0 auto;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
 
-    /* 2 beats -> 75svh each; 3 -> 50svh each. Both inside the 40-80vh window,
-     * so nothing twitches and nothing feels stuck. */
-    .case__pin[data-beats="2"] .case__beat:nth-child(1) {
-      animation-range: contain 0% contain 50%;
-    }
-    .case__pin[data-beats="2"] .case__beat:nth-child(2) {
-      animation-range: contain 50% contain 100%;
-    }
-    .case__pin[data-beats="3"] .case__beat:nth-child(1) {
-      animation-range: contain 0% contain 33.34%;
-    }
-    .case__pin[data-beats="3"] .case__beat:nth-child(2) {
-      animation-range: contain 33.33% contain 66.67%;
-    }
-    .case__pin[data-beats="3"] .case__beat:nth-child(3) {
-      animation-range: contain 66.66% contain 100%;
-    }
+@media (prefers-reduced-motion: no-preference) {
+  .shots__arrow {
+    transition:
+      transform 160ms var(--ease-out),
+      background 160ms ease,
+      color 160ms ease;
+  }
+  .shots__arrow:not(:disabled):active {
+    transform: scale(0.94);
+  }
+  .shots__dot::before {
+    transition:
+      transform 200ms var(--ease-out),
+      background 200ms ease;
   }
 }
 
-/* translate and scale, never transform — same cascade reasoning as the drift.
- * Nothing enters from scale(0); 0.985 is a settle, not an appearance. */
-@keyframes beat {
-  0% {
-    opacity: 0;
-    translate: 0 6%;
-    scale: 0.985;
+@media (hover: hover) and (pointer: fine) {
+  .shots__arrow:not(:disabled):hover {
+    background: color-mix(in oklab, var(--ink) 10%, var(--glass-strong));
+    color: var(--signal-ink);
   }
-  22% {
-    opacity: 1;
-    translate: 0 0;
-    scale: 1;
+  .shots__dot:not([aria-current]):hover::before {
+    background: color-mix(in oklab, var(--ink) 52%, transparent);
   }
-  78% {
-    opacity: 1;
-    translate: 0 0;
-    scale: 1;
+}
+
+@media (max-width: 760px) {
+  .shots {
+    /* Sized off the column, not the viewport: on a phone the frame is always
+     * the full column, so the stage only has to be as tall as the shortest
+     * shape that fills it. */
+    --shots-h: calc((100vw - var(--gutter) * 2) / 1.6);
+    padding-top: 48px;
   }
-  100% {
-    opacity: 0;
-    translate: 0 -6%;
-    scale: 0.985;
+
+  /* THE ONE PLACE THIS SET IS CROPPED, and it is a phone-only decision.
+   *
+   * A full-page portrait capture is 0.56:1. Fitted whole into a 351px column
+   * it is a 122px-wide thumbnail with type nobody can read — which is not
+   * showing someone the screen, it is showing them that a screen exists. So
+   * on a phone it fills the column and shows its top, the way a browser
+   * shows a long page. The desktop route, where somebody is actually reading
+   * the thing, still fits it whole and crops nothing. */
+  .shots__frame[data-tall] {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+  .shots__frame[data-tall] .shots__img {
+    object-fit: cover;
+    object-position: top;
   }
 }
 

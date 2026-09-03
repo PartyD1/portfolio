@@ -5,7 +5,7 @@
  * not because nobody got round to it. Those are marked BLOCKED. The rule for
  * every one of them is the same: it ships by ABSENCE. An unwritten case-study
  * section does not render, `tech: []` renders no row, `media: []` renders no
- * media band at all. Nothing renders a placeholder, a skeleton, or the words
+ * slideshow at all. Nothing renders a placeholder, a skeleton, or the words
  * "coming soon": a visible admission of incompleteness is worse to a recruiter
  * than a shorter page.
  *
@@ -13,9 +13,10 @@
  * bar, not the dates from the internship, not a metric from a description.
  *
  * A case study is VISUAL FIRST (Parth, 2026-09-02): a flow diagram, then
- * screenshots where they exist, then short bullets. Nobody is reading an essay
- * about a student project. Every bullet below was cut down from prose Parth
- * supplied; none says anything the prose did not.
+ * short bullets, then the screenshots as a slideshow at the foot (moved there
+ * 2026-09-03). Nobody is reading an essay about a student project. Every
+ * bullet below was cut down from prose Parth supplied or from the project's
+ * own README; none says anything its source did not.
  */
 
 export type ProjectMedia = {
@@ -275,29 +276,32 @@ export const projects: Project[] = [
     },
   },
   {
+    /* Two words, per the project's own README (2026-09-03). */
     slug: "santaclaws",
-    name: "SantaClaws",
+    name: "Santa Claws",
     label: "Agentic lead generation",
     tagline:
-      "OpenClaw agents that find small businesses with a missing or outdated website, then autonomously build them a mockup.",
+      "Five agents that find small businesses with a weak or missing website, build them a mockup, deploy it, and write the pitch that links to it.",
     href: "https://github.com/PartyD1/santaclaws",
     weight: 3,
-    ownership: "Hackathon project, built with a team",
+    ownership: "A 24-hour hackathon, built with a team",
     tech: [
       "Python",
       "Next.js",
       "TypeScript",
       "OpenClaw",
       "Supabase",
+      "PostgreSQL",
       "Resend",
       "Discord",
+      "Docker",
       "Vercel",
       "NVIDIA Brev",
     ],
     media: [
       {
         src: "/work/santaclaws/dashboard.png",
-        alt: "The SantaClaws dashboard: four agent cards named Rudolph Scout, Workshop Elves, Snowball Pitcher and Cookie Closer, all active, above a row of live counts.",
+        alt: "The Santa Claws dashboard: four agent cards named Rudolph Scout, Workshop Elves, Snowball Pitcher and Cookie Closer, all active, above a row of live counts.",
         kind: "image",
         width: 1600,
         height: 812,
@@ -323,41 +327,56 @@ export const projects: Project[] = [
     study: {
       flow: {
         steps: [
-          { title: "Scout", detail: "Finds and qualifies local businesses" },
+          {
+            title: "Scout",
+            detail:
+              "Finds local businesses, scores their site, qualifies the email-ready ones",
+          },
           {
             title: "Designer",
-            detail: "Builds website mockups and deploys the pick to Vercel",
+            detail:
+              "Builds mockup variants, critiques them, deploys the winner to Vercel",
           },
           {
             title: "Pitcher",
-            detail: "Drafts outreach with that exact deployed URL in it",
+            detail: "Drafts several angles around that exact deployed URL",
+          },
+          {
+            title: "Approved, then sent",
+            branches: ["Approve, skip or edit in Discord", "Or autonomous mode"],
           },
           {
             title: "Closer",
-            detail: "Handles replies and moves warm leads toward a meeting",
+            detail: "Classifies replies and moves warm leads toward a meeting",
           },
         ],
         bus: {
           title: "Supabase is the queue, the memory and the audit log",
           detail:
-            "The agents never call each other. Each one claims a row, runs a tool, writes the result, logs it, and sleeps until its next heartbeat. Approvals route through Discord.",
+            "The agents never call each other. Each claw is a heartbeat on a fixed interval: it claims one row, runs a tool, writes the result, logs the action, and sleeps until the next tick.",
         },
       },
       problem: [
         "A small business with no website, or a visibly outdated one, is an easy lead to describe and a slow one to act on. Finding them, judging them, building something to show, and writing an email that is not obviously a template are four jobs, and doing all four by hand is why the lead never gets contacted.",
       ],
       build: [
-        "Four agents, one stage each: Scout finds and qualifies leads, Designer builds mockups and deploys the chosen one, Pitcher drafts outreach with that URL, Closer handles replies.",
-        "Coordination is a database transaction, not a conversation between models. That is what makes the pipeline restartable and inspectable.",
-        "Every meaningful action writes a human-readable row, so the live dashboard shows what the system is doing while it does it. Approve, skip, edit, or run an agent on demand from Discord, with a fully autonomous mode for demos.",
+        "Five claws, one stage each: Scout finds and qualifies leads, Designer builds mockups and deploys the chosen one, Pitcher drafts outreach around that URL, Closer handles replies, and a Discord worker carries the approvals.",
+        "Coordination is a database write, not a conversation between models. Nothing calls anything: work is claimed from Supabase and results are written back, which is what makes the pipeline restartable and inspectable.",
+        "Designer pastes nothing from memory. The deployed Vercel URL is read back out of the row it was written to, so the link in the email is the link that exists.",
+        "Every meaningful action writes a human-readable row, and the dashboard streams those rows, so the system is legible while it runs. Approve, skip, edit or run any claw on demand from Discord; autonomous mode approves and sends for a hands-off run.",
+      ],
+      outcome: [
+        "The demo runtime is the five claws inside a NemoClaw sandbox on an NVIDIA Brev instance, reaching Nemotron through the sandbox's managed inference route with no API key in the environment and outbound access limited to named policies.",
+        "Leads, generated sites, outreach, replies, meetings and per-agent memory are all durable tables rather than process state, so a claw can be restarted mid-pipeline without losing its place.",
       ],
       challenge: [
         "Never a single model call. The hard part was making a multi-agent system reliable enough to demo: persistent memory, visible logs, clear queues, exact links, careful environment loading, simple human controls.",
         "The dashboard mattered as much as the agents. Autonomous work nobody can see reads as broken even when it is working.",
       ],
       limitations: [
-        "A hackathon build. Seed-data fallbacks keep a failed live API call from taking the demo down, which is right under a deadline and wrong in production.",
+        "A hackathon build. Seed data and fallback behaviour keep a failed live API call from taking the demo down, which is right under a deadline and wrong in production.",
         "Nothing has run at volume or been measured for outreach quality. Lead qualification is rules over a result set, not anything learned.",
+        "Meeting booking and the voice path were scoped as stretch work, and the reply handler has a demo fallback behind it.",
       ],
     },
   },

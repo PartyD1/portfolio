@@ -76,6 +76,7 @@ export const stack: StackGroup[] = [
       { name: "PostgreSQL", slug: "postgresql" },
       { name: "Supabase", slug: "supabase" },
       { name: "Vercel", slug: "vercel" },
+      { name: "Docker", slug: "docker" },
       { name: "Git", slug: "git" },
       { name: "Jupyter", slug: "jupyter" },
       { name: "OpenClaw", local: "openclaw" },
