@@ -40,8 +40,21 @@ export default function Shell() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
-  // The numeric shortcuts survive leaving the homepage too.
+  /*
+   * The numeric shortcuts are live ONLY while the sheet is open (2026-09-03).
+   *
+   * Global, they were a WCAG 2.1.4 failure: a single character with no
+   * modifier and no off switch takes a speech-input user, or anyone who types
+   * a digit outside a field, somewhere they never asked to go. Bound to the
+   * open menu they meet the standard's "active only while a component has
+   * focus" exception, and the keycaps are drawn in that menu anyway, so the
+   * shortcut is now live exactly where it is also visible.
+   *
+   * They still survive leaving the homepage: the menu opens on a case-study
+   * route too, where the section lives in another document.
+   */
   useEffect(() => {
+    if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       const t = e.target as HTMLElement | null;
@@ -68,7 +81,7 @@ export default function Shell() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [router]);
+  }, [open, router]);
 
   return (
     <header className="shell">
@@ -96,7 +109,7 @@ export default function Shell() {
                 style={{ ["--i" as string]: i }}
                 onClick={() => setOpen(false)}
               >
-                <span>{item.label}</span>
+                <span className="menu__label">{item.label}</span>
                 <span className="menu__key" aria-hidden="true">
                   {item.key}
                 </span>

@@ -20,9 +20,22 @@ export async function generateMetadata({
   const { slug } = await params;
   const p = bySlug(slug);
   if (!p) return {};
+  // Just the name: the root layout's title template appends the rest, so the
+  // suffix is declared in one place rather than two.
   return {
-    title: `${p.name} · Parth Doshi`,
+    title: p.name,
     description: p.tagline,
+    openGraph: {
+      type: "article",
+      title: `${p.name} · Parth Doshi`,
+      description: p.tagline,
+      url: `/work/${p.slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${p.name} · Parth Doshi`,
+      description: p.tagline,
+    },
   };
 }
 

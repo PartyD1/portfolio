@@ -23,7 +23,7 @@
    * clears it for real. Ground-only is now 5.30:1 and the worst blob-tinted
    * run 4.73:1.
    */
-  --ink-2: #52527a;
+  --ink-2: #4b4b73;
   --white: #f7f6fa;
   /* Our one accent. shadcn owns --accent, so ours is --signal. */
   --signal: #d9705a;
@@ -56,6 +56,12 @@
   --glass-strong: rgb(255 255 255 / 0.58);
   --glass-raised: rgb(255 255 255 / 0.74);
   --glass-edge: rgb(255 255 255 / 0.66);
+  --blob-opacity: 0.86;
+  /* How hard the calm band pulls the centre back toward the ground. */
+  --veil-opacity: 0.62;
+  /* The ONE shadow in the system, and only while a card is off the page: at
+   * rest elevation is still an edge and nothing else. */
+  --shadow-lift: 0 18px 38px -14px rgb(63 63 104 / 0.34);
 
   --grain-opacity: 0.055;
   --grain-blend: multiply;
@@ -160,7 +166,7 @@
   --ink: #ecebf4;
   /* Secondary text has to survive sitting over a lit blob, so it runs brighter
    * here than a plain dark-mode muted tone would. */
-  --ink-2: #d3d2e8;
+  --ink-2: #e2e1f2;
   --white: #23243d;
   --signal: #f0a48f;
   /* On the deep ground the accent already clears contrast as text. */
@@ -169,15 +175,20 @@
   --blob-a-1: #4fd3a0;
   --blob-a-2: #4bb4ec;
   --blob-a-3: #a888ee;
-  --blob-b-1: #f2a273;
-  --blob-b-2: #e8cf6a;
+  /* Warm, but NOT yellow. Over #191a2e at this opacity an orange-to-gold ramp
+   * composites to khaki-brown - the top-right blob read as a mud smear rather
+   * than light. Coral to amber keeps the blob's warm role in the four-blob
+   * set and stays chromatic against the indigo. */
+  --blob-b-1: #ff8f7a;
+  --blob-b-2: #ffb45c;
   --blob-b-3: #63d6ab;
   --blob-c-1: #a98cee;
   --blob-c-2: #ee8ab4;
   --blob-c-3: #f4ad7e;
   --blob-d-1: #59b6ee;
   --blob-d-2: #57d3a7;
-  --blob-d-3: #e8d074;
+  /* Same reason as --blob-b-2: the gold stop is the one that muds out. */
+  --blob-d-3: #f2b268;
   --blob-gloss: rgb(255 255 255 / 0.4);
   --blob-gloss-out: rgb(255 255 255 / 0);
 
@@ -191,17 +202,33 @@
   --glass: rgb(25 26 46 / 0.5);
   --glass-strong: rgb(25 26 46 / 0.66);
   --glass-raised: rgb(35 36 61 / 0.78);
+  /* Lower than light: on the deep ground the blobs are far brighter than the
+   * page, so the same colour costs more legibility. */
+  --blob-opacity: 0.5;
+  --veil-opacity: 0.74;
   --glass-edge: rgb(255 255 255 / 0.16);
+  /* On a dark ground a shadow reads by absence of the blob behind it, so it is
+   * pulled in less than the light one (-8px against -14px): at -14px on
+   * #191a2e it did not register at all and the whole rise was carried by the
+   * edge tint. */
+  --shadow-lift: 0 20px 44px -8px rgb(6 6 16 / 0.7);
 
   --grain-opacity: 0.05;
   --grain-blend: screen;
 
-  /* On the deep ground the blobs are already held to 0.62; the spotlight has to
-   * sit under them in brightness or it reads as a torch, not a glow. */
+  /* On the deep ground the blobs are already held back hard (see
+   * --blob-opacity); the spotlight has to sit under them in brightness or it
+   * reads as a torch, not a glow. */
   --spot-core: rgb(255 255 255 / 0.1);
   --spot-hue: color-mix(in oklab, var(--blob-a-2) 24%, transparent);
   --spot-hue-2: color-mix(in oklab, var(--blob-c-1) 16%, transparent);
-  --card-glow: rgb(255 255 255 / 0.1);
+  /* Higher than it looks like it should be, and it is doing a specific job:
+   * in dark, --glass-strong is MORE ground than --glass (0.66 against 0.5), so
+   * a hovered card's fill gets darker as it rises - the opposite of light,
+   * where it gets brighter. The light above the card is what puts that back,
+   * so a dark card still reads as having risen toward the reader rather than
+   * having sunk. */
+  --card-glow: rgb(255 255 255 / 0.17);
 
   --background: var(--ground);
   --foreground: var(--ink);
@@ -339,12 +366,65 @@ svg {
   pointer-events: none;
 }
 
+/*
+ * The calm band, drawn rather than assumed.
+ *
+ * "Pushed to the corners so the centre stays calm" was the intent from the
+ * start, but the blobs are 42vmax and their light reaches well past their
+ * cores, so the centre was only calmer, not calm: the 2026-09-03 measurement
+ * found captions, bullets, the About body and the foot lede between 3.3 and
+ * 4.5:1 in both themes, always where a blob crossed the text column.
+ *
+ * A veil of the ground over the wash, heaviest down the middle and gone before
+ * the corners. The blob cores sit in those corners, so they keep their colour
+ * and the page keeps its world; what settles is the band the type occupies.
+ * Behind the blobs would do nothing, so it is drawn over them, and under both
+ * the spotlight and the grain.
+ *
+ * The ellipse has to CLOSE inside the viewport. The first attempt ran
+ * `115% 78%` with its transparent stop at 74%, which put the stop at about
+ * 85% of the half-width: past the edge of the screen, so the veil never
+ * reached zero anywhere and still sat at roughly 0.6 alpha over each corner.
+ * Measured, that spent the whole budget in the wrong place - the four blob
+ * cores lost a quarter to a half of their chroma (gold in dark went khaki)
+ * while the text band, which the veil is named for, did not measurably change.
+ * A tighter ellipse, biased slightly up toward where the copy sits, covers the
+ * band and leaves the corners alone.
+ */
+.wash::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    104% 76% at 50% 46%,
+    var(--ground) 0%,
+    color-mix(in oklab, var(--ground) 62%, transparent) 52%,
+    transparent 86%
+  );
+  opacity: var(--veil-opacity);
+  pointer-events: none;
+}
+
 /* Pushed to the corners: the reference keeps a calm centre for the type, and
  * content has to stay legible over the ground. */
 .wash__blob {
   position: absolute;
   width: 42vmax;
   height: 42vmax;
+  /*
+   * One token, both themes, because the 2026-09-03 measurement found the same
+   * failure in each: text with no surface of its own, printed on the part of
+   * the wash a blob is lighting. Panels were fixed by tinting the glass toward
+   * the ground; captions, bullets, the About body, the foot lede and the
+   * timeline period have no panel to tint, so the only thing left to change is
+   * how hard the blob behind them burns.
+   *
+   * A step down, not a retreat: the blobs are still the page's colour and
+   * still read as the reference's holographic world. They just stop deciding
+   * whether a sentence can be read.
+   */
+  opacity: var(--blob-opacity);
 }
 
 .wash__blob--a {
@@ -372,11 +452,7 @@ svg {
   height: 40vmax;
 }
 
-/* On the dark ground the blobs are far brighter than the page, so they are
- * held back to keep body text over them readable. */
-.dark .wash__blob {
-  opacity: 0.56;
-}
+
 
 /* On a phone vmax is the viewport HEIGHT, which makes the blobs full-bleed and
  * swallows the body copy. Size them from the width instead. */
@@ -423,6 +499,10 @@ svg {
  */
 .wash__spot {
   position: absolute;
+  /* Above the calm veil (z-index 1) and under the grain: the veil is heaviest
+   * at the centre of the viewport, which is exactly where the pointer usually
+   * is, so underneath it the glow was a smudge instead of a light. */
+  z-index: 2;
   top: 0;
   left: 0;
   width: 780px;
@@ -454,6 +534,9 @@ svg {
 .grain {
   position: absolute;
   inset: 0;
+  /* Over the veil and the spotlight both: the grain is the last thing in the
+   * wash, always. */
+  z-index: 3;
   background-image: url("/textures/grain.png");
   background-repeat: repeat;
   background-size: 128px 128px;
@@ -660,6 +743,14 @@ svg {
 
 /* Menu sheet */
 .menu {
+  /*
+   * The sheet, not the viewport, is what the menu type has to fit. It is
+   * 3/4 of the viewport up to 384px, so a viewport-sized clamp had EXPERIENCE
+   * running past the sheet edge at every width and shoving its keycap out of
+   * the column. Sizing in cqw against this container is the only measure that
+   * tracks the box the words are actually in.
+   */
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -684,7 +775,7 @@ svg {
   gap: 16px;
   padding: 10px 0;
   font-family: var(--font-display-stack);
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-size: clamp(1.25rem, 10cqw, 2.5rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.01em;
@@ -703,7 +794,25 @@ svg {
   --press: 0.98;
 }
 
+/* min-width: 0 so a long label wraps inside its column instead of pushing the
+ * keycap out of alignment; the keycaps are a column, and a column that only
+ * lines up for short words is not one. */
+.menu__label {
+  min-width: 0;
+  /*
+   * break-word, NOT anywhere: of the two, only `anywhere` also lowers the
+   * element's intrinsic min-content width to zero, which inside a flex row
+   * lets the label shrink and break mid-word while there is still room on the
+   * line. `break-word` keeps the min-content contribution intact, so the label
+   * holds one line for as long as it fits and breaks only when a longer label
+   * genuinely cannot - rather than escaping the sheet, which is what happened
+   * before any of this was here.
+   */
+  overflow-wrap: break-word;
+}
+
 .menu__key {
+  flex: none;
   font-family: var(--font-body-stack);
   font-size: 0.75rem;
   font-weight: 600;
@@ -722,6 +831,18 @@ svg {
   color: var(--ink-2);
 }
 
+/* On a 320 phone the Sheet's own 3/4 leaves 240px, and 80px of that was
+ * padding: the words had 160px to live in and Unbounded 700 does not fit
+ * EXPERIENCE into 160px at any size a menu link should be. Widen the sheet and
+ * spend less of it on air. */
+@media (max-width: 400px) {
+  .menu {
+    width: 88%;
+    padding: 40px 24px;
+    gap: 32px;
+  }
+}
+
 .menu__foot a {
   width: fit-content;
   text-decoration: none;
@@ -738,6 +859,34 @@ svg {
   [data-state="open"] .menu__link {
     animation: rise 420ms var(--ease-out) both;
     animation-delay: calc(var(--i) * 40ms + 80ms);
+  }
+}
+
+/*
+ * The one animation on this site that was not answering the preference, and it
+ * was not ours: the shadcn Sheet ships a 10% horizontal slide from tw-animate
+ * and runs it regardless. Fewer and gentler, not none, so the sheet still
+ * fades - the panel appearing with no transition at all is the jarring change
+ * the preference is not asking for. Exit is faster than entrance, as
+ * everywhere else here.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .menu[data-state="open"] {
+    animation: menu-fade 200ms var(--ease-out) both;
+    transition: none;
+  }
+  .menu[data-state="closed"] {
+    animation: menu-fade 140ms var(--ease-out) reverse both;
+    transition: none;
+  }
+}
+
+@keyframes menu-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -1355,11 +1504,18 @@ svg {
 }
 
 .section__title {
-  font-size: clamp(2rem, 4.4vw, 3.25rem);
+  /* Bounds in px, never rem, for the reason the hero gives: this clamp's other
+   * side is measured in vw, so a root-relative floor lets a doubled default
+   * font size inflate the type without inflating the column. At 200% text
+   * "Experience" ran 148px past a 390 viewport and 215px past a 320 one. */
+  font-size: clamp(32px, 4.4vw, 52px);
+  /* The floor is a floor, not a promise: a longer section name at 200% still
+   * has somewhere to go. */
+  overflow-wrap: anywhere;
 }
 
 .section__lede {
-  max-width: 42ch;
+  max-width: min(42ch, 100%);
   font-size: 1.0625rem;
   line-height: 1.5;
   color: var(--ink-2);
@@ -1398,7 +1554,20 @@ svg {
   font-weight: 500;
   line-height: 1.2;
   color: var(--ink);
+  /* A pill is one line until one line is wider than the phone it is on. At
+   * 200% text these were the widest things on the page. */
   white-space: nowrap;
+  max-width: 100%;
+}
+
+/* Under 400px, and at any width once text is scaled up, a pill that cannot
+ * wrap is a pill that leaves the page. Two lines of taxonomy is a smaller
+ * failure than a horizontal scrollbar. */
+@media (max-width: 400px) {
+  .pill,
+  .timeline__project-name {
+    white-space: normal;
+  }
 }
 
 /* ==========================================================================
@@ -1482,8 +1651,10 @@ svg {
 
 /*
  * Frosted, not decorative: the cards sit directly over saturated blobs, so the
- * blur is what keeps the text legible. Elevation is declared once - an edge,
- * no shadow - because a border under a soft shadow is the ghost-card look.
+ * blur is what keeps the text legible. AT REST elevation is an edge and only
+ * an edge - a border under a soft shadow is the ghost-card look. A shadow is
+ * drawn in exactly one state, while the card is hovered off the page, because
+ * a thing that rises has to cast something or it reads as a size change.
  *
  * ONE structure for every card. Weight changes span, scale and media aspect;
  * it never changes which fields render.
@@ -1506,19 +1677,22 @@ svg {
   color: var(--ink);
   overflow: hidden;
   /*
-   * ONE transform, composed from variables, so lift, tilt and press never
-   * replace each other in the cascade. Hover sets --lift, TiltCard.tsx writes
-   * --rx/--ry from the pointer, :active sets --press. Each pointer move
-   * retargets the transition from wherever the card is, which is what makes
-   * the tilt trail the pointer instead of snapping to it — a transition, not
-   * a spring library, and it interrupts cleanly.
+   * ONE transform, composed from variables, so lift and press never replace
+   * each other in the cascade. Hover sets --lift, :active sets --press. It is
+   * a transition rather than a keyframe so a pointer crossing several cards
+   * retargets each one from wherever it currently is.
+   *
+   * The pointer tilt came off on 2026-09-03 (Parth's call): the card now
+   * simply rises off the page. No pointer listener, no --rx/--ry, and the
+   * <article> went back to being a server component.
    */
   --lift: 0px;
   --press: 1;
-  transform: perspective(1100px) translateY(var(--lift))
-    rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--press));
+  transform: translateY(var(--lift)) scale(var(--press));
+  box-shadow: 0 0 0 0 rgb(0 0 0 / 0);
   transition:
-    transform 320ms var(--ease-out),
+    transform 240ms var(--ease-out),
+    box-shadow 240ms var(--ease-out),
     border-color 200ms var(--ease-out),
     background 200ms var(--ease-out);
 }
@@ -1532,11 +1706,12 @@ svg {
 }
 
 /*
- * The specular highlight: a soft white light that follows the pointer across
- * the glass. z-index -1 inside the card's own stacking context (it has
- * backdrop-filter, so it is one) puts it above the frosted fill and below every
- * child, including the full-card link overlay. Opacity is the only thing that
- * transitions; position is written by TiltCard.tsx as --mx/--my.
+ * The specular highlight: a soft white light on the glass. It used to follow
+ * the pointer; now it is fixed above the card's top edge, which is where a
+ * light would be for something that has just risen toward the reader. z-index
+ * -1 inside the card's own stacking context (it has backdrop-filter, so it is
+ * one) puts it above the frosted fill and below every child, including the
+ * full-card link overlay. Opacity is the only thing that transitions.
  */
 .card::after {
   content: "";
@@ -1544,8 +1719,11 @@ svg {
   inset: 0;
   z-index: -1;
   border-radius: inherit;
+  /* An ellipse in percentages, not a fixed 460px circle: the flagship spans
+   * the full 1140px row and a standard card is well under half that, so one
+   * radius reads correctly on exactly one of them. */
   background: radial-gradient(
-    380px circle at var(--mx, 50%) var(--my, 50%),
+    68% 78% at 50% -8%,
     var(--card-glow),
     transparent 62%
   );
@@ -1565,18 +1743,27 @@ svg {
 
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
-    --lift: -6px;
     background: var(--glass-strong);
     border-color: color-mix(in oklab, var(--signal) 55%, var(--glass-edge));
   }
   .card:hover::after {
     opacity: 1;
-    transition-duration: 320ms;
+    transition-duration: 240ms;
   }
   /* The whole card is the link, so the card-study arrow answers a hover
    * anywhere on the card, not only on its own label. */
   .card:hover .card__hit .icon {
     transform: translateX(4px);
+  }
+
+  /* The rise itself, and the only shadow this system draws. Movement, so it
+   * answers the preference: under `reduce` the card still takes the brighter
+   * glass, the signal edge and the light above, it just does not travel. */
+  @media (prefers-reduced-motion: no-preference) {
+    .card:hover {
+      --lift: -8px;
+      box-shadow: var(--shadow-lift);
+    }
   }
 }
 
@@ -1865,12 +2052,24 @@ svg {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .card__hit:hover {
-    background: color-mix(in oklab, var(--ink) 10%, transparent);
-  }
-  .card__hit:hover .icon {
-    transform: translateX(3px);
-  }
+  /*
+   * .card__hit has NO hover state of its own, on purpose.
+   *
+   * Its ::after is an inset: 0 overlay across the whole card - that is how the
+   * whole card becomes the link - so `:hover` on it fires from anywhere on the
+   * card, not from the label. It used to paint a 10% ink pill behind "case
+   * study" whenever the pointer was anywhere near the card, and a 3px icon
+   * nudge that, arriving later in the cascade, quietly beat the 4px nudge the
+   * card's own hover asks for. With the tilt gone that grey chip was the
+   * loudest thing about a hover.
+   *
+   * The card answers the hover: it rises, its edge takes the signal, and its
+   * arrow moves 4px. A second, smaller acknowledgement of the same pointer in
+   * the same place is not feedback, it is noise.
+   *
+   * .card__repo below is a real anchor sitting above the overlay, so its hover
+   * fires only on itself and is kept.
+   */
   .card__repo:hover {
     color: var(--ink);
     background: color-mix(in oklab, var(--ink) 8%, transparent);
@@ -2126,6 +2325,10 @@ svg {
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
+  /* The pill is as wide as its words up to the width of its card, never past
+   * it: "Wave Function Collapse" at 200% text was the widest thing on the
+   * homepage. */
+  max-width: 100%;
   gap: 14px;
   margin-top: 18px;
   padding: 8px 18px 8px 8px;
@@ -2160,6 +2363,7 @@ svg {
 }
 
 .timeline__project-name {
+  min-width: 0;
   font-size: 0.9375rem;
   font-weight: 600;
 }
@@ -2574,7 +2778,9 @@ svg {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  max-width: 60ch;
+  /* ch is a font-relative unit, so at 200% text the measure doubled while the
+   * column did not. The column wins. */
+  max-width: min(60ch, 100%);
   font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--ink-2);
@@ -2626,10 +2832,22 @@ svg {
 }
 
 .contact__email {
+  /* inline-block, not inline-flex: the address has to stay ordinary wrapping
+   * text (word-break below) rather than become a flex item that will not
+   * break. Padding, not font size, is what makes the target 44px. */
   display: inline-block;
+  min-height: 44px;
   margin-top: 26px;
+  padding: 6px 0;
   font-family: var(--font-display-stack);
-  font-size: clamp(1rem, 2.6vw, 1.75rem);
+  /*
+   * The loudest thing on the page has to be loudest on a phone too. The old
+   * floor resolved to 16px at 390 - smaller than the body copy beside it, in
+   * a 24px-tall hit area, on exactly the device a recruiter opens this on.
+   * Bounded in px for the reason .section__title gives; 24px is the ramp step
+   * above the 22px the measurement asked for.
+   */
+  font-size: clamp(24px, 4.6vw, 28px);
   font-weight: 600;
   letter-spacing: 0.005em;
   color: var(--ink);
@@ -2639,6 +2857,15 @@ svg {
   text-underline-offset: 10px;
   transition: text-decoration-color 200ms var(--ease-out);
   word-break: break-all;
+}
+
+/* One step down under 360px: at 24px the address needs about 288px and the
+ * column offers 256, so `word-break: break-all` orphaned a single letter and a
+ * 20px stub of coral underline onto a second line. 390 and up keep the 24px. */
+@media (max-width: 360px) {
+  .contact__email {
+    font-size: 1.25rem;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -2759,8 +2986,10 @@ svg {
 
 .case__title {
   margin-top: 0;
-  /* 2rem floor: "SANTACLAWS" at 2.25rem drew 25px past its box at 390. */
-  font-size: clamp(2rem, 6vw, 4rem);
+  /* 32px floor: "SANTACLAWS" at 2.25rem drew 25px past its box at 390. Bounded
+   * in px, not rem, so 200% text does not reinstate the overflow the floor
+   * exists to prevent (see .section__title). */
+  font-size: clamp(32px, 6vw, 64px);
   line-height: 1.08;
   letter-spacing: 0.005em;
   overflow-wrap: anywhere;
@@ -2769,7 +2998,7 @@ svg {
 /* The one sentence: what this is. The tagline the card carried, so the reader
  * who tapped through is not left with a name and a row of logos. */
 .case__tagline {
-  max-width: 46ch;
+  max-width: min(46ch, 100%);
   margin-top: 14px;
   font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
   line-height: 1.5;
@@ -2784,6 +3013,9 @@ svg {
   font-weight: 500;
   line-height: 1.6;
   color: var(--ink);
+  /* The separator binds to the word after it, so a line of facts can present a
+   * token no space will break. */
+  overflow-wrap: anywhere;
 }
 
 .case__meta-sep {
@@ -3077,14 +3309,19 @@ svg {
 }
 
 .case__section-title {
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  /* px bounds, as .section__title: at 200% text "Problem" set at a doubled
+   * 1.5rem was 395px of Unbounded inside a 351px column. */
+  font-size: clamp(24px, 2.6vw, 32px);
   letter-spacing: 0.005em;
+  overflow-wrap: anywhere;
 }
 
 .case__points {
   display: grid;
   gap: 12px;
-  max-width: 52ch;
+  /* ch is font-relative: at 200% text the measure doubled and the column did
+   * not. The column wins. */
+  max-width: min(52ch, 100%);
   margin: 18px 0 0;
   padding: 0;
   list-style: none;
@@ -3114,7 +3351,11 @@ svg {
 
 @media (max-width: 760px) {
   .case__sections {
-    grid-template-columns: 1fr;
+    /* minmax(0, 1fr), not 1fr: a bare `1fr` track has an automatic minimum of
+     * min-content, so at 200% text one long bullet word widened the column to
+     * 395px inside a 320px page and took the whole document with it. The
+     * two-column rule above already says minmax(0, 1fr) for the same reason. */
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
