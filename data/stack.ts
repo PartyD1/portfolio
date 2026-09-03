@@ -8,6 +8,17 @@
 export type StackItem = {
   name: string;
   /**
+   * Whether this tool appears in the Stack ORBIT.
+   *
+   * The orbit is Parth's own curated 29 — his claim about the breadth of his
+   * stack, and it is already at the density limit of the diagram. Per-project
+   * tech rows need a superset (Twilio, Resend, Phaser, MediaPipe and so on),
+   * and forking that into a second file would break this file's contract as the
+   * one tool list. So the superset lives here and this flag decides display.
+   * Absent = in the orbit. `false` = per-project rows only.
+   */
+  orbit?: false;
+  /**
    * Simple Icons slug. Absent = no official mark exists, and the tool renders
    * as a text pill instead so no supplied tool is ever silently dropped.
    *
@@ -62,6 +73,10 @@ export const stack: StackGroup[] = [
       { name: "Pandas", slug: "pandas" },
       { name: "Pydantic", slug: "pydantic" },
       { name: "LangChain", slug: "langchain" },
+      // Per-project only — see StackItem.orbit.
+      { name: "Phoenix LiveView", slug: "phoenixframework", orbit: false },
+      { name: "Phaser", orbit: false },
+      { name: "MediaPipe", slug: "mediapipe", orbit: false },
     ],
   },
   {
@@ -85,6 +100,13 @@ export const stack: StackGroup[] = [
       { name: "Git", slug: "git" },
       { name: "Jupyter", slug: "jupyter" },
       { name: "OpenClaw" },
+      // Per-project only — see StackItem.orbit.
+      { name: "Twilio", orbit: false },
+      { name: "Resend", slug: "resend", orbit: false },
+      { name: "PyMuPDF", orbit: false },
+      { name: "Nemotron", orbit: false },
+      { name: "NVIDIA Brev", slug: "nvidia", orbit: false },
+      { name: "Nix", slug: "nixos", orbit: false },
     ],
   },
 ];

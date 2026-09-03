@@ -24,11 +24,24 @@ export type ExperienceEntry = {
   href?: string;
 };
 
+/** Most recent first. The research role is ongoing. */
 export const experience: ExperienceEntry[] = [
   {
+    id: "augmented-design-lab",
+    period: "Apr 2026 — present",
+    company: "Augmented Design Lab, UC Santa Cruz",
+    title: "Undergraduate Research Assistant",
+    ownership:
+      "Agent tooling and procedural generation, under Prof. Jim Whitehead — grounding an LLM agent in live data through structured tool-calling, and rebuilding wave-function-collapse constraint propagation from the literature.",
+    href: "/work/wave-function-collapse",
+  },
+  {
     id: "operations-agent",
-    period: "Summer 2026",
-    ownership: "Built an agentic booking-operations system with a partner.",
+    period: "Jun — Aug 2026",
+    company: "InstaService",
+    title: "Machine Learning Engineer Intern",
+    ownership:
+      "Built a multi-modal agentic framework for the operations team: three specialised agents evaluating every booking in parallel, a continuous risk score that turned silent failures into a ranked queue, and autonomous SMS, call and email escalation.",
     href: "/work/operations-agent",
   },
 ];

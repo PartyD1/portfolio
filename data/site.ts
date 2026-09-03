@@ -34,7 +34,7 @@ export const links = {
  * time pressure.
  */
 export const availability = {
-  gradTerm: null as string | null,
-  location: null as string | null,
-  target: null as string | null,
+  gradTerm: "Graduating December 2028" as string | null,
+  location: "Bay Area, California" as string | null,
+  target: "Software, ML/AI and full-stack roles" as string | null,
 };

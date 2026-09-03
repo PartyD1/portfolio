@@ -65,7 +65,7 @@ export type Project = {
    * aspect only.
    */
   weight: 1 | 2 | 3;
-  /** Slugs into data/stack.ts. BLOCKED: [] until Parth supplies the mapping. */
+  /** Names into data/stack.ts, the one tool list. Supplied 2026-09-02. */
   tech: string[];
   /** BLOCKED — no screenshots or diagrams supplied yet. */
   media: ProjectMedia[];
@@ -94,7 +94,7 @@ export const projects: Project[] = [
      */
     note: "The code and the company's data stay internal. The architecture and the decisions I can walk through in detail.",
     weight: 1,
-    tech: [],
+    tech: ["Elixir", "Phoenix LiveView", "Twilio", "Resend", "Apify"],
     media: [],
   },
   {
@@ -106,7 +106,7 @@ export const projects: Project[] = [
     use: "In use by DECA competitors",
     href: "https://github.com/PartyD1/scorely-ai",
     weight: 3,
-    tech: [],
+    tech: ["Python", "FastAPI", "Next.js", "TypeScript", "PostgreSQL", "OpenAI API", "PyMuPDF"],
     media: [],
   },
   {
@@ -117,7 +117,7 @@ export const projects: Project[] = [
       "OpenClaw agents that find small businesses with a missing or outdated website, then autonomously build them a mockup.",
     href: "https://github.com/PartyD1/santaclaws",
     weight: 3,
-    tech: [],
+    tech: ["Python", "Next.js", "OpenClaw", "NemoClaw", "Nemotron", "Supabase", "NVIDIA Brev"],
     media: [],
   },
   {
@@ -128,7 +128,7 @@ export const projects: Project[] = [
       "A tile-based map generator in Phaser and JavaScript, assembling every map from adjacency rules one cell at a time.",
     href: "https://github.com/PartyD1/wave-function",
     weight: 3,
-    tech: [],
+    tech: ["TypeScript", "Phaser", "HTML"],
     media: [],
   },
   {
@@ -139,7 +139,7 @@ export const projects: Project[] = [
       "Better movement physics, plus tools that let an LLM understand them well enough to design levels that are hard but still playable.",
     href: "https://github.com/PartyD1/Pewter-The-Platformer",
     weight: 3,
-    tech: [],
+    tech: ["TypeScript", "Phaser", "LangChain", "CSS"],
     media: [],
   },
   {
@@ -150,7 +150,7 @@ export const projects: Project[] = [
       "A browser music player controlled entirely by hand shapes and movement, built for people with motor impairments.",
     href: "https://github.com/PartyD1/gestura",
     weight: 3,
-    tech: [],
+    tech: ["TypeScript", "MediaPipe", "CSS"],
     media: [],
   },
   {
@@ -160,7 +160,7 @@ export const projects: Project[] = [
     tagline: "A Wordle recreation with full statistics and game history.",
     href: "https://github.com/PartyD1/wordplay",
     weight: 3,
-    tech: [],
+    tech: ["TypeScript", "JavaScript", "Nix", "HTML"],
     media: [],
   },
 ];
