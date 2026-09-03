@@ -19,7 +19,7 @@ Two primary audiences, both browsing to quickly assess Parth Doshi as a software
 
 Parth is a student at UC Santa Cruz (email domain `ucsc.edu`).
 
-How Parth describes himself (his words, 2026-09-01, used verbatim in the hero rotation): a developer, a researcher, a computer scientist, an athlete, a mentor — and "obsessed with AI." The sport and the mentoring context have not been supplied; do not elaborate on either.
+How Parth describes himself (his words, 2026-09-01, used in the hero rotation): a developer, a researcher, a computer scientist, an athlete, a mentor — and "obsessed with AI." They render as bare descriptors ("developer", not "a developer.") since 2026-09-02, when the hero's "and I'm" lead was removed at his request and the roll became a secondary descriptor rather than the end of a spoken sentence. Same six, same order. The sport and the mentoring context were supplied 2026-09-02 (see Evidence on Hand): volleyball, and mentoring younger kids. **No team, league, level or program was supplied — do not invent one.**
 
 ## Product Purpose
 
@@ -47,7 +47,8 @@ Visitors are doing fast technical screening (recruiters) or casual browsing (pee
 - Pinned visual references (binding). Three portfolio screenshots at `.impeccable/references/`. **`ref-2-sharlee-holographic-blobs.png` leads** (re-pinned 2026-09-01, superseding `ref-1-sean-warm-gradient.png`, whose section rhythm survives); `ref-3-ram-editorial-serif.png` donates the status line. Traits: cool lavender-grey ground, iridescent gradient blobs, film grain, wide display caps with outline-and-fill contrast, a single coral accent.
 - Light **and dark** both ship (dark added 2026-09-01 at the user's request). Dark is a real second token set — deep indigo ground, blobs lit and held back — not an inverted filter.
 - No hobbies section (decided 2026-09-01). With no photos or detail behind it, it would be the only section with no real content, and it dilutes a page whose argument is applied AI systems. The personality it would have carried is served by the About section and the hero's rolling self-descriptions instead.
-- Register (added 2026-09-01 after the first build): adult and editorial, never bubbly — the user said the first pass (candy pastels, 40px corners, sparkles, glossy blob, puffy rounded type) read like a child's site. Chosen refinement, "Editorial grotesk": tight grotesk display in near-black-green, flat radius-20 sand/stone cards with one deep-green card per row, desaturated stone wash, no sparkles or blob. Same structure, still light-only and name-led.
+- Register (added 2026-09-01 after the first build): adult and editorial, never bubbly — the user said the first pass (candy pastels, 40px corners, sparkles, glossy blob, puffy rounded type) read like a child's site. **The register commitment stands; the specific "Editorial grotesk" refinement below is SUPERSEDED 2026-09-01** by the holographic system that actually shipped (Unbounded display, lavender-grey ground, 22px radius, iridescent blobs, two themes). Recorded for history only:
+  > *Chosen refinement, "Editorial grotesk": tight grotesk display in near-black-green, flat radius-20 sand/stone cards with one deep-green card per row, desaturated stone wash, no sparkles or blob. Same structure, still light-only and name-led.*
 
 ## Evidence on Hand
 
@@ -73,6 +74,28 @@ Real projects to feature:
 7. **Gestura** — a browser-based music player controlled entirely by hand symbols and movements, built as assistive technology for motor-impaired users. https://github.com/PartyD1/gestura
 
 No other testimonials, metrics, press, or case-study detail beyond what's listed above is confirmed — future work must not invent adoption numbers, user counts, or outcomes not stated here.
+
+### SUPPLIED-TOMORROW — the exact boundary
+
+Everything below is **blocked on Parth and absent from the UI until he supplies it.** The build is complete around each one: the field is typed, the layout is designed and captured, and supplying it is a data edit rather than a design decision. Nothing here may be inferred, approximated, or written into the UI as a placeholder.
+
+**Merge gates — the PR does not ship without these two:**
+
+1. **Operations Agent case-study prose** — at least three of: Problem & context, What I built & how, Outcome & impact, Hardest technical challenge, Current limitations. The flagship card is the biggest promise on the homepage, and terminating it in a near-empty page is worse than today's dead-end card. Almost none of what a hiring manager wants here is confidential: the agent loop, the tool surface, what data it read, how it decided a booking needed attention, what guardrails stopped a bad write, what happened when it was wrong, how correctness was judged.
+2. **The employer identity** for the Experience row — company name, role title, exact dates. Most internship NDAs cover code and customer data, not the fact of employment; ask explicitly rather than assuming. "Internship" is an employment type and is **not** an acceptable stand-in for a job title.
+
+**Not gating, and absent until supplied:**
+
+3. Per-project tech lists (the tool→project mapping). Do not infer from repo language, README, or the framework you would expect.
+4. Per-project dates and roles.
+5. The ownership split on Operations Agent — which subsystems were his vs. his partner's.
+6. Graduation term; location, relocation and work authorisation; target role and start date. These three render as the hero availability subline and are, per survey:convert, the single highest-cost omission on the site.
+7. Screenshots / GIFs, and whether a scrubbed architecture diagram of the Operations Agent is permissible — a diagram sidesteps confidentiality entirely and is a better proof artifact here than a UI screenshot.
+8. Any *sourced* usage fact for ScorelyAI. "In use by DECA competitors" is confirmed and must never be embellished into a number.
+9. Whether Gestura / Wave Function Collapse / WordPlay can be deployed to live URLs.
+10. Whether any project should be promoted to `weight: 2`.
+
+**Off-repo, and the highest-leverage thing Parth can do next:** a README with one image and one run command on each of the six public repos. A recruiter will click through, and a repo with no README subtracts the credibility the case study just earned.
 
 ## Product Principles
 

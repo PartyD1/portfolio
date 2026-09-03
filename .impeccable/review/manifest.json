@@ -1,0 +1,78 @@
+{
+  "generated": "2026-09-02",
+  "commit": "C13 — recruiter-conversion overhaul",
+  "harness": {
+    "driver": "playwright-core@1.62.1",
+    "browser": "chromium_headless_shell-1234 (chrome-headless-shell-mac-arm64)",
+    "executablePathPinned": true,
+    "note": "playwright-core, never playwright, so no browser download is attempted. An explicit executablePath decouples the driver version from the browser revision entirely, which is why no version archaeology was needed to match build 1234. PLAYWRIGHT_BROWSERS_PATH is deliberately unset: it is already the macOS default."
+  },
+  "served": "npm run build && npm run start (production build, not next dev)",
+  "capture": {
+    "widths": [
+      320,
+      390,
+      768,
+      1280,
+      1366,
+      1440
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "shots": [
+      "fold",
+      "full"
+    ],
+    "routes": [
+      "/",
+      "/work/operations-agent",
+      "/work/wordplay"
+    ],
+    "count": 72,
+    "reducedMotion": "reduce",
+    "deviceScaleFactor": 1,
+    "preparation": "full-page scroll first so every Reveal has fired, then back to top",
+    "themeMechanism": "localStorage seed, NOT colorScheme — next-themes runs with defaultTheme=\"light\", so prefers-color-scheme alone does not flip the site and every 'dark' capture would silently be light"
+  },
+  "assertionWidths": [
+    280,
+    300,
+    320,
+    360,
+    390,
+    400,
+    430,
+    720,
+    721,
+    760,
+    761,
+    768,
+    1023,
+    1024,
+    1188,
+    1255,
+    1280,
+    1329,
+    1366,
+    1384,
+    1440,
+    1568,
+    1920
+  ],
+  "gates": {
+    "heroInvariant": "46 measurements x 2 root font sizes; worst clearance 18.7% against a 5% floor (was 7.3% before the descriptor was demoted off the display line)",
+    "slotConstancy": "0.000px drift across 632 samples spanning full type/erase cycles",
+    "leftEdge": "0.0px spread across headline, subline, actions, status and section head",
+    "contrast": "worst composited pixel behind real text rects, both themes, plus % of run below threshold",
+    "detector": "0 anti-patterns across the full diff",
+    "accentCensus": "8 kinds, 0 unclassified, 0 Two Corals violations",
+    "motion": "drift traversal, ambient families, reduced motion, 720px, hover regression, backdrop-filter",
+    "pin": "under NEXT_PUBLIC_FIXTURES=1: sticky ancestors, top:0 across the span, 0 focusables, cross-fade, +18.0% route growth",
+    "heroHierarchy": "the descriptor stays <= 0.85x the name at every width in both themes; ~0.50x at 1440, ~0.61x at 390"
+  },
+  "knownOpen": {
+    "heroStatusContrast": "3.37:1 light / 2.54:1 dark, and now only ~4% of the run (was ~56%). Pre-existing, not introduced by this PR; it improved on its own when the hero shortened to one display line and the status moved up into the calm band. Closing the remaining gap needs a surface or a move, both of which change the user-pinned hero."
+  }
+}

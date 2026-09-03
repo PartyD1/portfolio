@@ -12,9 +12,18 @@
 
   --ground: #e9e6ee;
   --ink: #3f3f68;
-  /* 4.94:1 on the ground, 5.52:1 over glass — carries every lede, tagline and
-   * body run, so it has to clear the 4.5:1 floor rather than sit just under. */
-  --ink-2: #5f5f82;
+  /*
+   * Carries every lede, tagline and body run, so it has to clear the 4.5:1
+   * floor rather than sit just under.
+   *
+   * It was #5f5f82, chosen against FLAT --ground, where it measures 4.94:1. But
+   * the ground is never flat: the blobs tint it, and measured on the actual
+   * composited pixels behind real text runs, #5f5f82 came out at 4.37:1 — under
+   * the floor this token exists to clear. Darkened until the worst measured run
+   * clears it for real. Ground-only is now 5.30:1 and the worst blob-tinted
+   * run 4.73:1.
+   */
+  --ink-2: #5a5a7d;
   --white: #f7f6fa;
   /* Our one accent. shadcn owns --accent, so ours is --signal. */
   --signal: #d9705a;
@@ -47,6 +56,12 @@
   --grain-blend: multiply;
 
   --radius-card: 22px;
+
+  /* The media well's ground. Defined ONCE, against an already-themed value, so
+   * it is automatically correct in both themes and cannot become a value that
+   * exists in only one of them. Opaque on purpose — see The Opaque-Media
+   * Rule. It is also what the Artifact knockouts paint against. */
+  --media-well: var(--white);
 
   /* Motion (emil-design-eng): built-in easings are too weak; ease-in is banned. */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -90,6 +105,23 @@
   --sidebar-accent-foreground: var(--ink);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--signal);
+
+  /* The horizontal breathing room outside the 1140 column. A token because the
+   * hero's no-wrap invariant is measured against the column it produces, so
+   * every surface that shares the left edge has to derive from one number.
+   * Not a colour, so both themes share it. */
+  --gutter: 24px;
+}
+
+/* Below 400px a fixed 20px bite grows as a fraction of the viewport, so the
+ * column stops being scale-proportional and the headline's clearance falls off
+ * a cliff. Making the gutter fluid keeps the clearance flat through the whole
+ * phone range. At every width >= 400px this evaluates to exactly the
+ * documented 20px, so nothing about the existing small-screen layout moves. */
+@media (max-width: 760px) {
+  :root {
+    --gutter: clamp(14px, 5vw, 20px);
+  }
 }
 
 /* Dark is a real second world, not an inverted filter: the ground goes deep
@@ -676,27 +708,45 @@ svg {
 /* ==========================================================================
    Hero
    ========================================================================== */
+/*
+ * Left-aligned, and on the same 1140 column as every section below it, so the
+ * page has one trustworthy left edge from the name down to the footer. The
+ * headline is three lines: the name, the outlined lead alone, and the typing
+ * slot alone. Line 2 and line 3 used to share a line box, which is what made
+ * the headline unfittable — see the note on .roll.
+ */
 .hero {
   position: relative;
-  min-height: min(100svh, 720px);
+  min-height: 100svh;
   display: grid;
   /* An explicit minmax(0, 1fr) column: `place-content: center` left the column
    * max-content-sized, so `max-width: 100%` on the children measured against
    * their own content and the headline could overflow the viewport. */
   grid-template-columns: minmax(0, 1fr);
   align-content: center;
-  justify-items: center;
-  text-align: center;
-  padding: 150px 24px 56px;
+  justify-items: start;
+  text-align: left;
+  /* 150 -> 120: the third display line adds ~72px at the 64px cap and the
+   * status line has to stay inside the fold at 1440x900. */
+  padding: 120px var(--gutter) 56px;
+  max-width: calc(1140px + var(--gutter) * 2);
+  margin-inline: auto;
   overflow: clip;
 }
 
 .hero__title {
-  /* The hero centres its grid items rather than stretching them, so without
+  /* The hero starts its grid items rather than stretching them, so without
    * this the h1 sizes to max-content and nothing inside it has a width to
    * shrink against — the rolling slot then overflows the viewport. */
   max-width: 100%;
-  font-size: clamp(1.75rem, 5.1vw, 4rem);
+  /*
+   * Bounds in px, never rem. This clamp is one side of an invariant whose
+   * other side is measured in vw; a root-relative bound lets a large default
+   * font size inflate the type without inflating the column, which is a silent
+   * overflow generator under `overflow: clip`. Same reasoning applies to the
+   * mobile floor below, which is why that one is px-bounded too.
+   */
+  font-size: clamp(28px, 5.1vw, 64px);
   line-height: 1.12;
   letter-spacing: 0.005em;
 }
@@ -705,10 +755,29 @@ svg {
   display: block;
 }
 
-/* The lead is one unit: without this it breaks across lines ("AND" / "I'M")
- * once the row is squeezed, and the slot shrinks instead. */
-.hero__lead {
-  white-space: nowrap;
+/*
+ * The descriptor line. Secondary by size, not by face: still Unbounded, so it
+ * reads as part of the headline system rather than as body copy, but at roughly
+ * a third the display size so the NAME is unambiguously the headline and this
+ * qualifies it.
+ */
+.hero__role {
+  /* Enough to clear the sine wave sitting under the name. */
+  margin-top: 18px;
+  font-family: var(--font-display-stack);
+  /*
+   * px-bounded like the display clamp above it, and tuned so the RATIO to the
+   * name stays legible rather than the absolute size: ~0.50x at 1440, ~0.59x at
+   * 768, ~0.61x at 390, compressing to ~0.82x only at 280 where both are near
+   * their floors. A flat rem floor made it LARGER than the name at 280px, which
+   * is not a hierarchy — it just looked like the headline had wrapped.
+   */
+  font-size: clamp(14px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
 
 .hero__name {
@@ -737,11 +806,22 @@ svg {
   color: var(--ink-2);
 }
 
+/* Body face, never display; --ink-2, never coral. Email is the only element on
+ * the site that gets display type and the coral underline, and availability is
+ * a fact rather than an action. */
+.hero__avail {
+  max-width: 46ch;
+  margin-top: 10px;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px 28px;
   margin-top: 30px;
 }
@@ -812,59 +892,62 @@ svg {
 
 @media (max-width: 720px) {
   .hero {
-    padding: 118px 20px 48px;
+    padding: 96px var(--gutter) 48px;
     min-height: min(100svh, 620px);
   }
   .hero__title {
-    font-size: clamp(1.25rem, 5.9vw, 1.875rem);
+    /*
+     * The 14px floor here existed only because the OLD three-line headline put
+     * the typing slot on a display line, and the slot's width set the ceiling
+     * for the whole clamp. With the descriptor demoted to its own secondary
+     * line, the binding constraint is just "HEY, I'M PARTH DOSHI" (~12.97em),
+     * which clears the column at 17px even at 280px — so the phone headline
+     * gets to be a headline instead of shrinking to fit a slot that has left.
+     */
+    font-size: clamp(17px, 5.9vw, 30px);
     line-height: 1.18;
-  }
-  /*
-   * Keep the lead and the phrase on one row: as a plain inline sibling of a
-   * full-width slot, "I'm" was orphaned onto a line of its own.
-   */
-  .hero__line--roll {
-    display: flex;
-    /* nowrap on purpose: wrapping pushed the whole slot to its own line
-     * instead of letting it shrink, which is what orphaned "I'm". */
-    flex-wrap: nowrap;
-    align-items: baseline;
-    justify-content: center;
-    column-gap: 0.26em;
-  }
-  .roll {
-    min-width: 0;
   }
   /* 0.03em is sub-pixel at phone display sizes; hold a visible floor. */
   .type-outline {
     -webkit-text-stroke-width: max(1.1px, 0.03em);
   }
-  /* The longest phrase cannot fit one phone line, so let it wrap rather than
-   * be clipped by the hero's overflow. */
-  .roll {
-    max-width: 100%;
-  }
+  /*
+   * Deliberately absent here:
+   *
+   *   .roll { min-width: 0; max-width: 100% }
+   *     existed so the longest phrase would wrap rather than be clipped.
+   *     Wrapping is now the failure we want to be VISIBLE, not absorbed —
+   *     see the nowrap note on .roll.
+   */
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .hero__line,
+  .hero__role,
   .hero__sub,
+  .hero__avail,
   .hero__actions,
   .status {
     animation: rise 600ms var(--ease-out) both;
   }
-  /* Stagger steps stay 30–80ms; longer reads as the page being slow. */
-  .hero__line--roll {
+  /* Stagger steps stay 30–80ms; longer reads as the page being slow. The
+   * headline is three lines now, so the ladder gained a rung — the step is
+   * still 60ms, and without the lead's own delay lines 1 and 2 rose together
+   * and the ladder had a hole in it. */
+  .hero__role {
     animation-delay: 60ms;
   }
   .hero__sub {
     animation-delay: 120ms;
   }
-  .hero__actions {
+  .hero__avail {
     animation-delay: 180ms;
   }
-  .status {
+  .hero__actions {
     animation-delay: 240ms;
+  }
+  .status {
+    animation-delay: 300ms;
   }
 }
 
@@ -891,6 +974,15 @@ svg {
   padding: 0.14em 0.1em 0.22em;
   margin: -0.14em -0.1em -0.22em;
   cursor: default;
+  /*
+   * Load-bearing. The slot is sized to the widest phrase, and that width is an
+   * invariant the build asserts against the column. Without nowrap a future
+   * violation relays out into a two-line-tall slot: the page still looks
+   * plausible, the headline is quietly four lines, and nothing fails. With
+   * nowrap the same violation CLIPS against .hero's `overflow: clip`, which is
+   * visible and, more importantly, assertable as scrollWidth > clientWidth.
+   */
+  white-space: nowrap;
 }
 
 .roll__sizer {
@@ -921,6 +1013,13 @@ svg {
   }
 }
 
+/*
+ * UNSCOPED, deliberately. A caret is rendered in both grid children — the
+ * hidden sizer and the live text — so that the slot reserves room for it and
+ * the box does not grow by 0.12em at the exact moment the widest phrase
+ * finishes typing. If this rule were scoped to .roll__live, the sizer's caret
+ * would contribute zero width and the fix would silently do nothing.
+ */
 .roll__caret {
   display: inline-block;
   width: 0.06em;
@@ -933,8 +1032,13 @@ svg {
 /*
  * Solid while the text is moving, blinking only when it rests — which is how
  * a real caret behaves. Constant motion → steps, never eased.
+ *
+ * Scoped to the LIVE caret. The sizer copy is `visibility: hidden`, so a blink
+ * on it would be invisible but would still be a running animation in
+ * document.getAnimations() — and the ambient-motion budget is asserted by
+ * counting exactly that.
  */
-.roll[data-mode="holding"] .roll__caret {
+.roll[data-mode="holding"] .roll__live .roll__caret {
   animation: blink 1s steps(2, jump-none) infinite;
 }
 
@@ -999,10 +1103,18 @@ svg {
 /* ==========================================================================
    Sections
    ========================================================================== */
+/*
+ * `max-width: 1140px` with border-box padding produced a 1092px content column,
+ * which contradicted The 1140 Rule as written ("a 1140px column with a 24px
+ * gutter") — the gutter sits OUTSIDE the column, not inside it. That 48px
+ * discrepancy is not cosmetic now: the hero shares this left edge, and its
+ * no-wrap invariant needs the full 1140 to clear at the 64px cap. Corrected to
+ * match the documented rule.
+ */
 .section {
-  max-width: 1140px;
+  max-width: calc(1140px + var(--gutter) * 2);
   margin: 0 auto;
-  padding: 80px 24px 96px;
+  padding: 80px var(--gutter) 96px;
   scroll-margin-top: 84px;
 }
 
@@ -1031,7 +1143,7 @@ svg {
 
 @media (max-width: 760px) {
   .section {
-    padding: 64px 20px 72px;
+    padding: 64px var(--gutter) 72px;
   }
   .section__head {
     flex-direction: column;
@@ -1049,6 +1161,17 @@ svg {
   gap: 18px;
 }
 
+/* The Reveal wrapper IS the grid item; .card sits inside it as a plain block.
+ * Without this, `height: 100%` on .card resolves against nothing and the row
+ * bottoms go ragged — which is why `grid-template-rows` and `margin-top: auto`
+ * on the foot were both inert before. */
+.work__item {
+  display: grid;
+}
+
+/* ONLY weight 1 spans. This is an invariant, not a style choice: the
+ * two-column gradient parity in Work.tsx assumes exactly one spanning item, so
+ * giving weight 2 a span would silently break the alternation. */
 .work__item--flagship {
   grid-column: 1 / -1;
 }
@@ -1061,17 +1184,22 @@ svg {
 
 /*
  * Frosted, not decorative: the cards sit directly over saturated blobs, so the
- * blur is what keeps the text legible. Elevation is declared once — an edge,
- * no shadow — because a border under a soft shadow is the ghost-card look.
+ * blur is what keeps the text legible. Elevation is declared once - an edge,
+ * no shadow - because a border under a soft shadow is the ghost-card look.
+ *
+ * ONE structure for every card. Weight changes span, scale and media aspect;
+ * it never changes which fields render.
  */
 .card {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 38%);
-  grid-template-rows: auto 1fr auto;
   column-gap: 24px;
-  row-gap: 14px;
   padding: 30px;
+  /* The Reveal wrapper is the grid item and .card sits inside it, so this
+   * resolves against nothing unless .work__item is itself a grid container.
+   * The pair is what makes the cards in a row share a bottom edge. */
+  height: 100%;
   border-radius: var(--radius-card);
   border: 1px solid var(--glass-edge);
   background: var(--glass);
@@ -1085,6 +1213,22 @@ svg {
     background 200ms var(--ease-out);
 }
 
+/* Outside the hover guard on purpose: a touch device gets no hover state, so
+ * without this the largest tap target on the page acknowledges nothing. 0.98 is
+ * the documented value for a large surface, not a new third value. */
+.card:active {
+  transform: scale(0.98);
+}
+
+.card__body {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
     transform: translateY(-3px);
@@ -1093,10 +1237,18 @@ svg {
   }
 }
 
-/* One card per row carries a gradient edge — the world's colour, used as
- * emphasis rather than as another surface. */
-.card--gradient::before {
-  content: "";
+/*
+ * One card per row carries a gradient edge - the world's colour, used as
+ * emphasis rather than as another surface.
+ *
+ * Neither language can decide this alone. JS knows the two-column parity and
+ * proves it (see Work.tsx); only CSS knows when there is one column. So JS
+ * emits data-edge-2col and each rule below claims the case it can answer.
+ */
+.card::before {
+  /* Every property is declared once here; the two rules below only decide
+   * WHETHER it draws, by flipping `content`. */
+  content: none;
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -1118,9 +1270,20 @@ svg {
   pointer-events: none;
 }
 
-.card__head {
-  grid-column: 1;
-  grid-row: 1;
+/* Two columns: the JS parity owns it — one per row, alternating sides. */
+@media (min-width: 761px) {
+  .work__item[data-edge-2col] .card::before {
+    content: "";
+  }
+}
+
+/* One column: every other card down the stack — items 1, 3, 5, 7. This is what
+ * the original comment wanted and what the old JS rule failed to deliver: it
+ * produced 0, 1, 4, 5, which reads as two adjacent, a gap, two adjacent. */
+@media (max-width: 760px) {
+  .work__item:nth-child(odd) .card::before {
+    content: "";
+  }
 }
 
 .card__name {
@@ -1129,37 +1292,72 @@ svg {
 }
 
 .card__tagline {
-  grid-column: 1;
-  grid-row: 2;
   max-width: 40ch;
   font-size: 1rem;
   line-height: 1.5;
   color: var(--ink-2);
 }
 
+/*
+ * The strongest single fact on this site: somebody other than the author used
+ * the thing. It used to live in `label` and render as a tracked-caps badge,
+ * which is the treatment for a taxonomy, not for evidence. Given ink weight
+ * and full ink colour, directly under the tagline it qualifies.
+ */
+.card__use {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.card__desc {
+  max-width: 52ch;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
 .card__note {
+  max-width: 52ch;
   font-size: 0.875rem;
   line-height: 1.45;
   color: var(--ink-2);
 }
 
+/* Holds only the two links now. `margin-top: auto` pushes the whole foot
+ * region to the bottom of the flex column, which is what aligns the feet
+ * across a row once the cards are equal height. */
 .card__foot {
-  grid-column: 1 / -1;
-  grid-row: 3;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
   margin-top: auto;
   padding-top: 18px;
 }
 
-.card__link {
+/* Its own line, right-aligned. It used to be a nowrap, shrink-0 item in a
+ * space-between row inside `overflow: hidden`, where a long label was silently
+ * clipped at around 761px. */
+/* No negative margin: it pulled the label's box up into the links row, so the
+ * two overlapped by 4px. Harmless to look at, but overlapping boxes are how
+ * pointer and measurement surprises start. */
+.card__label {
+  align-self: flex-end;
+}
+
+/*
+ * The whole card is the link. The overlay is a pseudo-element ON THE LINK, not
+ * an anchor wrapping the content: wrapping would make the tagline unselectable
+ * and would nest the repo anchor inside another anchor, which is invalid.
+ */
+.card__hit {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   font-weight: 600;
   font-size: 0.9375rem;
+  color: var(--ink);
   text-decoration: none;
   padding: 8px 14px;
   margin: -8px -14px;
@@ -1169,29 +1367,101 @@ svg {
     transform 160ms var(--ease-out);
 }
 
-.card__link:active {
+.card__hit::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/*
+ * .card__hit deliberately has NO :active transform, and this is load-bearing.
+ *
+ * The overlay above is a pseudo-element OF THIS ANCHOR, so a transform on the
+ * anchor transforms the overlay with it. The anchor is a small inline-flex box
+ * in the card's foot, so scaling it by 0.97 pulls the full-card overlay 3%
+ * toward that small box's centre — far enough that a press starting near the
+ * top of the card ends outside the overlay. The result: mousedown targets the
+ * link, mouseup targets the card, no click event is ever synthesised, and the
+ * card silently stops being clickable. It hit-tests correctly right up until
+ * you press it, which is why only a real press finds it.
+ *
+ * The press response lives on .card instead, which is both the correct feedback
+ * (the whole card is the control) and safe, because .card is the overlay's
+ * containing block rather than its parent.
+ */
+
+.card__hit .icon {
+  transition: transform 200ms var(--ease-out);
+}
+
+/* Above the overlay, so the repo link stays independently clickable. */
+.card__repo {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+  text-decoration: none;
+  padding: 8px 12px;
+  margin: -8px -12px;
+  border-radius: 999px;
+  transition:
+    color 200ms var(--ease-out),
+    background 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.card__repo:active {
   transform: scale(0.97);
 }
 
-.card__link .icon {
+.card__repo .icon {
   transition: transform 200ms var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .card__link:hover {
+  .card__hit:hover {
     background: color-mix(in oklab, var(--ink) 10%, transparent);
   }
-  .card__link:hover .icon {
+  .card__hit:hover .icon {
+    transform: translateX(3px);
+  }
+  .card__repo:hover {
+    color: var(--ink);
+    background: color-mix(in oklab, var(--ink) 8%, transparent);
+  }
+  .card__repo:hover .icon {
     transform: translate(2px, -2px);
   }
 }
 
-.card__art {
+/*
+ * The media frame. Same 1px edge and 22px radius as the case-study well, on the
+ * same opaque --media-well ground, so the authored Artifact mark inside it is a
+ * DESIGNED empty state rather than a soft grey rectangle standing in for
+ * content. When a screenshot arrives it replaces the mark inside an identical
+ * frame and nothing about the layout or the choreography changes.
+ */
+.card__media {
   grid-column: 2;
-  grid-row: 1 / 3;
+  grid-row: 1;
   align-self: center;
-  width: 100%;
+  display: grid;
+  place-items: center;
   aspect-ratio: 1;
+  padding: 14px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--glass-edge);
+  background: var(--media-well);
+  overflow: hidden;
+}
+
+.card__art {
+  width: 100%;
   color: var(--ink);
   opacity: 0.72;
   transition: transform 200ms var(--ease-out);
@@ -1210,20 +1480,10 @@ svg {
 
 .card--flagship {
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  grid-template-rows: auto;
   align-items: center;
   column-gap: 32px;
   min-height: 400px;
   padding: 40px;
-}
-
-.card--flagship .card__body {
-  grid-column: 1;
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  min-height: 100%;
 }
 
 .card--flagship .card__name {
@@ -1236,17 +1496,11 @@ svg {
   color: var(--ink);
 }
 
-.card--flagship .card__desc {
-  max-width: 52ch;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: var(--ink-2);
+.card--flagship .card__media {
+  aspect-ratio: 4 / 3;
 }
 
 .card--flagship .card__art {
-  grid-column: 2;
-  grid-row: 1;
-  aspect-ratio: 4 / 3;
   opacity: 0.8;
 }
 
@@ -1262,11 +1516,110 @@ svg {
     min-height: 0;
     padding: 26px;
   }
-  .card--flagship .card__art {
+  .card--flagship .card__media {
     grid-column: 1;
     grid-row: 2;
     max-width: 320px;
+    width: 100%;
     justify-self: center;
+  }
+}
+
+/* ==========================================================================
+   Experience
+   ==========================================================================
+   A dense ruled list. Not cards (craft-floor L25: same-size cards of icon plus
+   heading plus text as the page's structure), and not a timeline (L35: a
+   coloured border-left heavier than 1px). Hairlines only, and the date range is
+   the sequence signal — never 01/02/03.
+
+   This is the THIRD grid shape in a system that had exactly two: Work's
+   repeat(2, minmax(0,1fr)) and About's minmax(0,1fr) minmax(0,1.5fr). It lives
+   inside The 1140 Rule and collapses at 760px like the others.
+   ========================================================================== */
+.exp__row {
+  display: grid;
+  grid-template-columns: minmax(0, 18ch) minmax(0, 1fr);
+  column-gap: 48px;
+  padding-block: 26px;
+  border-top: 1px solid var(--glass-edge);
+}
+
+.exp__row:last-child {
+  border-bottom: 1px solid var(--glass-edge);
+}
+
+.exp__period {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.exp__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.exp__company {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.exp__title {
+  font-size: 1rem;
+  color: var(--ink-2);
+}
+
+.exp__ownership {
+  max-width: 62ch;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.exp__link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 8px 4px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  transition:
+    color 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.exp__link .icon {
+  width: 1.05em;
+  height: 1.05em;
+  transition: transform 200ms var(--ease-out);
+}
+
+.exp__link:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .exp__link:hover {
+    color: var(--signal-ink);
+  }
+  .exp__link:hover .icon {
+    transform: translateX(4px);
+  }
+}
+
+@media (max-width: 760px) {
+  .exp__row {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 10px;
+    column-gap: 0;
   }
 }
 
@@ -1479,8 +1832,12 @@ svg {
 /* ==========================================================================
    Contact
    ========================================================================== */
+/* Left-aligned, like every other section. It was centred, which read as a
+ * deliberate finale while the HERO was also centred — the two bookended the
+ * page. C3 left-aligned the hero, which left this as the only centred block on
+ * the site, and a lone centred section reads as an oversight rather than a
+ * decision. One trustworthy left edge, top to bottom. */
 .contact {
-  text-align: center;
   padding-top: 96px;
   padding-bottom: 128px;
 }
@@ -1490,7 +1847,7 @@ svg {
 }
 
 .contact__lede {
-  margin: 22px auto 0;
+  margin: 22px 0 0;
   max-width: 40ch;
   font-size: 1.0625rem;
   color: var(--ink-2);
@@ -1521,9 +1878,464 @@ svg {
 .contact__links {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 24px;
   margin-top: 36px;
+}
+
+/* ==========================================================================
+   Case study — /work/[slug]
+   ==========================================================================
+   Inherits the homepage's world without amendment: same wash, same grain, same
+   caps, same one accent, both themes. One new component vocabulary, one new
+   token (--media-well), zero new radii, zero box-shadow.
+   ========================================================================== */
+.case {
+  display: block;
+  max-width: calc(1140px + var(--gutter) * 2);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/*
+ * The header text sits on a frosted panel, and this is COMPLIANCE with The
+ * Blur-Is-Legibility Rule rather than a new invention: the rule already says
+ * anything floating over the wash carries backdrop-filter, cards already do,
+ * and this text did not — which is why it was the worst contrast on the site.
+ *
+ * Measured cause: the wash is position:fixed with blob A's core at roughly
+ * (115, 101) at 1440, so the calm band in the left column runs y 370-640 and
+ * the case header — pinned to the document top — lands right on the core. 96.8%
+ * of the back link's glyph run was below 4.5:1.
+ *
+ * Spacing cannot fix it. The blobs are vmax-sized, so the calm band moves with
+ * viewport size; padding tuned to clear it at 1440 is wrong at 768 and at 1920,
+ * and the header block is taller than the band anyway. A surface fixes it at
+ * every width, using vocabulary the system already owns.
+ */
+.case__header {
+  padding-top: 140px;
+}
+
+.case__headline {
+  padding: 32px 34px 34px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--glass-edge);
+  /* OPAQUE, not glass, and measured rather than chosen. Frosted at --glass got
+   * the note and standfirst clear but left the back link and metadata line
+   * still failing at the panel's top edge, where blob A's core is: light glass
+   * is 0.52 alpha (4.34:1, just short) and DARK glass is 0.07, which cannot
+   * mask a lit blob at all (2.53:1). An opaque well is deterministic in both
+   * themes at every viewport size, and it is the same surface as the media
+   * frame directly below it. */
+  background: var(--media-well);
+}
+
+@media (max-width: 760px) {
+  .case__headline {
+    padding: 24px 22px 26px;
+  }
+}
+
+/* Leading arrow — this link stays on the site. Outbound links take the
+ * trailing ArrowUpRight instead, and the two read as different promises. */
+.case__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px;
+  margin: 0 0 10px -4px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition:
+    color 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.case__back .icon {
+  width: 1.05em;
+  height: 1.05em;
+  transition: transform 200ms var(--ease-out);
+}
+
+.case__back:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .case__back:hover {
+    color: var(--signal-ink);
+  }
+  .case__back:hover .icon {
+    transform: translateX(-4px);
+  }
+}
+
+.case__title {
+  margin-top: 0;
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: 0.005em;
+}
+
+/* A hairline of facts, and only the facts that exist. Nothing here renders a
+ * placeholder — an unsupplied field is simply not in the line. */
+.case__meta {
+  margin-top: 16px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.case__meta-sep {
+  padding: 0 10px;
+  opacity: 0.55;
+}
+
+.case__note {
+  max-width: 62ch;
+  margin-top: 14px;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.case__standfirst {
+  max-width: 62ch;
+  margin: 28px 0 0;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.case__standfirst p {
+  margin: 0;
+}
+
+/* --- the tech row --------------------------------------------------------
+ * A bounded exception to The Drawn-Not-Set Rule: one register, one surface,
+ * one size, one ink. Brand geometry ships; brand colour does not, because ~25
+ * uncontrolled accents would blow The One Accent Rule on a page whose identity
+ * is having exactly one. Case-study header only. */
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tech__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-2);
+  transition: color 200ms var(--ease-out);
+}
+
+.tech:hover .tech__item,
+.tech:focus-within .tech__item {
+  color: var(--ink);
+}
+
+.tech__mark {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+.tech__name {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* A supplied tool with no official mark is never silently dropped. */
+.tech__pill {
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+/* --- the media well ------------------------------------------------------
+ * OPAQUE. The Opaque-Media Rule, a named amendment to The Blur-Is-Legibility
+ * Rule: blur keeps TEXT legible over the wash, and a screenshot has no such
+ * job. It is also the only surface allowed to travel under scroll motion,
+ * because a moving backdrop-filter re-blurs its backdrop every frame. */
+.case__band {
+  margin-top: 40px;
+}
+
+.case__media {
+  position: relative;
+  overflow: clip;
+  aspect-ratio: 16 / 10;
+  max-height: 62svh;
+  margin: 0;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--glass-edge);
+  background: var(--media-well);
+}
+
+/* 106% tall, so a +-3% drift never exposes an edge at either end of its range. */
+.case__media__inner {
+  position: absolute;
+  inset: -3% 0;
+  display: grid;
+  place-items: center;
+}
+
+.case__media__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Sized to compose the frame rather than sit in the middle of it. A small mark
+ * in a large well reads as a missing screenshot; a large one reads as the
+ * authored empty state it actually is. */
+.case__media__mark {
+  width: min(64%, 520px);
+  color: var(--ink);
+  opacity: 0.7;
+}
+
+.case__media__mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.case__media__cap {
+  margin-top: 12px;
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+
+/*
+ * The media well drifts inside its frame as it passes.
+ *
+ * A TRAVERSAL DRIVEN BY THE FRAME'S ASPECT RATIO, NOT BY PIXEL CONTENT — which
+ * is what makes it bit-identical with the authored empty-state mark, with a
+ * fixture, and with tomorrow's screenshot. The choreography never has to be
+ * redesigned when the content lands.
+ *
+ * Every value is deliberate:
+ *  - `translate:`, never `transform:`. A scroll animation on `transform` is the
+ *    last animation in the cascade and silently REPLACES the hover transform on
+ *    any element that has one. Interaction keeps `transform:`; scroll gets
+ *    `translate:`/`scale:`. They compose instead of fighting.
+ *  - 6% total on a layer that is 106% tall (inset: -3% 0), so no edge is ever
+ *    exposed at either end of the range, and well inside the 8% ceiling.
+ *  - `linear`, always. This is constant motion tied to the scroll position, and
+ *    an eased scrub is exactly how cinematic scroll starts feeling laggy —
+ *    the element stops tracking the finger.
+ *  - min-width 761px: mobile gets less by rule, not by accident. The blob drift
+ *    is already disabled under 720px.
+ *  - The start state lives ONLY inside the @supports + no-preference guard, so
+ *    the finished state is the default. No JS, no scroll listener, no polyfill,
+ *    and no reduced-motion undo block to get wrong.
+ *  - .case__media is opaque and carries no backdrop-filter, so nothing
+ *    re-samples and re-blurs per frame.
+ *  - The :not(--pinned) scope keeps the route at ONE authored scroll moment
+ *    when the pinned sequence lands: the drift is REPLACED by the pin, never
+ *    stacked under it.
+ *
+ * will-change is deliberately not set: Chromium already promotes
+ * scroll-timeline-driven elements, and a blanket hint costs memory and can
+ * reduce framerate on mobile.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 761px) {
+    .case__band:not(.case__band--pinned) .case__media__inner {
+      animation: media-drift linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+
+@keyframes media-drift {
+  from {
+    translate: 0 -3%;
+  }
+  to {
+    translate: 0 3%;
+  }
+}
+
+/* --- the pinned media sequence -------------------------------------------
+ * DEFAULT FIRST, AND UNGUARDED: a readable, stacked band. This is what ships
+ * to every engine without view(), to every reduced-motion reader, and below
+ * 761px — which is why there is no "undo" block anywhere below. The pin is
+ * purely ADDITIVE inside the guard, so there are not two structures to keep in
+ * sync, only one that gains a behaviour. */
+.case__stage {
+  display: grid;
+  gap: 18px;
+}
+
+.case__pin {
+  scroll-margin-top: 84px;
+}
+
+.case__strip {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 761px) {
+    /* Height follows the beat count rather than being fixed, so two beats do
+     * not buy the scroll length of three. 100svh of sticky child plus 50svh of
+     * travel per beat: 2 -> 200svh (100svh travel), 3 -> 250svh (150svh travel,
+     * exactly the ceiling and not over it). 50svh per beat sits inside the
+     * 40-80svh window, so nothing twitches and nothing feels stuck.
+     *
+     * svh, never vh or dvh: vh jumps when the mobile URL bar hides, and dvh
+     * resizes continuously DURING the scroll, which is jitter. */
+    .case__pin[data-beats="2"] {
+      height: 200svh;
+    }
+    .case__pin[data-beats="3"] {
+      height: 250svh;
+    }
+
+    .case__stage {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      align-content: center;
+      gap: 0;
+      overflow: clip;
+      padding-block: 84px 24px;
+    }
+
+    /* All beats stack in one cell and cross-fade. */
+    .case__beat {
+      grid-area: 1 / 1;
+      animation: beat linear both;
+      animation-timeline: view();
+    }
+
+    /* 2 beats -> 75svh each; 3 -> 50svh each. Both inside the 40-80vh window,
+     * so nothing twitches and nothing feels stuck. */
+    .case__pin[data-beats="2"] .case__beat:nth-child(1) {
+      animation-range: contain 0% contain 50%;
+    }
+    .case__pin[data-beats="2"] .case__beat:nth-child(2) {
+      animation-range: contain 50% contain 100%;
+    }
+    .case__pin[data-beats="3"] .case__beat:nth-child(1) {
+      animation-range: contain 0% contain 33.34%;
+    }
+    .case__pin[data-beats="3"] .case__beat:nth-child(2) {
+      animation-range: contain 33.33% contain 66.67%;
+    }
+    .case__pin[data-beats="3"] .case__beat:nth-child(3) {
+      animation-range: contain 66.66% contain 100%;
+    }
+  }
+}
+
+/* translate and scale, never transform — same cascade reasoning as the drift.
+ * Nothing enters from scale(0); 0.985 is a settle, not an appearance. */
+@keyframes beat {
+  0% {
+    opacity: 0;
+    translate: 0 6%;
+    scale: 0.985;
+  }
+  22% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+  78% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 -6%;
+    scale: 0.985;
+  }
+}
+
+/* --- sections ----------------------------------------------------------- */
+.case__section {
+  padding: 80px 0 0;
+  scroll-margin-top: 84px;
+}
+
+.case__section-title {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  letter-spacing: 0.005em;
+}
+
+.case__prose {
+  /* craft-floor 65-75ch. */
+  max-width: 70ch;
+  margin-top: 18px;
+}
+
+.case__prose p {
+  margin: 0 0 18px;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+.case__prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- the foot: the highest-intent moment on the site --------------------- */
+.case__foot {
+  margin-top: 96px;
+  padding: 72px 0 128px;
+  border-top: 1px solid var(--glass-edge);
+}
+
+.case__foot-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.case__foot-lede {
+  max-width: 46ch;
+  margin-top: 16px;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.case__foot .contact__email {
+  margin-top: 28px;
+}
+
+.case__foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 34px;
+}
+
+@media (max-width: 760px) {
+  .case__header {
+    padding-top: 96px;
+  }
+  .case__section {
+    padding-top: 64px;
+  }
+  .case__foot {
+    margin-top: 72px;
+    padding: 56px 0 96px;
+  }
 }
 
 /* ==========================================================================

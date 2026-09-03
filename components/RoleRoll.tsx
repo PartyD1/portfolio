@@ -9,6 +9,12 @@ export type Phrase = {
   accent?: boolean;
   /** Override the hold, in ms. */
   hold?: number;
+  /**
+   * The widest phrase BY MEASURED WIDTH at weight 700, all-caps, tracking
+   * 0.005em — not by character count. Exactly one phrase carries it.
+   * Re-measure when the list changes.
+   */
+  widest?: true;
 };
 
 type Mode = "typing" | "holding" | "erasing";
@@ -38,9 +44,26 @@ const PAUSE_POLL_MS = 400;
  * continuous churn of characters is still churn.
  */
 export default function RoleRoll({ phrases }: { phrases: Phrase[] }) {
-  const longest = phrases.reduce((a, b) =>
-    b.text.length > a.text.length ? b : a,
-  );
+  /*
+   * The slot has to reserve the widest phrase's width, and it has to do so on
+   * the server: the box must exist before hydration or the headline reflows on
+   * first paint. That rules out measuring, so the width is declared in the data
+   * and only sanity-checked here.
+   *
+   * The previous longest-by-character-count pick is wrong in principle — it
+   * happens to agree today, but a future phrase with fewer but wider glyphs
+   * would under-size the slot and the caret would push the layout.
+   */
+  const flagged = phrases.filter((p) => p.widest);
+  if (process.env.NODE_ENV !== "production" && flagged.length !== 1) {
+    console.warn(
+      `RoleRoll: expected exactly one phrase with widest:true, found ${flagged.length}. ` +
+        `Falling back to longest-by-character-count, which under-sizes on wide glyphs.`,
+    );
+  }
+  const sized =
+    flagged[0] ??
+    phrases.reduce((a, b) => (b.text.length > a.text.length ? b : a));
 
   const [reduced, setReduced] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -207,8 +230,17 @@ export default function RoleRoll({ phrases }: { phrases: Phrase[] }) {
       }}
       onClick={() => advanceRef.current?.()}
     >
-      {/* Reserves the width of the longest phrase so the lead never shifts. */}
-      <span className="roll__sizer">{longest.text}</span>
+      {/*
+        Reserves the width of the widest phrase so the line never shifts.
+        The caret is rendered HERE too, unconditionally: without it the sizer
+        measures 0.12em narrower than the live copy, and the slot grew by
+        exactly that much at the moment the widest phrase finished typing —
+        an anchor drift that fired once per cycle and nowhere else.
+      */}
+      <span className="roll__sizer" aria-hidden="true">
+        {sized.text}
+        <span className="roll__caret" />
+      </span>
       <span className="roll__live">
         <span className={phrase.accent ? "roll__text roll__text--accent" : "roll__text"}>
           {visible}
