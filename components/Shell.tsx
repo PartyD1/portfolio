@@ -79,7 +79,7 @@ export default function Shell() {
             <Lines />
           </span>
         </SheetTrigger>
-        <SheetContent side="left" className="menu">
+        <SheetContent side="left" className="menu" showCloseButton={false}>
           <SheetHeader className="sr-only">
             <SheetTitle>Menu</SheetTitle>
             <SheetDescription>Jump to a section of the page.</SheetDescription>

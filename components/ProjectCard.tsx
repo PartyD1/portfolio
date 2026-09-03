@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Project } from "@/data/projects";
+import { experience } from "@/data/experience";
 import Artifact from "@/components/Artifact";
 import { ArrowRight, ArrowUpRight } from "@/components/Icon";
 
@@ -7,9 +9,19 @@ import { ArrowRight, ArrowUpRight } from "@/components/Icon";
  * ONE structure, not two.
  *
  * Weight changes classes, grid span and type scale. It never changes WHICH
- * FIELDS RENDER. A card is name, tagline, the one usage fact, the links, and
- * the taxonomy pill. The description and note paragraphs came off on
- * 2026-09-02: they were the clutter, and the case study is one click away.
+ * FIELDS RENDER. A card is name, tagline, the facts (who used it, who paid
+ * for it), the links, and the taxonomy pill. The description and note
+ * paragraphs came off on 2026-09-02: they were the clutter, and the case
+ * study is one click away.
+ *
+ * The employer line is derived from data/experience.ts, never typed here: a
+ * project that an employment row points at says where and when it was built,
+ * in the row's own words. That is what lets the flagship out-argue the cards
+ * beneath it without a single new claim.
+ *
+ * The media frame shows the project's first screenshot when one exists and
+ * the authored mark when none does. The mark is the empty state; the
+ * screenshot is the default.
  */
 export default function ProjectCard({
   project,
@@ -19,8 +31,10 @@ export default function ProjectCard({
   /** One card per row carries the world's gradient as an edge. */
   gradient?: boolean;
 }) {
-  const { slug, name, tagline, href, demo, label, use, weight } = project;
+  const { slug, name, tagline, href, demo, label, use, weight, media } = project;
   const flagship = weight === 1;
+  const job = experience.find((e) => e.project === slug);
+  const shot = media[0];
 
   const classes = [
     "card",
@@ -37,6 +51,15 @@ export default function ProjectCard({
           <h3 className="card__name">{name}</h3>
         </div>
         <p className="card__tagline">{tagline}</p>
+        {job && (
+          <p className="card__fact">
+            {job.company}
+            <span className="card__fact-sep" aria-hidden="true">
+              ·
+            </span>
+            {job.period}
+          </p>
+        )}
         {use && <p className="card__use">{use}</p>}
 
         <div className="card__foot">
@@ -88,8 +111,19 @@ export default function ProjectCard({
         <span className="pill card__label">{label}</span>
       </div>
 
-      <div className="card__media">
-        <Artifact slug={slug} className="card__art" />
+      <div className={shot ? "card__media card__media--shot" : "card__media"}>
+        {shot ? (
+          <Image
+            src={shot.src}
+            alt=""
+            width={shot.width}
+            height={shot.height}
+            sizes="(max-width: 760px) 34vw, 400px"
+            className="card__shot"
+          />
+        ) : (
+          <Artifact slug={slug} className="card__art" />
+        )}
       </div>
     </article>
   );

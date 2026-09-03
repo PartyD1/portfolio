@@ -1,5 +1,5 @@
 import { resume } from "@/data/site";
-import { ArrowDown } from "@/components/Icon";
+import { ArrowUpRight } from "@/components/Icon";
 
 /**
  * One flag, two states. Pending is a designed state, not a stopgap: it reads
@@ -21,9 +21,15 @@ export default function ResumeLink({
   }
 
   return (
-    <a className={className} href={resume.path} download>
+    <a
+      className={className}
+      href={resume.path}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Résumé (PDF, opens in a new tab)"
+    >
       Résumé
-      <ArrowDown />
+      <ArrowUpRight />
     </a>
   );
 }

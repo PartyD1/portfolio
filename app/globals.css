@@ -138,7 +138,7 @@
   --ink: #ecebf4;
   /* Secondary text has to survive sitting over a lit blob, so it runs brighter
    * here than a plain dark-mode muted tone would. */
-  --ink-2: #cbcae2;
+  --ink-2: #d3d2e8;
   --white: #23243d;
   --signal: #f0a48f;
   /* On the deep ground the accent already clears contrast as text. */
@@ -159,10 +159,17 @@
   --blob-gloss: rgb(255 255 255 / 0.4);
   --blob-gloss-out: rgb(255 255 255 / 0);
 
-  --glass: rgb(255 255 255 / 0.07);
-  --glass-strong: rgb(255 255 255 / 0.11);
-  --glass-raised: rgb(255 255 255 / 0.16);
-  --glass-edge: rgb(255 255 255 / 0.14);
+  /* Dark glass is a GROUND-coloured tint, not white. White glass over a lit
+   * blob brightens the backdrop, and light text on a brightened backdrop is
+   * exactly what failed at 2.4 to 3.0:1 in the 2026-09-03 critique (back
+   * link, flow details, tech names). Tinting toward the ground darkens the
+   * blob behind the panel instead: the same pink blob goes from 2.4:1 to
+   * about 5:1 under `glass` and 6.5:1 under `glass-strong`. The edge stays a
+   * thin white line so the panel still reads as glass. */
+  --glass: rgb(25 26 46 / 0.5);
+  --glass-strong: rgb(25 26 46 / 0.66);
+  --glass-raised: rgb(35 36 61 / 0.78);
+  --glass-edge: rgb(255 255 255 / 0.16);
 
   --grain-opacity: 0.05;
   --grain-blend: screen;
@@ -340,7 +347,7 @@ svg {
 /* On the dark ground the blobs are far brighter than the page, so they are
  * held back to keep body text over them readable. */
 .dark .wash__blob {
-  opacity: 0.62;
+  opacity: 0.56;
 }
 
 /* On a phone vmax is the viewport HEIGHT, which makes the blobs full-bleed and
@@ -827,15 +834,23 @@ svg {
   color: var(--ink-2);
 }
 
-/* Body face, never display; --ink-2, never coral. Email is the only element on
- * the site that gets display type and the coral underline, and availability is
- * a fact rather than an action. */
+/* The recruiter's three facts (when, what, where) as glass pills in --ink,
+ * one fact each, so none of them wraps mid-thought and none of them is the
+ * quietest text in the fold. Body face, never display; never coral: a fact,
+ * not an action. */
 .hero__avail {
-  max-width: 46ch;
-  margin-top: 10px;
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  color: var(--ink-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 60ch;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero__avail-pill {
+  font-size: 0.875rem;
+  white-space: normal;
 }
 
 .hero__actions {
@@ -1359,6 +1374,19 @@ svg {
   color: var(--ink-2);
 }
 
+/* Where and when it was built, from data/experience.ts. Same weight as the
+ * usage fact: both are evidence. */
+.card__fact {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.card__fact-sep {
+  padding: 0 8px;
+  opacity: 0.55;
+}
+
 /*
  * The strongest single fact on this site: somebody other than the author used
  * the thing. It used to live in `label` and render as a tracked-caps badge,
@@ -1510,6 +1538,25 @@ svg {
   transition: transform 200ms var(--ease-out);
 }
 
+/* On touch, the small foot links grow to a 44px target without moving their
+ * visual baseline: padding, not margin, and the negative margin absorbs it. */
+@media (pointer: coarse) {
+  .card__hit,
+  .card__repo,
+  .link-arrow,
+  .case__back {
+    min-height: 44px;
+  }
+  .card__hit {
+    padding: 10px 14px;
+    margin: -10px -14px;
+  }
+  .card__repo {
+    padding: 10px 12px;
+    margin: -10px -12px;
+  }
+}
+
 /* Above the overlay, so the repo link stays independently clickable. */
 .card__repo {
   position: relative;
@@ -1580,6 +1627,27 @@ svg {
   color: var(--ink);
   opacity: 0.72;
   transition: transform 200ms var(--ease-out);
+}
+
+/* A real screenshot fills the frame edge to edge, top-anchored so the
+ * product's own header is what shows. Opaque, so no blur behind it. */
+.card__media--shot {
+  padding: 0;
+  background: var(--media-well);
+}
+
+.card__shot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 300ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .card__shot {
+    transform: scale(1.03);
+  }
 }
 
 .card__art svg {
@@ -1794,9 +1862,9 @@ svg {
 .timeline__project-mark {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 7px;
+  width: 48px;
+  height: 48px;
+  padding: 5px;
   border-radius: var(--radius);
   background: var(--glass-strong);
   color: var(--ink);
@@ -2068,6 +2136,7 @@ svg {
 }
 
 .flow__bus-detail {
+  max-width: 70ch;
   font-size: 0.875rem;
   line-height: 1.5;
   color: var(--ink-2);
@@ -2327,7 +2396,7 @@ svg {
   margin: 0 0 10px -4px;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--ink-2);
+  color: var(--ink);
   text-decoration: none;
   transition:
     color 200ms var(--ease-out),
@@ -2355,9 +2424,21 @@ svg {
 
 .case__title {
   margin-top: 0;
-  font-size: clamp(2.25rem, 6vw, 4rem);
+  /* 2rem floor: "SANTACLAWS" at 2.25rem drew 25px past its box at 390. */
+  font-size: clamp(2rem, 6vw, 4rem);
   line-height: 1.08;
   letter-spacing: 0.005em;
+  overflow-wrap: anywhere;
+}
+
+/* The one sentence: what this is. The tagline the card carried, so the reader
+ * who tapped through is not left with a name and a row of logos. */
+.case__tagline {
+  max-width: 46ch;
+  margin-top: 14px;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--ink);
 }
 
 /* A hairline of facts, and only the facts that exist. Nothing here renders a
@@ -2488,6 +2569,7 @@ svg {
 }
 
 .case__media__cap {
+  max-width: 70ch;
   margin-top: 12px;
   font-size: 0.875rem;
   color: var(--ink-2);
@@ -2748,15 +2830,47 @@ svg {
    Footer
    ========================================================================== */
 .footer {
+  display: flex;
+  justify-content: center;
   padding: 28px 24px 40px;
-  text-align: center;
   font-size: 0.875rem;
   color: var(--ink-2);
 }
 
+.footer__line {
+  gap: 10px;
+  padding: 0 4px 0 16px;
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+
+.footer__sep {
+  opacity: 0.55;
+}
+
+/* A 44px target, inside the pill. */
 .footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 999px;
   font-weight: 600;
   color: var(--ink);
+  text-decoration: none;
+  transition:
+    background 200ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.footer a:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footer a:hover {
+    background: color-mix(in oklab, var(--ink) 10%, transparent);
+  }
 }
 
 /* ==========================================================================

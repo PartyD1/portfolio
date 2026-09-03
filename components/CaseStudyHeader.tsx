@@ -8,12 +8,24 @@ import type { Project } from "@/data/projects";
 /**
  * The top of a case study, in Parth's order (2026-09-02): the name, then the
  * thing you can USE, then what it is built with, then the one-line facts.
- * No standfirst, no eyebrow, no metric band. The metadata line renders ONLY
- * the fields that exist; nothing here emits a placeholder.
+ * The tagline is the one sentence under the name, then the facts. No eyebrow,
+ * no metric band. The metadata line renders ONLY the fields that exist;
+ * nothing here emits a placeholder.
  */
 export default function CaseStudyHeader({ project }: { project: Project }) {
-  const { name, label, role, dates, use, ownership, note, media, tech, demo } =
-    project;
+  const {
+    name,
+    tagline,
+    label,
+    role,
+    dates,
+    use,
+    ownership,
+    note,
+    media,
+    tech,
+    demo,
+  } = project;
 
   // What kind of system, then what he was, then when, then who else, then
   // who used it.
@@ -30,6 +42,11 @@ export default function CaseStudyHeader({ project }: { project: Project }) {
         </Link>
 
         <h1 className="case__title">{name}</h1>
+
+        {/* The one sentence that says what this is. Already-supplied data, the
+            same line the card carried, so a reader who tapped through is not
+            left with a name and a row of logos. */}
+        <p className="case__tagline">{tagline}</p>
 
         {/* Someone who can try the thing should not have to read anything
             first, so the live link comes before every other fact. */}

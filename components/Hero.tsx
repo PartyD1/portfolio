@@ -99,11 +99,15 @@ export default function Hero() {
         design decision made under time pressure.
       */}
       {(avail.gradTerm || avail.target || avail.location) && (
-        <p className="hero__avail">
+        <ul className="hero__avail" aria-label="Availability">
           {[avail.gradTerm, avail.target, avail.location]
             .filter(Boolean)
-            .join(" · ")}
-        </p>
+            .map((fact) => (
+              <li className="pill hero__avail-pill" key={fact as string}>
+                {fact}
+              </li>
+            ))}
+        </ul>
       )}
 
       <div className="hero__actions">

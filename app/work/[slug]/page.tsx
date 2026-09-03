@@ -88,8 +88,9 @@ export default async function CaseStudyPage({
           Want the detail?
         </h2>
         <p className="case__foot-lede">
-          I can walk through any decision on this page: why it was built this
-          way, what broke, and what I&rsquo;d change.
+          {s
+            ? "I can walk through any decision on this page: why it was built this way, what broke, and what I'd change."
+            : "The repo is the detail for now. I can walk through what it does, why it is built this way, and what I'd change."}
         </p>
         <a className="contact__email" href={`mailto:${links.email}`}>
           {links.email}
