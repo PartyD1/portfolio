@@ -1086,31 +1086,47 @@ svg {
   pointer-events: none;
 }
 
-.hero__sub {
-  max-width: 46ch;
-  margin-top: 26px;
-  font-size: clamp(1rem, 1.2vw, 1.1875rem);
-  line-height: 1.5;
-  color: var(--ink-2);
-}
-
-/* The recruiter's three facts (when, what, where) as glass pills in --ink,
- * one fact each, so none of them wraps mid-thought and none of them is the
- * quietest text in the fold. Body face, never display; never coral: a fact,
- * not an action. */
+/* The recruiter's three facts (what, when, where) as ONE quiet line, dots
+ * between. They used to be three glass pills under a subheadline; the pills
+ * gave three facts the visual weight of three claims, and the fold ended up
+ * carrying more chrome than content. A fact is not an action, so it gets body
+ * face, --ink-2, no surface and no accent — the line reads as a caption to the
+ * name, which is what it is.
+ *
+ * Dropping the subheadline and the status pill lifted this line out of blob C
+ * and into the calm band (viewport y 370-640), which is why plain ink clears
+ * contrast here where the status pill needed a surface to. */
 .hero__avail {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  max-width: 60ch;
-  margin: 16px 0 0;
+  align-items: baseline;
+  gap: 0 10px;
+  /* No measure cap: this is one short line, not a paragraph, and the 60ch the
+   * pills used to sit inside broke it onto two rows at every width — which is
+   * the one thing a single dot-separated line must not do on desktop. The
+   * hero's 1140px column is the constraint; below ~640px it wraps, and the
+   * dots keep the wrap readable. */
+  max-width: 100%;
+  margin: 22px 0 0;
   padding: 0;
   list-style: none;
+  font-size: clamp(0.9375rem, 1.05vw, 1.0625rem);
+  line-height: 1.6;
+  color: var(--ink-2);
 }
 
-.hero__avail-pill {
-  font-size: 0.875rem;
-  white-space: normal;
+/* The separator is CSS, not text: it never reaches the accessibility tree and
+ * it cannot be left orphaned by a fact that did not render.
+ *
+ * It trails the fact before it rather than leading the fact after it. As
+ * `li + li::before` the phone wrap put a lone dot at the START of the second
+ * line, which reads as a bullet typo; trailing, the wrap leaves it at the end
+ * of the first line where a separator belongs. `:not(:last-child)` keeps it
+ * off the end of the list however many facts render. */
+.hero__avail li:not(:last-child)::after {
+  content: "\00b7";
+  margin-left: 10px;
+  color: color-mix(in oklab, var(--ink-2) 55%, transparent);
 }
 
 .hero__actions {
@@ -1265,30 +1281,22 @@ svg {
 @media (prefers-reduced-motion: no-preference) {
   .hero__line,
   .hero__role,
-  .hero__sub,
   .hero__avail,
-  .hero__actions,
-  .status {
+  .hero__actions {
     animation: rise 600ms var(--ease-out) both;
   }
-  /* Stagger steps stay 30–80ms; longer reads as the page being slow. The
-   * headline is three lines now, so the ladder gained a rung — the step is
-   * still 60ms, and without the lead's own delay lines 1 and 2 rose together
-   * and the ladder had a hole in it. */
+  /* Stagger steps stay 30–80ms; longer reads as the page being slow. The fold
+   * is four rungs now rather than six — the step is still 60ms, and without
+   * the lead's own delay lines 1 and 2 rose together and the ladder had a
+   * hole in it. */
   .hero__role {
     animation-delay: 60ms;
   }
-  .hero__sub {
+  .hero__avail {
     animation-delay: 120ms;
   }
-  .hero__avail {
-    animation-delay: 180ms;
-  }
   .hero__actions {
-    animation-delay: 240ms;
-  }
-  .status {
-    animation-delay: 300ms;
+    animation-delay: 180ms;
   }
 }
 
@@ -1437,73 +1445,6 @@ svg {
 
 @keyframes blink {
   50% {
-    opacity: 0;
-  }
-}
-
-/* ==========================================================================
-   Status
-   ========================================================================== */
-/*
- * A frosted pill, and the blur here is legibility rather than finish — the same
- * job it does on a card. The status line sits low in the first viewport, which
- * is outside the calm band (viewport y 370-640), so it composites over blob C
- * and measured 3.03:1 light / 2.47:1 dark with ~56% of its glyph run below the
- * floor. No ink is dark enough to fix that: --ink reaches 4.64 light but only
- * 3.32 dark. A surface is the only thing that works in both themes, and this is
- * the pill vocabulary the system already owns (999px, 1px --glass-edge).
- */
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 24px;
-  padding: 9px 16px 9px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--glass-edge);
-  background: var(--glass-raised);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  line-height: 1;
-  color: var(--ink-2);
-}
-
-.status__dot {
-  position: relative;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--signal);
-}
-
-/* A scaling ring, not an animated box-shadow: transform and opacity only. */
-.status__dot::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: var(--signal);
-  opacity: 0;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .status__dot::after {
-    animation: pulse 2.6s var(--ease-out) infinite;
-  }
-}
-
-@keyframes pulse {
-  from {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-  70%,
-  to {
-    transform: scale(3);
     opacity: 0;
   }
 }
@@ -1942,10 +1883,9 @@ svg {
 
    It is a pill, not a button — this system has no buttons — and it borrows the
    opaque --media-well ground so it reads as a raised control against glass.
-   The coral dot is the SAME accent kind as the hero's status dot (a dot that
-   says something is live right now), not a ninth kind; it is deliberately
-   static, because the pulse belongs to exactly one element and two pulsing dots
-   on one screen compete.
+   The coral dot says something is live right now, and it is deliberately
+   static: the hero's pulsing status dot went with the fold declutter, and a
+   dot that pulses for no reason is decoration.
    ========================================================================== */
 .live-link {
   position: relative;
@@ -2984,6 +2924,17 @@ svg {
   max-width: 40ch;
   font-size: 1.0625rem;
   color: var(--ink-2);
+}
+
+/* The ask sits a step above the lede in --ink rather than --ink-2, because it
+ * is the one sentence in this section a recruiter is scanning for. Same size
+ * and same face as the lede: a weight change, not a new type step. */
+.contact__seeking {
+  margin: 14px 0 0;
+  max-width: 40ch;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--ink);
 }
 
 .contact__email {

@@ -125,7 +125,7 @@
         "displayName": "Frosted Glass, Raised",
         "canonical": "rgb(255 255 255 / 0.74)",
         "dark": "rgb(255 255 255 / 0.16)",
-        "note": "An object ON glass: every pill (.pill, .live-link, .status, .tech__item, the timeline project chip, flow branch tags). Glass on glass disappears; this rung is what keeps a control visible inside a panel."
+        "note": "An object ON glass: every pill (.pill, .live-link, .tech__item, the timeline project chip, flow branch tags). Glass on glass disappears; this rung is what keeps a control visible inside a panel."
       },
       "glass-edge": {
         "role": "neutral",
@@ -273,7 +273,7 @@
       },
       "label": {
         "displayName": "Label",
-        "purpose": "The status line — uppercase, tracked 0.06em. Card notes and the footer use the same size at normal tracking in sentence case."
+        "purpose": "Captions, flow details, the footer and the mobile tech name, at normal tracking in sentence case. The tracked-caps 0.06em variant of this step belonged to the hero's status line and was removed with it on 2026-09-03; the two tracked-caps labels that remain (.card__label, .pending-note) sit smaller and at 0.08em."
       },
       "micro-label": {
         "displayName": "Micro-label",
@@ -426,14 +426,6 @@
       "css": ".ds-is-pending { color: var(--ink-2); cursor: default; } .ds-pending-note { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); border: 1px solid var(--border); border-radius: 999px; padding: 3px 8px; } @media (hover: hover) and (pointer: fine) { .ds-is-pending:hover { color: var(--ink-2); } }"
     },
     {
-      "name": "Status Line",
-      "kind": "custom",
-      "refersTo": "status-dot",
-      "description": "The availability line under the hero. The coral dot pulses with a scaling ring — transform and opacity only, never an animated box-shadow.",
-      "html": "<p class=\"ds-status\"><span class=\"ds-status__dot\" aria-hidden=\"true\"></span>Open to opportunities</p>",
-      "css": ".ds-status { display: inline-flex; align-items: center; gap: 10px; margin: 0; font-family: var(--font-body-stack); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; color: var(--ink-2); } .ds-status__dot { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--signal); } .ds-status__dot::after { content: \"\"; position: absolute; inset: 0; border-radius: 50%; background: var(--signal); opacity: 0; } @media (prefers-reduced-motion: no-preference) { .ds-status__dot::after { animation: ds-pulse 2.6s var(--ease-out) infinite; } } @keyframes ds-pulse { from { transform: scale(1); opacity: 0.5; } 70%, to { transform: scale(3); opacity: 0; } }"
-    },
-    {
       "name": "Contact Email",
       "kind": "nav",
       "refersTo": "contact-email",
@@ -520,7 +512,7 @@
       },
       {
         "name": "The Uppercase Display Rule",
-        "body": "h1, h2 and h3 are uppercase Unbounded at 700 with positive tracking (0.015em base). Body copy is never uppercase; only the status line, the two micro steps and the timeline period are, and they always carry at least 0.02em tracking (0.06em and up below 15px) to stay legible.",
+        "body": "h1, h2 and h3 are uppercase Unbounded at 700 with positive tracking (0.015em base). Body copy is never uppercase; only the two micro steps and the timeline period are, and they always carry at least 0.02em tracking (0.06em and up below 15px) to stay legible.",
         "section": "typography"
       },
       {
@@ -570,7 +562,7 @@
       },
       {
         "name": "The Tracked-Caps-In-The-Foot Rule",
-        "body": "The .pill carries no tracking and no uppercase by default. .card__label adds both, because a card foot is the only place this system allows tracked caps as a label. A pill anywhere else (About's range, the status line's own tracking aside) is sentence case at 500.",
+        "body": "The .pill carries no tracking and no uppercase by default. .card__label adds both, because a card foot is the only place this system allows tracked caps as a label. A pill anywhere else (About's range) is sentence case at 500.",
         "section": "components"
       },
       {
@@ -614,7 +606,7 @@
       "Don't give ScrollScrub.tsx a second range or a second keyframe set. It mirrors @keyframes recede and nothing else; a change to either is a change to both, and anything wider is the polyfill this system refuses.",
       "Don't tilt a card or show the spotlight for a touch or pen pointer, or under reduced motion (the highlight may stay; the tilt and the light may not).",
       "Don't draw the arrow underline inside a bordered pill. It belongs on unbounded links (.link-arrow, .case__back); a pill takes a coral border instead.",
-      "Don't add a fourth continuous ambient motion; three families (the blob drift, the caret blink, the status pulse) is the budget. A second live indicator stays static.",
+      "Don't add a third continuous ambient motion; two families (the blob drift, the caret blink) is the budget, and it shrank from three on 2026-09-03 rather than leaving a vacancy. A second live indicator stays static.",
       "Don't bring the Stack section or its orbit back. Tools appear only on the case study where they were used, as tiles, and data/stack.ts has exactly that one consumer.",
       "Don't ship a dead link. An unavailable action takes the designed pending state (.is-pending plus a .pending-note pill), inert to pointer, keyboard and screen reader.",
       "Don't introduce a seventh radius, a second accent, or a new display face.",

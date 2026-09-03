@@ -5,6 +5,11 @@ import { FIXTURES, fixtureAvailability } from "@/data/fixtures";
 
 const avail = FIXTURES ? fixtureAvailability : availability;
 
+/** Specialization first: what he does is the reason to care where and when. */
+const facts = [avail.focus, avail.gradTerm, avail.location].filter(
+  (fact): fact is string => Boolean(fact),
+);
+
 /**
  * Parth's own words, as bare descriptors.
  *
@@ -90,31 +95,22 @@ export default function Hero() {
         <RoleRoll phrases={phrases} />
       </p>
 
-      <p className="hero__sub">
-        CS student at UC Santa Cruz building autonomous agents that do real
-        work, and getting more out of AI than most.
-      </p>
-
       {/*
-        Graduation term, target role and location: survey:convert calls these
-        the single highest-cost omission on the site, because a recruiter who
-        cannot tell WHEN someone is available, or WHERE, cannot act on wanting
-        to hire them.
+        The three facts a recruiter needs to decide whether to keep reading:
+        what he does, when he is free, where he is. One line, dot-separated,
+        in quiet body ink — a fact is not an action, so it gets no pill, no
+        accent and no chrome.
 
-        All three are blocked on Parth and every one renders only when non-null,
-        so today this is absent rather than empty. The layout is built and
-        captured NOW, under fixtures, so supplying them is a data edit and not a
-        design decision made under time pressure.
+        It stays a <ul> because it IS a list of three unrelated facts; the
+        separators are CSS on `li + li`, so nothing screen-reader-hostile
+        lands in the text. Each field renders only when non-null, so a
+        missing one leaves no stray separator behind.
       */}
-      {(avail.gradTerm || avail.target || avail.location) && (
+      {facts.length > 0 && (
         <ul className="hero__avail" aria-label="Availability">
-          {[avail.gradTerm, avail.target, avail.location]
-            .filter(Boolean)
-            .map((fact) => (
-              <li className="pill hero__avail-pill" key={fact as string}>
-                {fact}
-              </li>
-            ))}
+          {facts.map((fact) => (
+            <li key={fact}>{fact}</li>
+          ))}
         </ul>
       )}
 
@@ -129,10 +125,6 @@ export default function Hero() {
         </a>
       </div>
 
-      <p className="status">
-        <span className="status__dot" aria-hidden="true" />
-        Open to opportunities
-      </p>
     </section>
   );
 }
