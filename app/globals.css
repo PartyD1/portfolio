@@ -1051,11 +1051,24 @@ svg {
 /* ==========================================================================
    Status
    ========================================================================== */
+/*
+ * A frosted pill, and the blur here is legibility rather than finish — the same
+ * job it does on a card. The status line sits low in the first viewport, which
+ * is outside the calm band (viewport y 370-640), so it composites over blob C
+ * and measured 3.03:1 light / 2.47:1 dark with ~56% of its glyph run below the
+ * floor. No ink is dark enough to fix that: --ink reaches 4.64 light but only
+ * 3.32 dark. A surface is the only thing that works in both themes, and this is
+ * the pill vocabulary the system already owns (999px, 1px --glass-edge).
+ */
 .status {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   margin-top: 24px;
+  padding: 9px 16px 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-edge);
+  background: var(--media-well);
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.06em;

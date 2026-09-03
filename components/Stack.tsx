@@ -1,4 +1,14 @@
-import { stack } from "@/data/stack";
+import { stack as allGroups } from "@/data/stack";
+
+/**
+ * The orbit shows Parth's curated 29 only. data/stack.ts also carries tools
+ * that exist solely to populate per-project tech rows; the diagram is already
+ * at its density limit and they are a different claim. See StackItem.orbit.
+ */
+const stack = allGroups.map((g) => ({
+  ...g,
+  items: g.items.filter((i) => i.orbit !== false),
+}));
 import Reveal from "@/components/Reveal";
 import OrbitScroller from "@/components/OrbitScroller";
 import { ArrowRight } from "@/components/Icon";
