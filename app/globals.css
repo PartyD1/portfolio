@@ -1511,10 +1511,10 @@ svg {
 /* ==========================================================================
    Pill
    ==========================================================================
-   The one small-surface vocabulary: glass, 999px, 1px edge. Taxonomy labels,
-   the About range, and anything else that used to be a shadcn Badge. Tracked
-   caps are NOT here by default; .card__label adds them, because a card foot
-   is the only place this system allows them.
+   The one small-surface vocabulary: glass, 999px, 1px edge. The About range,
+   the footer line, and anything else that used to be a shadcn Badge. No
+   tracking and no uppercase here: the one tracked-caps pill, the card's
+   taxonomy label, came off the card foot on 2026-09-03.
    ========================================================================== */
 .pill {
   display: inline-flex;
@@ -1570,7 +1570,13 @@ svg {
   grid-column: 1 / -1;
 }
 
-@media (max-width: 760px) {
+/* One column up to 1000px, not 760. Two 370px cards side by side gave each
+ * name and tagline a 155px column; the names broke one word per line and the
+ * taglines ran seven lines deep. A two-column card needs about 235px of text
+ * column to read, which is what 1000px provides. The phone-level card rules
+ * (padding, media share, the flagship stacking) stay at 760px: between the
+ * two, a single card at full width uses the desktop card layout. */
+@media (max-width: 1000px) {
   .work__grid {
     grid-template-columns: 1fr;
   }
@@ -1639,7 +1645,12 @@ svg {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 38%);
+  /* Three rows: the head spans the top, the body and the foot stack in the
+   * text column, and the mark spans the body and foot rows beside them.
+   * `1fr` on the body row is what pushes the foot to the bottom edge. */
+  grid-template-rows: auto 1fr auto;
   column-gap: 24px;
+  row-gap: 14px;
   padding: 30px;
   /* The Reveal wrapper is the grid item and .card sits inside it, so this
    * resolves against nothing unless .work__item is itself a grid container.
@@ -1710,7 +1721,7 @@ svg {
 
 .card__body {
   grid-column: 1;
-  grid-row: 1;
+  grid-row: 2;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -1776,8 +1787,10 @@ svg {
   pointer-events: none;
 }
 
-/* Two columns: the JS parity owns it — one per row, alternating sides. */
-@media (min-width: 761px) {
+/* Two columns: the JS parity owns it — one per row, alternating sides. The
+ * breakpoint is the grid's own (see .work__grid): the two rules below and
+ * the grid must agree, or a row would carry two edges or none. */
+@media (min-width: 1001px) {
   .work__item[data-edge-2col] .card::before {
     content: "";
   }
@@ -1786,7 +1799,7 @@ svg {
 /* One column: every other card down the stack — items 1, 3, 5, 7. This is what
  * the original comment wanted and what the old JS rule failed to deliver: it
  * produced 0, 1, 4, 5, which reads as two adjacent, a gap, two adjacent. */
-@media (max-width: 760px) {
+@media (max-width: 1000px) {
   .work__item:nth-child(odd) .card::before {
     content: "";
   }
@@ -1794,8 +1807,15 @@ svg {
 
 /* Headline and, when the engagement leads, the organisation under it. The
  * gap is tighter than the body's 14px on purpose: the two lines are one
- * unit, not two facts. */
+ * unit, not two facts.
+ *
+ * It spans BOTH columns. Sharing the text column with the mark left a name
+ * 155px at 768 wide and 183px on a phone, and "Santa Claws" (185px at
+ * 20px) broke one word per line. The full card width is the name's, and
+ * the mark sits beside the tagline and the foot instead. */
 .card__head {
+  grid-column: 1 / -1;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -1852,26 +1872,17 @@ svg {
   color: var(--ink);
 }
 
-/* Holds only the two links now. `margin-top: auto` pushes the whole foot
- * region to the bottom of the flex column, which is what aligns the feet
- * across a row once the cards are equal height. */
+/* Holds only the links, and it is the card's last row. The body row above
+ * it is the flexible one, so the foot sits at the bottom edge and the feet
+ * across a row agree once the cards are equal height. */
 .card__foot {
+  grid-column: 1;
+  grid-row: 3;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 12px 18px;
-  margin-top: auto;
   padding-top: 18px;
-}
-
-/* Its own line, right-aligned, and the one place tracked caps are allowed. */
-.card__label {
-  align-self: flex-end;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-2);
 }
 
 /* ==========================================================================
@@ -1881,9 +1892,16 @@ svg {
    reading about it, so it is the loudest thing in a card foot and it repeats at
    the top of the case study rather than waiting in the footer.
 
-   It is a pill, not a button — this system has no buttons — and it borrows the
-   opaque --media-well ground so it reads as a raised control against glass.
-   The coral dot says something is live right now, and it is deliberately
+   It is a pill, not a button — this system has no buttons — but it is the one
+   pill that wears the world's colour at rest: a 1.5px gradient ring, the same
+   violet-to-warm-to-blue the card edge and the experience rail carry, drawn
+   the same way (a padding-box mask on ::before). Inside the ring a faint wash
+   of the same gradient sits on the raised glass, at half strength at rest and
+   full on hover. Restyled 2026-09-03 (Parth: "remade to be prettier"); before
+   that it was the plain glass pill every other small surface is.
+
+   The coral dot says something is live right now, and it wears a soft halo of
+   its own colour so it reads as a light, not a bullet. It is deliberately
    static: the hero's pulsing status dot went with the fold declutter, and a
    dot that pulses for no reason is decoration.
    ========================================================================== */
@@ -1892,15 +1910,18 @@ svg {
   z-index: 1;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 9px 15px;
+  gap: 10px;
+  padding: 13px 20px 13px 17px;
   border-radius: 999px;
-  border: 1px solid var(--glass-edge);
+  /* The edge is the gradient ring below, so the border is only a spacer
+   * that keeps the box the same size as every other pill's. */
+  border: 1px solid transparent;
   background: var(--glass-raised);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 600;
+  line-height: 1.25;
   color: var(--ink);
   text-decoration: none;
   white-space: nowrap;
@@ -1909,17 +1930,63 @@ svg {
   --lift: 0px;
   --press: 1;
   transform: translateY(var(--lift)) scale(var(--press));
-  transition:
-    transform 160ms var(--ease-out),
-    border-color 200ms var(--ease-out);
+  transition: transform 160ms var(--ease-out);
+}
+
+/* The ring. Same three stops and the same 120deg reading as .card::before,
+ * at the saturation the GitHub mark uses, because a 1.5px line needs more
+ * pigment than a 2px card edge to read at all. */
+.live-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    120deg,
+    var(--gh-hue-1),
+    var(--gh-hue-2),
+    var(--gh-hue-3)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* The wash: the same gradient laid over the glass at a whisper. Its own
+ * layer so hover can bring it up on opacity, which a gradient background
+ * cannot transition. z-index -1 puts it under the text inside the pill's own
+ * stacking context (backdrop-filter makes it one). */
+.live-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    color-mix(in oklab, var(--gh-hue-1) 22%, transparent),
+    color-mix(in oklab, var(--gh-hue-2) 16%, transparent),
+    color-mix(in oklab, var(--gh-hue-3) 22%, transparent)
+  );
+  opacity: 0.5;
+  transition: opacity 200ms var(--ease-out);
+  pointer-events: none;
 }
 
 .live-link__dot {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   flex: none;
   border-radius: 999px;
   background: var(--signal);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--signal) 26%, transparent);
   transition: transform 200ms var(--ease-out);
 }
 
@@ -1934,17 +2001,26 @@ svg {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  /* The pill rises off the glass and the live dot swells: the one control on
-   * the site that lets you USE something should be the one that answers most. */
-  .live-link:hover {
-    --lift: -2px;
-    border-color: color-mix(in oklab, var(--signal) 75%, var(--glass-edge));
+  /* The wash comes up to full, the live dot swells and the arrow leaves:
+   * the one control on the site that lets you USE something should be the
+   * one that answers most. */
+  .live-link:hover::after {
+    opacity: 1;
   }
   .live-link:hover .live-link__dot {
-    transform: scale(1.4);
+    transform: scale(1.35);
   }
   .live-link:hover .icon {
     transform: translate(3px, -3px);
+  }
+
+  /* The rise is the only part that travels the pill itself, so it is the
+   * only part behind the motion preference, the same split .card__repo
+   * makes. */
+  @media (prefers-reduced-motion: no-preference) {
+    .live-link:hover {
+      --lift: -2px;
+    }
   }
 }
 
@@ -2033,8 +2109,11 @@ svg {
   align-items: center;
   justify-content: center;
   flex: none;
-  width: 40px;
-  height: 40px;
+  /* 56px, up from 40 on 2026-09-03 (Parth: "a lot bigger"). It already
+   * clears the 44px touch size on every device, so it carries no
+   * `pointer: coarse` override any more. */
+  width: 56px;
+  height: 56px;
   border-radius: 999px;
   border: 1px solid var(--glass-edge);
   background: var(--glass-raised);
@@ -2055,24 +2134,6 @@ svg {
 
 .card__repo:active {
   --press: 0.97;
-}
-
-/*
- * The touch size, and it has to live BELOW the base rule rather than up in the
- * shared `pointer: coarse` block, which sits above it. Both selectors are a
- * single class, so specificity cannot break the tie and source order decides:
- * declared in that block, `width: 40px` below simply won and the button stayed
- * 40px on every touch device. Measured, not reasoned about.
- *
- * It grows in BOTH axes because it is a circle, and it carries no negative
- * margin to absorb the growth: this is 40px of drawn button, not a text link
- * wearing an invisible hit area, so the 4px it gains is real.
- */
-@media (pointer: coarse) {
-  .card__repo {
-    width: 44px;
-    height: 44px;
-  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -2116,7 +2177,7 @@ svg {
    quieter than the case-study link beside it, because the source is the
    third-most interesting thing a card offers. Hovered, it takes THIS SITE'S
    colour: the same violet-to-warm-to-blue reading the card edge
-   (.card::before) and the experience rail wear, at the saturation a 19px mark
+   (.card::before) and the experience rail wear, at the saturation a 28px mark
    needs. See --gh-hue-1..3 for why those are their own tokens rather than the
    blob values the edge uses directly.
 
@@ -2131,8 +2192,8 @@ svg {
    project animates, and it runs off the main thread.
    ========================================================================== */
 .gh-mark {
-  width: 19px;
-  height: 19px;
+  width: 28px;
+  height: 28px;
   display: block;
 }
 
@@ -2182,7 +2243,7 @@ svg {
  */
 .card__media {
   grid-column: 2;
-  grid-row: 1;
+  grid-row: 2 / 4;
   align-self: center;
   display: grid;
   place-items: center;
@@ -2219,10 +2280,37 @@ svg {
 
 .card--flagship {
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  /* Head, body and foot stack in the three auto rows; the flexible rows
+   * either side take the slack, which is what centres the group against the
+   * taller mark. `align-items: center` alone cannot do it: a spanning mark
+   * hands its extra height to every auto row it crosses, so the three would
+   * drift apart. Row gap is zero because the empty outer rows would
+   * otherwise carry gaps too; the body reinstates the 14px itself. */
+  grid-template-rows: 1fr auto auto auto 1fr;
   align-items: center;
   column-gap: 32px;
+  row-gap: 0;
   min-height: 400px;
   padding: 40px;
+}
+
+.card--flagship .card__head {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.card--flagship .card__body {
+  grid-row: 3;
+  padding-top: 14px;
+}
+
+.card--flagship .card__foot {
+  grid-row: 4;
+}
+
+.card--flagship .card__media {
+  grid-column: 2;
+  grid-row: 1 / -1;
 }
 
 .card--flagship .card__name {
@@ -2253,17 +2341,38 @@ svg {
     column-gap: 16px;
     padding: 24px;
   }
+  /* The foot takes the full width under the mark: a 141px text column at
+   * 320 wide cannot seat "case study" and the repo button side by side. */
+  .card__foot {
+    grid-column: 1 / -1;
+  }
+  .card__media {
+    grid-row: 2;
+  }
+  /* Stacked: head, body, foot, mark, in four plain rows. The desktop
+   * flagship puts its text in rows 2 to 4 of a five-row grid, so all three
+   * are restated here or the mark would land on top of the body. */
   .card--flagship {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto auto;
     min-height: 0;
     padding: 26px;
   }
+  .card--flagship .card__head {
+    grid-row: 1;
+  }
+  .card--flagship .card__body {
+    grid-row: 2;
+  }
+  .card--flagship .card__foot {
+    grid-row: 3;
+  }
   .card--flagship .card__media {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 4;
     max-width: 320px;
     width: 100%;
+    margin-top: 14px;
     justify-self: center;
   }
 }
