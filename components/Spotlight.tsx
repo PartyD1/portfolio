@@ -3,13 +3,16 @@
 import { useEffect, useRef } from "react";
 
 /*
- * Spring constants. omega = sqrt(K) ~ 12.6 rad/s, zeta = D / (2 sqrt(K)) ~ 0.87:
- * just under critical, so the light trails the pointer and settles in roughly
- * a third of a second with no visible overshoot. Tuned by eye, like every
- * spring; the numbers are here so the next person can retune rather than guess.
+ * Spring constants. omega = sqrt(K) ~ 17.3 rad/s, zeta = D / (2 sqrt(K)) ~ 0.90:
+ * just under critical, so the light trails the pointer and settles in about a
+ * fifth of a second with no visible overshoot. Stiffer than a big soft glow
+ * would want: this light is small, and a small light that lags far behind the
+ * cursor reads as a second object rather than as the ground being lit. Tuned by
+ * eye, like every spring; the numbers are here so the next person can retune
+ * rather than guess.
  */
-const K = 160;
-const D = 22;
+const K = 300;
+const D = 31;
 /* Below this the spring is at rest and the loop stops. */
 const REST_DIST = 0.15;
 const REST_SPEED = 2;

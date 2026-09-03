@@ -137,23 +137,23 @@
       "spot-core": {
         "role": "tertiary",
         "displayName": "Spotlight Core",
-        "canonical": "rgb(255 255 255 / 0.55)",
-        "dark": "rgb(255 255 255 / 0.1)",
-        "note": "Stop 1 of the pointer spotlight (.wash__spot). It lives inside the fixed wash, under everything, so it is ground and takes blob colour: The Ground-Only Iridescence Rule holds."
+        "canonical": "rgb(255 255 255 / 0.62)",
+        "dark": "rgb(255 255 255 / 0.16)",
+        "note": "Stop 1 of the pointer spotlight (.wash__spot), a 420px circle. It lives inside the fixed wash, under everything, so it is ground and takes blob colour: The Ground-Only Iridescence Rule holds. In dark the stops are ordered by luminance, not alpha: a 0.1 core under a 24% blue measured dimmer than its own ring (0.032 against 0.047) and the light rendered as a donut."
       },
       "spot-hue": {
         "role": "tertiary",
         "displayName": "Spotlight Hue",
         "canonical": "color-mix(in oklab, color-mix(in oklab, var(--blob-c-2) 50%, white) 36%, transparent)",
-        "dark": "color-mix(in oklab, var(--blob-a-2) 24%, transparent)",
-        "note": "Stop 2 of the spotlight, at 26%. In light the blob hue is pulled 50% toward white first, so the light lightens the ground under text rather than saturating it."
+        "dark": "color-mix(in oklab, var(--blob-a-2) 16%, transparent)",
+        "note": "Stop 2 of the spotlight, at 15%. In light the blob hue is pulled 50% toward white first, so the light lightens the ground under text rather than saturating it."
       },
       "spot-hue-2": {
         "role": "tertiary",
         "displayName": "Spotlight Hue, Outer",
         "canonical": "color-mix(in oklab, color-mix(in oklab, var(--blob-a-2) 50%, white) 22%, transparent)",
-        "dark": "color-mix(in oklab, var(--blob-c-1) 16%, transparent)",
-        "note": "Stop 3 of the spotlight, at 48%, repeated at 35% strength at 72% before transparent. Five stops, not three: evenly spaced stops read as rings and the eye finds the outer edge; the long near-clear tail is what makes it a glow."
+        "dark": "color-mix(in oklab, var(--blob-c-1) 11%, transparent)",
+        "note": "Stop 3 of the spotlight, at 32%, repeated at 35% strength at 58% before transparent. Five stops, not three: evenly spaced stops read as rings and the eye finds the outer edge; the tail, still long in proportion, is what keeps it a glow. The stops are weighted inward so the bright part of the light is a point rather than a disc."
       },
       "card-glow": {
         "role": "tertiary",
@@ -349,8 +349,8 @@
       },
       {
         "name": "spotlight-spring",
-        "value": "K=160 D=22",
-        "purpose": "The pointer spotlight (.wash__spot, Spotlight.tsx): omega ~12.6 rad/s, zeta ~0.87, just under critical, settles in about a third of a second with no visible overshoot. Semi-implicit Euler, dt clamped to 32ms so a waking tab does not fling the light across the screen; the loop stops at rest (0.15px, 2px/s), which is what keeps it out of the ambient budget. translate3d written directly on the element, never a custom property on an ancestor."
+        "value": "K=300 D=31",
+        "purpose": "The pointer spotlight (.wash__spot, Spotlight.tsx): omega ~17.3 rad/s, zeta ~0.90, just under critical, settles in about a fifth of a second with no visible overshoot. Semi-implicit Euler, dt clamped to 32ms so a waking tab does not fling the light across the screen; the loop stops at rest (0.15px, 2px/s), which is what keeps it out of the ambient budget. translate3d written directly on the element, never a custom property on an ancestor."
       },
       {
         "name": "duration-spotlight",

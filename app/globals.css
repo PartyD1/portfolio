@@ -70,7 +70,7 @@
    * not surface, so it takes blob colour (The Blob-Colours-Are-Ground Rule). A
    * white core over a hue, so it LIGHTENS the ground under text on the pale
    * theme rather than saturating it. */
-  --spot-core: rgb(255 255 255 / 0.55);
+  --spot-core: rgb(255 255 255 / 0.62);
   /* The hues are pulled toward white before they are made translucent, so the
    * light stays a light: pale, not a saturated ring. Body ink over the lit
    * ground still clears 4.5:1. */
@@ -218,10 +218,19 @@
 
   /* On the deep ground the blobs are already held back hard (see
    * --blob-opacity); the spotlight has to sit under them in brightness or it
-   * reads as a torch, not a glow. */
-  --spot-core: rgb(255 255 255 / 0.1);
-  --spot-hue: color-mix(in oklab, var(--blob-a-2) 24%, transparent);
-  --spot-hue-2: color-mix(in oklab, var(--blob-c-1) 16%, transparent);
+   * reads as a torch, not a glow.
+   *
+   * The three stops are ordered by LUMINANCE, not just by alpha. At the old
+   * 0.1 core against a 24% blue the centre measured dimmer than the ring
+   * around it (0.032 vs 0.047 on the plain ground), so the light rendered as
+   * a donut with a hole punched in the middle - the thing a light can never
+   * look like. The core goes up and the hues come down to put the peak back
+   * in the centre (0.051 / 0.032 / 0.023). The light's total output is about
+   * what it was, so text over the lit ground is unaffected: ink still reads
+   * 8.8:1 over the core on plain ground. */
+  --spot-core: rgb(255 255 255 / 0.16);
+  --spot-hue: color-mix(in oklab, var(--blob-a-2) 16%, transparent);
+  --spot-hue-2: color-mix(in oklab, var(--blob-c-1) 11%, transparent);
   /* Higher than it looks like it should be, and it is doing a specific job:
    * in dark, --glass-strong is MORE ground than --glass (0.66 against 0.5), so
    * a hovered card's fill gets darker as it rises - the opposite of light,
@@ -505,19 +514,21 @@ svg {
   z-index: 2;
   top: 0;
   left: 0;
-  width: 780px;
-  height: 780px;
-  margin: -390px 0 0 -390px;
+  width: 420px;
+  height: 420px;
+  margin: -210px 0 0 -210px;
   border-radius: 50%;
   /* Five stops, the last two nearly clear: a gradient with three evenly spaced
    * stops reads as rings (a target), and the eye finds the outer edge. The
-   * long, near-transparent tail is what makes it a glow. */
+   * stops are weighted toward the middle so the bright part of the light is a
+   * point about the size of a coin, and the tail — still long in proportion,
+   * just short in pixels — is what keeps it a glow rather than a disc. */
   background: radial-gradient(
     closest-side,
     var(--spot-core) 0%,
-    var(--spot-hue) 26%,
-    var(--spot-hue-2) 48%,
-    color-mix(in oklab, var(--spot-hue-2) 35%, transparent) 72%,
+    var(--spot-hue) 15%,
+    var(--spot-hue-2) 32%,
+    color-mix(in oklab, var(--spot-hue-2) 35%, transparent) 58%,
     transparent 100%
   );
   opacity: 0;
