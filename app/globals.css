@@ -2512,12 +2512,13 @@ svg {
   transition: border-color 200ms var(--ease-out);
 }
 
-.timeline__company {
+/* The role leads the card: a recruiter scans for the position, then who it was for. */
+.timeline__role {
   font-size: 1.0625rem;
   font-weight: 600;
 }
 
-.timeline__title {
+.timeline__org {
   font-size: 1rem;
   color: var(--ink-2);
 }

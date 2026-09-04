@@ -61,6 +61,10 @@ Visitors are doing fast technical screening (recruiters) or casual browsing (pee
   - Frameworks/libraries: FastAPI, Flask, React, Next.js, PyTorch, TensorFlow, Pandas, Pydantic, LangChain.
   - Developer tools: Node.js, PostgreSQL, Supabase, OpenAI API, NemoClaw, Vercel, Apify, Git, Jupyter, OpenClaw.
   - Not established: which project used which tool, and any fluency ordering. Do not infer either.
+- Employment (supplied 2026-09-03), recorded in `data/experience.ts`:
+  - **EduSchool — Full Stack Engineer Intern, incoming, Fall 2026.** Agreed, not started. No exact dates, no responsibilities and no project were given; the row shows title, company and "Fall 2026" only. Do not invent a start date or a scope.
+  - **Augmented Design Lab, UC Santa Cruz — Undergraduate Research Assistant** (Apr 2026 - present). Every row leads with the position, then the organisation (Parth, 2026-09-03). The project linked from this row is **Pewter Platformer**, not Wave Function Collapse.
+  - **InstaService — AI/ML Engineer Intern** (Summer 2026; the row shows the season, not months), linked to Operations Agent.
 - Sport and mentoring (supplied 2026-09-02): the sport is **volleyball**; he **mentors younger kids**, passing on life experience and lessons learned from adulting. Both are grounded in one About sentence. No further detail was given — do not invent a team, league, level, or program.
 
 Real projects to feature:
