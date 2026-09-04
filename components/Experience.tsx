@@ -14,6 +14,10 @@ import { ArrowRight } from "@/components/Icon";
  * out of, with that project's own mark, so a reader walks between the two
  * without hunting. The date range is the one sequence signal; never 01/02/03.
  *
+ * An incoming role renders company, title and the word INCOMING in the period
+ * slot, and nothing else: no ownership sentence, no project chip, and not the
+ * live node either, since live means happening now.
+ *
  * Returns null when there is nothing to show, so it can never become a
  * content-free section.
  */
@@ -35,14 +39,14 @@ export default function Experience() {
       <Reveal className="timeline">
         <ol className="timeline__list">
           {experience.map((e, i) => {
-            const project = bySlug(e.project);
+            const project = e.project ? bySlug(e.project) : undefined;
             return (
               <Reveal
                 key={e.id}
                 as="li"
                 delay={120 + i * 70}
                 className="timeline__item"
-                data-live={e.end ? undefined : ""}
+                data-live={e.end || e.incoming ? undefined : ""}
               >
                 <p className="timeline__period">
                   <span className="timeline__node" aria-hidden="true" />
@@ -51,7 +55,9 @@ export default function Experience() {
                 <article className="timeline__card">
                   <p className="timeline__company">{e.company}</p>
                   <p className="timeline__title">{e.title}</p>
-                  <p className="timeline__ownership">{e.ownership}</p>
+                  {e.ownership && (
+                    <p className="timeline__ownership">{e.ownership}</p>
+                  )}
                   {project && (
                     <Link
                       className="timeline__project"
