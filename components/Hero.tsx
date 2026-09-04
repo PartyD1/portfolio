@@ -1,5 +1,4 @@
 import RoleRoll, { type Phrase } from "@/components/RoleRoll";
-import { ArrowRight } from "@/components/Icon";
 import { availability } from "@/data/site";
 import { FIXTURES, fixtureAvailability } from "@/data/fixtures";
 
@@ -113,17 +112,6 @@ export default function Hero() {
           ))}
         </ul>
       )}
-
-      <div className="hero__actions">
-        <a className="link-arrow" href="#work">
-          <ArrowRight />
-          see my work
-        </a>
-        <a className="link-arrow" href="#about">
-          <ArrowRight />
-          more about me
-        </a>
-      </div>
 
     </section>
   );
