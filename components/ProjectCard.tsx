@@ -3,7 +3,7 @@ import type { Project } from "@/data/projects";
 import { experience } from "@/data/experience";
 import Artifact from "@/components/Artifact";
 import GitHubMark from "@/components/GitHubMark";
-import { ArrowRight, ArrowUpRight } from "@/components/Icon";
+import { ArrowUpRight } from "@/components/Icon";
 
 /**
  * ONE structure, not two.
@@ -115,10 +115,13 @@ export default function ProjectCard({
         {/* The whole card is the link, via a pseudo-element on the <Link>
             rather than an anchor wrapping the content. Wrapping would make
             the tagline unselectable and would nest the repo anchor inside
-            another anchor, which is invalid. */}
+            another anchor, which is invalid. The visible "case study" label
+            came off on 2026-09-03 (Parth: every card already glows and lifts
+            on hover, so a redundant button read as clutter) — the link
+            stays, carrying only an accessible name for keyboard and
+            screen-reader users. */}
         <Link className="card__hit" href={`/work/${slug}`}>
-          <ArrowRight />
-          case study
+          <span className="sr-only">View the {name} case study</span>
         </Link>
 
         {/* Operations Agent renders no repo affordance at all, not even a
