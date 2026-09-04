@@ -1737,11 +1737,6 @@ svg {
     opacity: 1;
     transition-duration: 240ms;
   }
-  /* The whole card is the link, so the card-study arrow answers a hover
-   * anywhere on the card, not only on its own label. */
-  .card:hover .card__hit .icon {
-    transform: translateX(4px);
-  }
 
   /* The rise itself, and the only shadow this system draws. Movement, so it
    * answers the preference: under `reduce` the card still takes the brighter
@@ -1751,6 +1746,27 @@ svg {
       --lift: -8px;
       box-shadow: var(--shadow-lift);
     }
+  }
+}
+
+/*
+ * Keyboard parity for the removed "case study" label: tabbing onto
+ * .card__hit now lands on a 0×0 anchor, so the card itself has to answer,
+ * the same way it answers a pointer hover. Outside the hover guard, since
+ * a keyboard user has no pointer capability to gate on.
+ */
+.card:focus-within {
+  background: var(--glass-strong);
+  border-color: color-mix(in oklab, var(--signal) 55%, var(--glass-edge));
+}
+.card:focus-within::after {
+  opacity: 1;
+  transition-duration: 240ms;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .card:focus-within {
+    --lift: -8px;
+    box-shadow: var(--shadow-lift);
   }
 }
 
@@ -2033,21 +2049,16 @@ svg {
  * The whole card is the link. The overlay is a pseudo-element ON THE LINK, not
  * an anchor wrapping the content: wrapping would make the tagline unselectable
  * and would nest the repo anchor inside another anchor, which is invalid.
+ *
+ * The visible "case study" label came off on 2026-09-03 (Parth: every card
+ * already glows and lifts on hover, so a labelled button beside it was
+ * redundant). The anchor carries only an sr-only accessible name now — its
+ * own box shrinks to that, and :focus-visible still outlines it for keyboard
+ * users, but nothing paints for a pointer.
  */
 .card__hit {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  font-size: 0.9375rem;
-  color: var(--ink);
-  text-decoration: none;
-  padding: 8px 14px;
-  margin: -8px -14px;
+  display: block;
   border-radius: 999px;
-  transition:
-    background 200ms var(--ease-out),
-    transform 160ms var(--ease-out);
 }
 
 .card__hit::after {
@@ -2061,9 +2072,9 @@ svg {
  * .card__hit deliberately has NO :active transform, and this is load-bearing.
  *
  * The overlay above is a pseudo-element OF THIS ANCHOR, so a transform on the
- * anchor transforms the overlay with it. The anchor is a small inline-flex box
- * in the card's foot, so scaling it by 0.97 pulls the full-card overlay 3%
- * toward that small box's centre — far enough that a press starting near the
+ * anchor transforms the overlay with it. The anchor is a 0×0 box collapsed
+ * around its sr-only label, so scaling it by 0.97 would pull the full-card
+ * overlay 3% toward that point — far enough that a press starting near the
  * top of the card ends outside the overlay. The result: mousedown targets the
  * link, mouseup targets the card, no click event is ever synthesised, and the
  * card silently stops being clickable. It hit-tests correctly right up until
@@ -2074,21 +2085,13 @@ svg {
  * containing block rather than its parent.
  */
 
-.card__hit .icon {
-  transition: transform 200ms var(--ease-out);
-}
-
-/* On touch, the small foot links grow to a 44px target without moving their
- * visual baseline: padding, not margin, and the negative margin absorbs it. */
+/* On touch, the foot's other small links still grow to a 44px target;
+ * .card__hit needs no such rule, since the full-card overlay is already the
+ * tap target. */
 @media (pointer: coarse) {
-  .card__hit,
   .link-arrow,
   .case__back {
     min-height: 44px;
-  }
-  .card__hit {
-    padding: 10px 14px;
-    margin: -10px -14px;
   }
 }
 
@@ -2142,15 +2145,12 @@ svg {
    *
    * Its ::after is an inset: 0 overlay across the whole card - that is how the
    * whole card becomes the link - so `:hover` on it fires from anywhere on the
-   * card, not from the label. It used to paint a 10% ink pill behind "case
-   * study" whenever the pointer was anywhere near the card, and a 3px icon
-   * nudge that, arriving later in the cascade, quietly beat the 4px nudge the
-   * card's own hover asks for. With the tilt gone that grey chip was the
-   * loudest thing about a hover.
+   * card, not from a label (the visible "case study" label is gone entirely
+   * now, 2026-09-03: every card already glows and lifts on hover, so a
+   * labelled button beside that was noise, not feedback).
    *
-   * The card answers the hover: it rises, its edge takes the signal, and its
-   * arrow moves 4px. A second, smaller acknowledgement of the same pointer in
-   * the same place is not feedback, it is noise.
+   * The card answers the hover: it rises and its edge takes the signal. That
+   * is the one acknowledgement of the pointer, and it is enough.
    *
    * .card__repo below is a real anchor sitting above the overlay, so its hover
    * fires only on itself and is kept.
@@ -2342,7 +2342,8 @@ svg {
     padding: 24px;
   }
   /* The foot takes the full width under the mark: a 141px text column at
-   * 320 wide cannot seat "case study" and the repo button side by side. */
+   * 320 wide cannot seat the live-link pill and the repo button side by
+   * side. */
   .card__foot {
     grid-column: 1 / -1;
   }
