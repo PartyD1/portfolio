@@ -12,7 +12,7 @@
  * reader can walk from one to the other without hunting.
  *
  * An INCOMING role has no project, no ownership and no dates yet: the role is
- * agreed, the work has not started. It ships as company + title + "Incoming"
+ * agreed, the work has not started. It ships as title + company + its season
  * and nothing else, per the absence-not-placeholder rule. Nothing is inferred
  * to fill the gaps.
  */
@@ -40,7 +40,7 @@ export type ExperienceEntry = {
 export const experience: ExperienceEntry[] = [
   {
     id: "eduschool",
-    period: "Incoming",
+    period: "Fall 2026",
     incoming: true,
     company: "EduSchool",
     title: "Full Stack Engineer Intern",
@@ -57,7 +57,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "operations-agent",
-    period: "Jun - Aug 2026",
+    period: "Summer 2026",
     start: "2026-06",
     end: "2026-08",
     company: "InstaService",

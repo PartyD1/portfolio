@@ -14,7 +14,7 @@ import { ArrowRight } from "@/components/Icon";
  * out of, with that project's own mark, so a reader walks between the two
  * without hunting. The date range is the one sequence signal; never 01/02/03.
  *
- * An incoming role renders company, title and the word INCOMING in the period
+ * An incoming role renders the role, the company and its season in the period
  * slot, and nothing else: no ownership sentence, no project chip, and not the
  * live node either, since live means happening now.
  *
@@ -53,8 +53,8 @@ export default function Experience() {
                   {e.period}
                 </p>
                 <article className="timeline__card">
-                  <p className="timeline__company">{e.company}</p>
-                  <p className="timeline__title">{e.title}</p>
+                  <p className="timeline__role">{e.title}</p>
+                  <p className="timeline__org">{e.company}</p>
                   {e.ownership && (
                     <p className="timeline__ownership">{e.ownership}</p>
                   )}
