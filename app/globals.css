@@ -1651,7 +1651,11 @@ svg {
   grid-template-rows: auto 1fr auto;
   column-gap: 24px;
   row-gap: 14px;
-  padding: 30px;
+  /* The padding is a token because the corner repo button (.card__repo--corner)
+   * subtracts it to reach the card's own edge; the 760px rule below and the
+   * flagship both change it, and the button must follow. */
+  --card-pad: 30px;
+  padding: var(--card-pad);
   /* The Reveal wrapper is the grid item and .card sits inside it, so this
    * resolves against nothing unless .work__item is itself a grid container.
    * The pair is what makes the cards in a row share a bottom edge. */
@@ -2139,6 +2143,39 @@ svg {
   --press: 0.97;
 }
 
+/*
+ * The corner variant, for the six cards whose foot holds nothing else that
+ * is visible. Sitting on the text column's padding edge, 30px in from the
+ * card's corner, the button read as a stray chip parked under the tagline
+ * (Parth, 2026-09-03: "awkwardly placed"). Pulled to 16px from both edges it
+ * reads as what it is: the card's own corner control, the way the mark owns
+ * the opposite side. Negative margins do the pulling so the button stays in
+ * flow and the foot row keeps reserving its height; a transform would fight
+ * the lift-and-press transform the button already composes.
+ *
+ * It also grows, 56px to 64px with a 32px mark, because a control that owns a
+ * corner can carry the size. ScorelyAI is the one card that keeps the 56px
+ * in-flow button: its foot leads with the live pill, and the two controls
+ * sit side by side on one baseline there, where a corner pull would only
+ * misalign them.
+ */
+.card__repo--corner {
+  --corner-inset: 16px;
+  width: 64px;
+  height: 64px;
+  margin-left: calc(var(--corner-inset) - var(--card-pad));
+  margin-bottom: calc(var(--corner-inset) - var(--card-pad));
+  /* First in the foot, ahead of the collapsed 0x0 case-study anchor: the
+   * anchor still takes a flex slot, and the foot's 18px gap after it would
+   * otherwise hold the button 18px off the corner it is meant to own. */
+  order: -1;
+}
+
+.card__repo--corner .gh-mark {
+  width: 32px;
+  height: 32px;
+}
+
 @media (hover: hover) and (pointer: fine) {
   /*
    * .card__hit has NO hover state of its own, on purpose.
@@ -2291,7 +2328,7 @@ svg {
   column-gap: 32px;
   row-gap: 0;
   min-height: 400px;
-  padding: 40px;
+  --card-pad: 40px;
 }
 
 .card--flagship .card__head {
@@ -2339,7 +2376,7 @@ svg {
   .card {
     grid-template-columns: minmax(0, 1fr) minmax(0, 34%);
     column-gap: 16px;
-    padding: 24px;
+    --card-pad: 24px;
   }
   /* The foot takes the full width under the mark: a 141px text column at
    * 320 wide cannot seat the live-link pill and the repo button side by
@@ -2357,7 +2394,7 @@ svg {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto;
     min-height: 0;
-    padding: 26px;
+    --card-pad: 26px;
   }
   .card--flagship .card__head {
     grid-row: 1;
