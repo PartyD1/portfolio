@@ -131,10 +131,16 @@ export default function ProjectCard({
             destination is a logo people already read at a glance, so the
             word "GitHub" beside it was restating the picture. The accessible
             name moves to aria-label and the visible control becomes a round
-            icon button, above the card overlay like the live-link pill. */}
+            icon button, above the card overlay like the live-link pill.
+
+            When the button is the only visible control in the foot it takes
+            the corner variant: bigger, and pulled into the card's own corner
+            instead of parked on the text column's padding edge. ScorelyAI,
+            whose foot leads with the live pill, keeps the in-flow button so
+            the two controls share a baseline. */}
         {href && (
           <a
-            className="card__repo"
+            className={demo ? "card__repo" : "card__repo card__repo--corner"}
             href={href}
             target="_blank"
             rel="noreferrer"
