@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -13,6 +14,7 @@ import {
 import Monogram from "@/components/Monogram";
 import ThemeToggle from "@/components/ThemeToggle";
 import ResumeLink from "@/components/ResumeLink";
+import { Cross } from "@/components/Icon";
 import { links } from "@/data/site";
 
 const items = [
@@ -39,6 +41,7 @@ function Lines() {
 export default function Shell() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const firstLink = useRef<HTMLAnchorElement>(null);
 
   /*
    * The numeric shortcuts are live ONLY while the sheet is open (2026-09-03).
@@ -92,7 +95,18 @@ export default function Shell() {
             <Lines />
           </span>
         </SheetTrigger>
-        <SheetContent side="left" className="menu" showCloseButton={false}>
+        <SheetContent
+          side="left"
+          className="menu"
+          showCloseButton={false}
+          // The first link takes focus, not the close control: opening a
+          // menu to read it is the common case.
+          onOpenAutoFocus={(e) => {
+            e.preventDefault();
+            firstLink.current?.focus();
+          }}
+        >
+          <span className="menu__grab" aria-hidden="true" />
           <SheetHeader className="sr-only">
             <SheetTitle>Menu</SheetTitle>
             <SheetDescription>Jump to a section of the page.</SheetDescription>
@@ -102,6 +116,7 @@ export default function Shell() {
             {items.map((item, i) => (
               <a
                 key={item.id}
+                ref={i === 0 ? firstLink : undefined}
                 // Root-relative, so the menu works from a case-study route
                 // as well as from the homepage.
                 href={`/#${item.id}`}
@@ -118,15 +133,29 @@ export default function Shell() {
           </nav>
 
           <div className="menu__foot">
-            <a href={`mailto:${links.email}`}>{links.email}</a>
-            <a href={links.github} target="_blank" rel="noreferrer">
-              GitHub
+            {/* The address leads, in the same voice as Contact: display face,
+                coral rule. On a phone this is the thumb-reachable way to
+                email from anywhere on the site. */}
+            <a className="menu__email" href={`mailto:${links.email}`}>
+              {links.email}
             </a>
-            <a href={links.linkedin} target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
-            <ResumeLink className="menu__resume" />
+            <div className="menu__foot-row">
+              <a href={links.github} target="_blank" rel="noreferrer">
+                GitHub
+              </a>
+              <a href={links.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn
+              </a>
+              <ResumeLink className="menu__resume" />
+            </div>
           </div>
+
+          {/* After the nav in DOM order (so Tab reaches the links first) and
+              drawn top-right by CSS. Phones only; the desktop drawer closes
+              by Escape, the overlay and the mark. */}
+          <SheetClose className="menu__close" aria-label="Close menu">
+            <Cross />
+          </SheetClose>
         </SheetContent>
       </Sheet>
 

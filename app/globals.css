@@ -874,30 +874,42 @@ svg {
 .menu__foot {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  font-size: 0.9375rem;
+  gap: 10px;
   color: var(--ink-2);
 }
 
-/* On a 320 phone the Sheet's own 3/4 leaves 240px, and 80px of that was
- * padding: the words had 160px to live in and Unbounded 700 does not fit
- * EXPERIENCE into 160px at any size a menu link should be. Widen the sheet and
- * spend less of it on air. */
-@media (max-width: 400px) {
-  .menu {
-    width: 88%;
-    padding: 40px 24px;
-    gap: 32px;
-  }
+/* The address leads, in the same voice as Contact and the case foot: display
+ * face, coral rule. A third appearance of one element, not a new accent
+ * kind. On a phone this is the thumb-reachable way to email from anywhere on
+ * the site. */
+.menu__email {
+  width: fit-content;
+  font-family: var(--font-display-stack);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-decoration-color: var(--signal);
+  text-underline-offset: 8px;
+  word-break: break-all;
 }
 
-.menu__foot a {
+.menu__foot-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9375rem;
+}
+
+.menu__foot-row a {
   width: fit-content;
   text-decoration: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .menu__foot a:hover {
+  .menu__foot-row a:hover {
     color: var(--ink);
     text-decoration: underline;
   }
@@ -2186,6 +2198,180 @@ svg {
  * containing block rather than its parent.
  */
 
+/* ==========================================================================
+   Menu sheet — phones (PR 04 of the mobile overhaul)
+   ==========================================================================
+   The same Radix sheet, turned into a bottom sheet by geometry alone: a
+   phone's thumb lives at the bottom of the screen, and a panel that rises
+   from under it is one motion away from where the hand already is. The
+   shadcn utilities (w-3/4, inset-y-0, the left slide) are in Tailwind's
+   utilities layer, so these unlayered rules beat them by order regardless of
+   specificity (CLAUDE.md, R2). Desktop keeps the left drawer untouched. */
+@media (max-width: 760px) {
+  .menu[data-side="left"] {
+    inset: auto 0 0 0;
+    width: 100%;
+    height: auto;
+    max-height: min(88svh, 640px);
+    border-right: 0;
+    border-top: 1px solid var(--glass-edge);
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    padding: 14px 20px max(24px, calc(var(--safe-bottom) + 16px));
+    gap: 22px;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .menu__link {
+    min-height: 56px;
+    align-items: center;
+    padding: 6px 0;
+    font-size: clamp(26px, 8vw, 34px);
+  }
+  .menu__email {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    font-size: clamp(18px, 5.1vw, 22px);
+  }
+  /* Three pills in a row, 44px tall, glass-raised on the sheet's own glass:
+   * no backdrop-filter of their own (glass on glass is a wasted blur). */
+  .menu__foot-row {
+    flex-direction: row;
+    gap: 8px;
+  }
+  .menu__foot-row a,
+  .menu__foot-row .is-pending {
+    flex: 1 1 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid var(--glass-edge);
+    background: var(--glass-raised);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .menu__foot-row .link-arrow::after {
+    content: none;
+  }
+}
+
+/* Higher specificity than the base .menu__email and than any older
+ * ".menu__foot a" rule (equal-specificity source order is fragile; see the
+ * cascade-order note above the deleted pointer:coarse rule), so the sheet's
+ * 48px email target is never quietly capped at 44 by an unrelated rule. */
+@media (max-width: 760px) {
+  .menu__foot a.menu__email {
+    min-height: 48px;
+  }
+}
+
+.menu__grab {
+  display: none;
+}
+.menu__close {
+  display: none;
+}
+@media (max-width: 760px) {
+  .menu__grab {
+    display: block;
+    width: 36px;
+    height: 4px;
+    margin: 0 auto 2px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--ink) 22%, transparent);
+  }
+  .menu__close {
+    position: absolute;
+    top: 12px;
+    right: max(12px, var(--safe-right));
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid var(--glass-edge);
+    background: var(--glass-raised);
+    color: var(--ink);
+    cursor: pointer;
+    transition: transform 160ms var(--ease-out);
+  }
+  .menu__close svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.25;
+    stroke-linecap: round;
+  }
+  .menu__close:active {
+    transform: scale(0.97);
+  }
+}
+
+/* A keycap on a touch screen is a promise the device cannot keep. */
+@media (pointer: coarse) {
+  .menu__key {
+    display: none;
+  }
+}
+
+[data-slot="sheet-overlay"] {
+  /* Tinted with the ground, not black, so the page behind reads as the same
+   * world dimmed rather than a photo under a grey sheet. --ground is themed,
+   * so one rule covers both themes. */
+  background: color-mix(in oklab, var(--ground) 45%, transparent);
+}
+
+/* The overlay keeps tw-animate's own fade (its "enter"/"exit" keyframes);
+ * only the timing is retimed on phones, exit faster than entrance like
+ * everywhere else in this file. Duration is a longhand, so this wins over
+ * the layered duration-100 utility without touching the fade itself. */
+@media (max-width: 760px) {
+  [data-slot="sheet-overlay"][data-state="open"] {
+    animation-duration: 200ms;
+  }
+  [data-slot="sheet-overlay"][data-state="closed"] {
+    animation-duration: 140ms;
+  }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  .menu[data-state="open"] {
+    animation: sheet-up 360ms var(--ease-drawer) both;
+  }
+  .menu[data-state="closed"] {
+    animation: sheet-down 240ms var(--ease-out) both;
+  }
+  [data-state="open"] .menu__link {
+    animation: rise-sm 300ms var(--ease-out) both;
+    animation-delay: calc(var(--i) * 30ms + 60ms);
+  }
+}
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes sheet-down {
+  to {
+    transform: translateY(100%);
+  }
+}
+@keyframes rise-sm {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
 /* On touch, the foot's other small links still grow to a 44px target;
  * .card__hit needs no such rule, since the full-card overlay is already the
  * tap target. */
@@ -2194,12 +2380,10 @@ svg {
   .case__back {
     min-height: 44px;
   }
-  .menu__foot a,
-  .menu__resume {
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-  }
+  /* .menu__foot's own targets (the email, the three pills) are fully
+   * respecified by the phone sheet rules below (PR 04); a generic
+   * ".menu__foot a" floor here would win the min-height cascade on the
+   * email by specificity and cap it at 44 instead of the intended 48. */
 }
 
 /*

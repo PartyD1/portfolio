@@ -152,6 +152,11 @@ typography:
     # PR 03 of the mobile overhaul: the flagship card's org line floor below
     # ~353px, where clamp(18px, 5.1vw, 24px) hits its lower bound.
     flagship-org-mobile-floor: "18px"
+    # PR 04 of the mobile overhaul: the bottom sheet's link rows and email,
+    # phones only. clamp(26px, 8vw, 34px) and clamp(18px, 5.1vw, 22px).
+    menu-link-mobile-floor: "26px"
+    menu-link-mobile-cap: "34px"
+    menu-email-mobile-cap: "22px"
     display-floor: "28px"
     display-mobile-cap: "30px"
     descriptor-cap: "32px"
