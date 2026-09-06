@@ -5,19 +5,20 @@ import { usePathname } from "next/navigation";
 
 /*
  * A hand-written MIRROR of @keyframes recede in globals.css, for engines that
- * have WAAPI but not `animation-timeline`. Change both together. The blur and
- * the shift are read from the element's own --recede-blur/--recede-shift so
- * the 761px and 760px rules hold here too.
+ * have WAAPI but not `animation-timeline`. Change both together. The blur,
+ * shift and scale are read from the element's own --recede-blur/
+ * --recede-shift/--recede-scale so the 761px and 760px rules hold here too.
  */
 function recedeFrames(el: HTMLElement): Keyframe[] {
   const style = getComputedStyle(el);
   const blur = style.getPropertyValue("--recede-blur").trim();
   const shift = style.getPropertyValue("--recede-shift").trim();
+  const scale = style.getPropertyValue("--recede-scale").trim();
   return [
     { opacity: 1, scale: "1", translate: "0 0", filter: "blur(0px)" },
     {
       opacity: 0,
-      scale: "0.9",
+      scale: scale || "0.9",
       translate: `0 ${shift || "22%"}`,
       filter: `blur(${blur || "0px"})`,
     },

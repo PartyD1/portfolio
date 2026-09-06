@@ -615,7 +615,15 @@ svg {
   }
 }
 
-/* Phones stop the drift entirely: four animated blobs is not a mobile budget. */
+/* Phones stop the drift entirely: four animated blobs is not a mobile budget.
+ *
+ * PR 09 evaluated an optional scroll-linked wash move here (the two bottom
+ * blobs drifting up and the two top ones down, animation-timeline: scroll())
+ * as the phone's one candidate for motion beyond feedback and rises. Its own
+ * gate makes it conditional on a real-device frame-rate measurement (Safari
+ * Web Inspector, Timelines, 60fps scrolling the Work grid) that this
+ * environment cannot perform, so it ships frozen rather than unmeasured.
+ * The next session with a device can add it behind that same gate. */
 @media (max-width: 760px) {
   .wash__blob {
     animation: none !important;
@@ -894,6 +902,7 @@ svg {
   text-decoration-color: var(--signal);
   text-underline-offset: 8px;
   word-break: break-all;
+  transition: text-decoration-color 200ms var(--ease-out);
 }
 
 .menu__foot-row {
@@ -913,6 +922,19 @@ svg {
     color: var(--ink);
     text-decoration: underline;
   }
+}
+
+/* Press feedback: the pills already scale on :active via the phone rule
+ * below; this covers the row's plain-text desktop-drawer state too. */
+.menu__foot-row a:active {
+  transform: scale(0.97);
+}
+
+/* Press feedback where hover cannot reach: the same colour the hover rule
+ * would give, held only while pressed, quicker than a hover transition. */
+.menu__email:active {
+  text-decoration-color: var(--ink);
+  transition-duration: 120ms;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1412,6 +1434,7 @@ svg {
 .case__headline {
   --recede-blur: 0px;
   --recede-shift: 22%;
+  --recede-scale: 0.9;
   transform-origin: 50% 45%;
 }
 
@@ -1423,18 +1446,21 @@ svg {
 }
 
 /* With the hero bottom-set and the card peeking (PR 02), the desktop 22%
- * shift (about 146px) would push the fading name into the WORK label. */
+ * shift (about 146px) would push the fading name into the WORK label. PR 09:
+ * a 39px name shrinking all the way to 90% reads as a wobble at phone scale;
+ * 94% reads as depth instead. */
 @media (max-width: 760px) {
   .hero,
   .case__headline {
     --recede-shift: 8%;
+    --recede-scale: 0.94;
   }
 }
 
 @keyframes recede {
   to {
     opacity: 0;
-    scale: 0.9;
+    scale: var(--recede-scale);
     translate: 0 var(--recede-shift);
     filter: blur(var(--recede-blur));
   }
@@ -1725,7 +1751,10 @@ svg {
   }
   /* The card is already a fifth of the way into the viewport at load on
    * phones (PR 02's fold peek), so card-unveil would render it clipped and
-   * half-transparent. The hero recede is the phone's whole handoff. */
+   * half-transparent. The hero recede is the phone's whole handoff.
+   * PR 09 reconsidered and kept it off: an unveil on the SECOND card
+   * instead would be decoration seen once, and the phone motion budget
+   * (D6, quiet ambient) says no. */
   @media (max-width: 760px) {
     .work__item--flagship .card {
       animation: none;
@@ -3631,6 +3660,13 @@ svg {
   }
 }
 
+/* Press feedback where hover cannot reach: the same colour the hover rule
+ * gives, held only while pressed, quicker than the hover transition. */
+.contact__email:active {
+  text-decoration-color: var(--ink);
+  transition-duration: 120ms;
+}
+
 /* The copy control (D13): a phone with no mail client configured opens
  * nothing on mailto:, and a recruiter should not have to retype an
  * address. Renders beside the email wherever it appears (Contact, the case
@@ -4205,6 +4241,14 @@ svg {
   transform: scale(1.35);
 }
 
+/* Press feedback: the dot itself moves, not the 44px hit area around it. */
+.shots__dot:active::before {
+  transform: scale(0.9);
+}
+.shots__dot[aria-current]:active::before {
+  transform: scale(1.2);
+}
+
 .shots__count {
   margin: 0 0 0 auto;
   font-size: 0.875rem;
@@ -4657,6 +4701,25 @@ html:has(.shots__dialog[open]) {
   transition:
     opacity 450ms var(--ease-out),
     transform 450ms var(--ease-out);
+}
+
+@media (max-width: 760px) {
+  /* Less travel: a phone screen is short enough that 24px reads as a jump
+   * rather than a rise. 380ms, one step under the desktop 450. */
+  [data-reveal="pending"] {
+    transform: translateY(16px);
+  }
+  [data-reveal="in"] {
+    transition:
+      opacity 380ms var(--ease-out),
+      transform 380ms var(--ease-out);
+  }
+  /* Risk R4: Reveal writes the card stagger inline (delay = i * 50ms). On a
+   * phone one card is on screen at a time, so the stagger is only a wait.
+   * The one documented !important on the site. */
+  .work__item[data-reveal] {
+    transition-delay: 0ms !important;
+  }
 }
 
 .icon {
