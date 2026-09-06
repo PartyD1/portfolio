@@ -2475,44 +2475,143 @@ svg {
 
 @media (max-width: 760px) {
   .card {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 34%);
-    column-gap: 16px;
-    --card-pad: 24px;
-  }
-  /* The foot takes the full width under the mark: a 141px text column at
-   * 320 wide cannot seat the live-link pill and the repo button side by
-   * side. */
-  .card__foot {
-    grid-column: 1 / -1;
+    /* One column with a header row: the mark as a chip beside the name, the
+     * tagline across the whole card. The old 34% mark column gave the text
+     * 183px and the taglines ran six lines (2026-09-05 measurement). */
+    grid-template-columns: 60px minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    column-gap: 14px;
+    row-gap: 12px;
+    --card-pad: 18px;
   }
   .card__media {
-    grid-row: 2;
+    grid-column: 1;
+    grid-row: 1;
+    width: 60px;
+    aspect-ratio: 1;
+    padding: 9px;
+    /* --radius (16px) is the chip radius the timeline's project mark
+     * already uses; 22px on a 60px square reads as a circle. */
+    border-radius: var(--radius);
+    align-self: start;
   }
-  /* Stacked: head, body, foot, mark, in four plain rows. The desktop
-   * flagship puts its text in rows 2 to 4 of a five-row grid, so all three
-   * are restated here or the mark would land on top of the body. */
+  .card__head {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    gap: 4px;
+  }
+  .card__body {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    gap: 10px;
+  }
+  .card__name {
+    font-size: clamp(20px, 5.6vw, 26px);
+    line-height: 1.04;
+  }
+  .card__tagline {
+    max-width: none;
+  }
+  .card__foot {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    min-height: 52px;
+    padding-top: 10px;
+    gap: 10px 12px;
+  }
+  /* The lobster's eyes, legs and pom-pom are 1px at chip size; at 42px of
+   * art the silhouette is the mark. */
+  .card__art .mark__fine {
+    display: none;
+  }
+  /* Every repo button is a corner control on a phone, ScorelyAI's included:
+   * with the live pill beside it there is still room (16 + 52 + 12 + 150 +
+   * 12 + 52 + 16 = 310 of 351). One size for a corner circle on a phone. */
+  .card__repo,
+  .card__repo--corner {
+    --corner-inset: 16px;
+    width: 52px;
+    height: 52px;
+    order: -1;
+    margin-left: calc(var(--corner-inset) - var(--card-pad));
+    margin-bottom: calc(var(--corner-inset) - var(--card-pad));
+  }
+  .card__repo .gh-mark {
+    width: 26px;
+    height: 26px;
+  }
+  /* Stacked: cover, head, body, foot, in four rows. The desktop flagship
+   * puts its picture beside the text; on a phone it becomes the one picture
+   * on the page, first. */
   .card--flagship {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto auto auto;
     min-height: 0;
-    --card-pad: 26px;
-  }
-  .card--flagship .card__head {
-    grid-row: 1;
-  }
-  .card--flagship .card__body {
-    grid-row: 2;
-  }
-  .card--flagship .card__foot {
-    grid-row: 3;
+    --card-pad: 20px;
+    row-gap: 14px;
   }
   .card--flagship .card__media {
     grid-column: 1;
-    grid-row: 4;
-    max-width: 320px;
+    grid-row: 1;
     width: 100%;
-    margin-top: 14px;
-    justify-self: center;
+    max-width: none;
+    aspect-ratio: 16 / 9;
+    max-height: 176px;
+    margin: 0;
+    padding: 14px;
+    border-radius: var(--radius-card);
+    justify-self: stretch;
+  }
+  .card--flagship .card__head {
+    grid-row: 2;
+  }
+  .card--flagship .card__body {
+    grid-row: 3;
+    padding-top: 0;
+  }
+  .card--flagship .card__foot {
+    grid-row: 4;
+  }
+  .card--flagship .card__name {
+    font-size: clamp(24px, 7.2vw, 40px);
+  }
+  .card--flagship .card__org {
+    font-size: clamp(18px, 5.1vw, 24px);
+  }
+  .card--flagship .card__tagline {
+    max-width: none;
+  }
+}
+
+/* The cue: hidden wherever hover exists, because the hover lift already
+ * says the card is live there. */
+.card__cue {
+  display: none;
+}
+@media (hover: none) {
+  .card__cue {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 999px;
+    border: 1px solid var(--glass-edge);
+    background: var(--glass-raised);
+    color: var(--ink);
+  }
+  .card__cue .icon {
+    width: 22px;
+    height: 22px;
+    transition: transform 160ms var(--ease-out);
+  }
+  /* Press feedback on the arrow, on top of the card's own 0.98 press. */
+  .card:active .card__cue .icon {
+    transform: translateX(3px);
   }
 }
 

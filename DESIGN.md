@@ -149,6 +149,9 @@ typography:
     contact-max: "4.5rem"
     descriptor-floor: "14px"
     display-mobile-floor: "17px"
+    # PR 03 of the mobile overhaul: the flagship card's org line floor below
+    # ~353px, where clamp(18px, 5.1vw, 24px) hits its lower bound.
+    flagship-org-mobile-floor: "18px"
     display-floor: "28px"
     display-mobile-cap: "30px"
     descriptor-cap: "32px"

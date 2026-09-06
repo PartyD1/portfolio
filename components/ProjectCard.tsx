@@ -3,7 +3,7 @@ import type { Project } from "@/data/projects";
 import { experience } from "@/data/experience";
 import Artifact from "@/components/Artifact";
 import GitHubMark from "@/components/GitHubMark";
-import { ArrowUpRight } from "@/components/Icon";
+import { ArrowRight, ArrowUpRight } from "@/components/Icon";
 
 /**
  * ONE structure, not two.
@@ -122,6 +122,12 @@ export default function ProjectCard({
             screen-reader users. */}
         <Link className="card__hit" href={`/work/${slug}`}>
           <span className="sr-only">View the {name} case study</span>
+          {/* Phones only (CSS, hover: none): the drawn arrow in the card's
+              corner. Inside the link, so it IS the link; decorative to
+              assistive tech, which already has the name above. */}
+          <span className="card__cue" aria-hidden="true">
+            <ArrowRight />
+          </span>
         </Link>
 
         {/* Operations Agent renders no repo affordance at all, not even a
