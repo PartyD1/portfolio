@@ -4,8 +4,8 @@
     "vw": 320,
     "vh": 568,
     "rootFont": "16px",
-    "docH": 5883,
-    "screens": 10.4,
+    "docH": 5638,
+    "screens": 9.9,
     "hOverflow": 0,
     "mq": {
       "coarse": true,
@@ -19,7 +19,7 @@
         "lh": "25.5px",
         "fw": "400",
         "w": 320,
-        "h": 5883
+        "h": 5638
       },
       ".hero__title": {
         "fs": 32,
@@ -57,11 +57,11 @@
         "h": 44
       },
       ".section__title": {
-        "fs": 32,
-        "lh": "32.64px",
+        "fs": 30,
+        "lh": "30.6px",
         "fw": "700",
-        "w": 131,
-        "h": 33
+        "w": 122,
+        "h": 31
       },
       ".card--flagship .card__name": {
         "fs": 24,
@@ -120,38 +120,38 @@
         "h": 48
       },
       ".timeline__period": {
-        "fs": 15,
-        "lh": "18px",
+        "fs": 16,
+        "lh": "19.2px",
         "fw": "600",
-        "w": 252,
-        "h": 18
+        "w": 254,
+        "h": 19
       },
       ".timeline__role": {
         "fs": 17,
         "lh": "25.5px",
         "fw": "600",
-        "w": 206,
+        "w": 216,
         "h": 26
       },
       ".timeline__org": {
         "fs": 16,
         "lh": "24px",
         "fw": "400",
-        "w": 206,
+        "w": 216,
         "h": 24
       },
       ".timeline__ownership": {
         "fs": 16,
         "lh": "24.8px",
         "fw": "400",
-        "w": 206,
+        "w": 216,
         "h": 223
       },
       ".timeline__project-name": {
         "fs": 15,
         "lh": "22.5px",
         "fw": "600",
-        "w": 93,
+        "w": 105,
         "h": 45
       },
       ".about__body p": {
@@ -169,11 +169,11 @@
         "h": 31
       },
       ".contact__title": {
-        "fs": 36,
-        "lh": "36.72px",
+        "fs": 34,
+        "lh": "34.68px",
         "fw": "700",
         "w": 288,
-        "h": 37
+        "h": 35
       },
       ".contact__lede": {
         "fs": 17,
@@ -199,15 +199,15 @@
       ".link-arrow": {
         "fs": 17,
         "lh": "25.5px",
-        "fw": "500",
-        "w": 88,
+        "fw": "600",
+        "w": 114,
         "h": 44
       },
       ".footer__line": {
         "fs": 14,
         "lh": "16.8px",
         "fw": "500",
-        "w": 272,
+        "w": 224,
         "h": 46
       }
     },
@@ -242,7 +242,7 @@
         "text": "View the Operations Agent case stu",
         "w": 0,
         "h": 0,
-        "top": 877
+        "top": 875
       },
       {
         "tag": "a",
@@ -250,7 +250,7 @@
         "text": "Try ScorelyAI live (opens in a new",
         "w": 150,
         "h": 48,
-        "top": 1179
+        "top": 1177
       },
       {
         "tag": "a",
@@ -258,7 +258,7 @@
         "text": "View the ScorelyAI case study",
         "w": 0,
         "h": 0,
-        "top": 1203
+        "top": 1201
       },
       {
         "tag": "a",
@@ -266,7 +266,7 @@
         "text": "ScorelyAI on GitHub (opens in a ne",
         "w": 52,
         "h": 52,
-        "top": 1178
+        "top": 1176
       },
       {
         "tag": "a",
@@ -274,7 +274,7 @@
         "text": "View the Santa Claws case study",
         "w": 0,
         "h": 0,
-        "top": 1523
+        "top": 1521
       },
       {
         "tag": "a",
@@ -282,7 +282,7 @@
         "text": "Santa Claws on GitHub (opens in a ",
         "w": 52,
         "h": 52,
-        "top": 1498
+        "top": 1496
       },
       {
         "tag": "a",
@@ -290,7 +290,7 @@
         "text": "View the Wave Function Collapse ca",
         "w": 0,
         "h": 0,
-        "top": 1798
+        "top": 1796
       },
       {
         "tag": "a",
@@ -298,7 +298,7 @@
         "text": "Wave Function Collapse on GitHub (",
         "w": 52,
         "h": 52,
-        "top": 1773
+        "top": 1771
       },
       {
         "tag": "a",
@@ -306,7 +306,7 @@
         "text": "View the Pewter Platformer case st",
         "w": 0,
         "h": 0,
-        "top": 2149
+        "top": 2147
       },
       {
         "tag": "a",
@@ -314,7 +314,7 @@
         "text": "Pewter Platformer on GitHub (opens",
         "w": 52,
         "h": 52,
-        "top": 2124
+        "top": 2122
       },
       {
         "tag": "a",
@@ -322,7 +322,7 @@
         "text": "View the Gestura case study",
         "w": 0,
         "h": 0,
-        "top": 2445
+        "top": 2443
       },
       {
         "tag": "a",
@@ -330,7 +330,7 @@
         "text": "Gestura on GitHub (opens in a new ",
         "w": 52,
         "h": 52,
-        "top": 2420
+        "top": 2418
       },
       {
         "tag": "a",
@@ -338,7 +338,7 @@
         "text": "View the WordPlay case study",
         "w": 0,
         "h": 0,
-        "top": 2693
+        "top": 2691
       },
       {
         "tag": "a",
@@ -346,23 +346,23 @@
         "text": "WordPlay on GitHub (opens in a new",
         "w": 52,
         "h": 52,
-        "top": 2668
+        "top": 2666
       },
       {
         "tag": "a",
         "cls": "timeline__project",
         "text": "Pewter Platformer",
-        "w": 206,
-        "h": 66,
-        "top": 3464
+        "w": 216,
+        "h": 59,
+        "top": 3404
       },
       {
         "tag": "a",
         "cls": "timeline__project",
         "text": "Operations Agent",
-        "w": 206,
-        "h": 66,
-        "top": 3971
+        "w": 216,
+        "h": 59,
+        "top": 3855
       },
       {
         "tag": "a",
@@ -370,39 +370,39 @@
         "text": "pmdoshi@ucsc.edu",
         "w": 242,
         "h": 44,
-        "top": 5449
+        "top": 5250
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "GitHub",
-        "w": 88,
+        "w": 114,
         "h": 44,
-        "top": 5529
+        "top": 5322
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "LinkedIn",
-        "w": 98,
+        "w": 125,
         "h": 44,
-        "top": 5529
+        "top": 5322
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "Résumé (PDF, opens in a new tab)",
-        "w": 95,
+        "w": 121,
         "h": 44,
-        "top": 5597
+        "top": 5376
       },
       {
         "tag": "a",
         "cls": "",
         "text": "Back to the top",
-        "w": 113,
+        "w": 92,
         "h": 44,
-        "top": 5798
+        "top": 5553
       },
       {
         "tag": "button",
@@ -422,7 +422,7 @@
         "text": "View the Operations Agent case stu",
         "w": 0,
         "h": 0,
-        "top": 877
+        "top": 875
       },
       {
         "tag": "a",
@@ -430,7 +430,7 @@
         "text": "View the ScorelyAI case study",
         "w": 0,
         "h": 0,
-        "top": 1203
+        "top": 1201
       },
       {
         "tag": "a",
@@ -438,7 +438,7 @@
         "text": "View the Santa Claws case study",
         "w": 0,
         "h": 0,
-        "top": 1523
+        "top": 1521
       },
       {
         "tag": "a",
@@ -446,7 +446,7 @@
         "text": "View the Wave Function Collapse ca",
         "w": 0,
         "h": 0,
-        "top": 1798
+        "top": 1796
       },
       {
         "tag": "a",
@@ -454,7 +454,7 @@
         "text": "View the Pewter Platformer case st",
         "w": 0,
         "h": 0,
-        "top": 2149
+        "top": 2147
       },
       {
         "tag": "a",
@@ -462,7 +462,7 @@
         "text": "View the Gestura case study",
         "w": 0,
         "h": 0,
-        "top": 2445
+        "top": 2443
       },
       {
         "tag": "a",
@@ -470,7 +470,7 @@
         "text": "View the WordPlay case study",
         "w": 0,
         "h": 0,
-        "top": 2693
+        "top": 2691
       }
     ],
     "blur": 0,
@@ -486,26 +486,26 @@
       {
         "id": "work",
         "top": 392,
-        "h": 2417
+        "h": 2407
       },
       {
         "id": "experience",
-        "top": 2809,
-        "h": 1332
+        "top": 2799,
+        "h": 1207
       },
       {
         "id": "about",
-        "top": 4140,
-        "h": 986
+        "top": 4005,
+        "h": 954
       },
       {
         "id": "contact",
-        "top": 5127,
-        "h": 642
+        "top": 4959,
+        "h": 564
       },
       {
         "id": "footer",
-        "top": 5769,
+        "top": 5524,
         "h": 114
       }
     ],
@@ -553,6 +553,281 @@
       "ring": "44x44 @258,506"
     },
     "hero": 392,
+    "imgs": []
+  },
+  "after-operations-agent-320-light": {
+    "url": "/work/operations-agent",
+    "vw": 320,
+    "vh": 568,
+    "rootFont": "16px",
+    "docH": 4751,
+    "screens": 8.4,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": false
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 320,
+        "h": 4751
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "600",
+        "w": 242,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 146,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 32,
+        "lh": "34.56px",
+        "fw": "700",
+        "w": 242,
+        "h": 69
+      },
+      ".case__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 242,
+        "h": 51
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 242,
+        "h": 48
+      },
+      ".case__note": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 242,
+        "h": 99
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 32,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 288,
+        "h": 24
+      },
+      ".flow__title": {
+        "fs": 16,
+        "lh": "20.8px",
+        "fw": "600",
+        "w": 250,
+        "h": 21
+      },
+      ".flow__detail": {
+        "fs": 14,
+        "lh": "20.3px",
+        "fw": "400",
+        "w": 250,
+        "h": 20
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 250,
+        "h": 34
+      },
+      ".flow__bus-title": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 246,
+        "h": 23
+      },
+      ".flow__bus-detail": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 246,
+        "h": 84
+      },
+      ".flow__index": {
+        "fs": 12,
+        "lh": "12px",
+        "fw": "700",
+        "w": 26,
+        "h": 26
+      },
+      ".case__section-title": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 288,
+        "h": 24
+      },
+      ".case__points li": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 288,
+        "h": 174
+      },
+      ".case__foot-title": {
+        "fs": 28,
+        "lh": "28.56px",
+        "fw": "700",
+        "w": 288,
+        "h": 57
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 288,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to dark theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 146,
+        "h": 44,
+        "top": 121
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 242,
+        "h": 44,
+        "top": 4497
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 92,
+        "h": 44,
+        "top": 4666
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 506
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 676
+      },
+      {
+        "id": "flow",
+        "top": 724,
+        "h": 1248
+      },
+      {
+        "id": "problem",
+        "top": 1972,
+        "h": 391
+      },
+      {
+        "id": "build",
+        "top": 2364,
+        "h": 638
+      },
+      {
+        "id": "outcome",
+        "top": 3002,
+        "h": 317
+      },
+      {
+        "id": "challenge",
+        "top": 3319,
+        "h": 466
+      },
+      {
+        "id": "limitations",
+        "top": 3785,
+        "h": 403
+      },
+      {
+        "id": "case__foot",
+        "top": 4260,
+        "h": 377
+      },
+      {
+        "id": "footer",
+        "top": 4637,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @260,17",
+      "ring": "44x44 @258,506"
+    },
+    "hero": 0,
     "imgs": []
   },
   "after-home-390-light": {
@@ -560,8 +835,8 @@
     "vw": 390,
     "vh": 844,
     "rootFont": "16px",
-    "docH": 5717,
-    "screens": 6.8,
+    "docH": 5557,
+    "screens": 6.6,
     "hOverflow": 0,
     "mq": {
       "coarse": true,
@@ -575,7 +850,7 @@
         "lh": "25.5px",
         "fw": "400",
         "w": 390,
-        "h": 5717
+        "h": 5557
       },
       ".hero__title": {
         "fs": 39,
@@ -613,11 +888,11 @@
         "h": 44
       },
       ".section__title": {
-        "fs": 32,
-        "lh": "32.64px",
+        "fs": 33.93,
+        "lh": "34.6086px",
         "fw": "700",
-        "w": 131,
-        "h": 33
+        "w": 138,
+        "h": 35
       },
       ".card--flagship .card__name": {
         "fs": 28.08,
@@ -676,31 +951,31 @@
         "h": 48
       },
       ".timeline__period": {
-        "fs": 15,
-        "lh": "18px",
+        "fs": 16,
+        "lh": "19.2px",
         "fw": "600",
-        "w": 315,
-        "h": 18
+        "w": 317,
+        "h": 19
       },
       ".timeline__role": {
         "fs": 17,
         "lh": "25.5px",
         "fw": "600",
-        "w": 269,
+        "w": 279,
         "h": 26
       },
       ".timeline__org": {
         "fs": 16,
         "lh": "24px",
         "fw": "400",
-        "w": 269,
+        "w": 279,
         "h": 24
       },
       ".timeline__ownership": {
         "fs": 16,
         "lh": "24.8px",
         "fw": "400",
-        "w": 269,
+        "w": 279,
         "h": 174
       },
       ".timeline__project-name": {
@@ -725,11 +1000,11 @@
         "h": 31
       },
       ".contact__title": {
-        "fs": 36,
-        "lh": "36.72px",
+        "fs": 40.17,
+        "lh": "40.9734px",
         "fw": "700",
         "w": 351,
-        "h": 37
+        "h": 41
       },
       ".contact__lede": {
         "fs": 17,
@@ -755,8 +1030,8 @@
       ".link-arrow": {
         "fs": 17,
         "lh": "25.5px",
-        "fw": "500",
-        "w": 88,
+        "fw": "600",
+        "w": 114,
         "h": 44
       },
       ".footer__line": {
@@ -798,7 +1073,7 @@
         "text": "View the Operations Agent case stu",
         "w": 0,
         "h": 0,
-        "top": 1172
+        "top": 1174
       },
       {
         "tag": "a",
@@ -806,7 +1081,7 @@
         "text": "Try ScorelyAI live (opens in a new",
         "w": 150,
         "h": 48,
-        "top": 1451
+        "top": 1453
       },
       {
         "tag": "a",
@@ -814,7 +1089,7 @@
         "text": "View the ScorelyAI case study",
         "w": 0,
         "h": 0,
-        "top": 1475
+        "top": 1477
       },
       {
         "tag": "a",
@@ -822,7 +1097,7 @@
         "text": "ScorelyAI on GitHub (opens in a ne",
         "w": 52,
         "h": 52,
-        "top": 1450
+        "top": 1452
       },
       {
         "tag": "a",
@@ -830,7 +1105,7 @@
         "text": "View the Santa Claws case study",
         "w": 0,
         "h": 0,
-        "top": 1771
+        "top": 1773
       },
       {
         "tag": "a",
@@ -838,7 +1113,7 @@
         "text": "Santa Claws on GitHub (opens in a ",
         "w": 52,
         "h": 52,
-        "top": 1746
+        "top": 1748
       },
       {
         "tag": "a",
@@ -846,7 +1121,7 @@
         "text": "View the Wave Function Collapse ca",
         "w": 0,
         "h": 0,
-        "top": 2043
+        "top": 2045
       },
       {
         "tag": "a",
@@ -854,7 +1129,7 @@
         "text": "Wave Function Collapse on GitHub (",
         "w": 52,
         "h": 52,
-        "top": 2018
+        "top": 2020
       },
       {
         "tag": "a",
@@ -862,7 +1137,7 @@
         "text": "View the Pewter Platformer case st",
         "w": 0,
         "h": 0,
-        "top": 2394
+        "top": 2396
       },
       {
         "tag": "a",
@@ -870,7 +1145,7 @@
         "text": "Pewter Platformer on GitHub (opens",
         "w": 52,
         "h": 52,
-        "top": 2369
+        "top": 2371
       },
       {
         "tag": "a",
@@ -878,7 +1153,7 @@
         "text": "View the Gestura case study",
         "w": 0,
         "h": 0,
-        "top": 2666
+        "top": 2668
       },
       {
         "tag": "a",
@@ -886,7 +1161,7 @@
         "text": "Gestura on GitHub (opens in a new ",
         "w": 52,
         "h": 52,
-        "top": 2641
+        "top": 2643
       },
       {
         "tag": "a",
@@ -894,7 +1169,7 @@
         "text": "View the WordPlay case study",
         "w": 0,
         "h": 0,
-        "top": 2914
+        "top": 2916
       },
       {
         "tag": "a",
@@ -902,23 +1177,23 @@
         "text": "WordPlay on GitHub (opens in a new",
         "w": 52,
         "h": 52,
-        "top": 2889
+        "top": 2891
       },
       {
         "tag": "a",
         "cls": "timeline__project",
         "text": "Pewter Platformer",
-        "w": 247,
-        "h": 66,
-        "top": 3610
+        "w": 279,
+        "h": 58,
+        "top": 3534
       },
       {
         "tag": "a",
         "cls": "timeline__project",
         "text": "Operations Agent",
-        "w": 242,
-        "h": 66,
-        "top": 4043
+        "w": 279,
+        "h": 58,
+        "top": 3935
       },
       {
         "tag": "a",
@@ -926,31 +1201,31 @@
         "text": "pmdoshi@ucsc.edu",
         "w": 291,
         "h": 48,
-        "top": 5347
+        "top": 5165
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "GitHub",
-        "w": 88,
+        "w": 114,
         "h": 44,
-        "top": 5431
+        "top": 5241
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "LinkedIn",
-        "w": 98,
+        "w": 125,
         "h": 44,
-        "top": 5431
+        "top": 5241
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "Résumé (PDF, opens in a new tab)",
-        "w": 95,
+        "w": 121,
         "h": 44,
-        "top": 5431
+        "top": 5295
       },
       {
         "tag": "a",
@@ -958,7 +1233,7 @@
         "text": "Back to the top",
         "w": 120,
         "h": 44,
-        "top": 5632
+        "top": 5472
       },
       {
         "tag": "button",
@@ -978,7 +1253,7 @@
         "text": "View the Operations Agent case stu",
         "w": 0,
         "h": 0,
-        "top": 1172
+        "top": 1174
       },
       {
         "tag": "a",
@@ -986,7 +1261,7 @@
         "text": "View the ScorelyAI case study",
         "w": 0,
         "h": 0,
-        "top": 1475
+        "top": 1477
       },
       {
         "tag": "a",
@@ -994,7 +1269,7 @@
         "text": "View the Santa Claws case study",
         "w": 0,
         "h": 0,
-        "top": 1771
+        "top": 1773
       },
       {
         "tag": "a",
@@ -1002,7 +1277,7 @@
         "text": "View the Wave Function Collapse ca",
         "w": 0,
         "h": 0,
-        "top": 2043
+        "top": 2045
       },
       {
         "tag": "a",
@@ -1010,7 +1285,7 @@
         "text": "View the Pewter Platformer case st",
         "w": 0,
         "h": 0,
-        "top": 2394
+        "top": 2396
       },
       {
         "tag": "a",
@@ -1018,7 +1293,7 @@
         "text": "View the Gestura case study",
         "w": 0,
         "h": 0,
-        "top": 2666
+        "top": 2668
       },
       {
         "tag": "a",
@@ -1026,7 +1301,7 @@
         "text": "View the WordPlay case study",
         "w": 0,
         "h": 0,
-        "top": 2914
+        "top": 2916
       }
     ],
     "blur": 0,
@@ -1042,26 +1317,26 @@
       {
         "id": "work",
         "top": 664,
-        "h": 2366
+        "h": 2360
       },
       {
         "id": "experience",
-        "top": 3030,
-        "h": 1182
+        "top": 3024,
+        "h": 1060
       },
       {
         "id": "about",
-        "top": 4212,
-        "h": 839
+        "top": 4084,
+        "h": 811
       },
       {
         "id": "contact",
-        "top": 5051,
-        "h": 553
+        "top": 4894,
+        "h": 549
       },
       {
         "id": "footer",
-        "top": 5603,
+        "top": 5443,
         "h": 114
       }
     ],
@@ -1111,13 +1386,288 @@
     "hero": 664,
     "imgs": []
   },
+  "after-operations-agent-390-light": {
+    "url": "/work/operations-agent",
+    "vw": 390,
+    "vh": 844,
+    "rootFont": "16px",
+    "docH": 4318,
+    "screens": 5.1,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": false
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 390,
+        "h": 4318
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 24,
+        "lh": "36px",
+        "fw": "600",
+        "w": 291,
+        "h": 48
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 146,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 32,
+        "lh": "34.56px",
+        "fw": "700",
+        "w": 305,
+        "h": 69
+      },
+      ".case__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 305,
+        "h": 51
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 305,
+        "h": 24
+      },
+      ".case__note": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 305,
+        "h": 74
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 32,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 351,
+        "h": 24
+      },
+      ".flow__title": {
+        "fs": 16,
+        "lh": "20.8px",
+        "fw": "600",
+        "w": 313,
+        "h": 21
+      },
+      ".flow__detail": {
+        "fs": 14,
+        "lh": "20.3px",
+        "fw": "400",
+        "w": 313,
+        "h": 20
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 313,
+        "h": 34
+      },
+      ".flow__bus-title": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 309,
+        "h": 23
+      },
+      ".flow__bus-detail": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 309,
+        "h": 63
+      },
+      ".flow__index": {
+        "fs": 12,
+        "lh": "12px",
+        "fw": "700",
+        "w": 26,
+        "h": 26
+      },
+      ".case__section-title": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 351,
+        "h": 24
+      },
+      ".case__points li": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 351,
+        "h": 124
+      },
+      ".case__foot-title": {
+        "fs": 28,
+        "lh": "28.56px",
+        "fw": "700",
+        "w": 351,
+        "h": 29
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 351,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to dark theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 146,
+        "h": 44,
+        "top": 121
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 291,
+        "h": 48,
+        "top": 4060
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 4233
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 782
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 627
+      },
+      {
+        "id": "flow",
+        "top": 675,
+        "h": 1187
+      },
+      {
+        "id": "problem",
+        "top": 1862,
+        "h": 317
+      },
+      {
+        "id": "build",
+        "top": 2179,
+        "h": 564
+      },
+      {
+        "id": "outcome",
+        "top": 2743,
+        "h": 267
+      },
+      {
+        "id": "challenge",
+        "top": 3010,
+        "h": 391
+      },
+      {
+        "id": "limitations",
+        "top": 3401,
+        "h": 378
+      },
+      {
+        "id": "case__foot",
+        "top": 3852,
+        "h": 353
+      },
+      {
+        "id": "footer",
+        "top": 4204,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @330,17",
+      "ring": "44x44 @328,782"
+    },
+    "hero": 0,
+    "imgs": []
+  },
   "after-home-430-light": {
     "url": "/",
     "vw": 430,
     "vh": 932,
     "rootFont": "16px",
-    "docH": 5668,
-    "screens": 6.1,
+    "docH": 5467,
+    "screens": 5.9,
     "hOverflow": 0,
     "mq": {
       "coarse": true,
@@ -1131,7 +1681,7 @@
         "lh": "25.5px",
         "fw": "400",
         "w": 430,
-        "h": 5668
+        "h": 5467
       },
       ".hero__title": {
         "fs": 43,
@@ -1169,11 +1719,11 @@
         "h": 44
       },
       ".section__title": {
-        "fs": 32,
-        "lh": "32.64px",
+        "fs": 37.41,
+        "lh": "38.1582px",
         "fw": "700",
-        "w": 131,
-        "h": 33
+        "w": 153,
+        "h": 38
       },
       ".card--flagship .card__name": {
         "fs": 30.96,
@@ -1232,31 +1782,31 @@
         "h": 48
       },
       ".timeline__period": {
-        "fs": 15,
-        "lh": "18px",
+        "fs": 16,
+        "lh": "19.2px",
         "fw": "600",
-        "w": 354,
-        "h": 18
+        "w": 356,
+        "h": 19
       },
       ".timeline__role": {
         "fs": 17,
         "lh": "25.5px",
         "fw": "600",
-        "w": 308,
+        "w": 318,
         "h": 26
       },
       ".timeline__org": {
         "fs": 16,
         "lh": "24px",
         "fw": "400",
-        "w": 308,
+        "w": 318,
         "h": 24
       },
       ".timeline__ownership": {
         "fs": 16,
         "lh": "24.8px",
         "fw": "400",
-        "w": 308,
+        "w": 318,
         "h": 149
       },
       ".timeline__project-name": {
@@ -1281,11 +1831,11 @@
         "h": 31
       },
       ".contact__title": {
-        "fs": 36,
-        "lh": "36.72px",
+        "fs": 44,
+        "lh": "44.88px",
         "fw": "700",
         "w": 390,
-        "h": 37
+        "h": 45
       },
       ".contact__lede": {
         "fs": 17,
@@ -1311,8 +1861,8 @@
       ".link-arrow": {
         "fs": 17,
         "lh": "25.5px",
-        "fw": "500",
-        "w": 88,
+        "fw": "600",
+        "w": 114,
         "h": 44
       },
       ".footer__line": {
@@ -1354,7 +1904,7 @@
         "text": "View the Operations Agent case stu",
         "w": 0,
         "h": 0,
-        "top": 1271
+        "top": 1276
       },
       {
         "tag": "a",
@@ -1362,7 +1912,7 @@
         "text": "Try ScorelyAI live (opens in a new",
         "w": 150,
         "h": 48,
-        "top": 1549
+        "top": 1555
       },
       {
         "tag": "a",
@@ -1370,7 +1920,7 @@
         "text": "View the ScorelyAI case study",
         "w": 0,
         "h": 0,
-        "top": 1573
+        "top": 1579
       },
       {
         "tag": "a",
@@ -1378,7 +1928,7 @@
         "text": "ScorelyAI on GitHub (opens in a ne",
         "w": 52,
         "h": 52,
-        "top": 1548
+        "top": 1554
       },
       {
         "tag": "a",
@@ -1386,7 +1936,7 @@
         "text": "View the Santa Claws case study",
         "w": 0,
         "h": 0,
-        "top": 1845
+        "top": 1851
       },
       {
         "tag": "a",
@@ -1394,7 +1944,7 @@
         "text": "Santa Claws on GitHub (opens in a ",
         "w": 52,
         "h": 52,
-        "top": 1820
+        "top": 1826
       },
       {
         "tag": "a",
@@ -1402,7 +1952,7 @@
         "text": "View the Wave Function Collapse ca",
         "w": 0,
         "h": 0,
-        "top": 2093
+        "top": 2099
       },
       {
         "tag": "a",
@@ -1410,7 +1960,7 @@
         "text": "Wave Function Collapse on GitHub (",
         "w": 52,
         "h": 52,
-        "top": 2068
+        "top": 2074
       },
       {
         "tag": "a",
@@ -1418,7 +1968,7 @@
         "text": "View the Pewter Platformer case st",
         "w": 0,
         "h": 0,
-        "top": 2420
+        "top": 2426
       },
       {
         "tag": "a",
@@ -1426,7 +1976,7 @@
         "text": "Pewter Platformer on GitHub (opens",
         "w": 52,
         "h": 52,
-        "top": 2395
+        "top": 2401
       },
       {
         "tag": "a",
@@ -1434,7 +1984,7 @@
         "text": "View the Gestura case study",
         "w": 0,
         "h": 0,
-        "top": 2692
+        "top": 2698
       },
       {
         "tag": "a",
@@ -1442,7 +1992,7 @@
         "text": "Gestura on GitHub (opens in a new ",
         "w": 52,
         "h": 52,
-        "top": 2667
+        "top": 2673
       },
       {
         "tag": "a",
@@ -1450,7 +2000,7 @@
         "text": "View the WordPlay case study",
         "w": 0,
         "h": 0,
-        "top": 2940
+        "top": 2946
       },
       {
         "tag": "a",
@@ -1458,23 +2008,23 @@
         "text": "WordPlay on GitHub (opens in a new",
         "w": 52,
         "h": 52,
-        "top": 2915
+        "top": 2921
       },
       {
         "tag": "a",
         "cls": "timeline__project",
         "text": "Pewter Platformer",
-        "w": 247,
-        "h": 66,
-        "top": 3588
+        "w": 318,
+        "h": 58,
+        "top": 3543
       },
       {
         "tag": "a",
         "cls": "timeline__project",
         "text": "Operations Agent",
-        "w": 242,
-        "h": 66,
-        "top": 4021
+        "w": 318,
+        "h": 58,
+        "top": 3918
       },
       {
         "tag": "a",
@@ -1482,31 +2032,31 @@
         "text": "pmdoshi@ucsc.edu",
         "w": 291,
         "h": 48,
-        "top": 5298
+        "top": 5129
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "GitHub",
-        "w": 88,
+        "w": 114,
         "h": 44,
-        "top": 5382
+        "top": 5205
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "LinkedIn",
-        "w": 98,
+        "w": 125,
         "h": 44,
-        "top": 5382
+        "top": 5205
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "Résumé (PDF, opens in a new tab)",
-        "w": 95,
+        "w": 121,
         "h": 44,
-        "top": 5382
+        "top": 5205
       },
       {
         "tag": "a",
@@ -1514,7 +2064,7 @@
         "text": "Back to the top",
         "w": 120,
         "h": 44,
-        "top": 5583
+        "top": 5382
       },
       {
         "tag": "button",
@@ -1534,7 +2084,7 @@
         "text": "View the Operations Agent case stu",
         "w": 0,
         "h": 0,
-        "top": 1271
+        "top": 1276
       },
       {
         "tag": "a",
@@ -1542,7 +2092,7 @@
         "text": "View the ScorelyAI case study",
         "w": 0,
         "h": 0,
-        "top": 1573
+        "top": 1579
       },
       {
         "tag": "a",
@@ -1550,7 +2100,7 @@
         "text": "View the Santa Claws case study",
         "w": 0,
         "h": 0,
-        "top": 1845
+        "top": 1851
       },
       {
         "tag": "a",
@@ -1558,7 +2108,7 @@
         "text": "View the Wave Function Collapse ca",
         "w": 0,
         "h": 0,
-        "top": 2093
+        "top": 2099
       },
       {
         "tag": "a",
@@ -1566,7 +2116,7 @@
         "text": "View the Pewter Platformer case st",
         "w": 0,
         "h": 0,
-        "top": 2420
+        "top": 2426
       },
       {
         "tag": "a",
@@ -1574,7 +2124,7 @@
         "text": "View the Gestura case study",
         "w": 0,
         "h": 0,
-        "top": 2692
+        "top": 2698
       },
       {
         "tag": "a",
@@ -1582,7 +2132,7 @@
         "text": "View the WordPlay case study",
         "w": 0,
         "h": 0,
-        "top": 2940
+        "top": 2946
       }
     ],
     "blur": 0,
@@ -1598,26 +2148,26 @@
       {
         "id": "work",
         "top": 752,
-        "h": 2304
+        "h": 2302
       },
       {
         "id": "experience",
-        "top": 3056,
-        "h": 1133
+        "top": 3054,
+        "h": 1014
       },
       {
         "id": "about",
-        "top": 4190,
-        "h": 812
+        "top": 4067,
+        "h": 787
       },
       {
         "id": "contact",
-        "top": 5001,
-        "h": 553
+        "top": 4855,
+        "h": 499
       },
       {
         "id": "footer",
-        "top": 5554,
+        "top": 5353,
         "h": 114
       }
     ],
@@ -1667,13 +2217,288 @@
     "hero": 752,
     "imgs": []
   },
+  "after-operations-agent-430-light": {
+    "url": "/work/operations-agent",
+    "vw": 430,
+    "vh": 932,
+    "rootFont": "16px",
+    "docH": 4194,
+    "screens": 4.5,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": false
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 430,
+        "h": 4194
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 24,
+        "lh": "36px",
+        "fw": "600",
+        "w": 291,
+        "h": 48
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 146,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 32,
+        "lh": "34.56px",
+        "fw": "700",
+        "w": 344,
+        "h": 69
+      },
+      ".case__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 344,
+        "h": 51
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 344,
+        "h": 24
+      },
+      ".case__note": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 344,
+        "h": 74
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 32,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 390,
+        "h": 24
+      },
+      ".flow__title": {
+        "fs": 16,
+        "lh": "20.8px",
+        "fw": "600",
+        "w": 352,
+        "h": 21
+      },
+      ".flow__detail": {
+        "fs": 14,
+        "lh": "20.3px",
+        "fw": "400",
+        "w": 352,
+        "h": 20
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 352,
+        "h": 34
+      },
+      ".flow__bus-title": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 348,
+        "h": 23
+      },
+      ".flow__bus-detail": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 348,
+        "h": 63
+      },
+      ".flow__index": {
+        "fs": 12,
+        "lh": "12px",
+        "fw": "700",
+        "w": 26,
+        "h": 26
+      },
+      ".case__section-title": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 390,
+        "h": 24
+      },
+      ".case__points li": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 390,
+        "h": 124
+      },
+      ".case__foot-title": {
+        "fs": 28,
+        "lh": "28.56px",
+        "fw": "700",
+        "w": 390,
+        "h": 29
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 390,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to dark theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 146,
+        "h": 44,
+        "top": 121
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 291,
+        "h": 48,
+        "top": 3936
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 4109
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 870
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 627
+      },
+      {
+        "id": "flow",
+        "top": 675,
+        "h": 1187
+      },
+      {
+        "id": "problem",
+        "top": 1862,
+        "h": 317
+      },
+      {
+        "id": "build",
+        "top": 2179,
+        "h": 490
+      },
+      {
+        "id": "outcome",
+        "top": 2669,
+        "h": 267
+      },
+      {
+        "id": "challenge",
+        "top": 2936,
+        "h": 366
+      },
+      {
+        "id": "limitations",
+        "top": 3302,
+        "h": 354
+      },
+      {
+        "id": "case__foot",
+        "top": 3728,
+        "h": 353
+      },
+      {
+        "id": "footer",
+        "top": 4080,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @370,17",
+      "ring": "44x44 @368,870"
+    },
+    "hero": 0,
+    "imgs": []
+  },
   "after-home-320-dark": {
     "url": "/",
     "vw": 320,
     "vh": 568,
     "rootFont": "16px",
-    "docH": 5883,
-    "screens": 10.4,
+    "docH": 5638,
+    "screens": 9.9,
     "hOverflow": 0,
     "mq": {
       "coarse": true,
@@ -1687,7 +2512,7 @@
         "lh": "25.5px",
         "fw": "400",
         "w": 320,
-        "h": 5883
+        "h": 5638
       },
       ".hero__title": {
         "fs": 32,
@@ -1725,11 +2550,11 @@
         "h": 44
       },
       ".section__title": {
-        "fs": 32,
-        "lh": "32.64px",
+        "fs": 30,
+        "lh": "30.6px",
         "fw": "700",
-        "w": 131,
-        "h": 33
+        "w": 122,
+        "h": 31
       },
       ".card--flagship .card__name": {
         "fs": 24,
@@ -1788,38 +2613,38 @@
         "h": 48
       },
       ".timeline__period": {
-        "fs": 15,
-        "lh": "18px",
+        "fs": 16,
+        "lh": "19.2px",
         "fw": "600",
-        "w": 252,
-        "h": 18
+        "w": 254,
+        "h": 19
       },
       ".timeline__role": {
         "fs": 17,
         "lh": "25.5px",
         "fw": "600",
-        "w": 206,
+        "w": 216,
         "h": 26
       },
       ".timeline__org": {
         "fs": 16,
         "lh": "24px",
         "fw": "400",
-        "w": 206,
+        "w": 216,
         "h": 24
       },
       ".timeline__ownership": {
         "fs": 16,
         "lh": "24.8px",
         "fw": "400",
-        "w": 206,
+        "w": 216,
         "h": 223
       },
       ".timeline__project-name": {
         "fs": 15,
         "lh": "22.5px",
         "fw": "600",
-        "w": 93,
+        "w": 105,
         "h": 45
       },
       ".about__body p": {
@@ -1837,11 +2662,11 @@
         "h": 31
       },
       ".contact__title": {
-        "fs": 36,
-        "lh": "36.72px",
+        "fs": 34,
+        "lh": "34.68px",
         "fw": "700",
         "w": 288,
-        "h": 37
+        "h": 35
       },
       ".contact__lede": {
         "fs": 17,
@@ -1867,15 +2692,15 @@
       ".link-arrow": {
         "fs": 17,
         "lh": "25.5px",
-        "fw": "500",
-        "w": 88,
+        "fw": "600",
+        "w": 114,
         "h": 44
       },
       ".footer__line": {
         "fs": 14,
         "lh": "16.8px",
         "fw": "500",
-        "w": 272,
+        "w": 224,
         "h": 46
       }
     },
@@ -1910,7 +2735,7 @@
         "text": "View the Operations Agent case stu",
         "w": 0,
         "h": 0,
-        "top": 877
+        "top": 875
       },
       {
         "tag": "a",
@@ -1918,7 +2743,7 @@
         "text": "Try ScorelyAI live (opens in a new",
         "w": 150,
         "h": 48,
-        "top": 1179
+        "top": 1177
       },
       {
         "tag": "a",
@@ -1926,7 +2751,7 @@
         "text": "View the ScorelyAI case study",
         "w": 0,
         "h": 0,
-        "top": 1203
+        "top": 1201
       },
       {
         "tag": "a",
@@ -1934,7 +2759,7 @@
         "text": "ScorelyAI on GitHub (opens in a ne",
         "w": 52,
         "h": 52,
-        "top": 1178
+        "top": 1176
       },
       {
         "tag": "a",
@@ -1942,7 +2767,7 @@
         "text": "View the Santa Claws case study",
         "w": 0,
         "h": 0,
-        "top": 1523
+        "top": 1521
       },
       {
         "tag": "a",
@@ -1950,7 +2775,7 @@
         "text": "Santa Claws on GitHub (opens in a ",
         "w": 52,
         "h": 52,
-        "top": 1498
+        "top": 1496
       },
       {
         "tag": "a",
@@ -1958,7 +2783,7 @@
         "text": "View the Wave Function Collapse ca",
         "w": 0,
         "h": 0,
-        "top": 1798
+        "top": 1796
       },
       {
         "tag": "a",
@@ -1966,7 +2791,7 @@
         "text": "Wave Function Collapse on GitHub (",
         "w": 52,
         "h": 52,
-        "top": 1773
+        "top": 1771
       },
       {
         "tag": "a",
@@ -1974,7 +2799,7 @@
         "text": "View the Pewter Platformer case st",
         "w": 0,
         "h": 0,
-        "top": 2149
+        "top": 2147
       },
       {
         "tag": "a",
@@ -1982,7 +2807,7 @@
         "text": "Pewter Platformer on GitHub (opens",
         "w": 52,
         "h": 52,
-        "top": 2124
+        "top": 2122
       },
       {
         "tag": "a",
@@ -1990,7 +2815,7 @@
         "text": "View the Gestura case study",
         "w": 0,
         "h": 0,
-        "top": 2445
+        "top": 2443
       },
       {
         "tag": "a",
@@ -1998,7 +2823,7 @@
         "text": "Gestura on GitHub (opens in a new ",
         "w": 52,
         "h": 52,
-        "top": 2420
+        "top": 2418
       },
       {
         "tag": "a",
@@ -2006,7 +2831,7 @@
         "text": "View the WordPlay case study",
         "w": 0,
         "h": 0,
-        "top": 2693
+        "top": 2691
       },
       {
         "tag": "a",
@@ -2014,23 +2839,23 @@
         "text": "WordPlay on GitHub (opens in a new",
         "w": 52,
         "h": 52,
-        "top": 2668
+        "top": 2666
       },
       {
         "tag": "a",
         "cls": "timeline__project",
         "text": "Pewter Platformer",
-        "w": 206,
-        "h": 66,
-        "top": 3464
+        "w": 216,
+        "h": 59,
+        "top": 3404
       },
       {
         "tag": "a",
         "cls": "timeline__project",
         "text": "Operations Agent",
-        "w": 206,
-        "h": 66,
-        "top": 3971
+        "w": 216,
+        "h": 59,
+        "top": 3855
       },
       {
         "tag": "a",
@@ -2038,39 +2863,39 @@
         "text": "pmdoshi@ucsc.edu",
         "w": 242,
         "h": 44,
-        "top": 5449
+        "top": 5250
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "GitHub",
-        "w": 88,
+        "w": 114,
         "h": 44,
-        "top": 5529
+        "top": 5322
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "LinkedIn",
-        "w": 98,
+        "w": 125,
         "h": 44,
-        "top": 5529
+        "top": 5322
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "Résumé (PDF, opens in a new tab)",
-        "w": 95,
+        "w": 121,
         "h": 44,
-        "top": 5597
+        "top": 5376
       },
       {
         "tag": "a",
         "cls": "",
         "text": "Back to the top",
-        "w": 113,
+        "w": 92,
         "h": 44,
-        "top": 5798
+        "top": 5553
       },
       {
         "tag": "button",
@@ -2090,7 +2915,7 @@
         "text": "View the Operations Agent case stu",
         "w": 0,
         "h": 0,
-        "top": 877
+        "top": 875
       },
       {
         "tag": "a",
@@ -2098,7 +2923,7 @@
         "text": "View the ScorelyAI case study",
         "w": 0,
         "h": 0,
-        "top": 1203
+        "top": 1201
       },
       {
         "tag": "a",
@@ -2106,7 +2931,7 @@
         "text": "View the Santa Claws case study",
         "w": 0,
         "h": 0,
-        "top": 1523
+        "top": 1521
       },
       {
         "tag": "a",
@@ -2114,7 +2939,7 @@
         "text": "View the Wave Function Collapse ca",
         "w": 0,
         "h": 0,
-        "top": 1798
+        "top": 1796
       },
       {
         "tag": "a",
@@ -2122,7 +2947,7 @@
         "text": "View the Pewter Platformer case st",
         "w": 0,
         "h": 0,
-        "top": 2149
+        "top": 2147
       },
       {
         "tag": "a",
@@ -2130,7 +2955,7 @@
         "text": "View the Gestura case study",
         "w": 0,
         "h": 0,
-        "top": 2445
+        "top": 2443
       },
       {
         "tag": "a",
@@ -2138,7 +2963,7 @@
         "text": "View the WordPlay case study",
         "w": 0,
         "h": 0,
-        "top": 2693
+        "top": 2691
       }
     ],
     "blur": 0,
@@ -2154,26 +2979,26 @@
       {
         "id": "work",
         "top": 392,
-        "h": 2417
+        "h": 2407
       },
       {
         "id": "experience",
-        "top": 2809,
-        "h": 1332
+        "top": 2799,
+        "h": 1207
       },
       {
         "id": "about",
-        "top": 4140,
-        "h": 986
+        "top": 4005,
+        "h": 954
       },
       {
         "id": "contact",
-        "top": 5127,
-        "h": 642
+        "top": 4959,
+        "h": 564
       },
       {
         "id": "footer",
-        "top": 5769,
+        "top": 5524,
         "h": 114
       }
     ],
@@ -2223,13 +3048,288 @@
     "hero": 392,
     "imgs": []
   },
+  "after-operations-agent-320-dark": {
+    "url": "/work/operations-agent",
+    "vw": 320,
+    "vh": 568,
+    "rootFont": "16px",
+    "docH": 4751,
+    "screens": 8.4,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": true
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 320,
+        "h": 4751
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "600",
+        "w": 242,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 146,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 32,
+        "lh": "34.56px",
+        "fw": "700",
+        "w": 242,
+        "h": 69
+      },
+      ".case__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 242,
+        "h": 51
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 242,
+        "h": 48
+      },
+      ".case__note": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 242,
+        "h": 99
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 32,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 288,
+        "h": 24
+      },
+      ".flow__title": {
+        "fs": 16,
+        "lh": "20.8px",
+        "fw": "600",
+        "w": 250,
+        "h": 21
+      },
+      ".flow__detail": {
+        "fs": 14,
+        "lh": "20.3px",
+        "fw": "400",
+        "w": 250,
+        "h": 20
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 250,
+        "h": 34
+      },
+      ".flow__bus-title": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 246,
+        "h": 23
+      },
+      ".flow__bus-detail": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 246,
+        "h": 84
+      },
+      ".flow__index": {
+        "fs": 12,
+        "lh": "12px",
+        "fw": "700",
+        "w": 26,
+        "h": 26
+      },
+      ".case__section-title": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 288,
+        "h": 24
+      },
+      ".case__points li": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 288,
+        "h": 174
+      },
+      ".case__foot-title": {
+        "fs": 28,
+        "lh": "28.56px",
+        "fw": "700",
+        "w": 288,
+        "h": 57
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 288,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to light theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 146,
+        "h": 44,
+        "top": 121
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 242,
+        "h": 44,
+        "top": 4497
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 92,
+        "h": 44,
+        "top": 4666
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 506
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 676
+      },
+      {
+        "id": "flow",
+        "top": 724,
+        "h": 1248
+      },
+      {
+        "id": "problem",
+        "top": 1972,
+        "h": 391
+      },
+      {
+        "id": "build",
+        "top": 2364,
+        "h": 638
+      },
+      {
+        "id": "outcome",
+        "top": 3002,
+        "h": 317
+      },
+      {
+        "id": "challenge",
+        "top": 3319,
+        "h": 466
+      },
+      {
+        "id": "limitations",
+        "top": 3785,
+        "h": 403
+      },
+      {
+        "id": "case__foot",
+        "top": 4260,
+        "h": 377
+      },
+      {
+        "id": "footer",
+        "top": 4637,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @260,17",
+      "ring": "44x44 @258,506"
+    },
+    "hero": 0,
+    "imgs": []
+  },
   "after-home-390-dark": {
     "url": "/",
     "vw": 390,
     "vh": 844,
     "rootFont": "16px",
-    "docH": 5717,
-    "screens": 6.8,
+    "docH": 5557,
+    "screens": 6.6,
     "hOverflow": 0,
     "mq": {
       "coarse": true,
@@ -2243,7 +3343,7 @@
         "lh": "25.5px",
         "fw": "400",
         "w": 390,
-        "h": 5717
+        "h": 5557
       },
       ".hero__title": {
         "fs": 39,
@@ -2281,11 +3381,11 @@
         "h": 44
       },
       ".section__title": {
-        "fs": 32,
-        "lh": "32.64px",
+        "fs": 33.93,
+        "lh": "34.6086px",
         "fw": "700",
-        "w": 131,
-        "h": 33
+        "w": 138,
+        "h": 35
       },
       ".card--flagship .card__name": {
         "fs": 28.08,
@@ -2344,31 +3444,31 @@
         "h": 48
       },
       ".timeline__period": {
-        "fs": 15,
-        "lh": "18px",
+        "fs": 16,
+        "lh": "19.2px",
         "fw": "600",
-        "w": 315,
-        "h": 18
+        "w": 317,
+        "h": 19
       },
       ".timeline__role": {
         "fs": 17,
         "lh": "25.5px",
         "fw": "600",
-        "w": 269,
+        "w": 279,
         "h": 26
       },
       ".timeline__org": {
         "fs": 16,
         "lh": "24px",
         "fw": "400",
-        "w": 269,
+        "w": 279,
         "h": 24
       },
       ".timeline__ownership": {
         "fs": 16,
         "lh": "24.8px",
         "fw": "400",
-        "w": 269,
+        "w": 279,
         "h": 174
       },
       ".timeline__project-name": {
@@ -2393,11 +3493,11 @@
         "h": 31
       },
       ".contact__title": {
-        "fs": 36,
-        "lh": "36.72px",
+        "fs": 40.17,
+        "lh": "40.9734px",
         "fw": "700",
         "w": 351,
-        "h": 37
+        "h": 41
       },
       ".contact__lede": {
         "fs": 17,
@@ -2423,8 +3523,8 @@
       ".link-arrow": {
         "fs": 17,
         "lh": "25.5px",
-        "fw": "500",
-        "w": 88,
+        "fw": "600",
+        "w": 114,
         "h": 44
       },
       ".footer__line": {
@@ -2466,7 +3566,7 @@
         "text": "View the Operations Agent case stu",
         "w": 0,
         "h": 0,
-        "top": 1172
+        "top": 1174
       },
       {
         "tag": "a",
@@ -2474,7 +3574,7 @@
         "text": "Try ScorelyAI live (opens in a new",
         "w": 150,
         "h": 48,
-        "top": 1451
+        "top": 1453
       },
       {
         "tag": "a",
@@ -2482,7 +3582,7 @@
         "text": "View the ScorelyAI case study",
         "w": 0,
         "h": 0,
-        "top": 1475
+        "top": 1477
       },
       {
         "tag": "a",
@@ -2490,7 +3590,7 @@
         "text": "ScorelyAI on GitHub (opens in a ne",
         "w": 52,
         "h": 52,
-        "top": 1450
+        "top": 1452
       },
       {
         "tag": "a",
@@ -2498,7 +3598,7 @@
         "text": "View the Santa Claws case study",
         "w": 0,
         "h": 0,
-        "top": 1771
+        "top": 1773
       },
       {
         "tag": "a",
@@ -2506,7 +3606,7 @@
         "text": "Santa Claws on GitHub (opens in a ",
         "w": 52,
         "h": 52,
-        "top": 1746
+        "top": 1748
       },
       {
         "tag": "a",
@@ -2514,7 +3614,7 @@
         "text": "View the Wave Function Collapse ca",
         "w": 0,
         "h": 0,
-        "top": 2043
+        "top": 2045
       },
       {
         "tag": "a",
@@ -2522,7 +3622,7 @@
         "text": "Wave Function Collapse on GitHub (",
         "w": 52,
         "h": 52,
-        "top": 2018
+        "top": 2020
       },
       {
         "tag": "a",
@@ -2530,7 +3630,7 @@
         "text": "View the Pewter Platformer case st",
         "w": 0,
         "h": 0,
-        "top": 2394
+        "top": 2396
       },
       {
         "tag": "a",
@@ -2538,7 +3638,7 @@
         "text": "Pewter Platformer on GitHub (opens",
         "w": 52,
         "h": 52,
-        "top": 2369
+        "top": 2371
       },
       {
         "tag": "a",
@@ -2546,7 +3646,7 @@
         "text": "View the Gestura case study",
         "w": 0,
         "h": 0,
-        "top": 2666
+        "top": 2668
       },
       {
         "tag": "a",
@@ -2554,7 +3654,7 @@
         "text": "Gestura on GitHub (opens in a new ",
         "w": 52,
         "h": 52,
-        "top": 2641
+        "top": 2643
       },
       {
         "tag": "a",
@@ -2562,7 +3662,7 @@
         "text": "View the WordPlay case study",
         "w": 0,
         "h": 0,
-        "top": 2914
+        "top": 2916
       },
       {
         "tag": "a",
@@ -2570,23 +3670,23 @@
         "text": "WordPlay on GitHub (opens in a new",
         "w": 52,
         "h": 52,
-        "top": 2889
+        "top": 2891
       },
       {
         "tag": "a",
         "cls": "timeline__project",
         "text": "Pewter Platformer",
-        "w": 247,
-        "h": 66,
-        "top": 3610
+        "w": 279,
+        "h": 58,
+        "top": 3534
       },
       {
         "tag": "a",
         "cls": "timeline__project",
         "text": "Operations Agent",
-        "w": 242,
-        "h": 66,
-        "top": 4043
+        "w": 279,
+        "h": 58,
+        "top": 3935
       },
       {
         "tag": "a",
@@ -2594,31 +3694,31 @@
         "text": "pmdoshi@ucsc.edu",
         "w": 291,
         "h": 48,
-        "top": 5347
+        "top": 5165
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "GitHub",
-        "w": 88,
+        "w": 114,
         "h": 44,
-        "top": 5431
+        "top": 5241
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "LinkedIn",
-        "w": 98,
+        "w": 125,
         "h": 44,
-        "top": 5431
+        "top": 5241
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "Résumé (PDF, opens in a new tab)",
-        "w": 95,
+        "w": 121,
         "h": 44,
-        "top": 5431
+        "top": 5295
       },
       {
         "tag": "a",
@@ -2626,7 +3726,7 @@
         "text": "Back to the top",
         "w": 120,
         "h": 44,
-        "top": 5632
+        "top": 5472
       },
       {
         "tag": "button",
@@ -2646,7 +3746,7 @@
         "text": "View the Operations Agent case stu",
         "w": 0,
         "h": 0,
-        "top": 1172
+        "top": 1174
       },
       {
         "tag": "a",
@@ -2654,7 +3754,7 @@
         "text": "View the ScorelyAI case study",
         "w": 0,
         "h": 0,
-        "top": 1475
+        "top": 1477
       },
       {
         "tag": "a",
@@ -2662,7 +3762,7 @@
         "text": "View the Santa Claws case study",
         "w": 0,
         "h": 0,
-        "top": 1771
+        "top": 1773
       },
       {
         "tag": "a",
@@ -2670,7 +3770,7 @@
         "text": "View the Wave Function Collapse ca",
         "w": 0,
         "h": 0,
-        "top": 2043
+        "top": 2045
       },
       {
         "tag": "a",
@@ -2678,7 +3778,7 @@
         "text": "View the Pewter Platformer case st",
         "w": 0,
         "h": 0,
-        "top": 2394
+        "top": 2396
       },
       {
         "tag": "a",
@@ -2686,7 +3786,7 @@
         "text": "View the Gestura case study",
         "w": 0,
         "h": 0,
-        "top": 2666
+        "top": 2668
       },
       {
         "tag": "a",
@@ -2694,7 +3794,7 @@
         "text": "View the WordPlay case study",
         "w": 0,
         "h": 0,
-        "top": 2914
+        "top": 2916
       }
     ],
     "blur": 0,
@@ -2710,26 +3810,26 @@
       {
         "id": "work",
         "top": 664,
-        "h": 2366
+        "h": 2360
       },
       {
         "id": "experience",
-        "top": 3030,
-        "h": 1182
+        "top": 3024,
+        "h": 1060
       },
       {
         "id": "about",
-        "top": 4212,
-        "h": 839
+        "top": 4084,
+        "h": 811
       },
       {
         "id": "contact",
-        "top": 5051,
-        "h": 553
+        "top": 4894,
+        "h": 549
       },
       {
         "id": "footer",
-        "top": 5603,
+        "top": 5443,
         "h": 114
       }
     ],
@@ -2779,13 +3879,288 @@
     "hero": 664,
     "imgs": []
   },
+  "after-operations-agent-390-dark": {
+    "url": "/work/operations-agent",
+    "vw": 390,
+    "vh": 844,
+    "rootFont": "16px",
+    "docH": 4318,
+    "screens": 5.1,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": true
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 390,
+        "h": 4318
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 24,
+        "lh": "36px",
+        "fw": "600",
+        "w": 291,
+        "h": 48
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 146,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 32,
+        "lh": "34.56px",
+        "fw": "700",
+        "w": 305,
+        "h": 69
+      },
+      ".case__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 305,
+        "h": 51
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 305,
+        "h": 24
+      },
+      ".case__note": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 305,
+        "h": 74
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 32,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 351,
+        "h": 24
+      },
+      ".flow__title": {
+        "fs": 16,
+        "lh": "20.8px",
+        "fw": "600",
+        "w": 313,
+        "h": 21
+      },
+      ".flow__detail": {
+        "fs": 14,
+        "lh": "20.3px",
+        "fw": "400",
+        "w": 313,
+        "h": 20
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 313,
+        "h": 34
+      },
+      ".flow__bus-title": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 309,
+        "h": 23
+      },
+      ".flow__bus-detail": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 309,
+        "h": 63
+      },
+      ".flow__index": {
+        "fs": 12,
+        "lh": "12px",
+        "fw": "700",
+        "w": 26,
+        "h": 26
+      },
+      ".case__section-title": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 351,
+        "h": 24
+      },
+      ".case__points li": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 351,
+        "h": 124
+      },
+      ".case__foot-title": {
+        "fs": 28,
+        "lh": "28.56px",
+        "fw": "700",
+        "w": 351,
+        "h": 29
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 351,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to light theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 146,
+        "h": 44,
+        "top": 121
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 291,
+        "h": 48,
+        "top": 4060
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 4233
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 782
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 627
+      },
+      {
+        "id": "flow",
+        "top": 675,
+        "h": 1187
+      },
+      {
+        "id": "problem",
+        "top": 1862,
+        "h": 317
+      },
+      {
+        "id": "build",
+        "top": 2179,
+        "h": 564
+      },
+      {
+        "id": "outcome",
+        "top": 2743,
+        "h": 267
+      },
+      {
+        "id": "challenge",
+        "top": 3010,
+        "h": 391
+      },
+      {
+        "id": "limitations",
+        "top": 3401,
+        "h": 378
+      },
+      {
+        "id": "case__foot",
+        "top": 3852,
+        "h": 353
+      },
+      {
+        "id": "footer",
+        "top": 4204,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @330,17",
+      "ring": "44x44 @328,782"
+    },
+    "hero": 0,
+    "imgs": []
+  },
   "after-home-430-dark": {
     "url": "/",
     "vw": 430,
     "vh": 932,
     "rootFont": "16px",
-    "docH": 5668,
-    "screens": 6.1,
+    "docH": 5467,
+    "screens": 5.9,
     "hOverflow": 0,
     "mq": {
       "coarse": true,
@@ -2799,7 +4174,7 @@
         "lh": "25.5px",
         "fw": "400",
         "w": 430,
-        "h": 5668
+        "h": 5467
       },
       ".hero__title": {
         "fs": 43,
@@ -2837,11 +4212,11 @@
         "h": 44
       },
       ".section__title": {
-        "fs": 32,
-        "lh": "32.64px",
+        "fs": 37.41,
+        "lh": "38.1582px",
         "fw": "700",
-        "w": 131,
-        "h": 33
+        "w": 153,
+        "h": 38
       },
       ".card--flagship .card__name": {
         "fs": 30.96,
@@ -2900,31 +4275,31 @@
         "h": 48
       },
       ".timeline__period": {
-        "fs": 15,
-        "lh": "18px",
+        "fs": 16,
+        "lh": "19.2px",
         "fw": "600",
-        "w": 354,
-        "h": 18
+        "w": 356,
+        "h": 19
       },
       ".timeline__role": {
         "fs": 17,
         "lh": "25.5px",
         "fw": "600",
-        "w": 308,
+        "w": 318,
         "h": 26
       },
       ".timeline__org": {
         "fs": 16,
         "lh": "24px",
         "fw": "400",
-        "w": 308,
+        "w": 318,
         "h": 24
       },
       ".timeline__ownership": {
         "fs": 16,
         "lh": "24.8px",
         "fw": "400",
-        "w": 308,
+        "w": 318,
         "h": 149
       },
       ".timeline__project-name": {
@@ -2949,11 +4324,11 @@
         "h": 31
       },
       ".contact__title": {
-        "fs": 36,
-        "lh": "36.72px",
+        "fs": 44,
+        "lh": "44.88px",
         "fw": "700",
         "w": 390,
-        "h": 37
+        "h": 45
       },
       ".contact__lede": {
         "fs": 17,
@@ -2979,8 +4354,8 @@
       ".link-arrow": {
         "fs": 17,
         "lh": "25.5px",
-        "fw": "500",
-        "w": 88,
+        "fw": "600",
+        "w": 114,
         "h": 44
       },
       ".footer__line": {
@@ -3022,7 +4397,7 @@
         "text": "View the Operations Agent case stu",
         "w": 0,
         "h": 0,
-        "top": 1271
+        "top": 1276
       },
       {
         "tag": "a",
@@ -3030,7 +4405,7 @@
         "text": "Try ScorelyAI live (opens in a new",
         "w": 150,
         "h": 48,
-        "top": 1549
+        "top": 1555
       },
       {
         "tag": "a",
@@ -3038,7 +4413,7 @@
         "text": "View the ScorelyAI case study",
         "w": 0,
         "h": 0,
-        "top": 1573
+        "top": 1579
       },
       {
         "tag": "a",
@@ -3046,7 +4421,7 @@
         "text": "ScorelyAI on GitHub (opens in a ne",
         "w": 52,
         "h": 52,
-        "top": 1548
+        "top": 1554
       },
       {
         "tag": "a",
@@ -3054,7 +4429,7 @@
         "text": "View the Santa Claws case study",
         "w": 0,
         "h": 0,
-        "top": 1845
+        "top": 1851
       },
       {
         "tag": "a",
@@ -3062,7 +4437,7 @@
         "text": "Santa Claws on GitHub (opens in a ",
         "w": 52,
         "h": 52,
-        "top": 1820
+        "top": 1826
       },
       {
         "tag": "a",
@@ -3070,7 +4445,7 @@
         "text": "View the Wave Function Collapse ca",
         "w": 0,
         "h": 0,
-        "top": 2093
+        "top": 2099
       },
       {
         "tag": "a",
@@ -3078,7 +4453,7 @@
         "text": "Wave Function Collapse on GitHub (",
         "w": 52,
         "h": 52,
-        "top": 2068
+        "top": 2074
       },
       {
         "tag": "a",
@@ -3086,7 +4461,7 @@
         "text": "View the Pewter Platformer case st",
         "w": 0,
         "h": 0,
-        "top": 2420
+        "top": 2426
       },
       {
         "tag": "a",
@@ -3094,7 +4469,7 @@
         "text": "Pewter Platformer on GitHub (opens",
         "w": 52,
         "h": 52,
-        "top": 2395
+        "top": 2401
       },
       {
         "tag": "a",
@@ -3102,7 +4477,7 @@
         "text": "View the Gestura case study",
         "w": 0,
         "h": 0,
-        "top": 2692
+        "top": 2698
       },
       {
         "tag": "a",
@@ -3110,7 +4485,7 @@
         "text": "Gestura on GitHub (opens in a new ",
         "w": 52,
         "h": 52,
-        "top": 2667
+        "top": 2673
       },
       {
         "tag": "a",
@@ -3118,7 +4493,7 @@
         "text": "View the WordPlay case study",
         "w": 0,
         "h": 0,
-        "top": 2940
+        "top": 2946
       },
       {
         "tag": "a",
@@ -3126,23 +4501,23 @@
         "text": "WordPlay on GitHub (opens in a new",
         "w": 52,
         "h": 52,
-        "top": 2915
+        "top": 2921
       },
       {
         "tag": "a",
         "cls": "timeline__project",
         "text": "Pewter Platformer",
-        "w": 247,
-        "h": 66,
-        "top": 3588
+        "w": 318,
+        "h": 58,
+        "top": 3543
       },
       {
         "tag": "a",
         "cls": "timeline__project",
         "text": "Operations Agent",
-        "w": 242,
-        "h": 66,
-        "top": 4021
+        "w": 318,
+        "h": 58,
+        "top": 3918
       },
       {
         "tag": "a",
@@ -3150,31 +4525,31 @@
         "text": "pmdoshi@ucsc.edu",
         "w": 291,
         "h": 48,
-        "top": 5298
+        "top": 5129
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "GitHub",
-        "w": 88,
+        "w": 114,
         "h": 44,
-        "top": 5382
+        "top": 5205
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "LinkedIn",
-        "w": 98,
+        "w": 125,
         "h": 44,
-        "top": 5382
+        "top": 5205
       },
       {
         "tag": "a",
         "cls": "link-arrow",
         "text": "Résumé (PDF, opens in a new tab)",
-        "w": 95,
+        "w": 121,
         "h": 44,
-        "top": 5382
+        "top": 5205
       },
       {
         "tag": "a",
@@ -3182,7 +4557,7 @@
         "text": "Back to the top",
         "w": 120,
         "h": 44,
-        "top": 5583
+        "top": 5382
       },
       {
         "tag": "button",
@@ -3202,7 +4577,7 @@
         "text": "View the Operations Agent case stu",
         "w": 0,
         "h": 0,
-        "top": 1271
+        "top": 1276
       },
       {
         "tag": "a",
@@ -3210,7 +4585,7 @@
         "text": "View the ScorelyAI case study",
         "w": 0,
         "h": 0,
-        "top": 1573
+        "top": 1579
       },
       {
         "tag": "a",
@@ -3218,7 +4593,7 @@
         "text": "View the Santa Claws case study",
         "w": 0,
         "h": 0,
-        "top": 1845
+        "top": 1851
       },
       {
         "tag": "a",
@@ -3226,7 +4601,7 @@
         "text": "View the Wave Function Collapse ca",
         "w": 0,
         "h": 0,
-        "top": 2093
+        "top": 2099
       },
       {
         "tag": "a",
@@ -3234,7 +4609,7 @@
         "text": "View the Pewter Platformer case st",
         "w": 0,
         "h": 0,
-        "top": 2420
+        "top": 2426
       },
       {
         "tag": "a",
@@ -3242,7 +4617,7 @@
         "text": "View the Gestura case study",
         "w": 0,
         "h": 0,
-        "top": 2692
+        "top": 2698
       },
       {
         "tag": "a",
@@ -3250,7 +4625,7 @@
         "text": "View the WordPlay case study",
         "w": 0,
         "h": 0,
-        "top": 2940
+        "top": 2946
       }
     ],
     "blur": 0,
@@ -3266,26 +4641,26 @@
       {
         "id": "work",
         "top": 752,
-        "h": 2304
+        "h": 2302
       },
       {
         "id": "experience",
-        "top": 3056,
-        "h": 1133
+        "top": 3054,
+        "h": 1014
       },
       {
         "id": "about",
-        "top": 4190,
-        "h": 812
+        "top": 4067,
+        "h": 787
       },
       {
         "id": "contact",
-        "top": 5001,
-        "h": 553
+        "top": 4855,
+        "h": 499
       },
       {
         "id": "footer",
-        "top": 5554,
+        "top": 5353,
         "h": 114
       }
     ],
@@ -3335,118 +4710,279 @@
     "hero": 752,
     "imgs": []
   },
-  "after-home-390-light-menu": {
-    "menu": "390x435 @0,409",
-    "close": "44x44",
-    "links": [
-      {
-        "text": "Work1",
-        "w": 350,
-        "h": 57,
-        "fs": "31.2px"
+  "after-operations-agent-430-dark": {
+    "url": "/work/operations-agent",
+    "vw": 430,
+    "vh": 932,
+    "rootFont": "16px",
+    "docH": 4194,
+    "screens": 4.5,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": true
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 430,
+        "h": 4194
       },
-      {
-        "text": "Experience2",
-        "w": 350,
-        "h": 57,
-        "fs": "31.2px"
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
       },
-      {
-        "text": "About3",
-        "w": 350,
-        "h": 57,
-        "fs": "31.2px"
+      ".contact__email": {
+        "fs": 24,
+        "lh": "36px",
+        "fw": "600",
+        "w": 291,
+        "h": 48
       },
-      {
-        "text": "Contact4",
-        "w": 350,
-        "h": 57,
-        "fs": "31.2px"
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 146,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 32,
+        "lh": "34.56px",
+        "fw": "700",
+        "w": 344,
+        "h": 69
+      },
+      ".case__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 344,
+        "h": 51
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 344,
+        "h": 24
+      },
+      ".case__note": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 344,
+        "h": 74
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 32,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 390,
+        "h": 24
+      },
+      ".flow__title": {
+        "fs": 16,
+        "lh": "20.8px",
+        "fw": "600",
+        "w": 352,
+        "h": 21
+      },
+      ".flow__detail": {
+        "fs": 14,
+        "lh": "20.3px",
+        "fw": "400",
+        "w": 352,
+        "h": 20
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 352,
+        "h": 34
+      },
+      ".flow__bus-title": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 348,
+        "h": 23
+      },
+      ".flow__bus-detail": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 348,
+        "h": 63
+      },
+      ".flow__index": {
+        "fs": 12,
+        "lh": "12px",
+        "fw": "700",
+        "w": 26,
+        "h": 26
+      },
+      ".case__section-title": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 390,
+        "h": 24
+      },
+      ".case__points li": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 390,
+        "h": 124
+      },
+      ".case__foot-title": {
+        "fs": 28,
+        "lh": "28.56px",
+        "fw": "700",
+        "w": 390,
+        "h": 29
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 390,
+        "h": 79
       }
-    ],
-    "foot": [
+    },
+    "targets": [
       {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to light theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 146,
+        "h": 44,
+        "top": 121
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
         "text": "pmdoshi@ucsc.edu",
-        "w": 241,
+        "w": 291,
         "h": 48,
-        "fs": "19.89px"
+        "top": 3936
       },
       {
-        "text": "GitHub",
-        "w": 111,
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
         "h": 44,
-        "fs": "15px"
+        "top": 4109
       },
       {
-        "text": "LinkedIn",
-        "w": 111,
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
         "h": 44,
-        "fs": "15px"
-      },
-      {
-        "text": "Résumé",
-        "w": 111,
-        "h": 44,
-        "fs": "15px"
+        "top": 870
       }
     ],
-    "keycapsVisible": false
-  },
-  "after-home-390-dark-menu": {
-    "menu": "390x435 @0,409",
-    "close": "44x44",
-    "links": [
+    "small": [],
+    "tiny": [],
+    "zero": [],
+    "blur": 0,
+    "anims": [],
+    "sections": [
       {
-        "text": "Work1",
-        "w": 350,
-        "h": 57,
-        "fs": "31.2px"
+        "id": "case__header",
+        "top": 0,
+        "h": 627
       },
       {
-        "text": "Experience2",
-        "w": 350,
-        "h": 57,
-        "fs": "31.2px"
+        "id": "flow",
+        "top": 675,
+        "h": 1187
       },
       {
-        "text": "About3",
-        "w": 350,
-        "h": 57,
-        "fs": "31.2px"
+        "id": "problem",
+        "top": 1862,
+        "h": 317
       },
       {
-        "text": "Contact4",
-        "w": 350,
-        "h": 57,
-        "fs": "31.2px"
+        "id": "build",
+        "top": 2179,
+        "h": 490
+      },
+      {
+        "id": "outcome",
+        "top": 2669,
+        "h": 267
+      },
+      {
+        "id": "challenge",
+        "top": 2936,
+        "h": 366
+      },
+      {
+        "id": "limitations",
+        "top": 3302,
+        "h": 354
+      },
+      {
+        "id": "case__foot",
+        "top": 3728,
+        "h": 353
+      },
+      {
+        "id": "footer",
+        "top": 4080,
+        "h": 114
       }
     ],
-    "foot": [
-      {
-        "text": "pmdoshi@ucsc.edu",
-        "w": 241,
-        "h": 48,
-        "fs": "19.89px"
-      },
-      {
-        "text": "GitHub",
-        "w": 111,
-        "h": 44,
-        "fs": "15px"
-      },
-      {
-        "text": "LinkedIn",
-        "w": 111,
-        "h": 44,
-        "fs": "15px"
-      },
-      {
-        "text": "Résumé",
-        "w": 111,
-        "h": 44,
-        "fs": "15px"
-      }
-    ],
-    "keycapsVisible": false
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @370,17",
+      "ring": "44x44 @368,870"
+    },
+    "hero": 0,
+    "imgs": []
   }
 }
