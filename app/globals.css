@@ -3360,55 +3360,146 @@ svg {
   }
 }
 
-/* One column: the chain turns downward, and so do the connectors. */
+/* PR 07 of the mobile overhaul (D10): under 900px the steps hang off one
+ * vertical gradient rail, the timeline's own vocabulary, instead of a
+ * chain of cards joined by arrows. */
 @media (max-width: 900px) {
   .flow__steps {
+    position: relative;
     grid-template-columns: minmax(0, 1fr);
+    row-gap: 14px;
+    /* Room for the rail and the index circles that sit on it. */
+    padding-left: 44px;
+  }
+  /* The rail: the timeline's vocabulary, so a reader who scrolled past the
+   * homepage recognises "steps in order" without an arrow. */
+  .flow__steps::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    left: 13px;
+    width: 2px;
+    border-radius: 999px;
+    background: linear-gradient(
+      to bottom,
+      var(--blob-c-1),
+      var(--blob-b-1),
+      var(--blob-a-2)
+    );
+    transform-origin: top;
   }
   .flow__step {
     padding-right: 0;
-    padding-bottom: 30px;
-  }
-  .flow__step:last-child {
     padding-bottom: 0;
   }
+  /* The rail is the connector. */
   .flow__link {
-    right: auto;
-    top: auto;
-    left: 24px;
-    bottom: 0;
-    width: 20px;
-    height: 30px;
-    transform-origin: center top;
+    display: none;
   }
-  .flow__link::before {
-    left: 50%;
-    right: auto;
-    top: 2px;
-    bottom: 6px;
-    width: 2px;
-    height: auto;
-    translate: -50% 0;
+  .flow__node {
+    padding: 12px 14px 14px;
+    gap: 4px;
   }
-  .flow__arrow {
-    right: auto;
-    left: 50%;
-    top: auto;
-    bottom: 1px;
-    translate: -50% 0;
-    transform: rotate(90deg);
+  /* On the rail, level with the title, ground-filled so the rail visibly
+   * passes behind it: the timeline node, one size up for a numeral. */
+  .flow__index {
+    position: absolute;
+    top: 12px;
+    left: -44px;
+    width: 28px;
+    height: 28px;
+    margin: 0;
+    border: 2px solid var(--ink);
+    background: var(--ground);
+    font-size: 0.8125rem;
+    color: var(--ink);
   }
-  .flow[data-reveal="pending"] .flow__link {
-    transform: scaleY(0.3);
+  .flow__title {
+    font-size: 1.0625rem;
+  }
+  .flow__detail {
+    font-size: 0.9375rem;
+  }
+  .flow__branches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .flow__branch {
+    padding: 5px 10px 5px 20px;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    /* PR #33 removed backdrop-filter site-wide before this plan was
+     * written; there is no second-blur cost left to strip on the node's
+     * (already blur-less) glass. */
+  }
+  .flow__branch::before {
+    left: 8px;
   }
   .flow__bus {
     grid-template-columns: minmax(0, 1fr);
+    margin-top: 14px;
+    padding: 14px 16px;
+  }
+  .flow__bus-title {
+    font-size: 1rem;
+  }
+  .flow__bus-detail {
+    font-size: 0.9375rem;
   }
 }
 
 @media (max-width: 760px) {
   .flow {
-    margin-top: 48px;
+    margin-top: 40px;
+  }
+  .flow__heading {
+    margin-bottom: 18px;
+    /* 26px at 390. */
+    font-size: clamp(24px, 6.7vw, 32px);
+  }
+}
+
+/* Motion for the rail-and-node stepper: seen once, on scroll-in. The rail
+ * draws top-down after the steps start rising; each index settles in just
+ * after its own node. Reduced motion keeps the opacity change on both and
+ * drops the movement, same as the timeline's rail above. */
+@media (max-width: 900px) {
+  .flow[data-reveal="pending"] .flow__steps::before,
+  .flow[data-reveal="pending"] .flow__index {
+    opacity: 0;
+  }
+  .flow[data-reveal="in"] .flow__steps::before {
+    opacity: 1;
+    transition: opacity 300ms var(--ease-out) 80ms;
+  }
+  .flow[data-reveal="in"] .flow__index {
+    opacity: 1;
+    transition: opacity 240ms var(--ease-out) calc(var(--i) * 60ms + 200ms);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .flow[data-reveal="pending"] .flow__steps::before {
+      transform: scaleY(0);
+    }
+    .flow[data-reveal="in"] .flow__steps::before {
+      transform: scaleY(1);
+      transition:
+        transform 700ms var(--ease-out) 80ms,
+        opacity 300ms var(--ease-out) 80ms;
+    }
+    .flow[data-reveal="pending"] .flow__index {
+      transform: scale(0.6);
+    }
+    .flow[data-reveal="in"] .flow__index {
+      transform: none;
+      transition:
+        transform 240ms var(--ease-out) calc(var(--i) * 60ms + 200ms),
+        opacity 240ms var(--ease-out) calc(var(--i) * 60ms + 200ms);
+    }
+    /* The existing link transition rules are moot under 900px (display:
+     * none); left for the desktop chain above. */
   }
 }
 
