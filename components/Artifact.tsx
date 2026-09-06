@@ -118,8 +118,8 @@ function SantaClaws() {
         d="M40 52C34 62 32 74 35 85c4 14 14 21 25 21s21-7 25-21c3-11 1-23-5-33"
         {...stroke}
       />
-      <circle cx="51" cy="68" r="3.5" fill="currentColor" />
-      <circle cx="69" cy="68" r="3.5" fill="currentColor" />
+      <circle className="mark__fine" cx="51" cy="68" r="3.5" fill="currentColor" />
+      <circle className="mark__fine" cx="69" cy="68" r="3.5" fill="currentColor" />
       {/* The two claws, each an arc left OPEN on its outward side. That gap is
           the entire reason this reads as a claw and not as a bead.
           LOW AND OUT, on a visible arm: level with the eyes and stubbed
@@ -129,14 +129,14 @@ function SantaClaws() {
       <path d="M26 90l11-5" {...stroke} />
       <path d="M111 85a10 10 0 1 0 0 14" {...stroke} />
       <path d="M94 90l-11-5" {...stroke} />
-      <path d="M53 106v8M60 106v9M67 106v8" {...stroke} />
+      <path className="mark__fine" d="M53 106v8M60 106v9M67 106v8" {...stroke} />
       {/* The cap leans right and its tip flops, which is the whole difference
           between a Santa hat and a beanie once the colour is gone. */}
       <path
         d="M32 44C31 26 42 14 58 13c14-1 28 2 36 5-4 6-8 16-10 26Z"
         fill="currentColor"
       />
-      <circle cx="99" cy="18" r="7.5" {...stroke} />
+      <circle className="mark__fine" cx="99" cy="18" r="7.5" {...stroke} />
       <rect x="30" y="42" width="58" height="12" rx="6" {...stroke} />
     </svg>
   );
