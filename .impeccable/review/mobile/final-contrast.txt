@@ -1,0 +1,176 @@
+== home-light (27 elements sampled) ==
+  PASS .card__tagline "An agentic workflow that keeps" 17px/400  min 8.21  p20 8.44  median 8.44  floor 4.5
+  PASS .card__tagline "An AI, rubric-based evaluator " 16px/400  min 7.01  p20 7.01  median 7.07  floor 4.5
+  PASS .card__tagline "Five agents that find small bu" 16px/400  min 6.93  p20 6.95  median 7.01  floor 4.5
+  PASS .card__tagline "A tile-based map generator, as" 16px/400  min 7.01  p20 7.01  median 7.07  floor 4.5
+  PASS .card__tagline "Better movement physics, plus " 16px/400  min 6.93  p20 6.95  median 7.01  floor 4.5
+  PASS .card__tagline "A browser music player control" 16px/400  min 7.01  p20 7.01  median 7.07  floor 4.5
+  PASS .card__tagline "A Wordle recreation with full " 16px/400  min 6.93  p20 7.01  median 7.08  floor 4.5
+  PASS .card__fact "AI/ML Engineer Intern·Summer 2" 15px/500  min 8.36  p20 8.44  median 8.51  floor 4.5
+  PASS .card__fact "Augmented Design Lab, UC Santa" 15px/500  min 8.44  p20 8.44  median 8.51  floor 4.5
+  PASS .card__use "In use by DECA competitors" 15px/500  min 8.34  p20 8.36  median 8.44  floor 4.5
+  PASS .timeline__ownership "Agent tooling and procedural g" 16px/400  min 6.93  p20 7.01  median 7.08  floor 4.5
+  PASS .timeline__ownership "Built a booking-monitoring sys" 16px/400  min 6.89  p20 6.93  median 7.01  floor 4.5
+  PASS .timeline__org "EduSchool" 16px/400  min 6.93  p20 6.95  median 7.07  floor 4.5
+  PASS .timeline__org "Augmented Design Lab, UC Santa" 16px/400  min 6.93  p20 6.95  median 7.07  floor 4.5
+  PASS .timeline__org "InstaService" 16px/400  min 6.93  p20 6.95  median 7.07  floor 4.5
+  PASS .about__body p "I’m a computer science student" 17px/400  min 6.19  p20 6.3  median 6.36  floor 4.5
+  PASS .about__body p "That thread runs through my ga" 17px/400  min 6.07  p20 6.13  median 6.3  floor 4.5
+  PASS .about__body p "Away from the screen I play vo" 17px/400  min 6.07  p20 6.24  median 6.3  floor 4.5
+  PASS .pill "Autonomous agents" 14px/500  min 9.17  p20 9.19  median 9.25  floor 4.5
+  PASS .pill "Game systems & physics" 14px/500  min 9.18  p20 9.18  median 9.27  floor 4.5
+  PASS .pill "Assistive tech" 14px/500  min 9.18  p20 9.25  median 9.35  floor 4.5
+  PASS .pill "Full-stack web" 14px/500  min 9.19  p20 9.27  median 9.27  floor 4.5
+  PASS .pill "© 2026 Parth Doshi·Back to the" 14px/500  min 7.11  p20 7.16  median 7.29  floor 4.5
+  PASS .footer__line "© 2026 Parth Doshi·Back to the" 14px/500  min 7.11  p20 7.16  median 7.29  floor 4.5
+  PASS .hero__avail "Software, ML/AI and full-stack" 16px/400  min 6.24  p20 6.24  median 6.3  floor 4.5
+  PASS .roll__text "researcher" 21.84px/700 (large)  min 7.44  p20 7.51  median 7.51  floor 3
+  PASS .contact__lede "Hiring, collaborating, or just" 17px/400  min 6.13  p20 6.24  median 6.36  floor 4.5
+== home-dark (27 elements sampled) ==
+  PASS .card__tagline "An agentic workflow that keeps" 17px/400  min 13.69  p20 14.11  median 14.11  floor 4.5
+  PASS .card__tagline "An AI, rubric-based evaluator " 16px/400  min 12.8  p20 12.8  median 12.83  floor 4.5
+  PASS .card__tagline "Five agents that find small bu" 16px/400  min 12.8  p20 12.83  median 12.94  floor 4.5
+  PASS .card__tagline "A tile-based map generator, as" 16px/400  min 12.8  p20 12.8  median 12.83  floor 4.5
+  PASS .card__tagline "Better movement physics, plus " 16px/400  min 12.8  p20 12.83  median 12.94  floor 4.5
+  PASS .card__tagline "A browser music player control" 16px/400  min 12.8  p20 12.8  median 12.83  floor 4.5
+  PASS .card__tagline "A Wordle recreation with full " 16px/400  min 12.7  p20 12.7  median 12.94  floor 4.5
+  PASS .card__fact "AI/ML Engineer Intern·Summer 2" 15px/500  min 13.8  p20 13.99  median 14.11  floor 4.5
+  PASS .card__fact "Augmented Design Lab, UC Santa" 15px/500  min 13.85  p20 13.85  median 13.99  floor 4.5
+  PASS .card__use "In use by DECA competitors" 15px/500  min 13.96  p20 14.11  median 14.11  floor 4.5
+  PASS .timeline__ownership "Agent tooling and procedural g" 16px/400  min 12.55  p20 12.7  median 12.94  floor 4.5
+  PASS .timeline__ownership "Built a booking-monitoring sys" 16px/400  min 12.55  p20 12.94  median 12.94  floor 4.5
+  PASS .timeline__org "EduSchool" 16px/400  min 12.65  p20 12.8  median 12.83  floor 4.5
+  PASS .timeline__org "Augmented Design Lab, UC Santa" 16px/400  min 12.65  p20 12.8  median 12.83  floor 4.5
+  PASS .timeline__org "InstaService" 16px/400  min 12.65  p20 12.8  median 12.83  floor 4.5
+  PASS .about__body p "I’m a computer science student" 17px/400  min 11.96  p20 12.39  median 12.39  floor 4.5
+  PASS .about__body p "That thread runs through my ga" 17px/400  min 11.81  p20 12.54  median 12.65  floor 4.5
+  PASS .about__body p "Away from the screen I play vo" 17px/400  min 11.96  p20 12.39  median 12.54  floor 4.5
+  PASS .pill "Autonomous agents" 14px/500  min 12.76  p20 12.93  median 12.95  floor 4.5
+  PASS .pill "Game systems & physics" 14px/500  min 12.78  p20 12.93  median 12.95  floor 4.5
+  PASS .pill "Assistive tech" 14px/500  min 8.95  p20 9.96  median 12.95  floor 4.5
+  PASS .pill "Full-stack web" 14px/500  min 8.95  p20 9.96  median 12.95  floor 4.5
+  PASS .pill "© 2026 Parth Doshi·Back to the" 14px/500  min 9.95  p20 10.08  median 10.18  floor 4.5
+  PASS .footer__line "© 2026 Parth Doshi·Back to the" 14px/500  min 9.95  p20 10.08  median 10.18  floor 4.5
+  PASS .hero__avail "Software, ML/AI and full-stack" 16px/400  min 11.96  p20 12.39  median 12.54  floor 4.5
+  PASS .roll__text "developer" 21.84px/700 (large)  min 13.2  p20 13.51  median 13.8  floor 3
+  PASS .contact__lede "Hiring, collaborating, or just" 17px/400  min 12.11  p20 12.24  median 12.54  floor 4.5
+== operations-agent-light (28 elements sampled) ==
+  PASS .case__back "back to the work" 16px/500  min 7.83  p20 7.99  median 8.09  floor 4.5
+  PASS .case__meta "Agentic operations·Built with " 15px/500  min 8.74  p20 8.79  median 8.87  floor 4.5
+  PASS .case__note "The code and the company's dat" 16px/400  min 7.31  p20 7.38  median 7.38  floor 4.5
+  PASS .flow__detail "Gets its own small, independen" 15px/400  min 6.93  p20 6.95  median 7.07  floor 4.5
+  PASS .flow__detail "Checks that one booking, then " 15px/400  min 7.01  p20 7.01  median 7.08  floor 4.5
+  PASS .flow__detail "Two short JSON calls classify " 15px/400  min 6.89  p20 6.93  median 7.01  floor 4.5
+  PASS .flow__detail "Escalates itself over whicheve" 15px/400  min 6.89  p20 6.95  median 7.01  floor 4.5
+  PASS .flow__branch "Risk detection" 14px/500  min 9.43  p20 9.49  median 9.51  floor 4.5
+  PASS .flow__branch "Provider tracking" 14px/500  min 9.49  p20 9.5  median 9.51  floor 4.5
+  PASS .flow__branch "Chat monitoring" 14px/500  min 9.49  p20 9.5  median 9.5  floor 4.5
+  PASS .flow__branch "SMS" 14px/500  min 8.28  p20 8.44  median 9.49  floor 4.5
+  PASS .flow__branch "Voice" 14px/500  min 8.36  p20 8.51  median 9.49  floor 4.5
+  PASS .flow__branch "Email" 14px/500  min 8.44  p20 8.51  median 9.49  floor 4.5
+  PASS .flow__bus-detail "Every worker is a supervised p" 15px/400  min 6.89  p20 6.95  median 7.07  floor 4.5
+  PASS .case__points li "The operations team watched bo" 17px/400  min 6.01  p20 6.07  median 6.24  floor 4.5
+  PASS .case__points li "Finding them meant re-reading " 17px/400  min 6.13  p20 6.19  median 6.3  floor 4.5
+  PASS .case__points li "One small worker per booking. " 17px/400  min 6.13  p20 6.3  median 6.36  floor 4.5
+  PASS .case__points li "The autonomy is Erlang/OTP, no" 17px/400  min 6.13  p20 6.24  median 6.36  floor 4.5
+  PASS .case__points li "The language model is small an" 17px/400  min 6.24  p20 6.3  median 6.36  floor 4.5
+  PASS .case__points li "Past a threshold, a booking es" 17px/400  min 6.01  p20 6.19  median 6.36  floor 4.5
+  PASS .case__points li "The queue stopped being someth" 17px/400  min 6.13  p20 6.3  median 6.36  floor 4.5
+  PASS .case__points li "Not measured rigorously, and I" 17px/400  min 6.01  p20 6.19  median 6.36  floor 4.5
+  PASS .case__points li "Deciding what the model was al" 17px/400  min 6.07  p20 6.24  median 6.3  floor 4.5
+  PASS .case__points li "Every structural decision went" 17px/400  min 6.13  p20 6.3  median 6.36  floor 4.5
+  PASS .case__points li "The impact was never formally " 17px/400  min 6.24  p20 6.3  median 6.36  floor 4.5
+  PASS .case__points li "The classifier is two short pr" 17px/400  min 6.13  p20 6.24  median 6.36  floor 4.5
+  PASS .case__points li "The risk score's six signals a" 17px/400  min 6.01  p20 6.19  median 6.36  floor 4.5
+  PASS .case__foot-lede "I can walk through any decisio" 17px/400  min 6.07  p20 6.3  median 6.36  floor 4.5
+== operations-agent-dark (28 elements sampled) ==
+  PASS .case__back "back to the work" 16px/500  min 11.8  p20 12.22  median 12.42  floor 4.5
+  PASS .case__meta "Agentic operations·Built with " 15px/500  min 14.04  p20 14.14  median 14.3  floor 4.5
+  PASS .case__note "The code and the company's dat" 16px/400  min 12.97  p20 13.02  median 13.12  floor 4.5
+  PASS .flow__detail "Gets its own small, independen" 15px/400  min 12.65  p20 12.8  median 12.94  floor 4.5
+  PASS .flow__detail "Checks that one booking, then " 15px/400  min 12.55  p20 12.7  median 12.83  floor 4.5
+  PASS .flow__detail "Two short JSON calls classify " 15px/400  min 12.8  p20 12.94  median 12.99  floor 4.5
+  PASS .flow__detail "Escalates itself over whicheve" 15px/400  min 12.55  p20 12.8  median 12.94  floor 4.5
+  PASS .flow__branch "Risk detection" 14px/500  min 9.96  p20 11.48  median 13.09  floor 4.5
+  PASS .flow__branch "Provider tracking" 14px/500  min 12.02  p20 12.65  median 12.95  floor 4.5
+  PASS .flow__branch "Chat monitoring" 14px/500  min 11.66  p20 12.46  median 12.98  floor 4.5
+  PASS .flow__branch "SMS" 14px/500  min 12.95  p20 12.98  median 13.11  floor 4.5
+  PASS .flow__branch "Voice" 14px/500  min 12.95  p20 13.09  median 13.11  floor 4.5
+  PASS .flow__branch "Email" 14px/500  min 12.95  p20 13.11  median 13.11  floor 4.5
+  PASS .flow__bus-detail "Every worker is a supervised p" 15px/400  min 12.65  p20 12.8  median 12.94  floor 4.5
+  PASS .case__points li "The operations team watched bo" 17px/400  min 12.11  p20 12.54  median 12.65  floor 4.5
+  PASS .case__points li "Finding them meant re-reading " 17px/400  min 12.11  p20 12.39  median 12.54  floor 4.5
+  PASS .case__points li "One small worker per booking. " 17px/400  min 12.11  p20 12.24  median 12.54  floor 4.5
+  PASS .case__points li "The autonomy is Erlang/OTP, no" 17px/400  min 11.81  p20 12.24  median 12.39  floor 4.5
+  PASS .case__points li "The language model is small an" 17px/400  min 11.81  p20 12.24  median 12.39  floor 4.5
+  PASS .case__points li "Past a threshold, a booking es" 17px/400  min 11.96  p20 12.11  median 12.65  floor 4.5
+  PASS .case__points li "The queue stopped being someth" 17px/400  min 12.11  p20 12.24  median 12.54  floor 4.5
+  PASS .case__points li "Not measured rigorously, and I" 17px/400  min 11.96  p20 12.11  median 12.65  floor 4.5
+  PASS .case__points li "Deciding what the model was al" 17px/400  min 11.96  p20 12.39  median 12.54  floor 4.5
+  PASS .case__points li "Every structural decision went" 17px/400  min 11.96  p20 12.24  median 12.39  floor 4.5
+  PASS .case__points li "The impact was never formally " 17px/400  min 11.81  p20 12.24  median 12.39  floor 4.5
+  PASS .case__points li "The classifier is two short pr" 17px/400  min 12.11  p20 12.24  median 12.54  floor 4.5
+  PASS .case__points li "The risk score's six signals a" 17px/400  min 11.96  p20 12.11  median 12.65  floor 4.5
+  PASS .case__foot-lede "I can walk through any decisio" 17px/400  min 11.96  p20 12.24  median 12.39  floor 4.5
+== santaclaws-light (26 elements sampled) ==
+  PASS .case__back "back to the work" 16px/500  min 7.83  p20 7.99  median 8.09  floor 4.5
+  PASS .case__meta "Agentic lead generation·A 24-h" 15px/500  min 8.74  p20 8.8  median 8.87  floor 4.5
+  PASS .flow__detail "Finds local businesses, scores" 15px/400  min 6.89  p20 6.95  median 7.01  floor 4.5
+  PASS .flow__detail "Builds mockup variants, critiq" 15px/400  min 6.89  p20 6.93  median 7.01  floor 4.5
+  PASS .flow__detail "Drafts several angles around t" 15px/400  min 6.89  p20 6.95  median 7.01  floor 4.5
+  PASS .flow__detail "Classifies replies and moves w" 15px/400  min 7.01  p20 7.01  median 7.08  floor 4.5
+  PASS .flow__branch "Approve, skip or edit in Disco" 14px/500  min 9.49  p20 9.49  median 9.5  floor 4.5
+  PASS .flow__branch "Or autonomous mode" 14px/500  min 9.49  p20 9.49  median 9.49  floor 4.5
+  PASS .flow__bus-detail "The agents never call each oth" 15px/400  min 6.89  p20 7.01  median 7.01  floor 4.5
+  PASS .case__points li "A small business with no websi" 17px/400  min 6.13  p20 6.19  median 6.36  floor 4.5
+  PASS .case__points li "Five claws, one stage each: Sc" 17px/400  min 6.01  p20 6.07  median 6.24  floor 4.5
+  PASS .case__points li "Coordination is a database wri" 17px/400  min 6.01  p20 6.07  median 6.24  floor 4.5
+  PASS .case__points li "Designer pastes nothing from m" 17px/400  min 6.13  p20 6.3  median 6.36  floor 4.5
+  PASS .case__points li "Every meaningful action writes" 17px/400  min 6.01  p20 6.07  median 6.24  floor 4.5
+  PASS .case__points li "The demo runtime is the five c" 17px/400  min 6.07  p20 6.24  median 6.3  floor 4.5
+  PASS .case__points li "Leads, generated sites, outrea" 17px/400  min 6.24  p20 6.3  median 6.36  floor 4.5
+  PASS .case__points li "Never a single model call. The" 17px/400  min 6.01  p20 6.07  median 6.24  floor 4.5
+  PASS .case__points li "The dashboard mattered as much" 17px/400  min 6.13  p20 6.19  median 6.3  floor 4.5
+  PASS .case__points li "A hackathon build. Seed data a" 17px/400  min 6.13  p20 6.3  median 6.36  floor 4.5
+  PASS .case__points li "Nothing has run at volume or b" 17px/400  min 6.13  p20 6.3  median 6.36  floor 4.5
+  PASS .case__points li "Meeting booking and the voice " 17px/400  min 6.01  p20 6.19  median 6.36  floor 4.5
+  PASS .case__foot-lede "I can walk through any decisio" 17px/400  min 6.07  p20 6.19  median 6.24  floor 4.5
+  PASS .shots__cap "The workshop: four agents, eac" 15px/400  min 6.24  p20 6.24  median 6.3  floor 4.5
+  PASS .shots__cap "A site Designer built and depl" 15px/400  min 6.24  p20 6.24  median 6.3  floor 4.5
+  PASS .shots__cap "Every lead, its score, and whi" 15px/400  min 6.24  p20 6.3  median 6.36  floor 4.5
+  PASS .shots__count "3 / of 3" 14px/400  min 6.07  p20 6.19  median 6.24  floor 4.5
+== santaclaws-dark (26 elements sampled) ==
+  PASS .case__back "back to the work" 16px/500  min 11.8  p20 12.22  median 12.42  floor 4.5
+  PASS .case__meta "Agentic lead generation·A 24-h" 15px/500  min 14.14  p20 14.14  median 14.3  floor 4.5
+  PASS .flow__detail "Finds local businesses, scores" 15px/400  min 12.55  p20 12.8  median 12.94  floor 4.5
+  PASS .flow__detail "Builds mockup variants, critiq" 15px/400  min 12.8  p20 12.94  median 12.99  floor 4.5
+  PASS .flow__detail "Drafts several angles around t" 15px/400  min 12.55  p20 12.8  median 12.94  floor 4.5
+  PASS .flow__detail "Classifies replies and moves w" 15px/400  min 12.55  p20 12.7  median 12.83  floor 4.5
+  PASS .flow__branch "Approve, skip or edit in Disco" 14px/500  min 12.95  p20 12.98  median 13.09  floor 4.5
+  PASS .flow__branch "Or autonomous mode" 14px/500  min 12.98  p20 13.09  median 13.11  floor 4.5
+  PASS .flow__bus-detail "The agents never call each oth" 15px/400  min 12.7  p20 12.83  median 12.94  floor 4.5
+  PASS .case__points li "A small business with no websi" 17px/400  min 12.11  p20 12.24  median 12.54  floor 4.5
+  PASS .case__points li "Five claws, one stage each: Sc" 17px/400  min 12.11  p20 12.54  median 12.65  floor 4.5
+  PASS .case__points li "Coordination is a database wri" 17px/400  min 12.11  p20 12.54  median 12.65  floor 4.5
+  PASS .case__points li "Designer pastes nothing from m" 17px/400  min 12.11  p20 12.24  median 12.54  floor 4.5
+  PASS .case__points li "Every meaningful action writes" 17px/400  min 12.11  p20 12.54  median 12.65  floor 4.5
+  PASS .case__points li "The demo runtime is the five c" 17px/400  min 11.96  p20 12.39  median 12.54  floor 4.5
+  PASS .case__points li "Leads, generated sites, outrea" 17px/400  min 11.81  p20 12.24  median 12.39  floor 4.5
+  PASS .case__points li "Never a single model call. The" 17px/400  min 12.11  p20 12.54  median 12.65  floor 4.5
+  PASS .case__points li "The dashboard mattered as much" 17px/400  min 12.11  p20 12.39  median 12.54  floor 4.5
+  PASS .case__points li "A hackathon build. Seed data a" 17px/400  min 12.11  p20 12.24  median 12.54  floor 4.5
+  PASS .case__points li "Nothing has run at volume or b" 17px/400  min 12.11  p20 12.24  median 12.54  floor 4.5
+  PASS .case__points li "Meeting booking and the voice " 17px/400  min 11.96  p20 12.11  median 12.65  floor 4.5
+  PASS .case__foot-lede "I can walk through any decisio" 17px/400  min 11.96  p20 12.39  median 12.7  floor 4.5
+  PASS .shots__cap "The workshop: four agents, eac" 15px/400  min 12.24  p20 12.39  median 12.54  floor 4.5
+  PASS .shots__cap "A site Designer built and depl" 15px/400  min 12.24  p20 12.39  median 12.54  floor 4.5
+  PASS .shots__cap "Every lead, its score, and whi" 15px/400  min 12.11  p20 12.24  median 12.39  floor 4.5
+  PASS .shots__count "3 / of 3" 14px/400  min 11.81  p20 12.24  median 12.65  floor 4.5
+== menu-light (3 elements sampled) ==
+  PASS .menu__foot-row a "GitHub" 15px/600  min 7.94  p20 7.96  median 9.35  floor 4.5
+  PASS .menu__foot-row a "LinkedIn" 15px/600  min 7.92  p20 8.09  median 9.35  floor 4.5
+  PASS .menu__foot-row a "Résumé" 15px/600  min 7.91  p20 8.03  median 9.35  floor 4.5
+== menu-dark (3 elements sampled) ==
+  PASS .menu__foot-row a "GitHub" 15px/600  min 12.95  p20 13.09  median 13.09  floor 4.5
+  PASS .menu__foot-row a "LinkedIn" 15px/600  min 13.09  p20 13.09  median 13.11  floor 4.5
+  PASS .menu__foot-row a "Résumé" 15px/600  min 12.95  p20 13.09  median 13.09  floor 4.5

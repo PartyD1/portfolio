@@ -46,6 +46,25 @@ export default function ThemeToggle() {
 
   const isDark = mounted && resolvedTheme === "dark";
 
+  useEffect(() => {
+    if (!mounted) return;
+    // next-themes writes the class in its own effect, which (React runs
+    // effects bottom-up) commits after this one: read after paint, once the
+    // class is guaranteed to be on the DOM, not the value this render started with.
+    const raf = requestAnimationFrame(() => {
+      // The CSS owns the colour; read it back rather than repeating the hex.
+      const ground = getComputedStyle(document.documentElement)
+        .getPropertyValue("--ground")
+        .trim();
+      document
+        .querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')
+        .forEach((m) => {
+          m.content = ground;
+        });
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [mounted, resolvedTheme]);
+
   return (
     <button
       type="button"

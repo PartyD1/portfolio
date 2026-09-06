@@ -1,0 +1,7810 @@
+{
+  "final-home-320-light": {
+    "url": "/",
+    "vw": 320,
+    "vh": 568,
+    "rootFont": "16px",
+    "docH": 5690,
+    "screens": 10,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": false
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 320,
+        "h": 5690
+      },
+      ".hero__title": {
+        "fs": 32,
+        "lh": "33.92px",
+        "fw": "700",
+        "w": 275,
+        "h": 68
+      },
+      ".hero__role": {
+        "fs": 17.92,
+        "lh": "21.504px",
+        "fw": "700",
+        "w": 259,
+        "h": 22
+      },
+      ".roll__text": {
+        "fs": 17.92,
+        "lh": "21.504px",
+        "fw": "700",
+        "w": 136,
+        "h": 22
+      },
+      ".hero__avail": {
+        "fs": 16,
+        "lh": "25.6px",
+        "fw": "400",
+        "w": 216,
+        "h": 85
+      },
+      ".hero__cue": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 44,
+        "h": 44
+      },
+      ".section__title": {
+        "fs": 30,
+        "lh": "30.6px",
+        "fw": "700",
+        "w": 122,
+        "h": 31
+      },
+      ".card--flagship .card__name": {
+        "fs": 24,
+        "lh": "24.96px",
+        "fw": "700",
+        "w": 246,
+        "h": 50
+      },
+      ".card--flagship .card__org": {
+        "fs": 18,
+        "lh": "19.8px",
+        "fw": "700",
+        "w": 246,
+        "h": 20
+      },
+      ".card--flagship .card__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 246,
+        "h": 51
+      },
+      ".card:not(.card--flagship) .card__name": {
+        "fs": 20,
+        "lh": "20.8px",
+        "fw": "700",
+        "w": 176,
+        "h": 21
+      },
+      ".card:not(.card--flagship) .card__tagline": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "400",
+        "w": 250,
+        "h": 96
+      },
+      ".card__fact": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 246,
+        "h": 45
+      },
+      ".card__use": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 250,
+        "h": 23
+      },
+      ".live-link": {
+        "fs": 16,
+        "lh": "20px",
+        "fw": "600",
+        "w": 150,
+        "h": 48
+      },
+      ".timeline__period": {
+        "fs": 16,
+        "lh": "19.2px",
+        "fw": "600",
+        "w": 254,
+        "h": 19
+      },
+      ".timeline__role": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 216,
+        "h": 26
+      },
+      ".timeline__org": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "400",
+        "w": 216,
+        "h": 24
+      },
+      ".timeline__ownership": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 216,
+        "h": 223
+      },
+      ".timeline__project-name": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 105,
+        "h": 45
+      },
+      ".about__body p": {
+        "fs": 17,
+        "lh": "27.2px",
+        "fw": "400",
+        "w": 288,
+        "h": 218
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 153,
+        "h": 31
+      },
+      ".contact__title": {
+        "fs": 34,
+        "lh": "34.68px",
+        "fw": "700",
+        "w": 288,
+        "h": 35
+      },
+      ".contact__lede": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 288,
+        "h": 77
+      },
+      ".contact__seeking": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "500",
+        "w": 288,
+        "h": 51
+      },
+      ".contact__email": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "600",
+        "w": 242,
+        "h": 44
+      },
+      ".link-arrow": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 114,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to dark theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "hero__cue",
+        "text": "Scroll to the work",
+        "w": 44,
+        "h": 44,
+        "top": 312
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Operations Agent case stu",
+        "w": 0,
+        "h": 0,
+        "top": 875
+      },
+      {
+        "tag": "a",
+        "cls": "live-link",
+        "text": "Try ScorelyAI live (opens in a new",
+        "w": 150,
+        "h": 48,
+        "top": 1177
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the ScorelyAI case study",
+        "w": 0,
+        "h": 0,
+        "top": 1201
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo",
+        "text": "ScorelyAI on GitHub (opens in a ne",
+        "w": 52,
+        "h": 52,
+        "top": 1176
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Santa Claws case study",
+        "w": 0,
+        "h": 0,
+        "top": 1521
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Santa Claws on GitHub (opens in a ",
+        "w": 52,
+        "h": 52,
+        "top": 1496
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Wave Function Collapse ca",
+        "w": 0,
+        "h": 0,
+        "top": 1796
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Wave Function Collapse on GitHub (",
+        "w": 52,
+        "h": 52,
+        "top": 1771
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Pewter Platformer case st",
+        "w": 0,
+        "h": 0,
+        "top": 2147
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Pewter Platformer on GitHub (opens",
+        "w": 52,
+        "h": 52,
+        "top": 2122
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Gestura case study",
+        "w": 0,
+        "h": 0,
+        "top": 2443
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Gestura on GitHub (opens in a new ",
+        "w": 52,
+        "h": 52,
+        "top": 2418
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the WordPlay case study",
+        "w": 0,
+        "h": 0,
+        "top": 2691
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "WordPlay on GitHub (opens in a new",
+        "w": 52,
+        "h": 52,
+        "top": 2666
+      },
+      {
+        "tag": "a",
+        "cls": "timeline__project",
+        "text": "Pewter Platformer",
+        "w": 216,
+        "h": 59,
+        "top": 3404
+      },
+      {
+        "tag": "a",
+        "cls": "timeline__project",
+        "text": "Operations Agent",
+        "w": 216,
+        "h": 59,
+        "top": 3855
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 242,
+        "h": 44,
+        "top": 5250
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 5302
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "GitHub",
+        "w": 114,
+        "h": 44,
+        "top": 5374
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "LinkedIn",
+        "w": 125,
+        "h": 44,
+        "top": 5374
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "Résumé (PDF, opens in a new tab)",
+        "w": 121,
+        "h": 44,
+        "top": 5428
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 92,
+        "h": 44,
+        "top": 5605
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 506
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Operations Agent case stu",
+        "w": 0,
+        "h": 0,
+        "top": 875
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the ScorelyAI case study",
+        "w": 0,
+        "h": 0,
+        "top": 1201
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Santa Claws case study",
+        "w": 0,
+        "h": 0,
+        "top": 1521
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Wave Function Collapse ca",
+        "w": 0,
+        "h": 0,
+        "top": 1796
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Pewter Platformer case st",
+        "w": 0,
+        "h": 0,
+        "top": 2147
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Gestura case study",
+        "w": 0,
+        "h": 0,
+        "top": 2443
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the WordPlay case study",
+        "w": 0,
+        "h": 0,
+        "top": 2691
+      }
+    ],
+    "blur": 0,
+    "anims": [
+      "blink"
+    ],
+    "sections": [
+      {
+        "id": "top",
+        "top": 0,
+        "h": 392
+      },
+      {
+        "id": "work",
+        "top": 392,
+        "h": 2407
+      },
+      {
+        "id": "experience",
+        "top": 2799,
+        "h": 1207
+      },
+      {
+        "id": "about",
+        "top": 4005,
+        "h": 954
+      },
+      {
+        "id": "contact",
+        "top": 4959,
+        "h": 616
+      },
+      {
+        "id": "footer",
+        "top": 5576,
+        "h": 114
+      }
+    ],
+    "cards": [
+      {
+        "cls": "card--flagship",
+        "h": 454,
+        "media": "246x138"
+      },
+      {
+        "cls": "card",
+        "h": 311,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 302,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 256,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 333,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 278,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 230,
+        "media": "60x60"
+      }
+    ],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @260,17",
+      "ring": "44x44 @258,506"
+    },
+    "hero": 392,
+    "imgs": []
+  },
+  "final-operations-agent-320-light": {
+    "url": "/work/operations-agent",
+    "vw": 320,
+    "vh": 568,
+    "rootFont": "16px",
+    "docH": 4315,
+    "screens": 7.6,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": false
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 320,
+        "h": 4315
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "600",
+        "w": 242,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "500",
+        "w": 155,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 30,
+        "lh": "31.8px",
+        "fw": "700",
+        "w": 246,
+        "h": 64
+      },
+      ".case__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 246,
+        "h": 51
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 246,
+        "h": 48
+      },
+      ".case__note": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 246,
+        "h": 99
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 32,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 288,
+        "h": 24
+      },
+      ".flow__title": {
+        "fs": 17,
+        "lh": "22.1px",
+        "fw": "600",
+        "w": 214,
+        "h": 22
+      },
+      ".flow__detail": {
+        "fs": 15,
+        "lh": "21.75px",
+        "fw": "400",
+        "w": 214,
+        "h": 44
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 121,
+        "h": 30
+      },
+      ".flow__bus-title": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "600",
+        "w": 254,
+        "h": 24
+      },
+      ".flow__bus-detail": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "400",
+        "w": 254,
+        "h": 90
+      },
+      ".flow__index": {
+        "fs": 13,
+        "lh": "13px",
+        "fw": "700",
+        "w": 28,
+        "h": 28
+      },
+      ".case__section-title": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 288,
+        "h": 24
+      },
+      ".case__points li": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 288,
+        "h": 179
+      },
+      ".case__foot-title": {
+        "fs": 28,
+        "lh": "28.56px",
+        "fw": "700",
+        "w": 288,
+        "h": 57
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 288,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to dark theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 155,
+        "h": 44,
+        "top": 115
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 242,
+        "h": 44,
+        "top": 4017
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 4069
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 92,
+        "h": 44,
+        "top": 4230
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 506
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 624
+      },
+      {
+        "id": "flow",
+        "top": 664,
+        "h": 858
+      },
+      {
+        "id": "problem",
+        "top": 1521,
+        "h": 373
+      },
+      {
+        "id": "build",
+        "top": 1894,
+        "h": 673
+      },
+      {
+        "id": "outcome",
+        "top": 2568,
+        "h": 296
+      },
+      {
+        "id": "challenge",
+        "top": 2864,
+        "h": 449
+      },
+      {
+        "id": "limitations",
+        "top": 3314,
+        "h": 408
+      },
+      {
+        "id": "case__foot",
+        "top": 3778,
+        "h": 423
+      },
+      {
+        "id": "footer",
+        "top": 4201,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @260,17",
+      "ring": "44x44 @258,506"
+    },
+    "hero": 0,
+    "imgs": []
+  },
+  "final-santaclaws-320-light": {
+    "url": "/work/santaclaws",
+    "vw": 320,
+    "vh": 568,
+    "rootFont": "16px",
+    "docH": 5039,
+    "screens": 8.9,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": false
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 320,
+        "h": 5039
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "600",
+        "w": 242,
+        "h": 44
+      },
+      ".link-arrow": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 237,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "500",
+        "w": 155,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 30,
+        "lh": "31.8px",
+        "fw": "700",
+        "w": 246,
+        "h": 64
+      },
+      ".case__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 246,
+        "h": 128
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 246,
+        "h": 48
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 44,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 288,
+        "h": 24
+      },
+      ".flow__title": {
+        "fs": 17,
+        "lh": "22.1px",
+        "fw": "600",
+        "w": 214,
+        "h": 22
+      },
+      ".flow__detail": {
+        "fs": 15,
+        "lh": "21.75px",
+        "fw": "400",
+        "w": 214,
+        "h": 65
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 214,
+        "h": 48
+      },
+      ".flow__bus-title": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "600",
+        "w": 254,
+        "h": 48
+      },
+      ".flow__bus-detail": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "400",
+        "w": 254,
+        "h": 113
+      },
+      ".flow__index": {
+        "fs": 13,
+        "lh": "13px",
+        "fw": "700",
+        "w": 28,
+        "h": 28
+      },
+      ".case__section-title": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 288,
+        "h": 24
+      },
+      ".case__points li": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 288,
+        "h": 230
+      },
+      ".shots__cap": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "400",
+        "w": 253,
+        "h": 68
+      },
+      ".shots__count": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 29,
+        "h": 21
+      },
+      ".case__foot-title": {
+        "fs": 28,
+        "lh": "28.56px",
+        "fw": "700",
+        "w": 288,
+        "h": 57
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 288,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to dark theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 155,
+        "h": 44,
+        "top": 115
+      },
+      {
+        "tag": "ul",
+        "cls": "shots__track",
+        "text": "Santa Claws screens, use the arrow",
+        "w": 320,
+        "h": 236,
+        "top": 4084
+      },
+      {
+        "tag": "button",
+        "cls": "shots__expand",
+        "text": "Expand: The nice-list leads table ",
+        "w": 44,
+        "h": 44,
+        "top": 4188
+      },
+      {
+        "tag": "button",
+        "cls": "shots__arrow",
+        "text": "Previous screen",
+        "w": 44,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 1",
+        "w": 36,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 2",
+        "w": 36,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 3",
+        "w": 36,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__arrow",
+        "text": "Next screen",
+        "w": 44,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dialog-close",
+        "text": "Close",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 242,
+        "h": 44,
+        "top": 4673
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 4725
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "Santa Claws on GitHub",
+        "w": 237,
+        "h": 44,
+        "top": 4793
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 92,
+        "h": 44,
+        "top": 4954
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 506
+      }
+    ],
+    "small": [
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 1",
+        "w": 36,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 2",
+        "w": 36,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 3",
+        "w": 36,
+        "h": 44,
+        "top": 4334
+      }
+    ],
+    "tiny": [],
+    "zero": [
+      {
+        "tag": "button",
+        "cls": "shots__dialog-close",
+        "text": "Close",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      }
+    ],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 703
+      },
+      {
+        "id": "flow",
+        "top": 743,
+        "h": 888
+      },
+      {
+        "id": "problem",
+        "top": 1631,
+        "h": 312
+      },
+      {
+        "id": "build",
+        "top": 1943,
+        "h": 801
+      },
+      {
+        "id": "outcome",
+        "top": 2744,
+        "h": 449
+      },
+      {
+        "id": "challenge",
+        "top": 3193,
+        "h": 373
+      },
+      {
+        "id": "limitations",
+        "top": 3566,
+        "h": 434
+      },
+      {
+        "id": "shots",
+        "top": 4000,
+        "h": 378
+      },
+      {
+        "id": "case__foot",
+        "top": 4434,
+        "h": 491
+      },
+      {
+        "id": "footer",
+        "top": 4925,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @260,17",
+      "ring": "44x44 @258,506"
+    },
+    "hero": 0,
+    "imgs": [
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 268,
+        "dw": 251,
+        "loading": "lazy",
+        "fp": null
+      },
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 268,
+        "dw": 251,
+        "loading": "lazy",
+        "fp": null
+      },
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 268,
+        "dw": 251,
+        "loading": "lazy",
+        "fp": null
+      }
+    ]
+  },
+  "final-home-390-light": {
+    "url": "/",
+    "vw": 390,
+    "vh": 844,
+    "rootFont": "16px",
+    "docH": 5557,
+    "screens": 6.6,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": false
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 390,
+        "h": 5557
+      },
+      ".hero__title": {
+        "fs": 39,
+        "lh": "41.34px",
+        "fw": "700",
+        "w": 335,
+        "h": 83
+      },
+      ".hero__role": {
+        "fs": 21.84,
+        "lh": "26.208px",
+        "fw": "700",
+        "w": 315,
+        "h": 26
+      },
+      ".roll__text": {
+        "fs": 21.84,
+        "lh": "26.208px",
+        "fw": "700",
+        "w": 166,
+        "h": 27
+      },
+      ".hero__avail": {
+        "fs": 16,
+        "lh": "25.6px",
+        "fw": "400",
+        "w": 216,
+        "h": 85
+      },
+      ".hero__cue": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 44,
+        "h": 44
+      },
+      ".section__title": {
+        "fs": 33.93,
+        "lh": "34.6086px",
+        "fw": "700",
+        "w": 138,
+        "h": 35
+      },
+      ".card--flagship .card__name": {
+        "fs": 28.08,
+        "lh": "29.2032px",
+        "fw": "700",
+        "w": 309,
+        "h": 58
+      },
+      ".card--flagship .card__org": {
+        "fs": 19.89,
+        "lh": "21.879px",
+        "fw": "700",
+        "w": 309,
+        "h": 22
+      },
+      ".card--flagship .card__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 309,
+        "h": 51
+      },
+      ".card:not(.card--flagship) .card__name": {
+        "fs": 21.84,
+        "lh": "22.7136px",
+        "fw": "700",
+        "w": 239,
+        "h": 23
+      },
+      ".card:not(.card--flagship) .card__tagline": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "400",
+        "w": 313,
+        "h": 72
+      },
+      ".card__fact": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 309,
+        "h": 23
+      },
+      ".card__use": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 313,
+        "h": 23
+      },
+      ".live-link": {
+        "fs": 16,
+        "lh": "20px",
+        "fw": "600",
+        "w": 150,
+        "h": 48
+      },
+      ".timeline__period": {
+        "fs": 16,
+        "lh": "19.2px",
+        "fw": "600",
+        "w": 317,
+        "h": 19
+      },
+      ".timeline__role": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 279,
+        "h": 26
+      },
+      ".timeline__org": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "400",
+        "w": 279,
+        "h": 24
+      },
+      ".timeline__ownership": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 279,
+        "h": 174
+      },
+      ".timeline__project-name": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 124,
+        "h": 23
+      },
+      ".about__body p": {
+        "fs": 17,
+        "lh": "27.2px",
+        "fw": "400",
+        "w": 351,
+        "h": 190
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 153,
+        "h": 31
+      },
+      ".contact__title": {
+        "fs": 40.17,
+        "lh": "40.9734px",
+        "fw": "700",
+        "w": 351,
+        "h": 41
+      },
+      ".contact__lede": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 351,
+        "h": 51
+      },
+      ".contact__seeking": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "500",
+        "w": 351,
+        "h": 51
+      },
+      ".contact__email": {
+        "fs": 24,
+        "lh": "36px",
+        "fw": "600",
+        "w": 291,
+        "h": 48
+      },
+      ".link-arrow": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 114,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to dark theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "hero__cue",
+        "text": "Scroll to the work",
+        "w": 44,
+        "h": 44,
+        "top": 584
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Operations Agent case stu",
+        "w": 0,
+        "h": 0,
+        "top": 1174
+      },
+      {
+        "tag": "a",
+        "cls": "live-link",
+        "text": "Try ScorelyAI live (opens in a new",
+        "w": 150,
+        "h": 48,
+        "top": 1453
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the ScorelyAI case study",
+        "w": 0,
+        "h": 0,
+        "top": 1477
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo",
+        "text": "ScorelyAI on GitHub (opens in a ne",
+        "w": 52,
+        "h": 52,
+        "top": 1452
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Santa Claws case study",
+        "w": 0,
+        "h": 0,
+        "top": 1773
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Santa Claws on GitHub (opens in a ",
+        "w": 52,
+        "h": 52,
+        "top": 1748
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Wave Function Collapse ca",
+        "w": 0,
+        "h": 0,
+        "top": 2045
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Wave Function Collapse on GitHub (",
+        "w": 52,
+        "h": 52,
+        "top": 2020
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Pewter Platformer case st",
+        "w": 0,
+        "h": 0,
+        "top": 2396
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Pewter Platformer on GitHub (opens",
+        "w": 52,
+        "h": 52,
+        "top": 2371
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Gestura case study",
+        "w": 0,
+        "h": 0,
+        "top": 2668
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Gestura on GitHub (opens in a new ",
+        "w": 52,
+        "h": 52,
+        "top": 2643
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the WordPlay case study",
+        "w": 0,
+        "h": 0,
+        "top": 2916
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "WordPlay on GitHub (opens in a new",
+        "w": 52,
+        "h": 52,
+        "top": 2891
+      },
+      {
+        "tag": "a",
+        "cls": "timeline__project",
+        "text": "Pewter Platformer",
+        "w": 279,
+        "h": 58,
+        "top": 3534
+      },
+      {
+        "tag": "a",
+        "cls": "timeline__project",
+        "text": "Operations Agent",
+        "w": 279,
+        "h": 58,
+        "top": 3935
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 291,
+        "h": 48,
+        "top": 5165
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 5167
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "GitHub",
+        "w": 114,
+        "h": 44,
+        "top": 5241
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "LinkedIn",
+        "w": 125,
+        "h": 44,
+        "top": 5241
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "Résumé (PDF, opens in a new tab)",
+        "w": 121,
+        "h": 44,
+        "top": 5295
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 5472
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 782
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Operations Agent case stu",
+        "w": 0,
+        "h": 0,
+        "top": 1174
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the ScorelyAI case study",
+        "w": 0,
+        "h": 0,
+        "top": 1477
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Santa Claws case study",
+        "w": 0,
+        "h": 0,
+        "top": 1773
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Wave Function Collapse ca",
+        "w": 0,
+        "h": 0,
+        "top": 2045
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Pewter Platformer case st",
+        "w": 0,
+        "h": 0,
+        "top": 2396
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Gestura case study",
+        "w": 0,
+        "h": 0,
+        "top": 2668
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the WordPlay case study",
+        "w": 0,
+        "h": 0,
+        "top": 2916
+      }
+    ],
+    "blur": 0,
+    "anims": [
+      "blink"
+    ],
+    "sections": [
+      {
+        "id": "top",
+        "top": 0,
+        "h": 664
+      },
+      {
+        "id": "work",
+        "top": 664,
+        "h": 2360
+      },
+      {
+        "id": "experience",
+        "top": 3024,
+        "h": 1060
+      },
+      {
+        "id": "about",
+        "top": 4084,
+        "h": 811
+      },
+      {
+        "id": "contact",
+        "top": 4894,
+        "h": 549
+      },
+      {
+        "id": "footer",
+        "top": 5443,
+        "h": 114
+      }
+    ],
+    "cards": [
+      {
+        "cls": "card--flagship",
+        "h": 478,
+        "media": "309x174"
+      },
+      {
+        "cls": "card",
+        "h": 287,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 278,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 254,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 333,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 254,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 230,
+        "media": "60x60"
+      }
+    ],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @330,17",
+      "ring": "44x44 @328,782"
+    },
+    "hero": 664,
+    "imgs": []
+  },
+  "final-operations-agent-390-light": {
+    "url": "/work/operations-agent",
+    "vw": 390,
+    "vh": 844,
+    "rootFont": "16px",
+    "docH": 3835,
+    "screens": 4.5,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": false
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 390,
+        "h": 3835
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 24,
+        "lh": "36px",
+        "fw": "600",
+        "w": 291,
+        "h": 48
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "500",
+        "w": 155,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 33.93,
+        "lh": "35.9658px",
+        "fw": "700",
+        "w": 309,
+        "h": 72
+      },
+      ".case__tagline": {
+        "fs": 17.94,
+        "lh": "26.91px",
+        "fw": "400",
+        "w": 309,
+        "h": 54
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 309,
+        "h": 24
+      },
+      ".case__note": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 309,
+        "h": 74
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 32,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 26.13,
+        "lh": "26.6526px",
+        "fw": "700",
+        "w": 351,
+        "h": 27
+      },
+      ".flow__title": {
+        "fs": 17,
+        "lh": "22.1px",
+        "fw": "600",
+        "w": 277,
+        "h": 22
+      },
+      ".flow__detail": {
+        "fs": 15,
+        "lh": "21.75px",
+        "fw": "400",
+        "w": 277,
+        "h": 22
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 121,
+        "h": 30
+      },
+      ".flow__bus-title": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "600",
+        "w": 317,
+        "h": 24
+      },
+      ".flow__bus-detail": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "400",
+        "w": 317,
+        "h": 68
+      },
+      ".flow__index": {
+        "fs": 13,
+        "lh": "13px",
+        "fw": "700",
+        "w": 28,
+        "h": 28
+      },
+      ".case__section-title": {
+        "fs": 26.13,
+        "lh": "26.6526px",
+        "fw": "700",
+        "w": 351,
+        "h": 27
+      },
+      ".case__points li": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 351,
+        "h": 153
+      },
+      ".case__foot-title": {
+        "fs": 30.03,
+        "lh": "30.6306px",
+        "fw": "700",
+        "w": 351,
+        "h": 61
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 351,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to dark theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 155,
+        "h": 44,
+        "top": 115
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 291,
+        "h": 48,
+        "top": 3585
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 3576
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 3750
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 782
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 586
+      },
+      {
+        "id": "flow",
+        "top": 626,
+        "h": 779
+      },
+      {
+        "id": "problem",
+        "top": 1406,
+        "h": 324
+      },
+      {
+        "id": "build",
+        "top": 1730,
+        "h": 548
+      },
+      {
+        "id": "outcome",
+        "top": 2278,
+        "h": 273
+      },
+      {
+        "id": "challenge",
+        "top": 2551,
+        "h": 375
+      },
+      {
+        "id": "limitations",
+        "top": 2926,
+        "h": 360
+      },
+      {
+        "id": "case__foot",
+        "top": 3342,
+        "h": 379
+      },
+      {
+        "id": "footer",
+        "top": 3721,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @330,17",
+      "ring": "44x44 @328,782"
+    },
+    "hero": 0,
+    "imgs": []
+  },
+  "final-santaclaws-390-light": {
+    "url": "/work/santaclaws",
+    "vw": 390,
+    "vh": 844,
+    "rootFont": "16px",
+    "docH": 4558,
+    "screens": 5.4,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": false
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 390,
+        "h": 4558
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 24,
+        "lh": "36px",
+        "fw": "600",
+        "w": 291,
+        "h": 48
+      },
+      ".link-arrow": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 237,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "500",
+        "w": 155,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 33.93,
+        "lh": "35.9658px",
+        "fw": "700",
+        "w": 309,
+        "h": 72
+      },
+      ".case__tagline": {
+        "fs": 17.94,
+        "lh": "26.91px",
+        "fw": "400",
+        "w": 309,
+        "h": 108
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 309,
+        "h": 48
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 44,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 26.13,
+        "lh": "26.6526px",
+        "fw": "700",
+        "w": 351,
+        "h": 27
+      },
+      ".flow__title": {
+        "fs": 17,
+        "lh": "22.1px",
+        "fw": "600",
+        "w": 277,
+        "h": 22
+      },
+      ".flow__detail": {
+        "fs": 15,
+        "lh": "21.75px",
+        "fw": "400",
+        "w": 277,
+        "h": 44
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 230,
+        "h": 30
+      },
+      ".flow__bus-title": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "600",
+        "w": 317,
+        "h": 48
+      },
+      ".flow__bus-detail": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "400",
+        "w": 317,
+        "h": 90
+      },
+      ".flow__index": {
+        "fs": 13,
+        "lh": "13px",
+        "fw": "700",
+        "w": 28,
+        "h": 28
+      },
+      ".case__section-title": {
+        "fs": 26.13,
+        "lh": "26.6526px",
+        "fw": "700",
+        "w": 351,
+        "h": 27
+      },
+      ".case__points li": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 351,
+        "h": 204
+      },
+      ".shots__cap": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "400",
+        "w": 309,
+        "h": 45
+      },
+      ".shots__count": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 29,
+        "h": 21
+      },
+      ".case__foot-title": {
+        "fs": 30.03,
+        "lh": "30.6306px",
+        "fw": "700",
+        "w": 351,
+        "h": 61
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 351,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to dark theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 155,
+        "h": 44,
+        "top": 115
+      },
+      {
+        "tag": "ul",
+        "cls": "shots__track",
+        "text": "Santa Claws screens, use the arrow",
+        "w": 390,
+        "h": 248,
+        "top": 3634
+      },
+      {
+        "tag": "button",
+        "cls": "shots__expand",
+        "text": "Expand: The nice-list leads table ",
+        "w": 44,
+        "h": 44,
+        "top": 3772
+      },
+      {
+        "tag": "button",
+        "cls": "shots__arrow",
+        "text": "Previous screen",
+        "w": 44,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 1",
+        "w": 36,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 2",
+        "w": 36,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 3",
+        "w": 36,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__arrow",
+        "text": "Next screen",
+        "w": 44,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dialog-close",
+        "text": "Close",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 291,
+        "h": 48,
+        "top": 4240
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 4231
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "Santa Claws on GitHub",
+        "w": 237,
+        "h": 44,
+        "top": 4312
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 4473
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 782
+      }
+    ],
+    "small": [
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 1",
+        "w": 36,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 2",
+        "w": 36,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 3",
+        "w": 36,
+        "h": 44,
+        "top": 3896
+      }
+    ],
+    "tiny": [],
+    "zero": [
+      {
+        "tag": "button",
+        "cls": "shots__dialog-close",
+        "text": "Close",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      }
+    ],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 654
+      },
+      {
+        "id": "flow",
+        "top": 694,
+        "h": 805
+      },
+      {
+        "id": "problem",
+        "top": 1499,
+        "h": 289
+      },
+      {
+        "id": "build",
+        "top": 1788,
+        "h": 676
+      },
+      {
+        "id": "outcome",
+        "top": 2463,
+        "h": 375
+      },
+      {
+        "id": "challenge",
+        "top": 2838,
+        "h": 324
+      },
+      {
+        "id": "limitations",
+        "top": 3163,
+        "h": 385
+      },
+      {
+        "id": "shots",
+        "top": 3548,
+        "h": 393
+      },
+      {
+        "id": "case__foot",
+        "top": 3996,
+        "h": 447
+      },
+      {
+        "id": "footer",
+        "top": 4444,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @330,17",
+      "ring": "44x44 @328,782"
+    },
+    "hero": 0,
+    "imgs": [
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 327,
+        "dw": 307,
+        "loading": "lazy",
+        "fp": null
+      },
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 327,
+        "dw": 307,
+        "loading": "lazy",
+        "fp": null
+      },
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 327,
+        "dw": 307,
+        "loading": "lazy",
+        "fp": null
+      }
+    ]
+  },
+  "final-home-1440-light": {
+    "url": "/",
+    "vw": 1440,
+    "vh": 3110,
+    "rootFont": "16px",
+    "docH": 7066,
+    "screens": 2.3,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": false
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 1440,
+        "h": 7066
+      },
+      ".hero__title": {
+        "fs": 64,
+        "lh": "71.68px",
+        "fw": "700",
+        "w": 864,
+        "h": 72
+      },
+      ".hero__role": {
+        "fs": 32,
+        "lh": "38.4px",
+        "fw": "700",
+        "w": 462,
+        "h": 38
+      },
+      ".roll__text": {
+        "fs": 32,
+        "lh": "38.4px",
+        "fw": "700",
+        "w": 276,
+        "h": 40
+      },
+      ".hero__avail": {
+        "fs": 15.12,
+        "lh": "24.192px",
+        "fw": "400",
+        "w": 531,
+        "h": 24
+      },
+      ".hero__cue": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 0,
+        "h": 0
+      },
+      ".section__title": {
+        "fs": 52,
+        "lh": "53.04px",
+        "fw": "700",
+        "w": 212,
+        "h": 53
+      },
+      ".card--flagship .card__name": {
+        "fs": 40,
+        "lh": "40.8px",
+        "fw": "700",
+        "w": 549,
+        "h": 82
+      },
+      ".card--flagship .card__org": {
+        "fs": 24,
+        "lh": "26.4px",
+        "fw": "700",
+        "w": 549,
+        "h": 26
+      },
+      ".card--flagship .card__tagline": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "400",
+        "w": 336,
+        "h": 60
+      },
+      ".card:not(.card--flagship) .card__name": {
+        "fs": 26,
+        "lh": "26.52px",
+        "fw": "700",
+        "w": 499,
+        "h": 27
+      },
+      ".card:not(.card--flagship) .card__tagline": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "400",
+        "w": 285,
+        "h": 72
+      },
+      ".card__fact": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 549,
+        "h": 23
+      },
+      ".card__use": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 285,
+        "h": 23
+      },
+      ".live-link": {
+        "fs": 16,
+        "lh": "20px",
+        "fw": "600",
+        "w": 150,
+        "h": 48
+      },
+      ".timeline__period": {
+        "fs": 17,
+        "lh": "20.4px",
+        "fw": "600",
+        "w": 236,
+        "h": 44
+      },
+      ".timeline__role": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 802,
+        "h": 26
+      },
+      ".timeline__org": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "400",
+        "w": 802,
+        "h": 24
+      },
+      ".timeline__ownership": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 556,
+        "h": 74
+      },
+      ".timeline__project-name": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 124,
+        "h": 23
+      },
+      ".about__body p": {
+        "fs": 17,
+        "lh": "27.2px",
+        "fw": "400",
+        "w": 571,
+        "h": 109
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 153,
+        "h": 31
+      },
+      ".contact__title": {
+        "fs": 72,
+        "lh": "73.44px",
+        "fw": "700",
+        "w": 1140,
+        "h": 73
+      },
+      ".contact__lede": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 381,
+        "h": 51
+      },
+      ".contact__seeking": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "500",
+        "w": 381,
+        "h": 51
+      },
+      ".contact__email": {
+        "fs": 28,
+        "lh": "42px",
+        "fw": "600",
+        "w": 339,
+        "h": 54
+      },
+      ".link-arrow": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 114,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 118,
+        "h": 58,
+        "top": 22
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to dark theme",
+        "w": 44,
+        "h": 44,
+        "top": 29
+      },
+      {
+        "tag": "a",
+        "cls": "hero__cue",
+        "text": "Scroll to the work",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Operations Agent case stu",
+        "w": 0,
+        "h": 0,
+        "top": 3564
+      },
+      {
+        "tag": "a",
+        "cls": "live-link",
+        "text": "Try ScorelyAI live (opens in a new",
+        "w": 150,
+        "h": 48,
+        "top": 3897
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the ScorelyAI case study",
+        "w": 0,
+        "h": 0,
+        "top": 3921
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo",
+        "text": "ScorelyAI on GitHub (opens in a ne",
+        "w": 56,
+        "h": 56,
+        "top": 3893
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Santa Claws case study",
+        "w": 0,
+        "h": 0,
+        "top": 3924
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Santa Claws on GitHub (opens in a ",
+        "w": 64,
+        "h": 64,
+        "top": 3899
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Wave Function Collapse ca",
+        "w": 0,
+        "h": 0,
+        "top": 4281
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Wave Function Collapse on GitHub (",
+        "w": 64,
+        "h": 64,
+        "top": 4256
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Pewter Platformer case st",
+        "w": 0,
+        "h": 0,
+        "top": 4281
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Pewter Platformer on GitHub (opens",
+        "w": 64,
+        "h": 64,
+        "top": 4256
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Gestura case study",
+        "w": 0,
+        "h": 0,
+        "top": 4592
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Gestura on GitHub (opens in a new ",
+        "w": 64,
+        "h": 64,
+        "top": 4567
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the WordPlay case study",
+        "w": 0,
+        "h": 0,
+        "top": 4592
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "WordPlay on GitHub (opens in a new",
+        "w": 64,
+        "h": 64,
+        "top": 4567
+      },
+      {
+        "tag": "a",
+        "cls": "timeline__project",
+        "text": "Pewter Platformer",
+        "w": 247,
+        "h": 66,
+        "top": 5181
+      },
+      {
+        "tag": "a",
+        "cls": "timeline__project",
+        "text": "Operations Agent",
+        "w": 242,
+        "h": 66,
+        "top": 5524
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 339,
+        "h": 54,
+        "top": 6690
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 6695
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "GitHub",
+        "w": 114,
+        "h": 44,
+        "top": 6780
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "LinkedIn",
+        "w": 125,
+        "h": 44,
+        "top": 6780
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "Résumé (PDF, opens in a new tab)",
+        "w": 121,
+        "h": 44,
+        "top": 6780
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 6981
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 3038
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [
+      {
+        "tag": "a",
+        "cls": "hero__cue",
+        "text": "Scroll to the work",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Operations Agent case stu",
+        "w": 0,
+        "h": 0,
+        "top": 3564
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the ScorelyAI case study",
+        "w": 0,
+        "h": 0,
+        "top": 3921
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Santa Claws case study",
+        "w": 0,
+        "h": 0,
+        "top": 3924
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Wave Function Collapse ca",
+        "w": 0,
+        "h": 0,
+        "top": 4281
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Pewter Platformer case st",
+        "w": 0,
+        "h": 0,
+        "top": 4281
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Gestura case study",
+        "w": 0,
+        "h": 0,
+        "top": 4592
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the WordPlay case study",
+        "w": 0,
+        "h": 0,
+        "top": 4592
+      }
+    ],
+    "blur": 0,
+    "anims": [
+      "blink"
+    ],
+    "sections": [
+      {
+        "id": "top",
+        "top": 0,
+        "h": 3110
+      },
+      {
+        "id": "work",
+        "top": 3110,
+        "h": 1634
+      },
+      {
+        "id": "experience",
+        "top": 4744,
+        "h": 977
+      },
+      {
+        "id": "about",
+        "top": 5721,
+        "h": 636
+      },
+      {
+        "id": "contact",
+        "top": 6357,
+        "h": 595
+      },
+      {
+        "id": "footer",
+        "top": 6952,
+        "h": 114
+      }
+    ],
+    "cards": [
+      {
+        "cls": "card--flagship",
+        "h": 440,
+        "media": "477x358"
+      },
+      {
+        "cls": "card",
+        "h": 299,
+        "media": "190x190"
+      },
+      {
+        "cls": "card",
+        "h": 299,
+        "media": "190x190"
+      },
+      {
+        "cls": "card",
+        "h": 340,
+        "media": "190x190"
+      },
+      {
+        "cls": "card",
+        "h": 340,
+        "media": "190x190"
+      },
+      {
+        "cls": "card",
+        "h": 292,
+        "media": "190x190"
+      },
+      {
+        "cls": "card",
+        "h": 292,
+        "media": "190x190"
+      }
+    ],
+    "wide": [],
+    "chrome": {
+      "mark": "118x58 @28,22",
+      "toggle": "44x44 @1368,29",
+      "ring": "44x44 @1368,3038"
+    },
+    "hero": 3110,
+    "imgs": []
+  },
+  "final-operations-agent-1440-light": {
+    "url": "/work/operations-agent",
+    "vw": 1440,
+    "vh": 3110,
+    "rootFont": "16px",
+    "docH": 3110,
+    "screens": 1,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": false
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 1440,
+        "h": 2737
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 28,
+        "lh": "42px",
+        "fw": "600",
+        "w": 339,
+        "h": 54
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 146,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 64,
+        "lh": "69.12px",
+        "fw": "700",
+        "w": 1070,
+        "h": 69
+      },
+      ".case__tagline": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "400",
+        "w": 515,
+        "h": 60
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 1070,
+        "h": 24
+      },
+      ".case__note": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 556,
+        "h": 50
+      },
+      ".tech__name": {
+        "fs": 15,
+        "lh": "15px",
+        "fw": "600",
+        "w": 34,
+        "h": 15
+      },
+      ".flow__heading": {
+        "fs": 32,
+        "lh": "32.64px",
+        "fw": "700",
+        "w": 1140,
+        "h": 33
+      },
+      ".flow__title": {
+        "fs": 16,
+        "lh": "20.8px",
+        "fw": "600",
+        "w": 160,
+        "h": 21
+      },
+      ".flow__detail": {
+        "fs": 14,
+        "lh": "20.3px",
+        "fw": "400",
+        "w": 160,
+        "h": 41
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 160,
+        "h": 34
+      },
+      ".flow__bus-title": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 160,
+        "h": 23
+      },
+      ".flow__bus-detail": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 549,
+        "h": 42
+      },
+      ".flow__index": {
+        "fs": 12,
+        "lh": "12px",
+        "fw": "700",
+        "w": 26,
+        "h": 26
+      },
+      ".case__section-title": {
+        "fs": 32,
+        "lh": "32.64px",
+        "fw": "700",
+        "w": 542,
+        "h": 33
+      },
+      ".case__points li": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 495,
+        "h": 99
+      },
+      ".case__foot-title": {
+        "fs": 44,
+        "lh": "44.88px",
+        "fw": "700",
+        "w": 1140,
+        "h": 45
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 438,
+        "h": 53
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 118,
+        "h": 58,
+        "top": 22
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to dark theme",
+        "w": 44,
+        "h": 44,
+        "top": 29
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 146,
+        "h": 44,
+        "top": 173
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 339,
+        "h": 54,
+        "top": 2441
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 2446
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 2652
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 3038
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 583
+      },
+      {
+        "id": "flow",
+        "top": 647,
+        "h": 424
+      },
+      {
+        "id": "problem",
+        "top": 1070,
+        "h": 448
+      },
+      {
+        "id": "build",
+        "top": 1070,
+        "h": 448
+      },
+      {
+        "id": "outcome",
+        "top": 1518,
+        "h": 300
+      },
+      {
+        "id": "challenge",
+        "top": 1518,
+        "h": 300
+      },
+      {
+        "id": "limitations",
+        "top": 1819,
+        "h": 312
+      },
+      {
+        "id": "case__foot",
+        "top": 2227,
+        "h": 397
+      },
+      {
+        "id": "footer",
+        "top": 2623,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "118x58 @28,22",
+      "toggle": "44x44 @1368,29",
+      "ring": "44x44 @1368,3038"
+    },
+    "hero": 0,
+    "imgs": []
+  },
+  "final-santaclaws-1440-light": {
+    "url": "/work/santaclaws",
+    "vw": 1440,
+    "vh": 3110,
+    "rootFont": "16px",
+    "docH": 3695,
+    "screens": 1.2,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": false
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 1440,
+        "h": 3695
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 28,
+        "lh": "42px",
+        "fw": "600",
+        "w": 339,
+        "h": 54
+      },
+      ".link-arrow": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 237,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 146,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 64,
+        "lh": "69.12px",
+        "fw": "700",
+        "w": 1070,
+        "h": 69
+      },
+      ".case__tagline": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "400",
+        "w": 515,
+        "h": 90
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 1070,
+        "h": 24
+      },
+      ".tech__name": {
+        "fs": 15,
+        "lh": "15px",
+        "fw": "600",
+        "w": 47,
+        "h": 15
+      },
+      ".flow__heading": {
+        "fs": 32,
+        "lh": "32.64px",
+        "fw": "700",
+        "w": 1140,
+        "h": 33
+      },
+      ".flow__title": {
+        "fs": 16,
+        "lh": "20.8px",
+        "fw": "600",
+        "w": 160,
+        "h": 21
+      },
+      ".flow__detail": {
+        "fs": 14,
+        "lh": "20.3px",
+        "fw": "400",
+        "w": 160,
+        "h": 61
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 160,
+        "h": 52
+      },
+      ".flow__bus-title": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 359,
+        "h": 23
+      },
+      ".flow__bus-detail": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 549,
+        "h": 42
+      },
+      ".flow__index": {
+        "fs": 12,
+        "lh": "12px",
+        "fw": "700",
+        "w": 26,
+        "h": 26
+      },
+      ".case__section-title": {
+        "fs": 32,
+        "lh": "32.64px",
+        "fw": "700",
+        "w": 542,
+        "h": 33
+      },
+      ".case__points li": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 495,
+        "h": 124
+      },
+      ".shots__cap": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 549,
+        "h": 21
+      },
+      ".shots__count": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 29,
+        "h": 21
+      },
+      ".case__foot-title": {
+        "fs": 44,
+        "lh": "44.88px",
+        "fw": "700",
+        "w": 1140,
+        "h": 45
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 438,
+        "h": 53
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 118,
+        "h": 58,
+        "top": 22
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to dark theme",
+        "w": 44,
+        "h": 44,
+        "top": 29
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 146,
+        "h": 44,
+        "top": 173
+      },
+      {
+        "tag": "ul",
+        "cls": "shots__track",
+        "text": "Santa Claws screens, use the arrow",
+        "w": 1140,
+        "h": 653,
+        "top": 2294
+      },
+      {
+        "tag": "button",
+        "cls": "shots__expand",
+        "text": "Expand: The nice-list leads table ",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "button",
+        "cls": "shots__arrow",
+        "text": "Previous screen",
+        "w": 44,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 1",
+        "w": 36,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 2",
+        "w": 36,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 3",
+        "w": 36,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__arrow",
+        "text": "Next screen",
+        "w": 44,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dialog-close",
+        "text": "Close",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 339,
+        "h": 54,
+        "top": 3321
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 3326
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "Santa Claws on GitHub",
+        "w": 237,
+        "h": 44,
+        "top": 3409
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 3610
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 3038
+      }
+    ],
+    "small": [
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 1",
+        "w": 36,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 2",
+        "w": 36,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 3",
+        "w": 36,
+        "h": 44,
+        "top": 2967
+      }
+    ],
+    "tiny": [],
+    "zero": [
+      {
+        "tag": "button",
+        "cls": "shots__expand",
+        "text": "Expand: The nice-list leads table ",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dialog-close",
+        "text": "Close",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      }
+    ],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 601
+      },
+      {
+        "id": "flow",
+        "top": 665,
+        "h": 373
+      },
+      {
+        "id": "problem",
+        "top": 1038,
+        "h": 523
+      },
+      {
+        "id": "build",
+        "top": 1038,
+        "h": 523
+      },
+      {
+        "id": "outcome",
+        "top": 1561,
+        "h": 300
+      },
+      {
+        "id": "challenge",
+        "top": 1561,
+        "h": 300
+      },
+      {
+        "id": "limitations",
+        "top": 1861,
+        "h": 312
+      },
+      {
+        "id": "shots",
+        "top": 2173,
+        "h": 838
+      },
+      {
+        "id": "case__foot",
+        "top": 3107,
+        "h": 475
+      },
+      {
+        "id": "footer",
+        "top": 3581,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "118x58 @28,22",
+      "toggle": "44x44 @1368,29",
+      "ring": "44x44 @1368,3038"
+    },
+    "hero": 0,
+    "imgs": [
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 475,
+        "dw": 1138,
+        "loading": "lazy",
+        "fp": null
+      },
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 475,
+        "dw": 1032,
+        "loading": "lazy",
+        "fp": null
+      },
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 264,
+        "dw": 343,
+        "loading": "lazy",
+        "fp": null
+      }
+    ]
+  },
+  "final-home-320-dark": {
+    "url": "/",
+    "vw": 320,
+    "vh": 568,
+    "rootFont": "16px",
+    "docH": 5690,
+    "screens": 10,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": true
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 320,
+        "h": 5690
+      },
+      ".hero__title": {
+        "fs": 32,
+        "lh": "33.92px",
+        "fw": "700",
+        "w": 275,
+        "h": 68
+      },
+      ".hero__role": {
+        "fs": 17.92,
+        "lh": "21.504px",
+        "fw": "700",
+        "w": 259,
+        "h": 22
+      },
+      ".roll__text": {
+        "fs": 17.92,
+        "lh": "21.504px",
+        "fw": "700",
+        "w": 136,
+        "h": 22
+      },
+      ".hero__avail": {
+        "fs": 16,
+        "lh": "25.6px",
+        "fw": "400",
+        "w": 216,
+        "h": 85
+      },
+      ".hero__cue": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 44,
+        "h": 44
+      },
+      ".section__title": {
+        "fs": 30,
+        "lh": "30.6px",
+        "fw": "700",
+        "w": 122,
+        "h": 31
+      },
+      ".card--flagship .card__name": {
+        "fs": 24,
+        "lh": "24.96px",
+        "fw": "700",
+        "w": 246,
+        "h": 50
+      },
+      ".card--flagship .card__org": {
+        "fs": 18,
+        "lh": "19.8px",
+        "fw": "700",
+        "w": 246,
+        "h": 20
+      },
+      ".card--flagship .card__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 246,
+        "h": 51
+      },
+      ".card:not(.card--flagship) .card__name": {
+        "fs": 20,
+        "lh": "20.8px",
+        "fw": "700",
+        "w": 176,
+        "h": 21
+      },
+      ".card:not(.card--flagship) .card__tagline": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "400",
+        "w": 250,
+        "h": 96
+      },
+      ".card__fact": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 246,
+        "h": 45
+      },
+      ".card__use": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 250,
+        "h": 23
+      },
+      ".live-link": {
+        "fs": 16,
+        "lh": "20px",
+        "fw": "600",
+        "w": 150,
+        "h": 48
+      },
+      ".timeline__period": {
+        "fs": 16,
+        "lh": "19.2px",
+        "fw": "600",
+        "w": 254,
+        "h": 19
+      },
+      ".timeline__role": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 216,
+        "h": 26
+      },
+      ".timeline__org": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "400",
+        "w": 216,
+        "h": 24
+      },
+      ".timeline__ownership": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 216,
+        "h": 223
+      },
+      ".timeline__project-name": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 105,
+        "h": 45
+      },
+      ".about__body p": {
+        "fs": 17,
+        "lh": "27.2px",
+        "fw": "400",
+        "w": 288,
+        "h": 218
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 153,
+        "h": 31
+      },
+      ".contact__title": {
+        "fs": 34,
+        "lh": "34.68px",
+        "fw": "700",
+        "w": 288,
+        "h": 35
+      },
+      ".contact__lede": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 288,
+        "h": 77
+      },
+      ".contact__seeking": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "500",
+        "w": 288,
+        "h": 51
+      },
+      ".contact__email": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "600",
+        "w": 242,
+        "h": 44
+      },
+      ".link-arrow": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 114,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to light theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "hero__cue",
+        "text": "Scroll to the work",
+        "w": 44,
+        "h": 44,
+        "top": 312
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Operations Agent case stu",
+        "w": 0,
+        "h": 0,
+        "top": 875
+      },
+      {
+        "tag": "a",
+        "cls": "live-link",
+        "text": "Try ScorelyAI live (opens in a new",
+        "w": 150,
+        "h": 48,
+        "top": 1177
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the ScorelyAI case study",
+        "w": 0,
+        "h": 0,
+        "top": 1201
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo",
+        "text": "ScorelyAI on GitHub (opens in a ne",
+        "w": 52,
+        "h": 52,
+        "top": 1176
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Santa Claws case study",
+        "w": 0,
+        "h": 0,
+        "top": 1521
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Santa Claws on GitHub (opens in a ",
+        "w": 52,
+        "h": 52,
+        "top": 1496
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Wave Function Collapse ca",
+        "w": 0,
+        "h": 0,
+        "top": 1796
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Wave Function Collapse on GitHub (",
+        "w": 52,
+        "h": 52,
+        "top": 1771
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Pewter Platformer case st",
+        "w": 0,
+        "h": 0,
+        "top": 2147
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Pewter Platformer on GitHub (opens",
+        "w": 52,
+        "h": 52,
+        "top": 2122
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Gestura case study",
+        "w": 0,
+        "h": 0,
+        "top": 2443
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Gestura on GitHub (opens in a new ",
+        "w": 52,
+        "h": 52,
+        "top": 2418
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the WordPlay case study",
+        "w": 0,
+        "h": 0,
+        "top": 2691
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "WordPlay on GitHub (opens in a new",
+        "w": 52,
+        "h": 52,
+        "top": 2666
+      },
+      {
+        "tag": "a",
+        "cls": "timeline__project",
+        "text": "Pewter Platformer",
+        "w": 216,
+        "h": 59,
+        "top": 3404
+      },
+      {
+        "tag": "a",
+        "cls": "timeline__project",
+        "text": "Operations Agent",
+        "w": 216,
+        "h": 59,
+        "top": 3855
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 242,
+        "h": 44,
+        "top": 5250
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 5302
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "GitHub",
+        "w": 114,
+        "h": 44,
+        "top": 5374
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "LinkedIn",
+        "w": 125,
+        "h": 44,
+        "top": 5374
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "Résumé (PDF, opens in a new tab)",
+        "w": 121,
+        "h": 44,
+        "top": 5428
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 92,
+        "h": 44,
+        "top": 5605
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 506
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Operations Agent case stu",
+        "w": 0,
+        "h": 0,
+        "top": 875
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the ScorelyAI case study",
+        "w": 0,
+        "h": 0,
+        "top": 1201
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Santa Claws case study",
+        "w": 0,
+        "h": 0,
+        "top": 1521
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Wave Function Collapse ca",
+        "w": 0,
+        "h": 0,
+        "top": 1796
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Pewter Platformer case st",
+        "w": 0,
+        "h": 0,
+        "top": 2147
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Gestura case study",
+        "w": 0,
+        "h": 0,
+        "top": 2443
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the WordPlay case study",
+        "w": 0,
+        "h": 0,
+        "top": 2691
+      }
+    ],
+    "blur": 0,
+    "anims": [
+      "blink"
+    ],
+    "sections": [
+      {
+        "id": "top",
+        "top": 0,
+        "h": 392
+      },
+      {
+        "id": "work",
+        "top": 392,
+        "h": 2407
+      },
+      {
+        "id": "experience",
+        "top": 2799,
+        "h": 1207
+      },
+      {
+        "id": "about",
+        "top": 4005,
+        "h": 954
+      },
+      {
+        "id": "contact",
+        "top": 4959,
+        "h": 616
+      },
+      {
+        "id": "footer",
+        "top": 5576,
+        "h": 114
+      }
+    ],
+    "cards": [
+      {
+        "cls": "card--flagship",
+        "h": 454,
+        "media": "246x138"
+      },
+      {
+        "cls": "card",
+        "h": 311,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 302,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 256,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 333,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 278,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 230,
+        "media": "60x60"
+      }
+    ],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @260,17",
+      "ring": "44x44 @258,506"
+    },
+    "hero": 392,
+    "imgs": []
+  },
+  "final-operations-agent-320-dark": {
+    "url": "/work/operations-agent",
+    "vw": 320,
+    "vh": 568,
+    "rootFont": "16px",
+    "docH": 4315,
+    "screens": 7.6,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": true
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 320,
+        "h": 4315
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "600",
+        "w": 242,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "500",
+        "w": 155,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 30,
+        "lh": "31.8px",
+        "fw": "700",
+        "w": 246,
+        "h": 64
+      },
+      ".case__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 246,
+        "h": 51
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 246,
+        "h": 48
+      },
+      ".case__note": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 246,
+        "h": 99
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 32,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 288,
+        "h": 24
+      },
+      ".flow__title": {
+        "fs": 17,
+        "lh": "22.1px",
+        "fw": "600",
+        "w": 214,
+        "h": 22
+      },
+      ".flow__detail": {
+        "fs": 15,
+        "lh": "21.75px",
+        "fw": "400",
+        "w": 214,
+        "h": 44
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 121,
+        "h": 30
+      },
+      ".flow__bus-title": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "600",
+        "w": 254,
+        "h": 24
+      },
+      ".flow__bus-detail": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "400",
+        "w": 254,
+        "h": 90
+      },
+      ".flow__index": {
+        "fs": 13,
+        "lh": "13px",
+        "fw": "700",
+        "w": 28,
+        "h": 28
+      },
+      ".case__section-title": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 288,
+        "h": 24
+      },
+      ".case__points li": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 288,
+        "h": 179
+      },
+      ".case__foot-title": {
+        "fs": 28,
+        "lh": "28.56px",
+        "fw": "700",
+        "w": 288,
+        "h": 57
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 288,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to light theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 155,
+        "h": 44,
+        "top": 115
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 242,
+        "h": 44,
+        "top": 4017
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 4069
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 92,
+        "h": 44,
+        "top": 4230
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 506
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 624
+      },
+      {
+        "id": "flow",
+        "top": 664,
+        "h": 858
+      },
+      {
+        "id": "problem",
+        "top": 1521,
+        "h": 373
+      },
+      {
+        "id": "build",
+        "top": 1894,
+        "h": 673
+      },
+      {
+        "id": "outcome",
+        "top": 2568,
+        "h": 296
+      },
+      {
+        "id": "challenge",
+        "top": 2864,
+        "h": 449
+      },
+      {
+        "id": "limitations",
+        "top": 3314,
+        "h": 408
+      },
+      {
+        "id": "case__foot",
+        "top": 3778,
+        "h": 423
+      },
+      {
+        "id": "footer",
+        "top": 4201,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @260,17",
+      "ring": "44x44 @258,506"
+    },
+    "hero": 0,
+    "imgs": []
+  },
+  "final-santaclaws-320-dark": {
+    "url": "/work/santaclaws",
+    "vw": 320,
+    "vh": 568,
+    "rootFont": "16px",
+    "docH": 5039,
+    "screens": 8.9,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": true
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 320,
+        "h": 5039
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "600",
+        "w": 242,
+        "h": 44
+      },
+      ".link-arrow": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 237,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 224,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "500",
+        "w": 155,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 30,
+        "lh": "31.8px",
+        "fw": "700",
+        "w": 246,
+        "h": 64
+      },
+      ".case__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 246,
+        "h": 128
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 246,
+        "h": 48
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 44,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 288,
+        "h": 24
+      },
+      ".flow__title": {
+        "fs": 17,
+        "lh": "22.1px",
+        "fw": "600",
+        "w": 214,
+        "h": 22
+      },
+      ".flow__detail": {
+        "fs": 15,
+        "lh": "21.75px",
+        "fw": "400",
+        "w": 214,
+        "h": 65
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 214,
+        "h": 48
+      },
+      ".flow__bus-title": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "600",
+        "w": 254,
+        "h": 48
+      },
+      ".flow__bus-detail": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "400",
+        "w": 254,
+        "h": 113
+      },
+      ".flow__index": {
+        "fs": 13,
+        "lh": "13px",
+        "fw": "700",
+        "w": 28,
+        "h": 28
+      },
+      ".case__section-title": {
+        "fs": 24,
+        "lh": "24.48px",
+        "fw": "700",
+        "w": 288,
+        "h": 24
+      },
+      ".case__points li": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 288,
+        "h": 230
+      },
+      ".shots__cap": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "400",
+        "w": 253,
+        "h": 68
+      },
+      ".shots__count": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 29,
+        "h": 21
+      },
+      ".case__foot-title": {
+        "fs": 28,
+        "lh": "28.56px",
+        "fw": "700",
+        "w": 288,
+        "h": 57
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 288,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to light theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 155,
+        "h": 44,
+        "top": 115
+      },
+      {
+        "tag": "ul",
+        "cls": "shots__track",
+        "text": "Santa Claws screens, use the arrow",
+        "w": 320,
+        "h": 236,
+        "top": 4084
+      },
+      {
+        "tag": "button",
+        "cls": "shots__expand",
+        "text": "Expand: The nice-list leads table ",
+        "w": 44,
+        "h": 44,
+        "top": 4188
+      },
+      {
+        "tag": "button",
+        "cls": "shots__arrow",
+        "text": "Previous screen",
+        "w": 44,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 1",
+        "w": 36,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 2",
+        "w": 36,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 3",
+        "w": 36,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__arrow",
+        "text": "Next screen",
+        "w": 44,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dialog-close",
+        "text": "Close",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 242,
+        "h": 44,
+        "top": 4673
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 4725
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "Santa Claws on GitHub",
+        "w": 237,
+        "h": 44,
+        "top": 4793
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 92,
+        "h": 44,
+        "top": 4954
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 506
+      }
+    ],
+    "small": [
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 1",
+        "w": 36,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 2",
+        "w": 36,
+        "h": 44,
+        "top": 4334
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 3",
+        "w": 36,
+        "h": 44,
+        "top": 4334
+      }
+    ],
+    "tiny": [],
+    "zero": [
+      {
+        "tag": "button",
+        "cls": "shots__dialog-close",
+        "text": "Close",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      }
+    ],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 703
+      },
+      {
+        "id": "flow",
+        "top": 743,
+        "h": 888
+      },
+      {
+        "id": "problem",
+        "top": 1631,
+        "h": 312
+      },
+      {
+        "id": "build",
+        "top": 1943,
+        "h": 801
+      },
+      {
+        "id": "outcome",
+        "top": 2744,
+        "h": 449
+      },
+      {
+        "id": "challenge",
+        "top": 3193,
+        "h": 373
+      },
+      {
+        "id": "limitations",
+        "top": 3566,
+        "h": 434
+      },
+      {
+        "id": "shots",
+        "top": 4000,
+        "h": 378
+      },
+      {
+        "id": "case__foot",
+        "top": 4434,
+        "h": 491
+      },
+      {
+        "id": "footer",
+        "top": 4925,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @260,17",
+      "ring": "44x44 @258,506"
+    },
+    "hero": 0,
+    "imgs": [
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 268,
+        "dw": 251,
+        "loading": "lazy",
+        "fp": null
+      },
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 268,
+        "dw": 251,
+        "loading": "lazy",
+        "fp": null
+      },
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 268,
+        "dw": 251,
+        "loading": "lazy",
+        "fp": null
+      }
+    ]
+  },
+  "final-home-390-dark": {
+    "url": "/",
+    "vw": 390,
+    "vh": 844,
+    "rootFont": "16px",
+    "docH": 5557,
+    "screens": 6.6,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": true
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 390,
+        "h": 5557
+      },
+      ".hero__title": {
+        "fs": 39,
+        "lh": "41.34px",
+        "fw": "700",
+        "w": 335,
+        "h": 83
+      },
+      ".hero__role": {
+        "fs": 21.84,
+        "lh": "26.208px",
+        "fw": "700",
+        "w": 315,
+        "h": 26
+      },
+      ".roll__text": {
+        "fs": 21.84,
+        "lh": "26.208px",
+        "fw": "700",
+        "w": 166,
+        "h": 27
+      },
+      ".hero__avail": {
+        "fs": 16,
+        "lh": "25.6px",
+        "fw": "400",
+        "w": 216,
+        "h": 85
+      },
+      ".hero__cue": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 44,
+        "h": 44
+      },
+      ".section__title": {
+        "fs": 33.93,
+        "lh": "34.6086px",
+        "fw": "700",
+        "w": 138,
+        "h": 35
+      },
+      ".card--flagship .card__name": {
+        "fs": 28.08,
+        "lh": "29.2032px",
+        "fw": "700",
+        "w": 309,
+        "h": 58
+      },
+      ".card--flagship .card__org": {
+        "fs": 19.89,
+        "lh": "21.879px",
+        "fw": "700",
+        "w": 309,
+        "h": 22
+      },
+      ".card--flagship .card__tagline": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 309,
+        "h": 51
+      },
+      ".card:not(.card--flagship) .card__name": {
+        "fs": 21.84,
+        "lh": "22.7136px",
+        "fw": "700",
+        "w": 239,
+        "h": 23
+      },
+      ".card:not(.card--flagship) .card__tagline": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "400",
+        "w": 313,
+        "h": 72
+      },
+      ".card__fact": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 309,
+        "h": 23
+      },
+      ".card__use": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 313,
+        "h": 23
+      },
+      ".live-link": {
+        "fs": 16,
+        "lh": "20px",
+        "fw": "600",
+        "w": 150,
+        "h": 48
+      },
+      ".timeline__period": {
+        "fs": 16,
+        "lh": "19.2px",
+        "fw": "600",
+        "w": 317,
+        "h": 19
+      },
+      ".timeline__role": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 279,
+        "h": 26
+      },
+      ".timeline__org": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "400",
+        "w": 279,
+        "h": 24
+      },
+      ".timeline__ownership": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 279,
+        "h": 174
+      },
+      ".timeline__project-name": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 124,
+        "h": 23
+      },
+      ".about__body p": {
+        "fs": 17,
+        "lh": "27.2px",
+        "fw": "400",
+        "w": 351,
+        "h": 190
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 153,
+        "h": 31
+      },
+      ".contact__title": {
+        "fs": 40.17,
+        "lh": "40.9734px",
+        "fw": "700",
+        "w": 351,
+        "h": 41
+      },
+      ".contact__lede": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 351,
+        "h": 51
+      },
+      ".contact__seeking": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "500",
+        "w": 351,
+        "h": 51
+      },
+      ".contact__email": {
+        "fs": 24,
+        "lh": "36px",
+        "fw": "600",
+        "w": 291,
+        "h": 48
+      },
+      ".link-arrow": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 114,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to light theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "hero__cue",
+        "text": "Scroll to the work",
+        "w": 44,
+        "h": 44,
+        "top": 584
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Operations Agent case stu",
+        "w": 0,
+        "h": 0,
+        "top": 1174
+      },
+      {
+        "tag": "a",
+        "cls": "live-link",
+        "text": "Try ScorelyAI live (opens in a new",
+        "w": 150,
+        "h": 48,
+        "top": 1453
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the ScorelyAI case study",
+        "w": 0,
+        "h": 0,
+        "top": 1477
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo",
+        "text": "ScorelyAI on GitHub (opens in a ne",
+        "w": 52,
+        "h": 52,
+        "top": 1452
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Santa Claws case study",
+        "w": 0,
+        "h": 0,
+        "top": 1773
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Santa Claws on GitHub (opens in a ",
+        "w": 52,
+        "h": 52,
+        "top": 1748
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Wave Function Collapse ca",
+        "w": 0,
+        "h": 0,
+        "top": 2045
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Wave Function Collapse on GitHub (",
+        "w": 52,
+        "h": 52,
+        "top": 2020
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Pewter Platformer case st",
+        "w": 0,
+        "h": 0,
+        "top": 2396
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Pewter Platformer on GitHub (opens",
+        "w": 52,
+        "h": 52,
+        "top": 2371
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Gestura case study",
+        "w": 0,
+        "h": 0,
+        "top": 2668
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Gestura on GitHub (opens in a new ",
+        "w": 52,
+        "h": 52,
+        "top": 2643
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the WordPlay case study",
+        "w": 0,
+        "h": 0,
+        "top": 2916
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "WordPlay on GitHub (opens in a new",
+        "w": 52,
+        "h": 52,
+        "top": 2891
+      },
+      {
+        "tag": "a",
+        "cls": "timeline__project",
+        "text": "Pewter Platformer",
+        "w": 279,
+        "h": 58,
+        "top": 3534
+      },
+      {
+        "tag": "a",
+        "cls": "timeline__project",
+        "text": "Operations Agent",
+        "w": 279,
+        "h": 58,
+        "top": 3935
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 291,
+        "h": 48,
+        "top": 5165
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 5167
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "GitHub",
+        "w": 114,
+        "h": 44,
+        "top": 5241
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "LinkedIn",
+        "w": 125,
+        "h": 44,
+        "top": 5241
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "Résumé (PDF, opens in a new tab)",
+        "w": 121,
+        "h": 44,
+        "top": 5295
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 5472
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 782
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Operations Agent case stu",
+        "w": 0,
+        "h": 0,
+        "top": 1174
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the ScorelyAI case study",
+        "w": 0,
+        "h": 0,
+        "top": 1477
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Santa Claws case study",
+        "w": 0,
+        "h": 0,
+        "top": 1773
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Wave Function Collapse ca",
+        "w": 0,
+        "h": 0,
+        "top": 2045
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Pewter Platformer case st",
+        "w": 0,
+        "h": 0,
+        "top": 2396
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Gestura case study",
+        "w": 0,
+        "h": 0,
+        "top": 2668
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the WordPlay case study",
+        "w": 0,
+        "h": 0,
+        "top": 2916
+      }
+    ],
+    "blur": 0,
+    "anims": [
+      "blink"
+    ],
+    "sections": [
+      {
+        "id": "top",
+        "top": 0,
+        "h": 664
+      },
+      {
+        "id": "work",
+        "top": 664,
+        "h": 2360
+      },
+      {
+        "id": "experience",
+        "top": 3024,
+        "h": 1060
+      },
+      {
+        "id": "about",
+        "top": 4084,
+        "h": 811
+      },
+      {
+        "id": "contact",
+        "top": 4894,
+        "h": 549
+      },
+      {
+        "id": "footer",
+        "top": 5443,
+        "h": 114
+      }
+    ],
+    "cards": [
+      {
+        "cls": "card--flagship",
+        "h": 478,
+        "media": "309x174"
+      },
+      {
+        "cls": "card",
+        "h": 287,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 278,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 254,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 333,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 254,
+        "media": "60x60"
+      },
+      {
+        "cls": "card",
+        "h": 230,
+        "media": "60x60"
+      }
+    ],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @330,17",
+      "ring": "44x44 @328,782"
+    },
+    "hero": 664,
+    "imgs": []
+  },
+  "final-operations-agent-390-dark": {
+    "url": "/work/operations-agent",
+    "vw": 390,
+    "vh": 844,
+    "rootFont": "16px",
+    "docH": 3835,
+    "screens": 4.5,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": true
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 390,
+        "h": 3835
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 24,
+        "lh": "36px",
+        "fw": "600",
+        "w": 291,
+        "h": 48
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "500",
+        "w": 155,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 33.93,
+        "lh": "35.9658px",
+        "fw": "700",
+        "w": 309,
+        "h": 72
+      },
+      ".case__tagline": {
+        "fs": 17.94,
+        "lh": "26.91px",
+        "fw": "400",
+        "w": 309,
+        "h": 54
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 309,
+        "h": 24
+      },
+      ".case__note": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 309,
+        "h": 74
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 32,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 26.13,
+        "lh": "26.6526px",
+        "fw": "700",
+        "w": 351,
+        "h": 27
+      },
+      ".flow__title": {
+        "fs": 17,
+        "lh": "22.1px",
+        "fw": "600",
+        "w": 277,
+        "h": 22
+      },
+      ".flow__detail": {
+        "fs": 15,
+        "lh": "21.75px",
+        "fw": "400",
+        "w": 277,
+        "h": 22
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 121,
+        "h": 30
+      },
+      ".flow__bus-title": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "600",
+        "w": 317,
+        "h": 24
+      },
+      ".flow__bus-detail": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "400",
+        "w": 317,
+        "h": 68
+      },
+      ".flow__index": {
+        "fs": 13,
+        "lh": "13px",
+        "fw": "700",
+        "w": 28,
+        "h": 28
+      },
+      ".case__section-title": {
+        "fs": 26.13,
+        "lh": "26.6526px",
+        "fw": "700",
+        "w": 351,
+        "h": 27
+      },
+      ".case__points li": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 351,
+        "h": 153
+      },
+      ".case__foot-title": {
+        "fs": 30.03,
+        "lh": "30.6306px",
+        "fw": "700",
+        "w": 351,
+        "h": 61
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 351,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to light theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 155,
+        "h": 44,
+        "top": 115
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 291,
+        "h": 48,
+        "top": 3585
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 3576
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 3750
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 782
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 586
+      },
+      {
+        "id": "flow",
+        "top": 626,
+        "h": 779
+      },
+      {
+        "id": "problem",
+        "top": 1406,
+        "h": 324
+      },
+      {
+        "id": "build",
+        "top": 1730,
+        "h": 548
+      },
+      {
+        "id": "outcome",
+        "top": 2278,
+        "h": 273
+      },
+      {
+        "id": "challenge",
+        "top": 2551,
+        "h": 375
+      },
+      {
+        "id": "limitations",
+        "top": 2926,
+        "h": 360
+      },
+      {
+        "id": "case__foot",
+        "top": 3342,
+        "h": 379
+      },
+      {
+        "id": "footer",
+        "top": 3721,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @330,17",
+      "ring": "44x44 @328,782"
+    },
+    "hero": 0,
+    "imgs": []
+  },
+  "final-santaclaws-390-dark": {
+    "url": "/work/santaclaws",
+    "vw": 390,
+    "vh": 844,
+    "rootFont": "16px",
+    "docH": 4558,
+    "screens": 5.4,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": true
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 390,
+        "h": 4558
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 24,
+        "lh": "36px",
+        "fw": "600",
+        "w": 291,
+        "h": 48
+      },
+      ".link-arrow": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 237,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "500",
+        "w": 155,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 33.93,
+        "lh": "35.9658px",
+        "fw": "700",
+        "w": 309,
+        "h": 72
+      },
+      ".case__tagline": {
+        "fs": 17.94,
+        "lh": "26.91px",
+        "fw": "400",
+        "w": 309,
+        "h": 108
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 309,
+        "h": 48
+      },
+      ".tech__name": {
+        "fs": 14,
+        "lh": "14px",
+        "fw": "600",
+        "w": 44,
+        "h": 14
+      },
+      ".flow__heading": {
+        "fs": 26.13,
+        "lh": "26.6526px",
+        "fw": "700",
+        "w": 351,
+        "h": 27
+      },
+      ".flow__title": {
+        "fs": 17,
+        "lh": "22.1px",
+        "fw": "600",
+        "w": 277,
+        "h": 22
+      },
+      ".flow__detail": {
+        "fs": 15,
+        "lh": "21.75px",
+        "fw": "400",
+        "w": 277,
+        "h": 44
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 230,
+        "h": 30
+      },
+      ".flow__bus-title": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "600",
+        "w": 317,
+        "h": 48
+      },
+      ".flow__bus-detail": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "400",
+        "w": 317,
+        "h": 90
+      },
+      ".flow__index": {
+        "fs": 13,
+        "lh": "13px",
+        "fw": "700",
+        "w": 28,
+        "h": 28
+      },
+      ".case__section-title": {
+        "fs": 26.13,
+        "lh": "26.6526px",
+        "fw": "700",
+        "w": 351,
+        "h": 27
+      },
+      ".case__points li": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 351,
+        "h": 204
+      },
+      ".shots__cap": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "400",
+        "w": 309,
+        "h": 45
+      },
+      ".shots__count": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 29,
+        "h": 21
+      },
+      ".case__foot-title": {
+        "fs": 30.03,
+        "lh": "30.6306px",
+        "fw": "700",
+        "w": 351,
+        "h": 61
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 351,
+        "h": 79
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 100,
+        "h": 50,
+        "top": 14
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to light theme",
+        "w": 44,
+        "h": 44,
+        "top": 17
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 155,
+        "h": 44,
+        "top": 115
+      },
+      {
+        "tag": "ul",
+        "cls": "shots__track",
+        "text": "Santa Claws screens, use the arrow",
+        "w": 390,
+        "h": 248,
+        "top": 3634
+      },
+      {
+        "tag": "button",
+        "cls": "shots__expand",
+        "text": "Expand: The nice-list leads table ",
+        "w": 44,
+        "h": 44,
+        "top": 3772
+      },
+      {
+        "tag": "button",
+        "cls": "shots__arrow",
+        "text": "Previous screen",
+        "w": 44,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 1",
+        "w": 36,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 2",
+        "w": 36,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 3",
+        "w": 36,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__arrow",
+        "text": "Next screen",
+        "w": 44,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dialog-close",
+        "text": "Close",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 291,
+        "h": 48,
+        "top": 4240
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 4231
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "Santa Claws on GitHub",
+        "w": 237,
+        "h": 44,
+        "top": 4312
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 4473
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 782
+      }
+    ],
+    "small": [
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 1",
+        "w": 36,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 2",
+        "w": 36,
+        "h": 44,
+        "top": 3896
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 3",
+        "w": 36,
+        "h": 44,
+        "top": 3896
+      }
+    ],
+    "tiny": [],
+    "zero": [
+      {
+        "tag": "button",
+        "cls": "shots__dialog-close",
+        "text": "Close",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      }
+    ],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 654
+      },
+      {
+        "id": "flow",
+        "top": 694,
+        "h": 805
+      },
+      {
+        "id": "problem",
+        "top": 1499,
+        "h": 289
+      },
+      {
+        "id": "build",
+        "top": 1788,
+        "h": 676
+      },
+      {
+        "id": "outcome",
+        "top": 2463,
+        "h": 375
+      },
+      {
+        "id": "challenge",
+        "top": 2838,
+        "h": 324
+      },
+      {
+        "id": "limitations",
+        "top": 3163,
+        "h": 385
+      },
+      {
+        "id": "shots",
+        "top": 3548,
+        "h": 393
+      },
+      {
+        "id": "case__foot",
+        "top": 3996,
+        "h": 447
+      },
+      {
+        "id": "footer",
+        "top": 4444,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "100x50 @16,14",
+      "toggle": "44x44 @330,17",
+      "ring": "44x44 @328,782"
+    },
+    "hero": 0,
+    "imgs": [
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 327,
+        "dw": 307,
+        "loading": "lazy",
+        "fp": null
+      },
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 327,
+        "dw": 307,
+        "loading": "lazy",
+        "fp": null
+      },
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 327,
+        "dw": 307,
+        "loading": "lazy",
+        "fp": null
+      }
+    ]
+  },
+  "final-home-1440-dark": {
+    "url": "/",
+    "vw": 1440,
+    "vh": 3110,
+    "rootFont": "16px",
+    "docH": 7066,
+    "screens": 2.3,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": true
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 1440,
+        "h": 7066
+      },
+      ".hero__title": {
+        "fs": 64,
+        "lh": "71.68px",
+        "fw": "700",
+        "w": 864,
+        "h": 72
+      },
+      ".hero__role": {
+        "fs": 32,
+        "lh": "38.4px",
+        "fw": "700",
+        "w": 462,
+        "h": 38
+      },
+      ".roll__text": {
+        "fs": 32,
+        "lh": "38.4px",
+        "fw": "700",
+        "w": 276,
+        "h": 40
+      },
+      ".hero__avail": {
+        "fs": 15.12,
+        "lh": "24.192px",
+        "fw": "400",
+        "w": 531,
+        "h": 24
+      },
+      ".hero__cue": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 0,
+        "h": 0
+      },
+      ".section__title": {
+        "fs": 52,
+        "lh": "53.04px",
+        "fw": "700",
+        "w": 212,
+        "h": 53
+      },
+      ".card--flagship .card__name": {
+        "fs": 40,
+        "lh": "40.8px",
+        "fw": "700",
+        "w": 549,
+        "h": 82
+      },
+      ".card--flagship .card__org": {
+        "fs": 24,
+        "lh": "26.4px",
+        "fw": "700",
+        "w": 549,
+        "h": 26
+      },
+      ".card--flagship .card__tagline": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "400",
+        "w": 336,
+        "h": 60
+      },
+      ".card:not(.card--flagship) .card__name": {
+        "fs": 26,
+        "lh": "26.52px",
+        "fw": "700",
+        "w": 499,
+        "h": 27
+      },
+      ".card:not(.card--flagship) .card__tagline": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "400",
+        "w": 285,
+        "h": 72
+      },
+      ".card__fact": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 549,
+        "h": 23
+      },
+      ".card__use": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 285,
+        "h": 23
+      },
+      ".live-link": {
+        "fs": 16,
+        "lh": "20px",
+        "fw": "600",
+        "w": 150,
+        "h": 48
+      },
+      ".timeline__period": {
+        "fs": 17,
+        "lh": "20.4px",
+        "fw": "600",
+        "w": 236,
+        "h": 44
+      },
+      ".timeline__role": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 802,
+        "h": 26
+      },
+      ".timeline__org": {
+        "fs": 16,
+        "lh": "24px",
+        "fw": "400",
+        "w": 802,
+        "h": 24
+      },
+      ".timeline__ownership": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 556,
+        "h": 74
+      },
+      ".timeline__project-name": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 124,
+        "h": 23
+      },
+      ".about__body p": {
+        "fs": 17,
+        "lh": "27.2px",
+        "fw": "400",
+        "w": 571,
+        "h": 109
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 153,
+        "h": 31
+      },
+      ".contact__title": {
+        "fs": 72,
+        "lh": "73.44px",
+        "fw": "700",
+        "w": 1140,
+        "h": 73
+      },
+      ".contact__lede": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 381,
+        "h": 51
+      },
+      ".contact__seeking": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "500",
+        "w": 381,
+        "h": 51
+      },
+      ".contact__email": {
+        "fs": 28,
+        "lh": "42px",
+        "fw": "600",
+        "w": 339,
+        "h": 54
+      },
+      ".link-arrow": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 114,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 118,
+        "h": 58,
+        "top": 22
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to light theme",
+        "w": 44,
+        "h": 44,
+        "top": 29
+      },
+      {
+        "tag": "a",
+        "cls": "hero__cue",
+        "text": "Scroll to the work",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Operations Agent case stu",
+        "w": 0,
+        "h": 0,
+        "top": 3564
+      },
+      {
+        "tag": "a",
+        "cls": "live-link",
+        "text": "Try ScorelyAI live (opens in a new",
+        "w": 150,
+        "h": 48,
+        "top": 3897
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the ScorelyAI case study",
+        "w": 0,
+        "h": 0,
+        "top": 3921
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo",
+        "text": "ScorelyAI on GitHub (opens in a ne",
+        "w": 56,
+        "h": 56,
+        "top": 3893
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Santa Claws case study",
+        "w": 0,
+        "h": 0,
+        "top": 3924
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Santa Claws on GitHub (opens in a ",
+        "w": 64,
+        "h": 64,
+        "top": 3899
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Wave Function Collapse ca",
+        "w": 0,
+        "h": 0,
+        "top": 4281
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Wave Function Collapse on GitHub (",
+        "w": 64,
+        "h": 64,
+        "top": 4256
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Pewter Platformer case st",
+        "w": 0,
+        "h": 0,
+        "top": 4281
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Pewter Platformer on GitHub (opens",
+        "w": 64,
+        "h": 64,
+        "top": 4256
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Gestura case study",
+        "w": 0,
+        "h": 0,
+        "top": 4592
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "Gestura on GitHub (opens in a new ",
+        "w": 64,
+        "h": 64,
+        "top": 4567
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the WordPlay case study",
+        "w": 0,
+        "h": 0,
+        "top": 4592
+      },
+      {
+        "tag": "a",
+        "cls": "card__repo.card__repo--corner",
+        "text": "WordPlay on GitHub (opens in a new",
+        "w": 64,
+        "h": 64,
+        "top": 4567
+      },
+      {
+        "tag": "a",
+        "cls": "timeline__project",
+        "text": "Pewter Platformer",
+        "w": 247,
+        "h": 66,
+        "top": 5181
+      },
+      {
+        "tag": "a",
+        "cls": "timeline__project",
+        "text": "Operations Agent",
+        "w": 242,
+        "h": 66,
+        "top": 5524
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 339,
+        "h": 54,
+        "top": 6690
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 6695
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "GitHub",
+        "w": 114,
+        "h": 44,
+        "top": 6780
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "LinkedIn",
+        "w": 125,
+        "h": 44,
+        "top": 6780
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "Résumé (PDF, opens in a new tab)",
+        "w": 121,
+        "h": 44,
+        "top": 6780
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 6981
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 3038
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [
+      {
+        "tag": "a",
+        "cls": "hero__cue",
+        "text": "Scroll to the work",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Operations Agent case stu",
+        "w": 0,
+        "h": 0,
+        "top": 3564
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the ScorelyAI case study",
+        "w": 0,
+        "h": 0,
+        "top": 3921
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Santa Claws case study",
+        "w": 0,
+        "h": 0,
+        "top": 3924
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Wave Function Collapse ca",
+        "w": 0,
+        "h": 0,
+        "top": 4281
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Pewter Platformer case st",
+        "w": 0,
+        "h": 0,
+        "top": 4281
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the Gestura case study",
+        "w": 0,
+        "h": 0,
+        "top": 4592
+      },
+      {
+        "tag": "a",
+        "cls": "card__hit",
+        "text": "View the WordPlay case study",
+        "w": 0,
+        "h": 0,
+        "top": 4592
+      }
+    ],
+    "blur": 0,
+    "anims": [
+      "blink"
+    ],
+    "sections": [
+      {
+        "id": "top",
+        "top": 0,
+        "h": 3110
+      },
+      {
+        "id": "work",
+        "top": 3110,
+        "h": 1634
+      },
+      {
+        "id": "experience",
+        "top": 4744,
+        "h": 977
+      },
+      {
+        "id": "about",
+        "top": 5721,
+        "h": 636
+      },
+      {
+        "id": "contact",
+        "top": 6357,
+        "h": 595
+      },
+      {
+        "id": "footer",
+        "top": 6952,
+        "h": 114
+      }
+    ],
+    "cards": [
+      {
+        "cls": "card--flagship",
+        "h": 440,
+        "media": "477x358"
+      },
+      {
+        "cls": "card",
+        "h": 299,
+        "media": "190x190"
+      },
+      {
+        "cls": "card",
+        "h": 299,
+        "media": "190x190"
+      },
+      {
+        "cls": "card",
+        "h": 340,
+        "media": "190x190"
+      },
+      {
+        "cls": "card",
+        "h": 340,
+        "media": "190x190"
+      },
+      {
+        "cls": "card",
+        "h": 292,
+        "media": "190x190"
+      },
+      {
+        "cls": "card",
+        "h": 292,
+        "media": "190x190"
+      }
+    ],
+    "wide": [],
+    "chrome": {
+      "mark": "118x58 @28,22",
+      "toggle": "44x44 @1368,29",
+      "ring": "44x44 @1368,3038"
+    },
+    "hero": 3110,
+    "imgs": []
+  },
+  "final-operations-agent-1440-dark": {
+    "url": "/work/operations-agent",
+    "vw": 1440,
+    "vh": 3110,
+    "rootFont": "16px",
+    "docH": 3110,
+    "screens": 1,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": true
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 1440,
+        "h": 2737
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 28,
+        "lh": "42px",
+        "fw": "600",
+        "w": 339,
+        "h": 54
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 146,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 64,
+        "lh": "69.12px",
+        "fw": "700",
+        "w": 1070,
+        "h": 69
+      },
+      ".case__tagline": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "400",
+        "w": 515,
+        "h": 60
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 1070,
+        "h": 24
+      },
+      ".case__note": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 556,
+        "h": 50
+      },
+      ".tech__name": {
+        "fs": 15,
+        "lh": "15px",
+        "fw": "600",
+        "w": 34,
+        "h": 15
+      },
+      ".flow__heading": {
+        "fs": 32,
+        "lh": "32.64px",
+        "fw": "700",
+        "w": 1140,
+        "h": 33
+      },
+      ".flow__title": {
+        "fs": 16,
+        "lh": "20.8px",
+        "fw": "600",
+        "w": 160,
+        "h": 21
+      },
+      ".flow__detail": {
+        "fs": 14,
+        "lh": "20.3px",
+        "fw": "400",
+        "w": 160,
+        "h": 41
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 160,
+        "h": 34
+      },
+      ".flow__bus-title": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 160,
+        "h": 23
+      },
+      ".flow__bus-detail": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 549,
+        "h": 42
+      },
+      ".flow__index": {
+        "fs": 12,
+        "lh": "12px",
+        "fw": "700",
+        "w": 26,
+        "h": 26
+      },
+      ".case__section-title": {
+        "fs": 32,
+        "lh": "32.64px",
+        "fw": "700",
+        "w": 542,
+        "h": 33
+      },
+      ".case__points li": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 495,
+        "h": 99
+      },
+      ".case__foot-title": {
+        "fs": 44,
+        "lh": "44.88px",
+        "fw": "700",
+        "w": 1140,
+        "h": 45
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 438,
+        "h": 53
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 118,
+        "h": 58,
+        "top": 22
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to light theme",
+        "w": 44,
+        "h": 44,
+        "top": 29
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 146,
+        "h": 44,
+        "top": 173
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 339,
+        "h": 54,
+        "top": 2441
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 2446
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 2652
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 3038
+      }
+    ],
+    "small": [],
+    "tiny": [],
+    "zero": [],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 583
+      },
+      {
+        "id": "flow",
+        "top": 647,
+        "h": 424
+      },
+      {
+        "id": "problem",
+        "top": 1070,
+        "h": 448
+      },
+      {
+        "id": "build",
+        "top": 1070,
+        "h": 448
+      },
+      {
+        "id": "outcome",
+        "top": 1518,
+        "h": 300
+      },
+      {
+        "id": "challenge",
+        "top": 1518,
+        "h": 300
+      },
+      {
+        "id": "limitations",
+        "top": 1819,
+        "h": 312
+      },
+      {
+        "id": "case__foot",
+        "top": 2227,
+        "h": 397
+      },
+      {
+        "id": "footer",
+        "top": 2623,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "118x58 @28,22",
+      "toggle": "44x44 @1368,29",
+      "ring": "44x44 @1368,3038"
+    },
+    "hero": 0,
+    "imgs": []
+  },
+  "final-santaclaws-1440-dark": {
+    "url": "/work/santaclaws",
+    "vw": 1440,
+    "vh": 3110,
+    "rootFont": "16px",
+    "docH": 3695,
+    "screens": 1.2,
+    "hOverflow": 0,
+    "mq": {
+      "coarse": true,
+      "hover": false,
+      "reduce": true,
+      "dark": true
+    },
+    "type": {
+      "body": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "400",
+        "w": 1440,
+        "h": 3695
+      },
+      ".pill": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".contact__email": {
+        "fs": 28,
+        "lh": "42px",
+        "fw": "600",
+        "w": 339,
+        "h": 54
+      },
+      ".link-arrow": {
+        "fs": 17,
+        "lh": "25.5px",
+        "fw": "600",
+        "w": 237,
+        "h": 44
+      },
+      ".footer__line": {
+        "fs": 14,
+        "lh": "16.8px",
+        "fw": "500",
+        "w": 290,
+        "h": 46
+      },
+      ".case__back": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "500",
+        "w": 146,
+        "h": 44
+      },
+      ".case__title": {
+        "fs": 64,
+        "lh": "69.12px",
+        "fw": "700",
+        "w": 1070,
+        "h": 69
+      },
+      ".case__tagline": {
+        "fs": 20,
+        "lh": "30px",
+        "fw": "400",
+        "w": 515,
+        "h": 90
+      },
+      ".case__meta": {
+        "fs": 15,
+        "lh": "24px",
+        "fw": "500",
+        "w": 1070,
+        "h": 24
+      },
+      ".tech__name": {
+        "fs": 15,
+        "lh": "15px",
+        "fw": "600",
+        "w": 47,
+        "h": 15
+      },
+      ".flow__heading": {
+        "fs": 32,
+        "lh": "32.64px",
+        "fw": "700",
+        "w": 1140,
+        "h": 33
+      },
+      ".flow__title": {
+        "fs": 16,
+        "lh": "20.8px",
+        "fw": "600",
+        "w": 160,
+        "h": 21
+      },
+      ".flow__detail": {
+        "fs": 14,
+        "lh": "20.3px",
+        "fw": "400",
+        "w": 160,
+        "h": 61
+      },
+      ".flow__branch": {
+        "fs": 14,
+        "lh": "18.2px",
+        "fw": "500",
+        "w": 160,
+        "h": 52
+      },
+      ".flow__bus-title": {
+        "fs": 15,
+        "lh": "22.5px",
+        "fw": "600",
+        "w": 359,
+        "h": 23
+      },
+      ".flow__bus-detail": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 549,
+        "h": 42
+      },
+      ".flow__index": {
+        "fs": 12,
+        "lh": "12px",
+        "fw": "700",
+        "w": 26,
+        "h": 26
+      },
+      ".case__section-title": {
+        "fs": 32,
+        "lh": "32.64px",
+        "fw": "700",
+        "w": 542,
+        "h": 33
+      },
+      ".case__points li": {
+        "fs": 16,
+        "lh": "24.8px",
+        "fw": "400",
+        "w": 495,
+        "h": 124
+      },
+      ".shots__cap": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 549,
+        "h": 21
+      },
+      ".shots__count": {
+        "fs": 14,
+        "lh": "21px",
+        "fw": "400",
+        "w": 29,
+        "h": 21
+      },
+      ".case__foot-title": {
+        "fs": 44,
+        "lh": "44.88px",
+        "fw": "700",
+        "w": 1140,
+        "h": 45
+      },
+      ".case__foot-lede": {
+        "fs": 17,
+        "lh": "26.35px",
+        "fw": "400",
+        "w": 438,
+        "h": 53
+      }
+    },
+    "targets": [
+      {
+        "tag": "button",
+        "cls": "shell__mark",
+        "text": "Open menu",
+        "w": 118,
+        "h": 58,
+        "top": 22
+      },
+      {
+        "tag": "button",
+        "cls": "theme-toggle",
+        "text": "Switch to light theme",
+        "w": 44,
+        "h": 44,
+        "top": 29
+      },
+      {
+        "tag": "a",
+        "cls": "case__back",
+        "text": "back to the work",
+        "w": 146,
+        "h": 44,
+        "top": 173
+      },
+      {
+        "tag": "ul",
+        "cls": "shots__track",
+        "text": "Santa Claws screens, use the arrow",
+        "w": 1140,
+        "h": 653,
+        "top": 2294
+      },
+      {
+        "tag": "button",
+        "cls": "shots__expand",
+        "text": "Expand: The nice-list leads table ",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "button",
+        "cls": "shots__arrow",
+        "text": "Previous screen",
+        "w": 44,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 1",
+        "w": 36,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 2",
+        "w": 36,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 3",
+        "w": 36,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__arrow",
+        "text": "Next screen",
+        "w": 44,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dialog-close",
+        "text": "Close",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "a",
+        "cls": "contact__email",
+        "text": "pmdoshi@ucsc.edu",
+        "w": 339,
+        "h": 54,
+        "top": 3321
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 3326
+      },
+      {
+        "tag": "a",
+        "cls": "link-arrow",
+        "text": "Santa Claws on GitHub",
+        "w": 237,
+        "h": 44,
+        "top": 3409
+      },
+      {
+        "tag": "a",
+        "cls": "",
+        "text": "Back to the top",
+        "w": 120,
+        "h": 44,
+        "top": 3610
+      },
+      {
+        "tag": "button",
+        "cls": "scroll-ring",
+        "text": "Back to top",
+        "w": 44,
+        "h": 44,
+        "top": 3038
+      }
+    ],
+    "small": [
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 1",
+        "w": 36,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 2",
+        "w": 36,
+        "h": 44,
+        "top": 2967
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dot",
+        "text": "Screen 3",
+        "w": 36,
+        "h": 44,
+        "top": 2967
+      }
+    ],
+    "tiny": [],
+    "zero": [
+      {
+        "tag": "button",
+        "cls": "shots__expand",
+        "text": "Expand: The nice-list leads table ",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      },
+      {
+        "tag": "button",
+        "cls": "shots__dialog-close",
+        "text": "Close",
+        "w": 0,
+        "h": 0,
+        "top": 0
+      }
+    ],
+    "blur": 0,
+    "anims": [],
+    "sections": [
+      {
+        "id": "case__header",
+        "top": 0,
+        "h": 601
+      },
+      {
+        "id": "flow",
+        "top": 665,
+        "h": 373
+      },
+      {
+        "id": "problem",
+        "top": 1038,
+        "h": 523
+      },
+      {
+        "id": "build",
+        "top": 1038,
+        "h": 523
+      },
+      {
+        "id": "outcome",
+        "top": 1561,
+        "h": 300
+      },
+      {
+        "id": "challenge",
+        "top": 1561,
+        "h": 300
+      },
+      {
+        "id": "limitations",
+        "top": 1861,
+        "h": 312
+      },
+      {
+        "id": "shots",
+        "top": 2173,
+        "h": 838
+      },
+      {
+        "id": "case__foot",
+        "top": 3107,
+        "h": 475
+      },
+      {
+        "id": "footer",
+        "top": 3581,
+        "h": 114
+      }
+    ],
+    "cards": [],
+    "wide": [],
+    "chrome": {
+      "mark": "118x58 @28,22",
+      "toggle": "44x44 @1368,29",
+      "ring": "44x44 @1368,3038"
+    },
+    "hero": 0,
+    "imgs": [
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 475,
+        "dw": 1138,
+        "loading": "lazy",
+        "fp": null
+      },
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 475,
+        "dw": 1032,
+        "loading": "lazy",
+        "fp": null
+      },
+      {
+        "src": "http://localhost:3113/_next/image",
+        "w": 264,
+        "dw": 343,
+        "loading": "lazy",
+        "fp": null
+      }
+    ]
+  },
+  "final-home-390-light-menu": {
+    "menu": "390x435 @0,409",
+    "close": "44x44",
+    "links": [
+      {
+        "text": "Work1",
+        "w": 350,
+        "h": 57,
+        "fs": "31.2px"
+      },
+      {
+        "text": "Experience2",
+        "w": 350,
+        "h": 57,
+        "fs": "31.2px"
+      },
+      {
+        "text": "About3",
+        "w": 350,
+        "h": 57,
+        "fs": "31.2px"
+      },
+      {
+        "text": "Contact4",
+        "w": 350,
+        "h": 57,
+        "fs": "31.2px"
+      }
+    ],
+    "foot": [
+      {
+        "text": "pmdoshi@ucsc.edu",
+        "w": 241,
+        "h": 48,
+        "fs": "19.89px"
+      },
+      {
+        "text": "GitHub",
+        "w": 111,
+        "h": 44,
+        "fs": "15px"
+      },
+      {
+        "text": "LinkedIn",
+        "w": 111,
+        "h": 44,
+        "fs": "15px"
+      },
+      {
+        "text": "Résumé",
+        "w": 111,
+        "h": 44,
+        "fs": "15px"
+      }
+    ],
+    "keycapsVisible": false
+  },
+  "final-home-390-dark-menu": {
+    "menu": "390x435 @0,409",
+    "close": "44x44",
+    "links": [
+      {
+        "text": "Work1",
+        "w": 350,
+        "h": 57,
+        "fs": "31.2px"
+      },
+      {
+        "text": "Experience2",
+        "w": 350,
+        "h": 57,
+        "fs": "31.2px"
+      },
+      {
+        "text": "About3",
+        "w": 350,
+        "h": 57,
+        "fs": "31.2px"
+      },
+      {
+        "text": "Contact4",
+        "w": 350,
+        "h": 57,
+        "fs": "31.2px"
+      }
+    ],
+    "foot": [
+      {
+        "text": "pmdoshi@ucsc.edu",
+        "w": 241,
+        "h": 48,
+        "fs": "19.89px"
+      },
+      {
+        "text": "GitHub",
+        "w": 111,
+        "h": 44,
+        "fs": "15px"
+      },
+      {
+        "text": "LinkedIn",
+        "w": 111,
+        "h": 44,
+        "fs": "15px"
+      },
+      {
+        "text": "Résumé",
+        "w": 111,
+        "h": 44,
+        "fs": "15px"
+      }
+    ],
+    "keycapsVisible": false
+  }
+}
