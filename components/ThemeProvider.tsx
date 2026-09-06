@@ -10,7 +10,7 @@ export default function ThemeProvider({
   return (
     <NextThemes
       attribute="class"
-      defaultTheme="light"
+      defaultTheme="system"
       enableSystem
       /* Without this, every transitioned property on the page animates at once
        * when the theme flips — the "everything animates" smear. */
