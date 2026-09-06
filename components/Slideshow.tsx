@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { ProjectMedia } from "@/data/projects";
-import { ArrowLeft, ArrowRight } from "@/components/Icon";
+import { ArrowLeft, ArrowRight, Cross, Expand } from "@/components/Icon";
 
 /**
  * The screens, as a slideshow, at the END of the case study.
@@ -43,6 +43,16 @@ export default function Slideshow({
   const frame = useRef(0);
   const [index, setIndex] = useState(0);
 
+  // Phones only (CSS): a tall full-page capture keeps its top crop in the
+  // stage, and this is the way to see the rest of it, scrollable and
+  // pinch-zoomable, in a native dialog.
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [expanded, setExpanded] = useState<ProjectMedia | null>(null);
+
+  useEffect(() => {
+    if (expanded) dialogRef.current?.showModal();
+  }, [expanded]);
+
   const count = media.length;
   const last = count - 1;
 
@@ -56,8 +66,11 @@ export default function Slideshow({
       const target = track.children[i] as HTMLElement | undefined;
       if (!target) return;
 
+      // The track pads back to the column on phones (PR 08, the peek), so a
+      // slide's own offset overshoots the snap position by that padding.
+      const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
       const from = track.scrollLeft;
-      const to = target.offsetLeft - track.offsetLeft;
+      const to = target.offsetLeft - track.offsetLeft - pad;
       const distance = to - from;
 
       stop();
@@ -174,8 +187,18 @@ export default function Slideshow({
                     width={m.width}
                     height={m.height}
                     className="shots__img"
-                    sizes="(max-width: 760px) 92vw, 1140px"
+                    sizes="(max-width: 760px) 84vw, 1140px"
                   />
+                  {m.height > m.width && (
+                    <button
+                      type="button"
+                      className="shots__expand"
+                      aria-label={`Expand: ${m.alt}`}
+                      onClick={() => setExpanded(m)}
+                    >
+                      <Expand />
+                    </button>
+                  )}
                 </div>
               </div>
               {m.caption && (
@@ -228,6 +251,36 @@ export default function Slideshow({
           </p>
         </div>
       )}
+
+      <dialog
+        ref={dialogRef}
+        className="shots__dialog"
+        aria-label={expanded?.alt}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) dialogRef.current?.close();
+        }}
+        onClose={() => setExpanded(null)}
+      >
+        <button
+          type="button"
+          className="shots__dialog-close"
+          aria-label="Close"
+          onClick={() => dialogRef.current?.close()}
+        >
+          <Cross />
+        </button>
+        <div className="shots__dialog-scroll">
+          {expanded && (
+            <Image
+              src={expanded.src}
+              alt={expanded.alt}
+              width={expanded.width}
+              height={expanded.height}
+              sizes="100vw"
+            />
+          )}
+        </div>
+      </dialog>
     </section>
   );
 }
