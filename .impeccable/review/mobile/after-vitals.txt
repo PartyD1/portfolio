@@ -1,0 +1,3 @@
+/: LCP 600ms (h2.section__title)  CLS 0.000 (raw 0.000024849005730657785)  longtasks 1 (over100ms: 0, longest 65ms)  blur 0  loadWall 3314ms  PASS LCP<2000  PASS CLS=0.00  PASS no-longtask>100ms-after-load
+/work/operations-agent: LCP 584ms (h1.case__title)  CLS 0.000 (raw 0)  longtasks 1 (over100ms: 0, longest 62ms)  blur 0  loadWall 3207ms  PASS LCP<2000  PASS CLS=0.00  PASS no-longtask>100ms-after-load
+/work/santaclaws: LCP 584ms (p.case__tagline)  CLS 0.000 (raw 0)  longtasks 1 (over100ms: 0, longest 63ms)  blur 0  loadWall 3247ms  PASS LCP<2000  PASS CLS=0.00  PASS no-longtask>100ms-after-load

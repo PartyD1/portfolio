@@ -7,7 +7,12 @@
  *   node scripts/mobile-capture.mjs [--port 3111] [--out .impeccable/review/mobile]
  *        [--routes /,/work/operations-agent] [--widths 390,320,360,430] [--themes light,dark]
  *        [--landscape] [--tablet] [--no-segments] [--no-sheet] [--menu] [--motion] [--root20]
- *        [--label after-]
+ *        [--vitals] [--label after-]
+ *
+ * --vitals (PR 10): at 390 width, light theme, CPU throttled 4x and network
+ * shaped to a fast-4G profile (9 Mbps, 170ms RTT) via CDP, reports LCP
+ * (ms + element), CLS (excluding shifts with recent input) and long tasks
+ * (count + longest) per route, plus the existing backdrop-filter count.
  *
  * playwright-core is NOT a dependency of this project on purpose (CLAUDE.md);
  * it is installed with --no-save and resolved from the worktree's node_modules.
@@ -50,6 +55,7 @@ const MOTION = flag("motion");
 const ROOT20 = flag("root20");
 const LANDSCAPE = flag("landscape");
 const TABLET = flag("tablet");
+const VITALS = flag("vitals");
 
 /* Common phone heights for the widths the matrix uses. Anything else gets a
  * 19.5:9 guess, which is what most phones are now. */
@@ -244,6 +250,106 @@ async function sheet(browser, bufs, tag, cssW, cssH) {
   await ctx.close();
 }
 
+/* The init script runs before any page script, so it never misses an early
+ * LCP candidate or a layout shift that fires during hydration. Results land
+ * on window.__vitals for a later page.evaluate() to read back. */
+function installVitalsObserver() {
+  window.__vitals = { lcp: null, lcpEl: null, cls: 0, longtasks: [] };
+  try {
+    new PerformanceObserver((list) => {
+      const entries = list.getEntries();
+      const last = entries[entries.length - 1];
+      if (last) {
+        window.__vitals.lcp = Math.round(last.startTime);
+        const el = last.element;
+        window.__vitals.lcpEl = el
+          ? el.tagName.toLowerCase() + (el.className ? "." + String(el.className).split(" ")[0] : "")
+          : last.url
+            ? "img:" + last.url.split("/").pop()
+            : null;
+      }
+    }).observe({ type: "largest-contentful-paint", buffered: true });
+  } catch {}
+  try {
+    new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (!entry.hadRecentInput) window.__vitals.cls += entry.value;
+      }
+    }).observe({ type: "layout-shift", buffered: true });
+  } catch {}
+  try {
+    new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        window.__vitals.longtasks.push(Math.round(entry.duration));
+      }
+    }).observe({ type: "longtask", buffered: true });
+  } catch {}
+}
+
+async function runVitals(browser) {
+  const lines = [];
+  for (const route of ROUTES) {
+    const ctx = await browser.newContext({
+      viewport: { width: 390, height: 844 },
+      deviceScaleFactor: 2,
+      isMobile: true,
+      hasTouch: true,
+      reducedMotion: "no-preference",
+    });
+    await ctx.addInitScript(() => localStorage.setItem("theme", "light"));
+    await ctx.addInitScript(installVitalsObserver);
+    const page = await ctx.newPage();
+    const cdp = await ctx.newCDPSession(page);
+    await cdp.send("Network.enable");
+    await cdp.send("Network.emulateNetworkConditions", {
+      offline: false,
+      downloadThroughput: (9 * 1024 * 1024) / 8,
+      uploadThroughput: (9 * 1024 * 1024) / 8,
+      latency: 170,
+    });
+    await cdp.send("Emulation.setCPUThrottlingRate", { rate: 4 });
+
+    const start = Date.now();
+    await page.goto(BASE + route, { waitUntil: "load" });
+    await sleep(1500);
+    // A full scroll, so every content-visibility:auto section (PR 10)
+    // un-skips and its real height replaces the 600px placeholder guess -
+    // exactly where a scroll-triggered shift would show up if the guess is
+    // wrong enough to matter.
+    await settle(page);
+    const vitals = await page.evaluate(() => {
+      const v = window.__vitals || { lcp: null, lcpEl: null, cls: 0, longtasks: [] };
+      const blur = [...document.querySelectorAll("*")].filter((el) => {
+        const cs = getComputedStyle(el);
+        const b = cs.getPropertyValue("backdrop-filter") || cs.getPropertyValue("-webkit-backdrop-filter");
+        return b && b !== "none";
+      }).length;
+      return { ...v, blur };
+    });
+    const loadMs = Date.now() - start;
+    await cdp.send("Emulation.setCPUThrottlingRate", { rate: 1 });
+    await ctx.close();
+
+    const longtasksOver100 = vitals.longtasks.filter((d) => d > 100);
+    // The typewriter's caret moves a sub-pixel amount as it types, which the
+    // Layout Instability API reports as a real (if minuscule, ~0.000002 per
+    // keystroke) shift. Round to the doc's own stated precision (CLS 0.00)
+    // rather than IEEE-754 zero, so a caret mid-type does not fail a route
+    // that has no visible shift.
+    const clsRounded = Number(vitals.cls.toFixed(3));
+    const line =
+      `${route}: LCP ${vitals.lcp}ms (${vitals.lcpEl})  CLS ${vitals.cls.toFixed(3)} (raw ${vitals.cls})  ` +
+      `longtasks ${vitals.longtasks.length} (over100ms: ${longtasksOver100.length}, longest ${vitals.longtasks.length ? Math.max(...vitals.longtasks) : 0}ms)  ` +
+      `blur ${vitals.blur}  loadWall ${loadMs}ms  ` +
+      `${vitals.lcp !== null && vitals.lcp < 2000 ? "PASS" : "FAIL"} LCP<2000  ` +
+      `${clsRounded === 0 ? "PASS" : "FAIL"} CLS=0.00  ` +
+      `${longtasksOver100.length === 0 ? "PASS" : "FAIL"} no-longtask>100ms-after-load`;
+    lines.push(line);
+    console.error("vitals", route);
+  }
+  return lines.join("\n");
+}
+
 async function main() {
   await waitServer();
   const exe = process.env.PW_EXE;
@@ -357,6 +463,12 @@ async function main() {
       summaries.push(`== motion ${route} 390 ==\n${JSON.stringify(all[tag])}`);
       await ctx.close();
     }
+  }
+
+  if (VITALS) {
+    const vitalsReport = await runVitals(browser);
+    summaries.push(`== vitals (390, 4x CPU, fast-4G) ==\n${vitalsReport}`);
+    fs.writeFileSync(path.join(OUT, `${LABEL}vitals.txt`), vitalsReport);
   }
 
   fs.writeFileSync(path.join(OUT, `${LABEL}metrics.json`), JSON.stringify(all, null, 2));
