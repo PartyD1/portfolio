@@ -124,3 +124,20 @@ export function Check({ className = "icon" }: IconProps) {
     </svg>
   );
 }
+
+export function Expand({ className = "icon" }: IconProps) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M11 3h6v6M17 3l-7 7M9 17H3v-6M3 17l7-7" />
+    </svg>
+  );
+}

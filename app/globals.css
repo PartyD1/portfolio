@@ -4212,15 +4212,19 @@ svg {
   color: var(--ink-2);
 }
 
+/* Press feedback is feedback, not motion: every other pressable on the site
+ * has its :active scale outside the reduced-motion guard, and this one
+ * moved out to match (PR 08 of the mobile overhaul). */
+.shots__arrow:not(:disabled):active {
+  transform: scale(0.94);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .shots__arrow {
     transition:
       transform 160ms var(--ease-out),
       background 160ms ease,
       color 160ms ease;
-  }
-  .shots__arrow:not(:disabled):active {
-    transform: scale(0.94);
   }
   .shots__dot::before {
     transition:
@@ -4241,11 +4245,39 @@ svg {
 
 @media (max-width: 760px) {
   .shots {
-    /* Sized off the column, not the viewport: on a phone the frame is always
-     * the full column, so the stage only has to be as tall as the shortest
-     * shape that fills it. */
-    --shots-h: calc((100vw - var(--gutter) * 2) / 1.6);
-    padding-top: 48px;
+    /* PR 08 of the mobile overhaul (D11): the stage is the 16:10 the tall
+     * captures fill at 88% of the column, so a slide's height agrees with
+     * its own peeked width; landscape captures still sit centred in it. */
+    --shots-h: calc((100vw - var(--gutter) * 2) * 0.88 / 1.6);
+    padding-top: 44px;
+  }
+  .shots__title {
+    margin-bottom: 16px;
+  }
+  /* The track bleeds to the viewport edges and pads back to the column, so
+   * a slide snaps to the column's left edge and the next slide's first
+   * 12% is visible past it. Nothing is clipped at the gutter. */
+  .shots__track {
+    gap: 12px;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
+  }
+  .shots__slide {
+    flex: 0 0 88%;
+  }
+  /* Trailing room so the LAST slide can also snap to the start position. */
+  .shots__track::after {
+    content: "";
+    flex: 0 0 calc(12% - 12px);
+  }
+  .shots__cap {
+    margin-top: 10px;
+    font-size: 0.9375rem;
+  }
+  .shots__controls {
+    margin-top: 14px;
+    gap: 8px;
   }
 
   /* THE ONE PLACE THIS SET IS CROPPED, and it is a phone-only decision.
@@ -4263,6 +4295,140 @@ svg {
   .shots__frame[data-tall] .shots__img {
     object-fit: cover;
     object-position: top;
+  }
+}
+
+.shots__expand {
+  display: none;
+}
+@media (max-width: 760px) {
+  .shots__expand {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid var(--glass-edge);
+    background: var(--glass-raised);
+    color: var(--ink);
+    cursor: pointer;
+    transition: transform 160ms var(--ease-out);
+  }
+  .shots__expand svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .shots__expand:active {
+    transform: scale(0.97);
+  }
+}
+
+/* The dialog: the whole screen, the page's ground, the screenshot at full
+ * width scrolling inside it. Native, so focus, Escape and inertness come
+ * from the platform. No backdrop-filter on the close pill (PR #33 removed
+ * blur site-wide, before this plan was written): tinted glass, as
+ * everywhere else. */
+.shots__dialog {
+  width: 100vw;
+  max-width: none;
+  height: 100svh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--ground);
+  color: var(--ink);
+}
+.shots__dialog::backdrop {
+  background: var(--ground);
+}
+.shots__dialog-scroll {
+  height: 100%;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: max(64px, calc(var(--safe-top) + 56px)) max(12px, var(--safe-right))
+    max(24px, var(--safe-bottom)) max(12px, var(--safe-left));
+}
+.shots__dialog-scroll img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--glass-edge);
+  background: var(--media-well);
+}
+.shots__dialog-close {
+  position: fixed;
+  top: max(12px, var(--safe-top));
+  right: max(12px, var(--safe-right));
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--glass-edge);
+  background: var(--glass-strong);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out);
+}
+.shots__dialog-close svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+}
+.shots__dialog-close:active {
+  transform: scale(0.97);
+}
+/* The page behind must not scroll while the dialog is up. */
+html:has(.shots__dialog[open]) {
+  overflow: hidden;
+}
+
+/* Motion: a modal, so nothing from scale(0) and the exit is faster than the
+ * entrance. @starting-style is the enter transition; engines without it show
+ * the dialog instantly, which is the correct fallback. */
+.shots__dialog[open] {
+  opacity: 1;
+  scale: 1;
+  transition:
+    opacity 200ms var(--ease-out),
+    scale 200ms var(--ease-out),
+    display 200ms allow-discrete,
+    overlay 200ms allow-discrete;
+  @starting-style {
+    opacity: 0;
+    scale: 0.98;
+  }
+}
+.shots__dialog {
+  opacity: 0;
+  scale: 1;
+  transition:
+    opacity 140ms var(--ease-out),
+    display 140ms allow-discrete,
+    overlay 140ms allow-discrete;
+}
+@media (prefers-reduced-motion: reduce) {
+  .shots__dialog[open] {
+    scale: 1;
+    @starting-style {
+      scale: 1;
+    }
   }
 }
 
@@ -4329,6 +4495,23 @@ svg {
      * two-column rule above already says minmax(0, 1fr) for the same reason. */
     grid-template-columns: minmax(0, 1fr);
   }
+  .case__section-title {
+    /* 26px at 390. */
+    font-size: clamp(24px, 6.7vw, 32px);
+  }
+  .case__points {
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .case__points li {
+    padding-left: 20px;
+    /* Body parity: the bullets are the body of a case study. */
+    font-size: 1.0625rem;
+    line-height: 1.5;
+  }
+  .case__points li::before {
+    top: 0.6em;
+  }
 }
 
 /* --- the foot: the highest-intent moment on the site --------------------- */
@@ -4373,12 +4556,32 @@ svg {
   .case__header {
     padding-top: 92px;
   }
+  /* 44px, PR 08 of the mobile overhaul (was 64px): the 17px bullets add
+   * about 6% to each section's height and this cut takes it back. */
   .case__section {
-    padding-top: 64px;
+    padding-top: 44px;
   }
   .case__foot {
-    margin-top: 72px;
-    padding: 56px 0 96px;
+    margin-top: 56px;
+    padding: 44px 0 88px;
+  }
+  .case__foot-title {
+    /* 30px at 390. */
+    font-size: clamp(28px, 7.7vw, 44px);
+  }
+  .case__foot-lede {
+    margin-top: 14px;
+  }
+  /* Overrides the desktop 28px above (equal specificity, source order):
+   * both this rule and the phone .contact__email path resolve through the
+   * .address wrapper (PR 05). */
+  .case__foot .address,
+  .case__foot .contact__email {
+    margin-top: 22px;
+  }
+  .case__foot-links {
+    gap: 10px;
+    margin-top: 24px;
   }
 }
 
