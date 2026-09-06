@@ -7,12 +7,14 @@
  *   node scripts/mobile-capture.mjs [--port 3111] [--out .impeccable/review/mobile]
  *        [--routes /,/work/operations-agent] [--widths 390,320,360,430] [--themes light,dark]
  *        [--landscape] [--tablet] [--no-segments] [--no-sheet] [--menu] [--motion] [--root20]
- *        [--vitals] [--label after-]
+ *        [--vitals] [--system-theme] [--label after-]
  *
  * --vitals (PR 10): at 390 width, light theme, CPU throttled 4x and network
  * shaped to a fast-4G profile (9 Mbps, 170ms RTT) via CDP, reports LCP
  * (ms + element), CLS (excluding shifts with recent input) and long tasks
  * (count + longest) per route, plus the existing backdrop-filter count.
+ * --system-theme (PR 11): a cold visit with no seeded localStorage.theme,
+ * at colorScheme dark and light, checks the page follows the OS.
  *
  * playwright-core is NOT a dependency of this project on purpose (CLAUDE.md);
  * it is installed with --no-save and resolved from the worktree's node_modules.
@@ -56,6 +58,7 @@ const ROOT20 = flag("root20");
 const LANDSCAPE = flag("landscape");
 const TABLET = flag("tablet");
 const VITALS = flag("vitals");
+const SYSTEM_THEME = flag("system-theme");
 
 /* Common phone heights for the widths the matrix uses. Anything else gets a
  * 19.5:9 guess, which is what most phones are now. */
@@ -469,6 +472,40 @@ async function main() {
     const vitalsReport = await runVitals(browser);
     summaries.push(`== vitals (390, 4x CPU, fast-4G) ==\n${vitalsReport}`);
     fs.writeFileSync(path.join(OUT, `${LABEL}vitals.txt`), vitalsReport);
+  }
+
+  if (SYSTEM_THEME) {
+    for (const colorScheme of ["dark", "light"]) {
+      const tag = `${LABEL}home-390-system-${colorScheme}`;
+      /* No seeded localStorage.theme: this is the one check for whether a
+       * phone whose OS is set to dark opens the site dark on a cold visit. */
+      const ctx = await browser.newContext({
+        viewport: { width: 390, height: 844 },
+        deviceScaleFactor: 2,
+        isMobile: true,
+        hasTouch: true,
+        reducedMotion: "reduce",
+        colorScheme,
+      });
+      const page = await ctx.newPage();
+      await page.goto(BASE + "/", { waitUntil: "load" });
+      await sleep(400);
+      const result = await page.evaluate(() => ({
+        htmlClass: document.documentElement.className,
+        groundMeta: [...document.querySelectorAll('meta[name="theme-color"]')].map((m) => ({
+          media: m.media,
+          content: m.content,
+        })),
+        computedGround: getComputedStyle(document.documentElement).getPropertyValue("--ground").trim(),
+      }));
+      const isDark = result.htmlClass.includes("dark");
+      const wants = colorScheme === "dark";
+      all[tag] = result;
+      summaries.push(
+        `== system-theme colorScheme=${colorScheme} ==\n${JSON.stringify(result)}\n${isDark === wants ? "PASS" : "FAIL"} follows-system (expected ${wants ? "dark" : "light"}, got ${isDark ? "dark" : "light"})`,
+      );
+      await ctx.close();
+    }
   }
 
   fs.writeFileSync(path.join(OUT, `${LABEL}metrics.json`), JSON.stringify(all, null, 2));

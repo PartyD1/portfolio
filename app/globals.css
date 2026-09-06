@@ -2276,6 +2276,7 @@ svg {
    * no backdrop-filter of their own (glass on glass is a wasted blur). */
   .menu__foot-row {
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 8px;
   }
   .menu__foot-row a,
@@ -4809,6 +4810,15 @@ html:has(.shots__dialog[open]) {
   }
   /* The screenshot well is already opaque; the wash keeps its blobs: the
    * preference is about surfaces over content, not about the ground. */
+}
+
+@media (forced-colors: active) {
+  /* The gradient rails vanish under forced colours; give them the system
+   * text colour so the order they draw survives. */
+  .timeline__list::before,
+  .flow__steps::before {
+    background: CanvasText;
+  }
 }
 
 @theme inline {
