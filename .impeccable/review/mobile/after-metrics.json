@@ -4,8 +4,8 @@
     "vw": 320,
     "vh": 568,
     "rootFont": "16px",
-    "docH": 5638,
-    "screens": 9.9,
+    "docH": 5690,
+    "screens": 10,
     "hOverflow": 0,
     "mq": {
       "coarse": true,
@@ -19,7 +19,7 @@
         "lh": "25.5px",
         "fw": "400",
         "w": 320,
-        "h": 5638
+        "h": 5690
       },
       ".hero__title": {
         "fs": 32,
@@ -373,12 +373,20 @@
         "top": 5250
       },
       {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 5302
+      },
+      {
         "tag": "a",
         "cls": "link-arrow",
         "text": "GitHub",
         "w": 114,
         "h": 44,
-        "top": 5322
+        "top": 5374
       },
       {
         "tag": "a",
@@ -386,7 +394,7 @@
         "text": "LinkedIn",
         "w": 125,
         "h": 44,
-        "top": 5322
+        "top": 5374
       },
       {
         "tag": "a",
@@ -394,7 +402,7 @@
         "text": "Résumé (PDF, opens in a new tab)",
         "w": 121,
         "h": 44,
-        "top": 5376
+        "top": 5428
       },
       {
         "tag": "a",
@@ -402,7 +410,7 @@
         "text": "Back to the top",
         "w": 92,
         "h": 44,
-        "top": 5553
+        "top": 5605
       },
       {
         "tag": "button",
@@ -501,11 +509,11 @@
       {
         "id": "contact",
         "top": 4959,
-        "h": 564
+        "h": 616
       },
       {
         "id": "footer",
-        "top": 5524,
+        "top": 5576,
         "h": 114
       }
     ],
@@ -560,8 +568,8 @@
     "vw": 320,
     "vh": 568,
     "rootFont": "16px",
-    "docH": 4751,
-    "screens": 8.4,
+    "docH": 4803,
+    "screens": 8.5,
     "hOverflow": 0,
     "mq": {
       "coarse": true,
@@ -575,7 +583,7 @@
         "lh": "25.5px",
         "fw": "400",
         "w": 320,
-        "h": 4751
+        "h": 4803
       },
       ".pill": {
         "fs": 14,
@@ -752,12 +760,20 @@
         "top": 4497
       },
       {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 4549
+      },
+      {
         "tag": "a",
         "cls": "",
         "text": "Back to the top",
         "w": 92,
         "h": 44,
-        "top": 4666
+        "top": 4718
       },
       {
         "tag": "button",
@@ -812,11 +828,11 @@
       {
         "id": "case__foot",
         "top": 4260,
-        "h": 377
+        "h": 429
       },
       {
         "id": "footer",
-        "top": 4637,
+        "top": 4689,
         "h": 114
       }
     ],
@@ -1204,6 +1220,14 @@
         "top": 5165
       },
       {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 5167
+      },
+      {
         "tag": "a",
         "cls": "link-arrow",
         "text": "GitHub",
@@ -1581,6 +1605,14 @@
         "w": 291,
         "h": 48,
         "top": 4060
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 4062
       },
       {
         "tag": "a",
@@ -2035,6 +2067,14 @@
         "top": 5129
       },
       {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 5131
+      },
+      {
         "tag": "a",
         "cls": "link-arrow",
         "text": "GitHub",
@@ -2414,6 +2454,14 @@
         "top": 3936
       },
       {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 3938
+      },
+      {
         "tag": "a",
         "cls": "",
         "text": "Back to the top",
@@ -2497,8 +2545,8 @@
     "vw": 320,
     "vh": 568,
     "rootFont": "16px",
-    "docH": 5638,
-    "screens": 9.9,
+    "docH": 5690,
+    "screens": 10,
     "hOverflow": 0,
     "mq": {
       "coarse": true,
@@ -2512,7 +2560,7 @@
         "lh": "25.5px",
         "fw": "400",
         "w": 320,
-        "h": 5638
+        "h": 5690
       },
       ".hero__title": {
         "fs": 32,
@@ -2866,12 +2914,20 @@
         "top": 5250
       },
       {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 5302
+      },
+      {
         "tag": "a",
         "cls": "link-arrow",
         "text": "GitHub",
         "w": 114,
         "h": 44,
-        "top": 5322
+        "top": 5374
       },
       {
         "tag": "a",
@@ -2879,7 +2935,7 @@
         "text": "LinkedIn",
         "w": 125,
         "h": 44,
-        "top": 5322
+        "top": 5374
       },
       {
         "tag": "a",
@@ -2887,7 +2943,7 @@
         "text": "Résumé (PDF, opens in a new tab)",
         "w": 121,
         "h": 44,
-        "top": 5376
+        "top": 5428
       },
       {
         "tag": "a",
@@ -2895,7 +2951,7 @@
         "text": "Back to the top",
         "w": 92,
         "h": 44,
-        "top": 5553
+        "top": 5605
       },
       {
         "tag": "button",
@@ -2994,11 +3050,11 @@
       {
         "id": "contact",
         "top": 4959,
-        "h": 564
+        "h": 616
       },
       {
         "id": "footer",
-        "top": 5524,
+        "top": 5576,
         "h": 114
       }
     ],
@@ -3053,8 +3109,8 @@
     "vw": 320,
     "vh": 568,
     "rootFont": "16px",
-    "docH": 4751,
-    "screens": 8.4,
+    "docH": 4803,
+    "screens": 8.5,
     "hOverflow": 0,
     "mq": {
       "coarse": true,
@@ -3068,7 +3124,7 @@
         "lh": "25.5px",
         "fw": "400",
         "w": 320,
-        "h": 4751
+        "h": 4803
       },
       ".pill": {
         "fs": 14,
@@ -3245,12 +3301,20 @@
         "top": 4497
       },
       {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 4549
+      },
+      {
         "tag": "a",
         "cls": "",
         "text": "Back to the top",
         "w": 92,
         "h": 44,
-        "top": 4666
+        "top": 4718
       },
       {
         "tag": "button",
@@ -3305,11 +3369,11 @@
       {
         "id": "case__foot",
         "top": 4260,
-        "h": 377
+        "h": 429
       },
       {
         "id": "footer",
-        "top": 4637,
+        "top": 4689,
         "h": 114
       }
     ],
@@ -3697,6 +3761,14 @@
         "top": 5165
       },
       {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 5167
+      },
+      {
         "tag": "a",
         "cls": "link-arrow",
         "text": "GitHub",
@@ -4074,6 +4146,14 @@
         "w": 291,
         "h": 48,
         "top": 4060
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 4062
       },
       {
         "tag": "a",
@@ -4528,6 +4608,14 @@
         "top": 5129
       },
       {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 5131
+      },
+      {
         "tag": "a",
         "cls": "link-arrow",
         "text": "GitHub",
@@ -4905,6 +4993,14 @@
         "w": 291,
         "h": 48,
         "top": 3936
+      },
+      {
+        "tag": "button",
+        "cls": "copy",
+        "text": "Copy email address",
+        "w": 44,
+        "h": 44,
+        "top": 3938
       },
       {
         "tag": "a",

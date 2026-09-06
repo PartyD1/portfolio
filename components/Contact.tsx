@@ -1,6 +1,7 @@
 import { availability, links } from "@/data/site";
 import { ArrowUpRight } from "@/components/Icon";
 import ResumeLink from "@/components/ResumeLink";
+import CopyEmail from "@/components/CopyEmail";
 
 export default function Contact() {
   return (
@@ -25,9 +26,12 @@ export default function Contact() {
       {availability.seeking && (
         <p className="contact__seeking">{availability.seeking}</p>
       )}
-      <a className="contact__email" href={`mailto:${links.email}`}>
-        {links.email}
-      </a>
+      <div className="address">
+        <a className="contact__email" href={`mailto:${links.email}`}>
+          {links.email}
+        </a>
+        <CopyEmail email={links.email} />
+      </div>
       <div className="contact__links">
         <a
           className="link-arrow"

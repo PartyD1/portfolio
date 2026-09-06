@@ -3540,6 +3540,82 @@ svg {
   }
 }
 
+/* The copy control (D13): a phone with no mail client configured opens
+ * nothing on mailto:, and a recruiter should not have to retype an
+ * address. Renders beside the email wherever it appears (Contact, the case
+ * foot); the menu foot does not use this wrapper. */
+.address {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 26px;
+}
+.address .contact__email {
+  margin-top: 0;
+}
+.copy {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--glass-edge);
+  background: var(--glass-raised);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition:
+    transform 160ms var(--ease-out),
+    border-color 200ms var(--ease-out);
+}
+.copy:active {
+  transform: scale(0.97);
+}
+.copy__icon {
+  grid-area: 1 / 1;
+  width: 18px;
+  height: 18px;
+  opacity: 0;
+  transition:
+    opacity 160ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+.copy__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.copy__icon--copy {
+  opacity: 1;
+}
+.copy[data-done] .copy__icon--copy {
+  opacity: 0;
+}
+.copy[data-done] .copy__icon--done {
+  opacity: 1;
+  color: var(--signal-ink);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .copy__icon--done {
+    transform: scale(0.85);
+  }
+  .copy[data-done] .copy__icon--done {
+    transform: none;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .copy:hover {
+    border-color: color-mix(in oklab, var(--signal) 40%, var(--glass-edge));
+    color: var(--ink);
+  }
+}
+
 .contact__links {
   display: flex;
   flex-wrap: wrap;
@@ -4142,7 +4218,12 @@ svg {
   color: var(--ink-2);
 }
 
-.case__foot .contact__email {
+/* The address wrapper (.address, PR 05) owns this spacing uniformly now,
+ * on both Contact and the case foot; a same-specificity ".case__foot
+ * .contact__email" rule here would win by source order over ".address
+ * .contact__email" and reintroduce the margin the wrapper already gives,
+ * doubling it. */
+.case__foot .address {
   margin-top: 28px;
 }
 
