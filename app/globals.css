@@ -1141,6 +1141,10 @@ svg {
   color: color-mix(in oklab, var(--ink-2) 55%, transparent);
 }
 
+.hero__cue {
+  display: none;
+}
+
 .link-arrow {
   display: inline-flex;
   align-items: center;
@@ -1252,21 +1256,45 @@ svg {
 
 @media (max-width: 760px) {
   .hero {
-    padding-block: 96px 48px;
-    padding-inline: max(var(--gutter), var(--safe-left)) max(var(--gutter), var(--safe-right));
-    min-height: min(100svh, 620px);
+    /* The fold ends with the WORK label and the top of the flagship card:
+     * --peek is that slice, and the hero is everything above it. Bottom-set
+     * rather than centred, so the empty ground is the sky above the name
+     * (where the two top blobs are) and not a gap between the name and the
+     * work. 180px = the Work section's 20px top padding + the 34px title +
+     * its 20px margin + about 98px of card. */
+    --peek: 180px;
+    min-height: calc(100svh - var(--peek));
+    align-content: end;
+    padding-block: 96px 36px;
   }
   .hero__title {
-    /*
-     * The 14px floor here existed only because the OLD three-line headline put
-     * the typing slot on a display line, and the slot's width set the ceiling
-     * for the whole clamp. With the descriptor demoted to its own secondary
-     * line, the binding constraint is just "HEY, I'M PARTH DOSHI" (~12.97em),
-     * which clears the column at 17px even at 280px — so the phone headline
-     * gets to be a headline instead of shrinking to fit a slot that has left.
-     */
-    font-size: clamp(17px, 5.9vw, 30px);
-    line-height: 1.18;
+    /* Two lines. Bounds in px (The Px-Bound Display Rule); 10vw is the
+     * largest slope at which PARTH DOSHI clears 97% of the column at every
+     * width from 280 to 440, where the 44px cap takes over. See the table in
+     * .impeccable/plans/mobile-overhaul/pr-02-hero-and-fold.md. */
+    font-size: clamp(28px, 10vw, 44px);
+    line-height: 1.06;
+  }
+  /* The name takes its own line. The wave is absolutely positioned inside
+   * it, so it follows. */
+  .hero__name {
+    display: block;
+  }
+  .hero__role {
+    margin-top: 14px;
+    /* 0.56x the name at every phone width; the slot (14.43em) stays under
+     * 92% of the column down to 280px. */
+    font-size: clamp(16px, 5.6vw, 24px);
+  }
+  .hero__avail {
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 18px;
+    font-size: 1rem;
+  }
+  /* One fact per line: no separator to orphan. */
+  .hero__avail li:not(:last-child)::after {
+    content: none;
   }
   /* 0.03em is sub-pixel at phone display sizes; hold a visible floor. */
   .type-outline {
@@ -1280,6 +1308,23 @@ svg {
    *     Wrapping is now the failure we want to be VISIBLE, not absorbed —
    *     see the nowrap note on .roll.
    */
+  .hero__cue {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin: 10px 0 0 -12px; /* the arrow's stem lands on the column's left edge */
+    color: var(--ink-2);
+    border-radius: 999px;
+    transition: transform 160ms var(--ease-out);
+  }
+  .hero__cue .icon {
+    width: 22px;
+    height: 22px;
+  }
+  .hero__cue:active {
+    transform: scale(0.97);
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1304,6 +1349,20 @@ svg {
   from {
     opacity: 0;
     transform: translateY(24px);
+  }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  /* The fourth rung of the fold's ladder, where the arrow links used to be. */
+  .hero__cue {
+    animation:
+      rise 600ms var(--ease-out) 180ms both,
+      cue-nod 1100ms var(--ease-in-out) 1400ms 2;
+  }
+}
+@keyframes cue-nod {
+  50% {
+    translate: 0 5px;
   }
 }
 
@@ -1340,6 +1399,7 @@ svg {
 .hero,
 .case__headline {
   --recede-blur: 0px;
+  --recede-shift: 22%;
   transform-origin: 50% 45%;
 }
 
@@ -1350,11 +1410,20 @@ svg {
   }
 }
 
+/* With the hero bottom-set and the card peeking (PR 02), the desktop 22%
+ * shift (about 146px) would push the fading name into the WORK label. */
+@media (max-width: 760px) {
+  .hero,
+  .case__headline {
+    --recede-shift: 8%;
+  }
+}
+
 @keyframes recede {
   to {
     opacity: 0;
     scale: 0.9;
-    translate: 0 22%;
+    translate: 0 var(--recede-shift);
     filter: blur(var(--recede-blur));
   }
 }
@@ -1522,6 +1591,16 @@ svg {
     align-items: flex-start;
     gap: 12px;
   }
+  /* The Work section's top on phones, so the hero's --peek arithmetic holds
+   * (see .hero above): placed after the .section--work base rule (equal
+   * specificity, source order decides), not beside the hero block earlier
+   * in the file, which the base rule below would otherwise win against. */
+  .section--work {
+    padding-top: 20px;
+  }
+  .section--work .section__head {
+    margin-bottom: 20px;
+  }
 }
 
 /* ==========================================================================
@@ -1621,6 +1700,14 @@ svg {
       animation: card-unveil linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 100%;
+    }
+  }
+  /* The card is already a fifth of the way into the viewport at load on
+   * phones (PR 02's fold peek), so card-unveil would render it clipped and
+   * half-transparent. The hero recede is the phone's whole handoff. */
+  @media (max-width: 760px) {
+    .work__item--flagship .card {
+      animation: none;
     }
   }
 }

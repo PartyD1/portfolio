@@ -62,7 +62,7 @@
     1920
   ],
   "gates": {
-    "heroInvariant": "46 measurements x 2 root font sizes; worst clearance 18.7% against a 5% floor (was 7.3% before the descriptor was demoted off the display line)",
+    "heroInvariant": "Above 760px: the one-line headline clears the column (unchanged, 18.7% worst clearance against a 5% floor). At 760px and under (PR 02, 2026-09): the name line PARTH DOSHI is at most 97% of the column at 280, 300, 320, 360, 390, 400, 430, 600, 720 and 760, at 16px and 20px root (measured worst 95.4%, at 280-400); the typewriter slot is at most 92% (measured worst 91.7%, at 280); the title box is exactly two lines, height 2.12x the font size at every width (within the 2.0x-2.2x band, never three lines)",
     "slotConstancy": "0.000px drift across 632 samples spanning full type/erase cycles",
     "leftEdge": "0.0px spread across headline, subline, actions, status and section head",
     "contrast": "worst composited pixel behind real text rects, both themes, plus % of run below threshold",
