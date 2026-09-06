@@ -4629,6 +4629,44 @@ html:has(.shots__dialog[open]) {
   }
 }
 
+/* PR 10 of the mobile overhaul: the phone's first paint is the fold;
+ * everything below it is laid out lazily as it approaches.
+ * contain-intrinsic-size keeps the document height (and the scroll ring's
+ * progress) stable before a section renders. Placed after every base rule
+ * it touches (equal specificity, source order decides).
+ *
+ * Each guess is the section's own measured height at 390px, not a shared
+ * round number: a guess too small compounds down the page and makes the
+ * shell's #about / #contact fragment links land short, because a browser's
+ * one-time scroll-to-fragment on load runs before an undershooting sibling
+ * above the target has unskipped to its real height. */
+@media (max-width: 760px) {
+  .section--exp {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1000px;
+  }
+  #about {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+  }
+  .contact {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 550px;
+  }
+  .case__section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
+  .shots {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 400px;
+  }
+  .case__foot {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 420px;
+  }
+}
+
 /* ==========================================================================
    Footer
    ========================================================================== */
