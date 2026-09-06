@@ -8,6 +8,7 @@ import CaseStudyHeader from "@/components/CaseStudyHeader";
 import CaseStudySection from "@/components/CaseStudySection";
 import Flow from "@/components/Flow";
 import Slideshow from "@/components/Slideshow";
+import CopyEmail from "@/components/CopyEmail";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -114,9 +115,12 @@ export default async function CaseStudyPage({
             ? "I can walk through any decision on this page: why it was built this way, what broke, and what I'd change."
             : "The repo is the detail for now. I can walk through what it does, why it is built this way, and what I'd change."}
         </p>
-        <a className="contact__email" href={`mailto:${links.email}`}>
-          {links.email}
-        </a>
+        <div className="address">
+          <a className="contact__email" href={`mailto:${links.email}`}>
+            {links.email}
+          </a>
+          <CopyEmail email={links.email} />
+        </div>
         {(p.demo || p.href) && (
           <div className="case__foot-links">
             {/* A thing a recruiter can USE outranks a thing they can read, so

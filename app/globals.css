@@ -1595,18 +1595,27 @@ svg {
 
 @media (max-width: 760px) {
   .section {
-    padding-block: 64px 72px;
+    /* PR 05 of the mobile overhaul: 56/64, up from PR 02's interim 64/72. */
+    padding-block: 56px 64px;
     padding-inline: max(var(--gutter), var(--safe-left)) max(var(--gutter), var(--safe-right));
   }
   .section__head {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    margin-bottom: 20px;
+  }
+  .section__title {
+    /* 34px at 390, 30px at 320, 37px at 430: one step above the 32px floor so
+     * the section labels keep pace with the two-line hero. Px bounds. */
+    font-size: clamp(30px, 8.7vw, 52px);
   }
   /* The Work section's top on phones, so the hero's --peek arithmetic holds
    * (see .hero above): placed after the .section--work base rule (equal
    * specificity, source order decides), not beside the hero block earlier
-   * in the file, which the base rule below would otherwise win against. */
+   * in the file, which the base rule below would otherwise win against. PR
+   * 02 landed this rule first; PR 05 (Experience/About/Contact rhythm)
+   * keeps it rather than re-deriving it. */
   .section--work {
     padding-top: 20px;
   }
@@ -3034,30 +3043,63 @@ svg {
 }
 
 @media (max-width: 760px) {
+  /* PR 05 of the mobile overhaul owns the rhythm values below (gap, node
+   * position, card padding); the one-column layout itself predates it. */
+  .section--exp {
+    padding-top: 8px;
+  }
   .timeline {
     --tl-period: 0px;
-    --tl-gap: 36px;
+    --tl-gap: 34px;
     --tl-rail: 9px;
   }
   .timeline__list {
-    gap: 24px;
+    gap: 20px;
   }
   .timeline__item {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: 10px;
+    row-gap: 8px;
     padding-left: var(--tl-gap);
   }
   .timeline__period {
     padding-top: 0;
     text-align: left;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
   }
   .timeline__node {
-    top: 3px;
+    top: 4px;
     width: 12px;
     height: 12px;
   }
   .timeline__card {
-    padding: 22px 22px 24px;
+    padding: 18px 18px 20px;
+    gap: 4px;
+  }
+  .timeline__ownership {
+    margin-top: 6px;
+  }
+  /* The chip becomes a row: the full card width, name left, arrow right, so
+   * the one link in the card is a thumb-sized bar rather than a small pill
+   * a thumb has to find. */
+  .timeline__project {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding: 6px 14px 6px 6px;
+  }
+  .timeline__project-mark {
+    width: 44px;
+    height: 44px;
+    /* The row is width:100% now, so the flex algorithm has real squeeze to
+     * distribute at 320px; .timeline__project-name already carries
+     * min-width:0 as the intended shrink target, so the mark (and the
+     * trailing icon) must opt out or lose a few px to it. */
+    flex-shrink: 0;
+  }
+  .timeline__project .icon {
+    margin-left: auto;
+    flex-shrink: 0;
   }
 }
 
@@ -3410,7 +3452,13 @@ svg {
 @media (max-width: 760px) {
   .about__grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
+  }
+  .about__body {
+    gap: 16px;
+  }
+  .about__range {
+    margin-top: 6px;
   }
 }
 
@@ -3492,11 +3540,127 @@ svg {
   }
 }
 
+/* The copy control (D13): a phone with no mail client configured opens
+ * nothing on mailto:, and a recruiter should not have to retype an
+ * address. Renders beside the email wherever it appears (Contact, the case
+ * foot); the menu foot does not use this wrapper. */
+.address {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 26px;
+}
+.address .contact__email {
+  margin-top: 0;
+}
+.copy {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--glass-edge);
+  background: var(--glass-raised);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition:
+    transform 160ms var(--ease-out),
+    border-color 200ms var(--ease-out);
+}
+.copy:active {
+  transform: scale(0.97);
+}
+.copy__icon {
+  grid-area: 1 / 1;
+  width: 18px;
+  height: 18px;
+  opacity: 0;
+  transition:
+    opacity 160ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+.copy__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.copy__icon--copy {
+  opacity: 1;
+}
+.copy[data-done] .copy__icon--copy {
+  opacity: 0;
+}
+.copy[data-done] .copy__icon--done {
+  opacity: 1;
+  color: var(--signal-ink);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .copy__icon--done {
+    transform: scale(0.85);
+  }
+  .copy[data-done] .copy__icon--done {
+    transform: none;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .copy:hover {
+    border-color: color-mix(in oklab, var(--signal) 40%, var(--glass-edge));
+    color: var(--ink);
+  }
+}
+
 .contact__links {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
   margin-top: 36px;
+}
+
+@media (max-width: 760px) {
+  .contact {
+    padding-top: 72px;
+    padding-bottom: 104px;
+  }
+  .contact__title {
+    /* 40px at 390, 34px at 320, 44px at 430. */
+    font-size: clamp(34px, 10.3vw, 44px);
+  }
+  .contact__lede {
+    margin-top: 18px;
+  }
+  .contact__seeking {
+    margin-top: 12px;
+  }
+  .contact__links {
+    gap: 10px;
+    margin-top: 28px;
+  }
+}
+
+/* Where hover does not exist the arrow links have no underline to reveal, so
+ * they read as bare words. A pill gives them an edge to be tapped by. The
+ * same pill the menu foot uses in PR 04. */
+@media (hover: none) {
+  .contact__links .link-arrow,
+  .case__foot-links .link-arrow {
+    padding: 0 16px;
+    min-height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--glass-edge);
+    background: var(--glass-raised);
+    font-weight: 600;
+  }
+  .contact__links .link-arrow::after,
+  .case__foot-links .link-arrow::after {
+    content: none;
+  }
 }
 
 /* ==========================================================================
@@ -4054,7 +4218,12 @@ svg {
   color: var(--ink-2);
 }
 
-.case__foot .contact__email {
+/* The address wrapper (.address, PR 05) owns this spacing uniformly now,
+ * on both Contact and the case foot; a same-specificity ".case__foot
+ * .contact__email" rule here would win by source order over ".address
+ * .contact__email" and reintroduce the margin the wrapper already gives,
+ * doubling it. */
+.case__foot .address {
   margin-top: 28px;
 }
 
@@ -4087,6 +4256,15 @@ svg {
   padding: 28px 24px max(40px, calc(var(--safe-bottom) + 24px));
   font-size: 0.875rem;
   color: var(--ink-2);
+}
+
+@media (max-width: 760px) {
+  /* Left-aligned like everything else, and clear of the scroll ring: the
+   * centred pill's right edge sat under the ring at 390. */
+  .footer {
+    justify-content: flex-start;
+    padding-inline: max(var(--gutter), var(--safe-left)) 80px;
+  }
 }
 
 .footer__line {
