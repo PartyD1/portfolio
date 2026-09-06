@@ -661,8 +661,6 @@ svg {
   border: 1px solid var(--glass-edge);
   border-radius: 999px;
   background: var(--glass-strong);
-  backdrop-filter: blur(16px) saturate(1.3);
-  -webkit-backdrop-filter: blur(16px) saturate(1.3);
   color: var(--ink);
   cursor: pointer;
   transition:
@@ -733,8 +731,6 @@ svg {
   border: 1px solid var(--glass-edge);
   border-radius: 999px;
   background: var(--glass-strong);
-  backdrop-filter: blur(16px) saturate(1.3);
-  -webkit-backdrop-filter: blur(16px) saturate(1.3);
   color: var(--ink);
   cursor: pointer;
   transition:
@@ -792,8 +788,6 @@ svg {
   gap: 40px;
   padding: 48px 40px;
   background: color-mix(in oklab, var(--ground) 86%, transparent);
-  backdrop-filter: blur(28px) saturate(1.3);
-  -webkit-backdrop-filter: blur(28px) saturate(1.3);
   border-right: 1px solid var(--glass-edge);
 }
 
@@ -937,8 +931,6 @@ svg {
   border: 0;
   border-radius: 999px;
   background: var(--glass-strong);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   color: var(--ink);
   cursor: pointer;
   opacity: 0;
@@ -1511,8 +1503,6 @@ svg {
   border-radius: 999px;
   border: 1px solid var(--glass-edge);
   background: var(--glass-raised);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   font-size: 0.8125rem;
   font-weight: 500;
   line-height: 1.2;
@@ -1650,8 +1640,6 @@ svg {
   border-radius: var(--radius-card);
   border: 1px solid var(--glass-edge);
   background: var(--glass);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
   color: var(--ink);
   overflow: hidden;
   /*
@@ -1687,9 +1675,9 @@ svg {
  * The specular highlight: a soft white light on the glass. It used to follow
  * the pointer; now it is fixed above the card's top edge, which is where a
  * light would be for something that has just risen toward the reader. z-index
- * -1 inside the card's own stacking context (it has backdrop-filter, so it is
- * one) puts it above the frosted fill and below every child, including the
- * full-card link overlay. Opacity is the only thing that transitions.
+ * -1 inside the card's own stacking context (the lift/press transform makes
+ * it one) puts it above the frosted fill and below every child, including
+ * the full-card link overlay. Opacity is the only thing that transitions.
  */
 .card::after {
   content: "";
@@ -1924,8 +1912,6 @@ svg {
    * that keeps the box the same size as every other pill's. */
   border: 1px solid transparent;
   background: var(--glass-raised);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.25;
@@ -1969,7 +1955,7 @@ svg {
 /* The wash: the same gradient laid over the glass at a whisper. Its own
  * layer so hover can bring it up on opacity, which a gradient background
  * cannot transition. z-index -1 puts it under the text inside the pill's own
- * stacking context (backdrop-filter makes it one). */
+ * stacking context (the lift/press transform makes it one). */
 .live-link::after {
   content: "";
   position: absolute;
@@ -2111,8 +2097,6 @@ svg {
   border-radius: 999px;
   border: 1px solid var(--glass-edge);
   background: var(--glass-raised);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   color: var(--ink-2);
   text-decoration: none;
   /* Lift and press compose, the same pattern .card and .live-link use, so a
@@ -2506,8 +2490,6 @@ svg {
   border-radius: var(--radius-card);
   border: 1px solid var(--glass-edge);
   background: var(--glass);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
   color: var(--ink);
   transition: border-color 200ms var(--ease-out);
 }
@@ -2710,6 +2692,11 @@ svg {
 
 .flow__node {
   position: relative;
+  /* No transform/backdrop-filter of its own to make this a stacking context,
+   * unlike .card and .live-link (their lift/press transform does the job),
+   * so ::after's z-index -1 needs isolation or it escapes to the document
+   * root and can land behind the wrong siblings. */
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -2717,16 +2704,13 @@ svg {
   border-radius: var(--radius-card);
   border: 1px solid var(--glass-edge);
   background: var(--glass);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
   color: var(--ink);
   transition: border-color 200ms var(--ease-out);
 }
 
 /*
  * The same specular highlight the cards carry (see .card::after), on the same
- * glass, so the diagram answers the pointer the way everything else does. The
- * node has backdrop-filter and is therefore its own stacking context, so
+ * glass, so the diagram answers the pointer the way everything else does.
  * z-index -1 sits the light above the frosted fill and below the copy.
  * Position is written by FlowGlow.tsx as --mx/--my; opacity is the only thing
  * that transitions. No tilt: the connectors are aligned to these edges.
@@ -2862,8 +2846,6 @@ svg {
   border-radius: var(--radius);
   border: 1px dashed color-mix(in oklab, var(--ink) 32%, transparent);
   background: var(--glass);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
 }
 
 .flow__bus-title {
@@ -3147,8 +3129,6 @@ svg {
    * so this is the STRONG glass at a heavier blur than a card, and the meta
    * line runs in --ink rather than --ink-2 to hold the floor. */
   background: var(--glass-strong);
-  backdrop-filter: blur(30px) saturate(1.4);
-  -webkit-backdrop-filter: blur(30px) saturate(1.4);
 }
 
 /* The same recede as the hero, on the headline panel: it falls back as the
@@ -3278,8 +3258,6 @@ svg {
   border-radius: 999px;
   border: 1px solid var(--glass-edge);
   background: var(--glass-raised);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   color: var(--ink);
   transition: border-color 200ms var(--ease-out);
 }
