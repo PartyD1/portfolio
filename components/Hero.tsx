@@ -1,4 +1,5 @@
 import RoleRoll, { type Phrase } from "@/components/RoleRoll";
+import { ArrowDown } from "@/components/Icon";
 import { availability } from "@/data/site";
 import { FIXTURES, fixtureAvailability } from "@/data/fixtures";
 
@@ -112,6 +113,13 @@ export default function Hero() {
           ))}
         </ul>
       )}
+
+      {/* Phones only (CSS): the one tappable thing in the fold, and the drawn
+          hint that the page continues. An anchor, not a decoration, so it is a
+          44px target with a name. */}
+      <a className="hero__cue" href="#work" aria-label="Scroll to the work">
+        <ArrowDown />
+      </a>
 
     </section>
   );
