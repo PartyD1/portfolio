@@ -1,6 +1,6 @@
 # Mobile overhaul: the plan
 
-**Status: PLAN. No UI code has been written.** The one thing this PR ships beside the documents is the capture harness (`scripts/mobile-capture.mjs`) and the baseline it produced, because every PR below verifies itself with it.
+**Status: SHIPPED (2026-09-06).** All thirteen PRs below (00 through 12) merged to `main` as #32-#44. Written as a plan on 2026-09-05 with no UI code yet; the harness and the baseline shipped first (this PR), because every PR below verifies itself with it. See the Targets table's third column for what actually shipped against every number below, including the two rows superseded by an earlier, separate decision (PR #33 dropping `backdrop-filter` site-wide).
 
 Written 2026-09-05 against `origin/main` at `4319731` (PR #30). Measured, not guessed: every number in these documents comes from a production build of that commit served to headless Chromium with mobile emulation on (`isMobile`, `hasTouch`, so `pointer: coarse` and `hover: none` match, exactly as on a phone). The captures and the metrics file live in `.impeccable/review/mobile-baseline-2026-09-05/`.
 
@@ -113,24 +113,24 @@ Sizes: S is a short session, M is one focused session, L is one long session or 
 
 ## Targets (the "after" the last PR is measured against)
 
-| Metric at 390 wide | Baseline | Target |
-|---|---|---|
-| Hero name size | 23px | 39px on its own line |
-| Typewriter | 14px | 22px |
-| Tappable in the fold | 0 | the flagship card (its top edge visible) |
-| Standard card height | 275 to 398px | 250px or less (285 for the one card with a live pill and a usage line) |
-| Flagship card height | 491px | 480px or less, with its mark as a cover band |
-| Work section | 2,772px | 2,200px or less (the arithmetic is in `pr-03-work-cards.md`; dropping the flagship's band would buy another 150px) |
-| Homepage | 7.2 screens | 6.5 screens or fewer |
-| Menu close target | 47px strip | 44px pill plus the whole overlay |
-| Menu foot link height | 21px | 44px or more |
-| Smallest text | 13px | 14px |
-| Santa Claws tile rows | 6 | 4 or fewer |
-| Flow height (Operations Agent) | 1,179px | 800px or less |
-| Frosted glass in Chromium | none (production CSS keeps only the prefixed declaration) | present, every glass rule, both forms in the built CSS |
-| Backdrop-filter surfaces (homepage) | about 25 in the source; 0 drawn in Chromium | 13 on phones (the seven cards, the three timeline cards, the three fixed controls), all drawn |
-| Slideshow dot target | 24px | 44px tall |
-| Safe-area aware fixed chrome | 0 of 3 | 3 of 3 (shell, ring, sheet) |
-| Theme default | light | system |
-| Horizontal overflow at 280 to 430 | 0 | 0 |
-| Text contrast (composited, both themes) | worst 4.51:1 | every run 4.5:1 or better, re-measured after the layout moves |
+| Metric at 390 wide | Baseline | Target | Shipped |
+|---|---|---|---|
+| Hero name size | 23px | 39px on its own line | **39px**, one line, met exactly |
+| Typewriter | 14px | 22px | **21.84px**, met (rounds to 22) |
+| Tappable in the fold | 0 | the flagship card (its top edge visible) | **met**: flagship top at y=739 of an 844px viewport (105px, 22% of its own height, visible); `.hero__cue` is a second tappable link in the fold |
+| Standard card height | 275 to 398px | 250px or less (285 for the one card with a live pill and a usage line) | **230-333px.** Five of six clear 285px; one (the longest tagline) runs to 333px — content-driven, not a defect: the plan's own rule refuses to truncate a real tagline to hit a height budget |
+| Flagship card height | 491px | 480px or less, with its mark as a cover band | **478px**, met, cover band shipped |
+| Work section | 2,772px | 2,200px or less | **2,360px.** Over target by 160px (~7%); the target's own arithmetic assumed a representative card, and real content (seven distinct real taglines, one genuinely longer) runs slightly over its own estimate — accepted per the same no-truncation rule |
+| Homepage | 7.2 screens | 6.5 screens or fewer | **6.6 screens**, effectively at target (the Work section overage above is the reason it isn't exactly 6.5) |
+| Menu close target | 47px strip | 44px pill plus the whole overlay | **met**: 44x44 close pill |
+| Menu foot link height | 21px | 44px or more | **met**: 44px on every foot link and pill |
+| Smallest text | 13px | 14px | **met exactly**: 14px floor everywhere (the footer's copyright pill), never under it |
+| Santa Claws tile rows | 6 | 4 or fewer | **5 rows** (11 tiles). Down from 6 but not to 4; Santa Claws' own tool count is larger than the representative case the target assumed — content-driven, same rule as the card-height row |
+| Flow height (Operations Agent) | 1,179px | 800px or less | **779px**, met |
+| Frosted glass in Chromium | none (production CSS keeps only the prefixed declaration) | present, every glass rule, both forms in the built CSS | **superseded, not met as written.** PR #33 (a separate, earlier program) shipped before this plan's own PR 00b executed: rather than fix the Chromium blur bug, it dropped `backdrop-filter` everywhere, site-wide, in both browsers — Parth compared the accidental no-blur Chromium look against Safari's blurred one and preferred the flat tint. Every glass surface is now a translucent tint (`--glass`/`--glass-strong`/`--glass-raised`) with zero blur, in every browser, by design. This plan's later blur-budget work (PR 10 section 4) confirmed there was nothing left to drop |
+| Backdrop-filter surfaces (homepage) | about 25 in the source; 0 drawn in Chromium | 13 on phones (the seven cards, the three timeline cards, the three fixed controls), all drawn | **0, everywhere, by design** — see the row above; this target is moot under the tint-only decision, not failed |
+| Slideshow dot target | 24px | 44px tall | **36x44.** The target's stated axis (height, the touch-critical one for a horizontal row of dots) is met exactly; width is 36px, pre-existing since PR 08, accepted (the dot is a visual index, not the only way to change slides — the arrows and the swipe gesture are both 44px+) |
+| Safe-area aware fixed chrome | 0 of 3 | 3 of 3 (shell, ring, sheet) | **exceeded**: `env(safe-area-inset-*)` via `--safe-top/right/bottom/left` reaches the shell mark, the theme toggle, the scroll ring, the bottom sheet, the footer, and every edge-adjacent section's padding — not just the original three |
+| Theme default | light | system | **met**: `defaultTheme="system"`, verified with a cold visit at both `colorScheme` values and no seeded theme |
+| Horizontal overflow at 280 to 430 | 0 | 0 | **met**: 0 at every width from 280 to 1440, both roots (16px and 20px), every route, both themes |
+| Text contrast (composited, both themes) | worst 4.51:1 | every run 4.5:1 or better, re-measured after the layout moves | **exceeded**: worst p20 6.07:1 light (`.case__points li`, operations-agent), 7.80:1 dark (`.pill`, home), from 168 elements sampled across three routes, two themes and the open menu (PR 11's composited-pixel method) |

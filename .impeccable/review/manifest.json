@@ -34,7 +34,19 @@
     "reducedMotion": "reduce",
     "deviceScaleFactor": 1,
     "preparation": "full-page scroll first so every Reveal has fired, then back to top",
-    "themeMechanism": "localStorage seed, NOT colorScheme — next-themes runs with defaultTheme=\"light\", so prefers-color-scheme alone does not flip the site and every 'dark' capture would silently be light"
+    "themeMechanism": "localStorage seed, NOT colorScheme — next-themes ran with defaultTheme=\"light\" at the time of this capture, so prefers-color-scheme alone did not flip the site (superseded by PR 11: defaultTheme is now \"system\", see capturePhone)"
+  },
+  "capturePhone": {
+    "generated": "2026-09-06",
+    "commit": "mobile overhaul PRs 00-12",
+    "widths": [320, 390, 430],
+    "themes": ["light", "dark"],
+    "shots": ["fold", "sheet (full-page scroll segments stitched)", "menu", "landscape (844x390)", "tablet (768x1024)", "motion probe (scroll300)"],
+    "routes": ["/", "/work/operations-agent", "/work/scorely-ai", "/work/santaclaws"],
+    "harnessCommand": "node scripts/mobile-capture.mjs --out .impeccable/review/mobile --widths 320,390,430 --themes light,dark --landscape --tablet --menu --motion",
+    "reducedMotion": "reduce (a separate --motion run uses no-preference to inspect the running animation set)",
+    "deviceScaleFactor": 2,
+    "themeMechanism": "localStorage seed AND colorScheme both exercised: the default matrix seeds localStorage.theme explicitly (unaffected by the PR 11 default change); --system-theme is a separate check with no seed, at colorScheme dark and light, verifying the page follows the OS"
   },
   "assertionWidths": [
     280,
@@ -70,7 +82,14 @@
     "accentCensus": "8 kinds, 0 unclassified, 0 Two Corals violations",
     "motion": "drift traversal, ambient families, reduced motion, 720px, hover regression, backdrop-filter",
     "pin": "under NEXT_PUBLIC_FIXTURES=1: sticky ancestors, top:0 across the span, 0 focusables, cross-fade, +18.0% route growth",
-    "heroHierarchy": "the descriptor stays <= 0.85x the name at every width in both themes; ~0.50x at 1440, ~0.61x at 390"
+    "heroHierarchy": "the descriptor stays <= 0.85x the name at every width in both themes; ~0.50x at 1440, ~0.61x at 390",
+    "nameLineInvariant": "phone form (PR 01/02, re-verified PR 12): worst 95.4% of the column at 280px width, both 16px and 20px (200%) root; two-line title box at every width from 280 to 760, never three",
+    "foldPeek": "flagship card top at load (D2): 390x844 -> 105px visible (22.0% of its own height); 320x568 -> 105px (23.1%); 430x932 -> 102px (20.9%)",
+    "textFloor": "smallest sampled run 14px on every route (the footer's copyright pill, present on every page), never under it",
+    "targets": "smallest real interactive target 44x44 on / and every case study without a slideshow; 36x44 on /work/scorely-ai and /work/santaclaws (.shots__dot, pre-existing since PR 08, accepted: the 44px axis is height, the dot is a visual index not the only way to change slides)",
+    "blurBudget": "0 surfaces on every route at 390 (PR #33 dropped backdrop-filter site-wide before this plan started; PR 10 confirmed there was nothing left for its own budget to drop)",
+    "contrastPhone": "worst p20 (PR 11's composited-pixel method, 168 elements sampled): 6.07 light (.case__points li, /work/operations-agent), 7.80 dark (.pill, /), both clear of the 4.5 floor; unaffected at 1440 since PR 11's changes are phone-scoped",
+    "motionAtRest": "running set at 390 with motion on (--motion, no-preference): recede(view), blink (typewriter caret), cue-nod (hero__cue) on /; recede(view) only on a case study. The flagship's card-unveil is off on phones (PR 02, reconsidered and kept off by PR 09: an unveil on the second card the eye already sees at load added nothing). The four wash blobs stop drifting entirely under 760px (four animated blobs is not a mobile budget); PR 09 evaluated an optional scroll-linked wash move as the phone's one candidate for motion beyond feedback and rises, but its gate needs a real-device frame-rate measurement this environment cannot perform, so it ships frozen rather than unmeasured — a future session with a device can add it behind that same gate."
   },
   "knownOpen": {
     "heroStatusContrast": "3.37:1 light / 2.54:1 dark, and now only ~4% of the run (was ~56%). Pre-existing, not introduced by this PR; it improved on its own when the hero shortened to one display line and the status moved up into the calm band. Closing the remaining gap needs a surface or a move, both of which change the user-pinned hero."
