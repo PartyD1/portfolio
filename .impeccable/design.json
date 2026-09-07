@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-05T00:00:00Z",
+  "generatedAt": "2026-09-06T00:00:00Z",
   "title": "Design System: Parth Doshi Portfolio",
   "extensions": {
     "colorMeta": {
@@ -9,7 +9,7 @@
         "displayName": "Coral Signal",
         "canonical": "#d9705a",
         "dark": "#f0a48f",
-        "note": "Shapes only — dot, ring, underline, focus outline, caret, selection tint. 2.65:1 on the light ground, so never text.",
+        "note": "Shapes only, dot, ring, underline, focus outline, caret, selection tint. 2.65:1 on the light ground, so never text.",
         "tonalRamp": [
           "oklch(15% 0.12 34)",
           "oklch(26% 0.12 34)",
@@ -25,7 +25,7 @@
         "role": "primary",
         "displayName": "Burnt Coral Ink",
         "canonical": "#a8412d",
-        "dark": "var(--signal) — aliased; the deep ground already clears contrast",
+        "dark": "var(--signal), aliased; the deep ground already clears contrast",
         "note": "Text-only sibling of the accent, 4.92:1 on the light ground. Carries the finale phrase and arrow-link hover.",
         "tonalRamp": [
           "oklch(15% 0.14 35)",
@@ -134,6 +134,13 @@
         "dark": "rgb(255 255 255 / 0.14)",
         "note": "The 1px border that declares elevation. This system's entire depth vocabulary."
       },
+      "glass-solid": {
+        "role": "neutral",
+        "displayName": "Glass, Solid",
+        "canonical": "color-mix(in oklab, var(--white) 92%, var(--ground))",
+        "dark": "color-mix(in oklab, var(--white) 88%, var(--ground))",
+        "note": "Not a fifth rung of the glass ladder and never painted at rest. What every glass surface becomes under prefers-reduced-transparency: reduce, so a surface holding text keeps the ground it was measured against without the wash showing through it."
+      },
       "spot-core": {
         "role": "tertiary",
         "displayName": "Spotlight Core",
@@ -167,88 +174,88 @@
         "displayName": "Specular Gloss",
         "canonical": "rgb(255 255 255 / 0.7)",
         "dark": "rgb(255 255 255 / 0.4)",
-        "note": "Radial highlight at 34%/28%, r 46%, clipped to each blob path. A radial gradient on purpose — same look as a blurred spot, no filter pass. Fades to --blob-gloss-out, rgb(255 255 255 / 0), in both themes."
+        "note": "Radial highlight at 34%/28%, r 46%, clipped to each blob path. A radial gradient on purpose, same look as a blurred spot, no filter pass. Fades to --blob-gloss-out, rgb(255 255 255 / 0), in both themes."
       },
       "blob-a-1": {
         "role": "secondary",
-        "displayName": "Blob A — Mint",
+        "displayName": "Blob A, Mint",
         "canonical": "#7fe0b4",
         "dark": "#4fd3a0",
         "note": "Top-left blob, stop 1 of 3. Gradient axis 8% 0% → 92% 100%."
       },
       "blob-a-2": {
         "role": "secondary",
-        "displayName": "Blob A — Sky",
+        "displayName": "Blob A, Sky",
         "canonical": "#6fc4ee",
         "dark": "#4bb4ec",
         "note": "Top-left blob, stop 2. Also the third stop of the card gradient edge."
       },
       "blob-a-3": {
         "role": "secondary",
-        "displayName": "Blob A — Lilac",
+        "displayName": "Blob A, Lilac",
         "canonical": "#b295ea",
         "dark": "#a888ee",
         "note": "Top-left blob, stop 3."
       },
       "blob-b-1": {
         "role": "secondary",
-        "displayName": "Blob B — Apricot",
+        "displayName": "Blob B, Apricot",
         "canonical": "#f4a97e",
         "dark": "#f2a273",
         "note": "Top-right blob, stop 1. Also the middle stop of the card gradient edge."
       },
       "blob-b-2": {
         "role": "secondary",
-        "displayName": "Blob B — Butter",
+        "displayName": "Blob B, Butter",
         "canonical": "#eed878",
         "dark": "#e8cf6a",
         "note": "Top-right blob, stop 2. Gradient axis 100% 10% → 0% 90%."
       },
       "blob-b-3": {
         "role": "secondary",
-        "displayName": "Blob B — Jade",
+        "displayName": "Blob B, Jade",
         "canonical": "#86ddba",
         "dark": "#63d6ab",
         "note": "Top-right blob, stop 3."
       },
       "blob-c-1": {
         "role": "secondary",
-        "displayName": "Blob C — Lilac",
+        "displayName": "Blob C, Lilac",
         "canonical": "#b39ceb",
         "dark": "#a98cee",
         "note": "Bottom-left blob, stop 1. Also the first stop of the card gradient edge. Gradient axis 0% 20% → 100% 80%."
       },
       "blob-c-2": {
         "role": "secondary",
-        "displayName": "Blob C — Rose",
+        "displayName": "Blob C, Rose",
         "canonical": "#ee9dc0",
         "dark": "#ee8ab4",
         "note": "Bottom-left blob, stop 2."
       },
       "blob-c-3": {
         "role": "secondary",
-        "displayName": "Blob C — Peach",
+        "displayName": "Blob C, Peach",
         "canonical": "#f4b98c",
         "dark": "#f4ad7e",
         "note": "Bottom-left blob, stop 3."
       },
       "blob-d-1": {
         "role": "secondary",
-        "displayName": "Blob D — Sky",
+        "displayName": "Blob D, Sky",
         "canonical": "#7cc3ee",
         "dark": "#59b6ee",
         "note": "Bottom-right blob, stop 1. Gradient axis 20% 100% → 80% 0%."
       },
       "blob-d-2": {
         "role": "secondary",
-        "displayName": "Blob D — Mint",
+        "displayName": "Blob D, Mint",
         "canonical": "#7ddcb5",
         "dark": "#57d3a7",
         "note": "Bottom-right blob, stop 2."
       },
       "blob-d-3": {
         "role": "secondary",
-        "displayName": "Blob D — Butter",
+        "displayName": "Blob D, Butter",
         "canonical": "#ecd77f",
         "dark": "#e8d074",
         "note": "Bottom-right blob, stop 3."
@@ -257,11 +264,11 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "The hero headline only, uppercase Unbounded at 700. Carries the outline-and-fill device: .type-outline renders solid ink by default and switches to color: transparent with -webkit-text-stroke: 0.03em at font-weight 400 inside an @supports guard, because Unbounded's heavy weights self-overlap and stroke into visible construction lines. Stroke floors at max(1.1px, 0.03em) under 720px. Drops to clamp(1.25rem, 5.9vw, 1.875rem) / line-height 1.18 under 720px."
+        "purpose": "The hero headline only, uppercase Unbounded at 700. Carries the outline-and-fill device: .type-outline renders solid ink by default and switches to color: transparent with -webkit-text-stroke: 0.03em at font-weight 400 inside an @supports guard, because Unbounded's heavy weights self-overlap and stroke into visible construction lines. Stroke floors at max(1.1px, 0.03em) under 760px. Under 760px the whole title drops to clamp(28px, 10vw, 44px) / line-height 1.06 and .hero__name becomes display: block, so the name takes its own line inside a hard two-line box (The Two-Line Phone Headline Rule): PARTH DOSHI is asserted to clear 97% of the column at every width from 280 to 760px, at both the default root size and a simulated 200% root."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section titles — WORK, STACK, ABOUT — uppercase. Contact overrides to clamp(2.25rem, 6.5vw, 4.5rem); the menu's section links run clamp(1.75rem, 5vw, 2.5rem)."
+        "purpose": "Section titles, WORK, STACK, ABOUT, uppercase. Contact overrides to clamp(2.25rem, 6.5vw, 4.5rem); the menu's section links run clamp(1.75rem, 5vw, 2.5rem)."
       },
       "title": {
         "displayName": "Title",
@@ -320,7 +327,7 @@
       {
         "name": "duration-reveal",
         "value": "450ms",
-        "purpose": "Scroll-in rise for below-the-fold blocks, 24px of travel, staggered 50ms per sibling."
+        "purpose": "Scroll-in rise for below-the-fold blocks, 24px of travel, staggered 50ms per sibling. Reveal.tsx's IntersectionObserver fires at threshold 0.12 with rootMargin tightened to '0px 0px -8% 0px' under 760px (against '0px' above it), so a block reveals slightly before it is fully in view on a shorter phone viewport."
       },
       {
         "name": "duration-hero",
@@ -330,7 +337,7 @@
       {
         "name": "drift",
         "value": "34s / 41s / 37s / 45s ease-in-out infinite alternate",
-        "purpose": "Ambient blob drift, 5-7vmax translate and 7-11deg rotation. Disabled under 720px and under reduced motion."
+        "purpose": "Ambient blob drift, 5-7vmax translate and 7-11deg rotation. Disabled under 760px (animation: none !important) and under reduced motion. A measured decision, not a permanent ban: PR 09 evaluated a scroll-linked wash move for phones (bottom blobs up, top blobs down, animation-timeline: scroll()) and gated it on a real-device 60fps measurement this environment cannot perform, so it ships frozen rather than unmeasured."
       },
       {
         "name": "duration-card-transform",
@@ -345,7 +352,7 @@
       {
         "name": "duration-card-glow",
         "value": "320ms in / 200ms out",
-        "purpose": "Opacity of the specular highlight (.card::after at 380px, .flow__node::after at 300px): a circle of --card-glow at --mx/--my fading to transparent at 62%, z-index -1 inside the surface's own stacking context, so it sits above the frosted fill and below every child. .card gets that context from its own --lift/--press transform; .flow__node has no transform of its own, so it declares isolation: isolate explicitly (added 2026-09-05, when backdrop-filter — which used to create the context implicitly — was removed project-wide). Position is written by TiltCard.tsx and FlowGlow.tsx; only opacity transitions. On leave --mx/--my are left where they were, so the light fades out in place rather than jumping to centre."
+        "purpose": "Opacity of the specular highlight (.card::after at 380px, .flow__node::after at 300px): a circle of --card-glow at --mx/--my fading to transparent at 62%, z-index -1 inside the surface's own stacking context, so it sits above the frosted fill and below every child. .card gets that context from its own --lift/--press transform; .flow__node has no transform of its own, so it declares isolation: isolate explicitly (added 2026-09-05, when backdrop-filter, which used to create the context implicitly, was removed project-wide). Position is written by TiltCard.tsx and FlowGlow.tsx; only opacity transitions. On leave --mx/--my are left where they were, so the light fades out in place rather than jumping to centre."
       },
       {
         "name": "spotlight-spring",
@@ -365,26 +372,34 @@
       {
         "name": "recede",
         "value": "exit 0%-85% on .hero, exit 0%-100% on .case__headline",
-        "purpose": "The scroll handoff at the top of each route: opacity to 0, scale to 0.9, translate to 0 22%, filter blur to --recede-blur (10px above 760px, 0px below), transform-origin 50% 45%, linear, view() timeline. Finished state is the default, so a refresh mid-page renders the right frame with no flash and no JS. Runs on the 404's headline panel too. ScrollScrub.tsx mirrors these frames through WAAPI on [data-scrub] elements where animation-timeline is missing; change both together."
+        "purpose": "The scroll handoff at the top of each route: opacity to 0, scale to var(--recede-scale), translate to 0 var(--recede-shift), filter blur to --recede-blur (10px above 761px, 0px below), transform-origin 50% 45%, linear, view() timeline. Desktop: --recede-scale 0.9, --recede-shift 22%. Under 760px (PR 09): --recede-scale 0.94, --recede-shift 8%, the desktop shift would push the fading name into the WORK label now the hero is bottom-set with the flagship peeking into the fold, and a 39px phone name shrinking to 0.9 read as a wobble rather than depth. Finished state is the default, so a refresh mid-page renders the right frame with no flash and no JS. Runs on the 404's headline panel too. ScrollScrub.tsx mirrors these frames through WAAPI on [data-scrub] elements where animation-timeline is missing; change both together."
       },
       {
         "name": "card-unveil",
         "value": "entry 0%-100% on .work__item--flagship .card",
-        "purpose": "The other half of the handoff: clip-path inset(0 0 100% 0 round --radius-card) to inset(0 0 80% 0) at 50% to inset(0 0 0 0), scale 0.96 to 1, opacity 0.5 to 0.85 to 1, linear, view() timeline. It lags the viewport edge then catches up, so the card is seen being drawn rather than merely arriving. The flagship's Reveal is neutralised inside the guard so one element has one entrance."
+        "purpose": "The other half of the handoff on desktop: clip-path inset(0 0 100% 0 round --radius-card) to inset(0 0 80% 0) at 50% to inset(0 0 0 0), scale 0.96 to 1, opacity 0.5 to 0.85 to 1, linear, view() timeline. It lags the viewport edge then catches up, so the card is seen being drawn rather than merely arriving. The flagship's Reveal is neutralised inside the guard so one element has one entrance. Switched off entirely under 760px (animation: none), evaluated twice: PR 02 found the flagship already peeking into the fold at load, which would render the clip-path already clipped and half-transparent instead of running its arc; PR 09 reconsidered directly and kept it off, since unveiling a card that is no longer first in view would be decoration seen once against the phone's quiet-ambience motion budget. A measured call each time, not an assumed default."
       }
     ],
     "breakpoints": [
       {
-        "name": "sm",
-        "value": "640px"
-      },
-      {
         "name": "phone",
-        "value": "720px"
+        "value": "760px",
+        "note": "THE one phone breakpoint (2026-09 mobile overhaul, PR 01). Replaced the old 640px/720px/760px split; there is no 720 and no 640 any more (The One Phone Breakpoint Rule)."
       },
       {
-        "name": "md",
-        "value": "760px"
+        "name": "phone-sm",
+        "value": "400px",
+        "note": "Named exception below the phone breakpoint: the menu sheet widens, .pill and .timeline__project-name may wrap."
+      },
+      {
+        "name": "phone-xs",
+        "value": "360px",
+        "note": "Named exception below the phone breakpoint: the contact email steps down one size."
+      },
+      {
+        "name": "flow",
+        "value": "900px",
+        "note": "The flow diagram turns from a row into a column."
       },
       {
         "name": "work-grid",
@@ -409,7 +424,7 @@
       "name": "Gradient-Edge Card",
       "kind": "card",
       "refersTo": "card",
-      "description": "One card per row carries the world's colour as a 2px gradient border, masked so only the edge shows. Selection is by row/column parity (column === row % 2), never odd index — odd index puts it on every left-column card and reads as a stripe.",
+      "description": "One card per row carries the world's colour as a 2px gradient border, masked so only the edge shows. Selection is by row/column parity (column === row % 2), never odd index, odd index puts it on every left-column card and reads as a stripe.",
       "html": "<article class=\"ds-card ds-card--gradient\"><div class=\"ds-card__head\"><h3 class=\"ds-card__name\">SantaClaws</h3></div><p class=\"ds-card__tagline\">OpenClaw agents that find small businesses with a missing or outdated website, then autonomously build them a mockup.</p></article>",
       "css": ".ds-card--gradient::before { content: \"\"; position: absolute; inset: 0; border-radius: inherit; padding: 2px; background: linear-gradient(120deg, var(--blob-c-1), var(--blob-b-1), var(--blob-a-2)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude; pointer-events: none; }"
     },
@@ -433,7 +448,7 @@
       "name": "Contact Email",
       "kind": "nav",
       "refersTo": "contact-email",
-      "description": "The page's single largest link: display face, underlined in the accent. Hover swaps the underline to ink — the text colour never moves.",
+      "description": "The page's single largest link: display face, underlined in the accent. Hover swaps the underline to ink, the text colour never moves.",
       "html": "<a class=\"ds-email\" href=\"mailto:pmdoshi@ucsc.edu\">pmdoshi@ucsc.edu</a>",
       "css": ".ds-email { display: inline-block; font-family: var(--font-display-stack); font-size: 1.75rem; font-weight: 600; letter-spacing: 0.005em; color: var(--ink); text-decoration: underline; text-decoration-thickness: 3px; text-decoration-color: var(--signal); text-underline-offset: 10px; word-break: break-all; transition: text-decoration-color 200ms var(--ease-out); } .ds-email:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 4px; } @media (hover: hover) and (pointer: fine) { .ds-email:hover { text-decoration-color: var(--ink); } }"
     },
@@ -441,7 +456,7 @@
       "name": "Icon Button",
       "kind": "button",
       "refersTo": "icon-button",
-      "description": "The shell's two controls — theme toggle and dot-grid menu trigger. Transparent at rest, 10% ink on hover, 0.97 on press.",
+      "description": "The shell's two controls, theme toggle and dot-grid menu trigger. Transparent at rest, 10% ink on hover, 0.97 on press.",
       "html": "<button type=\"button\" class=\"ds-icon-button\" aria-label=\"Open menu\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"4\" cy=\"4\" r=\"1.7\"/><circle cx=\"12\" cy=\"4\" r=\"1.7\"/><circle cx=\"20\" cy=\"4\" r=\"1.7\"/><circle cx=\"4\" cy=\"12\" r=\"1.7\"/><circle cx=\"12\" cy=\"12\" r=\"1.7\"/><circle cx=\"20\" cy=\"12\" r=\"1.7\"/><circle cx=\"4\" cy=\"20\" r=\"1.7\"/><circle cx=\"12\" cy=\"20\" r=\"1.7\"/><circle cx=\"20\" cy=\"20\" r=\"1.7\"/></svg></button>",
       "css": ".ds-icon-button { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 999px; background: transparent; color: var(--ink); cursor: pointer; transition: background 200ms var(--ease-out), transform 160ms var(--ease-out); } .ds-icon-button svg { display: block; width: 20px; height: 20px; fill: currentColor; } .ds-icon-button:active { transform: scale(0.97); } .ds-icon-button:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; } @media (hover: hover) and (pointer: fine) { .ds-icon-button:hover { background: color-mix(in oklab, var(--ink) 10%, transparent); } }"
     },
@@ -484,11 +499,27 @@
       "description": "One tool on a case study: a raised glass pill with the brand's Simple Icons silhouette (or a locally drawn mark for OpenClaw and Twilio) at 22px in currentColor, then the name at 600. Brand geometry ships; brand colour does not.",
       "html": "<span class=\"ds-tech\"><svg class=\"ds-tech__mark\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/></svg><span class=\"ds-tech__name\">Elixir</span></span>",
       "css": ".ds-tech { display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px 9px 11px; border-radius: 999px; border: 1px solid var(--glass-edge); background: var(--glass-raised); color: var(--ink); font-family: var(--font-body-stack); transition: border-color 200ms var(--ease-out); } .ds-tech__mark { width: 22px; height: 22px; flex: none; } .ds-tech__name { font-size: 0.9375rem; font-weight: 600; line-height: 1; } @media (hover: hover) and (pointer: fine) { .ds-tech:hover { border-color: color-mix(in oklab, var(--signal) 45%, var(--glass-edge)); } }"
+    },
+    {
+      "name": "Bottom Sheet (phone menu)",
+      "kind": "nav",
+      "refersTo": "menu-link",
+      "description": "Under 760px the desktop's left-side drawer becomes a bottom sheet by geometry alone: a grabber, a visible close button (the shadcn default is suppressed everywhere so this is the only close control drawn), and a foot row whose email leads and whose three link pills wrap rather than overflow at large text sizes.",
+      "html": "<div class=\"ds-sheet\"><span class=\"ds-sheet__grab\" aria-hidden=\"true\"></span><nav class=\"ds-sheet__nav\"><a class=\"ds-sheet__link\" href=\"#\">Work<span class=\"ds-sheet__key\">1</span></a></nav><div class=\"ds-sheet__foot\"><a class=\"ds-sheet__email\" href=\"mailto:pmdoshi@ucsc.edu\">pmdoshi@ucsc.edu</a><div class=\"ds-sheet__row\"><a href=\"#\">GitHub</a><a href=\"#\">LinkedIn</a><a href=\"#\">Résumé</a></div></div><button type=\"button\" class=\"ds-sheet__close\" aria-label=\"Close menu\">×</button></div>",
+      "css": ".ds-sheet { position: relative; width: 100%; max-height: min(88svh, 640px); padding: 14px 20px 24px; border-top: 1px solid var(--glass-edge); border-radius: 22px 22px 0 0; background: var(--ground); display: flex; flex-direction: column; gap: 22px; } .ds-sheet__grab { display: block; width: 36px; height: 4px; margin: 0 auto 2px; border-radius: 999px; background: color-mix(in oklab, var(--ink) 22%, transparent); } .ds-sheet__nav { display: flex; flex-direction: column; } .ds-sheet__link { display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 6px 0; font-family: var(--font-display-stack); font-size: clamp(26px, 8vw, 34px); text-transform: uppercase; color: var(--ink); text-decoration: none; } .ds-sheet__key { border: 1.5px solid var(--ink-2); border-radius: 6px; padding: 2px 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; color: var(--ink-2); } .ds-sheet__foot { display: flex; flex-direction: column; gap: 16px; } .ds-sheet__email { font-family: var(--font-display-stack); font-size: clamp(18px, 5.1vw, 22px); font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: var(--signal); text-decoration-thickness: 3px; text-underline-offset: 8px; } .ds-sheet__row { display: flex; flex-wrap: wrap; gap: 8px; } .ds-sheet__row a { flex: 1 1 0; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--glass-edge); background: var(--glass-raised); font-size: 0.9375rem; font-weight: 600; color: var(--ink); text-decoration: none; } .ds-sheet__close { position: absolute; top: 12px; right: 12px; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--glass-edge); background: var(--glass-raised); color: var(--ink); }"
+    },
+    {
+      "name": "Copy Email",
+      "kind": "custom",
+      "refersTo": "contact-email",
+      "description": "A small icon button beside the address: navigator.clipboard.writeText on click, an authored copy/check icon cross-fade, and an aria-live sr-only region announcing 'Copied' for 1.6s. Exists because a phone with no configured mail client opens nothing on mailto:.",
+      "html": "<button type=\"button\" class=\"ds-copy\" aria-label=\"Copy email address\"><svg class=\"ds-copy__icon\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"7\" y=\"7\" width=\"10\" height=\"10\" rx=\"1.5\"/><path d=\"M4 13V4.5A1.5 1.5 0 0 1 5.5 3H13\"/></svg><span class=\"ds-sr-only\" aria-live=\"polite\"></span></button>",
+      "css": ".ds-copy { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 999px; background: transparent; color: var(--ink-2); cursor: pointer; transition: background 200ms var(--ease-out), transform 160ms var(--ease-out); } .ds-copy__icon { width: 18px; height: 18px; } .ds-copy:active { transform: scale(0.97); } .ds-copy:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; } @media (hover: hover) and (pointer: fine) { .ds-copy:hover { background: color-mix(in oklab, var(--ink) 10%, transparent); } }"
     }
   ],
   "narrative": {
     "northStar": "The Holographic Introduction",
-    "overview": "A person who is several things at once, introducing himself on a sheet of iridescent film. The ground is a cool lavender-grey with four soft gradient blobs pushed hard into the corners and a real film-grain tile over everything; the centre of the viewport stays calm so wide display capitals can sit on it without fighting colour. The page's whole argument is made twice, once by the words and once by the material: the blobs are three-stop gradients on four different axes, so nothing repeats, and the frosted cards that float over them borrow their colour rather than adding a new one.\n\nDensity is low and deliberate. One 1140px column, generous vertical air (80px in, 96px out per section), an 18px grid gap, and long unbroken measures (40–46ch on ledes, 60ch on About). The register is adult and editorial, never bubbly: no sparkles, no candy pastels, no 40px pillow corners, no glossy mascot shapes. Colour lives in the ground; the foreground is ink, glass and one coral.\n\nTwo complete themes ship. Dark is not an inverted filter. It is a second token set with a deep indigo ground, a second full set of blob stops mixed brighter, and the blobs held to 62% opacity so body text still survives over them. Every visual decision is expressed as a custom property in app/globals.css, which is the normative source for both.",
+    "overview": "A person who is several things at once, introducing himself on a sheet of iridescent film. The ground is a cool lavender-grey with four soft gradient blobs pushed hard into the corners and a real film-grain tile over everything; the centre of the viewport stays calm so wide display capitals can sit on it without fighting colour. The page's whole argument is made twice, once by the words and once by the material: the blobs are three-stop gradients on four different axes, so nothing repeats, and the frosted cards that float over them borrow their colour rather than adding a new one.\n\nDensity is low and deliberate. One 1140px column, generous vertical air (80px in, 96px out per section), an 18px grid gap, and long unbroken measures (40–46ch on ledes, 60ch on About). The register is adult and editorial, never bubbly: no sparkles, no candy pastels, no 40px pillow corners, no glossy mascot shapes. Colour lives in the ground; the foreground is ink, glass and one coral.\n\nTwo complete themes ship. Dark is not an inverted filter. It is a second token set with a deep indigo ground, a second full set of blob stops mixed brighter, and the blobs held to 62% opacity so body text still survives over them. Every visual decision is expressed as a custom property in app/globals.css, which is the normative source for both.\n\nA twelve-PR mobile overhaul (2026-09) rebuilt the phone form of every surface as its own layout, not a squeezed desktop one: a two-line hero with its own scroll cue and a fold-peeking flagship card, work cards that trade the mark-dominant desktop layout for a 60px chip beside a full-width tagline, the side menu turned into a bottom sheet with a grabber and its own close control, a peek-and-snap slideshow with a native dialog expand for tall captures, and a single consolidated phone breakpoint at 760px with two narrow named exceptions below it. The glass, the caps, the one accent and both themes carry over unchanged.",
     "keyCharacteristics": [
       "Iridescent gradient blobs in all four corners, calm ground in the middle",
       "Wide uppercase display capitals with an outline-and-fill contrast device",
@@ -497,7 +528,8 @@
       "Exactly one accent colour, split into a shape token and a text token",
       "A real 128px grain raster, not an SVG filter",
       "Flat by construction: edges alone convey depth, never shadows and never blur",
-      "Two full themes, both first-class"
+      "Two full themes, both first-class, and both followed by default rather than defaulted to light",
+      "One phone breakpoint (760px), not three, with 400px and 360px as the only narrower named exceptions"
     ],
     "rules": [
       {
@@ -557,7 +589,7 @@
       },
       {
         "name": "The Blur-Is-Legibility Rule",
-        "body": "Retired 2026-09-05. It used to read: any surface that carries text over the wash must carry backdrop-filter: blur() saturate(), because the blur was what kept text readable over a saturated blob. That mechanism is gone — every backdrop-filter and -webkit-backdrop-filter in the stylesheet was deleted the same day, reproducing universally what production Chromium had already been showing by accident (a build optimizer there had long stripped the unprefixed declaration, leaving only the inert -webkit- form, so only Safari had ever actually rendered the blur). Parth compared both looks and chose the no-blur version for every browser and both themes. The concern is still met: re-measured on .case__back and .case__meta, contrast now reads light p20 7.88 / 8.79, dark p20 12.25 / 14.04, both themes clearing the 4.5:1 floor by more than 2.5x. The flat tint was carrying that number the whole time. Its successor is The Tint-Is-Legibility Rule.",
+        "body": "Retired 2026-09-05. It used to read: any surface that carries text over the wash must carry backdrop-filter: blur() saturate(), because the blur was what kept text readable over a saturated blob. That mechanism is gone, every backdrop-filter and -webkit-backdrop-filter in the stylesheet was deleted the same day, reproducing universally what production Chromium had already been showing by accident (a build optimizer there had long stripped the unprefixed declaration, leaving only the inert -webkit- form, so only Safari had ever actually rendered the blur). Parth compared both looks and chose the no-blur version for every browser and both themes. The concern is still met: re-measured on .case__back and .case__meta, contrast now reads light p20 7.88 / 8.79, dark p20 12.25 / 14.04, both themes clearing the 4.5:1 floor by more than 2.5x. The flat tint was carrying that number the whole time. Its successor is The Tint-Is-Legibility Rule.",
         "section": "elevation"
       },
       {
@@ -604,6 +636,36 @@
         "name": "The No-Eyebrow Rule",
         "body": "CaseStudySection takes exactly { id, title, children }. There is no label, kicker, eyebrow, number or index prop and none may be added. The eyebrow above a heading is the one ban no brief earns back, and the section sequence carries no information the reader needs; the headings do. Making the slot structurally unavailable is stronger than leaving it unused.",
         "section": "components"
+      },
+      {
+        "name": "The One Phone Breakpoint Rule",
+        "body": "Before the 2026-09 mobile overhaul the phone system was split across 640px, 720px and 760px. Everything that used to key off 640 or 720 (shell padding and mark size, scroll-ring insets, hero type, blob sizing and drift, the outline stroke floor) now keys off 760px, THE phone breakpoint, alongside what already lived there. There is no 720 and no 640 any more: a phone is one device class and gets one threshold. 400px and 360px exist only as two narrow named exceptions below it (the menu widens and pills may wrap at 400; the email steps down at 360). A new phone rule reaches for 760px first.",
+        "section": "layout"
+      },
+      {
+        "name": "The Two-Line Phone Headline Rule",
+        "body": "Below 760px the hero title is exactly two lines, never three: .hero__name becomes display: block so the name takes its own line under \"HEY, I'M\". Inside that box, PARTH DOSHI is asserted to clear 97% of the column at every width from 280 to 760px, at both the default root font size and a simulated 200% root. The clamp(28px, 10vw, 44px) slope is the steepest that holds the invariant without breaking it before the cap takes over.",
+        "section": "typography"
+      },
+      {
+        "name": "The Bottom Sheet Rule",
+        "body": "Under 760px the desktop's left-side Radix Sheet becomes a bottom sheet by geometry alone (inset, width, border-radius, border side), not a different component: a phone's thumb lives at the bottom of the screen. It gains a grabber, a visible 'Close menu' button (the shadcn default close control is suppressed everywhere so this is the only one drawn), the email link moved first in the foot row ahead of GitHub/LinkedIn/résumé, and flex-wrap on the three foot pills so they wrap rather than overflow at 200% text (a real bug found and fixed in PR 11). The number-shortcut keycaps hide under pointer: coarse; the shortcuts themselves stay live only while the sheet is open, on any pointer type.",
+        "section": "components"
+      },
+      {
+        "name": "The Reduced-Transparency Fallback",
+        "body": "The glass ladder is a tint, not a blur, but a flat 40%-alpha tint is still translucency in the OS sense. Under prefers-reduced-transparency: reduce, every glass surface repaints to --glass-solid, a near-opaque white/ground mix, without touching backdrop-filter (which no rule sets any more). The opaque screenshot well is untouched; the preference is about surfaces over content, not the wash.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Forced-Colors Fallback",
+        "body": "The timeline rail and the flow diagram's connector row are gradients, and forced-colors: active strips a gradient entirely with nothing replacing it by default. Both get an explicit background: CanvasText under @media (forced-colors: active) so the sequence they draw survives; purely decorative gradients (the card edge, the live-link ring, the specular highlights) are allowed to disappear.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Per-Selector Intrinsic Size Rule",
+        "body": "Below-the-fold sections get content-visibility: auto under 760px, but each selector carries its own contain-intrinsic-size guess rather than one shared value (.section--exp 1000px, #about 800px, .contact 550px, .case__section 500px, .shots 400px, .case__foot 420px). A shared guess undershoots most sections, and an undershooting guess compounds: a browser's one-time scroll-to-fragment on load runs before an undershooting sibling above the target has unskipped to its real height, which broke /#about and /#contact landing before this was fixed.",
+        "section": "elevation"
       }
     ],
     "dos": [
@@ -622,7 +684,12 @@
       "Do write copy with commas, colons, periods, middle dots and hyphens. There are no em dashes anywhere in user-visible text.",
       "Do regenerate the grain with node scripts/make-grain.mjs public/textures/grain.png rather than hand-editing the PNG; the seed is the provenance.",
       "Do cap measures: 40 to 46ch for ledes and taglines, 52 to 62ch for bullets and notes, 60ch for long-form body.",
-      "Do keep the outline device on lead-in words only, at weight 400 inside the @supports guard."
+      "Do keep the outline device on lead-in words only, at weight 400 inside the @supports guard.",
+      "Do key every phone rule off 760px, the one phone breakpoint; reach for 400px or 360px only where the existing named exception already covers the case.",
+      "Do route every fixed-edge phone value through the --safe-* tokens (env(safe-area-inset-*, 0px)), and keep viewport.viewportFit: 'cover' in app/layout.tsx.",
+      "Do give every new glass surface a prefers-reduced-transparency: reduce fallback to --glass-solid, and give any new sequence-bearing gradient a forced-colors: active fallback to CanvasText.",
+      "Do give each content-visibility: auto selector its own contain-intrinsic-size guess sized to that section's real content (The Per-Selector Intrinsic Size Rule).",
+      "Do regenerate mobile screenshots and contrast numbers with scripts/mobile-capture.mjs and scripts/mobile-contrast.mjs after a visual change, rather than describing a phone viewport from memory."
     ],
     "donts": [
       "Don't add a box-shadow. This system has none; elevation is an edge, never a shadow (The Edge-Not-Shadow Rule).",
@@ -647,7 +714,11 @@
       "Don't add a label, kicker, eyebrow or number prop to CaseStudySection, and don't add a standfirst or a description paragraph back to the header or the card.",
       "Don't give Operations Agent a repo affordance of any kind, including a disabled one.",
       "Don't render a shadcn Badge; the .pill class is the badge.",
-      "Don't override shadcn's --accent expecting the page accent; that slot belongs to shadcn, ours is --signal."
+      "Don't override shadcn's --accent expecting the page accent; that slot belongs to shadcn, ours is --signal.",
+      "Don't reintroduce a 720px or 640px breakpoint; everything that used to key off either now keys off 760px (The One Phone Breakpoint Rule).",
+      "Don't treat the frozen phone wash or the disabled flagship card-unveil as permanent style rules; both are measured decisions (an unmeasured real-device frame-rate gate; a fold-peek conflict plus a 'seen once' call) and either can be revisited with a fresh measurement.",
+      "Don't give a content-visibility: auto section a shared blanket contain-intrinsic-size; size each selector to its own content.",
+      "Don't ship mailto: as the only way to get in touch on a phone; pair it with a copy-to-clipboard control, since a phone with no configured mail client opens nothing."
     ]
   }
 }

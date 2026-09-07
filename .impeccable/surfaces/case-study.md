@@ -51,7 +51,7 @@ Plus one added section that earns its place:
 
 **The screens come LAST, and they are a slideshow** (2026-09-03). They used to hang under the header as a scroll-pinned band, which spent the reader's first screen on pictures before the argument and spent the route's one pin allowance on them. Words first; the screens are what you look at once you have decided to care. The pin is now unspent, and it is not to be spent on Problem & context, What I built & how, or Outcome & impact — those are read, not watched.
 
-**The slideshow is scrolled, not translated,** and the reader drives it. A native scroll-snap track buys touch swipe, momentum and a focusable region; the arrows animate `scrollLeft` on the site's one easing rather than handing the curve to `scrollTo({ behavior: "smooth" })`; and the active index is read back out of the scroll position so no input can desync the dots.
+**The slideshow is scrolled, not translated,** and the reader drives it. A native scroll-snap track buys touch swipe, momentum and a focusable region; the arrows animate `scrollLeft` on the site's one easing rather than handing the curve to `scrollTo({ behavior: "smooth" })`; and the active index is read back out of the scroll position so no input can desync the dots. On phones (PR 08 of the mobile overhaul) the same track peeks the next slide's edge into view rather than snapping edge-to-edge, so the reader learns there is more without a dot count; a tall screenshot gets an `Expand` control that opens it full-height in a native `<dialog>` (`showModal()`), inert background and focus trap for free, closed by its own `Close` button, Escape, or the backdrop.
 
 ## Direction contract
 
@@ -62,6 +62,8 @@ OWN-WORLD: Inherited from the homepage without amendment — same wash, same gra
 STORY: Reader arrives from a card, is told in one metadata line what this was and when; reads how it works, then the problem, the build, the outcome, the hardest part, and what he would do differently; then sees the screens, having been told what he is looking at; and finds an email link exactly where the argument finishes.
 
 FIRST VIEWPORT: Back affordance (`← back to the work`) on the 1140 column at the same left edge as everything else; the project name in display caps; the hairline metadata line rendering only fields that exist; the tech row when a mapping exists; then the flow diagram beginning to enter. No eyebrow above the name. No metric band. **No screenshot** — that is the 2026-09-03 change, and it is the whole point of it.
+
+FIRST VIEWPORT, phones (760px and under, PR 06 of the mobile overhaul, 2026-09): the whole header clears the fold at 390x844 in one screen — back link, the project name at 34px (denser than desktop's display size, PR 06's own gate), the tagline, the live pill where the project has one, and a denser tech-tile row than desktop's — with "How it works" (the flow diagram's heading) beginning to arrive at the bottom edge as the page loads, exactly as the homepage's own flagship card arrives at its fold. No eyebrow, no metric band and no screenshot hold on phones for the same reasons they hold on desktop.
 
 FORM: The homepage's system, one new component vocabulary (`.case__*`), one new token (`--media-well`), one named amendment (Opaque-Media), zero new radii, zero `box-shadow`.
 
@@ -74,6 +76,8 @@ FINISH: Every section reads correctly with its prose absent. The reduced-motion 
 **The Simple Icons bounded exception** — an amendment to The Drawn-Not-Set Rule, spelled out in full in DESIGN.md. Brand *geometry* ships; brand *colour* does not. Case-study header only, one size, `currentColor`.
 
 **Arrow grammar, third case** — leading arrow means the link stays on the site; trailing `ArrowUpRight` means it leaves. `← back to the work` and `GitHub ↗` are different promises and read as such.
+
+**The Rail Rule** — an amendment for phones (PR 07 of the mobile overhaul). Desktop's flow diagram is a chain of cards read left to right; under 900px there is no width left for that argument, so the chain collapses onto one vertical rail with a numbered index circle sitting on it per step — the same rail-and-node vocabulary the homepage's Experience timeline already uses, so a reader who scrolled past the homepage recognises "steps in order" without needing an arrow to say so.
 
 ## Named follow-up (deliberately not in this PR)
 
