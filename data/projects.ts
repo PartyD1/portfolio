@@ -1,5 +1,5 @@
 /**
- * The seven projects.
+ * The six projects.
  *
  * Several fields below are typed and empty because the fact does not exist yet,
  * not because nobody got round to it. Those are marked BLOCKED. The rule for
@@ -379,29 +379,6 @@ export const projects: Project[] = [
         "Meeting booking and the voice path were scoped as stretch work, and the reply handler has a demo fallback behind it.",
       ],
     },
-  },
-  {
-    slug: "wave-function-collapse",
-    name: "Wave Function Collapse",
-    label: "Procedural generation",
-    /*
-     * UNRESOLVED. Do not "fix" this by making it more impressive.
-     *
-     * The linked repo's README says it is a starter scaffold and lists the WFC
-     * grid state, tile compatibility checks, and collapse/propagation logic
-     * under "Still to build". It also says main.js and JavaScript throughout.
-     * So the tagline stays at what the repo can support, and no case study is
-     * written, until either the README is updated or the claim is narrowed.
-     * A recruiter clicks through; the repo has to agree with the page.
-     */
-    tagline:
-      "A tile-based map generator, assembling a map from tile adjacency rules one cell at a time.",
-    ownership: "A research probe for the Augmented Design Lab",
-    href: "https://github.com/PartyD1/wave-function",
-    weight: 3,
-    /* JavaScript, per the repo. See the tagline note above. */
-    tech: ["JavaScript", "HTML"],
-    media: [],
   },
   {
     slug: "pewter-platformer",

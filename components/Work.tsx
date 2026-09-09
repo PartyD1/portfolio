@@ -5,11 +5,15 @@ import Reveal from "@/components/Reveal";
 /**
  * One gradient edge per ROW, alternating sides — a rhythm, not a stripe.
  *
- * This is the TWO-COLUMN rule only, and it is provably correct for the current
- * shape: the flagship at i=0 spans its own row, so the remaining six occupy
- * rows (1,2) (3,4) (5,6). For k = i-1, row = floor(k/2) and col = k%2; the edge
- * falls where col === row%2, giving k = 0, 3, 4 → i = 1, 4, 5. That is one per
- * row, alternating left → right → left, plus the flagship.
+ * This is the TWO-COLUMN rule only, and it is provably correct for any count
+ * of remaining items: the flagship at i=0 spans its own row, so the rest
+ * occupy sequential two-up rows. For k = i-1, row = floor(k/2) and col = k%2;
+ * the edge falls where col === row%2. That is one per row, alternating
+ * left → right → left, plus the flagship, regardless of whether the last row
+ * ends up with one item or two — an odd remaining count (5, currently) just
+ * leaves that trailing item alone in its row at its normal width, which is
+ * correct: only the flagship spans, by design (see below), so a lone last
+ * item is not a bug to fix.
  *
  * It stays correct only because WEIGHT NEVER CHANGES GRID SPAN — exactly one
  * item spans a row. Promoting a card to weight 2 must not make it span, or this
