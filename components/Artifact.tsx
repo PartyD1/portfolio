@@ -142,39 +142,6 @@ function SantaClaws() {
   );
 }
 
-function WaveFunction() {
-  // 5x5 grid; 0 = uncollapsed (outline), 1 = collapsed (filled), 2 = superposition (half)
-  const cells = [
-    [1, 1, 1, 2, 0],
-    [1, 1, 2, 0, 0],
-    [1, 2, 0, 0, 0],
-    [2, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-  ];
-  const size = 18;
-  const gap = 5;
-  return (
-    <svg viewBox="0 0 120 120" aria-hidden="true">
-      {cells.map((row, r) =>
-        row.map((v, c) => (
-          <rect
-            key={`${r}-${c}`}
-            x={6 + c * (size + gap)}
-            y={6 + r * (size + gap)}
-            width={size}
-            height={size}
-            rx="5"
-            fill={v === 0 ? "none" : "currentColor"}
-            opacity={v === 2 ? 0.4 : 1}
-            stroke="currentColor"
-            strokeWidth="2.5"
-          />
-        )),
-      )}
-    </svg>
-  );
-}
-
 function Pewter() {
   return (
     <svg viewBox="0 0 120 120" aria-hidden="true">
@@ -232,7 +199,6 @@ const marks: Record<string, () => React.JSX.Element> = {
   "operations-agent": OperationsAgent,
   "scorely-ai": Scorely,
   santaclaws: SantaClaws,
-  "wave-function-collapse": WaveFunction,
   "pewter-platformer": Pewter,
   gestura: Gestura,
   wordplay: WordPlay,

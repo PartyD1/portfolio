@@ -63,7 +63,7 @@ Visitors are doing fast technical screening (recruiters) or casual browsing (pee
   - Not established: which project used which tool, and any fluency ordering. Do not infer either.
 - Employment (supplied 2026-09-03), recorded in `data/experience.ts`:
   - **EduSchool — Full Stack Engineer Intern, incoming, Fall 2026.** Agreed, not started. No exact dates, no responsibilities and no project were given; the row shows title, company and "Fall 2026" only. Do not invent a start date or a scope.
-  - **Augmented Design Lab, UC Santa Cruz — Undergraduate Research Assistant** (Apr 2026 - present). Every row leads with the position, then the organisation (Parth, 2026-09-03). The project linked from this row is **Pewter Platformer**, not Wave Function Collapse.
+  - **Augmented Design Lab, UC Santa Cruz — Undergraduate Research Assistant** (Apr 2026 - present). Every row leads with the position, then the organisation (Parth, 2026-09-03). The project linked from this row is **Pewter Platformer**.
   - **InstaService — AI/ML Engineer Intern** (Summer 2026; the row shows the season, not months), linked to Operations Agent.
 - Sport and mentoring (supplied 2026-09-02): the sport is **volleyball**; he **mentors younger kids**, passing on life experience and lessons learned from adulting. Both are grounded in one About sentence. No further detail was given — do not invent a team, league, level, or program.
 
@@ -72,10 +72,9 @@ Real projects to feature:
 1. **Operations Agent** — the flagship project. Built during a summer 2026 internship (with a partner): an agentic workflow that manages bookings for the company's operations team and autonomously flags and works to fix bookings needing attention. No public repo (internship-confidential) — do not fabricate or imply one exists.
 2. **ScorelyAI** — an AI, rubric-based evaluator of DECA competition reports, currently in use by real high school competitors. https://github.com/PartyD1/scorely-ai
 3. **Santa Claws** — an agentic lead-generation and conversion framework targeting small businesses with no website or outdated/poorly designed ones; agents autonomously build website mockups, deploy them, and write the outreach that links to them. Five claws (Scout, Designer, Pitcher, Closer and a Discord approval worker) coordinate through Supabase rather than calling each other, run inside a NemoClaw sandbox reaching Nemotron through its managed inference route, and were built in a 24-hour hackathon. Name, agent roster, runtime and stack all per the project's own README as of 2026-09-03 — it was recorded here as "SantaClaws, built on OpenClaw" before that. https://github.com/PartyD1/santaclaws
-4. **Wave Function Collapse** — a Phaser/JavaScript tile-based procedural map generator implementing the wave function collapse algorithm. https://github.com/PartyD1/wave-function
-5. **WordPlay** — a full-stack Wordle recreation with full statistics and history tracking. https://github.com/PartyD1/wordplay
-6. **Pewter Platformer** — a research-lab project improving the physics of a platformer's movement engine and building tools for an LLM to understand that physics well enough to generate difficult but playable levels. https://github.com/PartyD1/Pewter-The-Platformer
-7. **Gestura** — a browser-based music player controlled entirely by hand symbols and movements, built as assistive technology for motor-impaired users. https://github.com/PartyD1/gestura
+4. **WordPlay** — a full-stack Wordle recreation with full statistics and history tracking. https://github.com/PartyD1/wordplay
+5. **Pewter Platformer** — a research-lab project improving the physics of a platformer's movement engine and building tools for an LLM to understand that physics well enough to generate difficult but playable levels. https://github.com/PartyD1/Pewter-The-Platformer
+6. **Gestura** — a browser-based music player controlled entirely by hand symbols and movements, built as assistive technology for motor-impaired users. https://github.com/PartyD1/gestura
 
 No other testimonials, metrics, press, or case-study detail beyond what's listed above is confirmed — future work must not invent adoption numbers, user counts, or outcomes not stated here.
 
@@ -96,10 +95,10 @@ Everything below is **blocked on Parth and absent from the UI until he supplies 
 6. Graduation term; location, relocation and work authorisation; target role and start date. These three render as the hero availability subline and are, per survey:convert, the single highest-cost omission on the site.
 7. Screenshots / GIFs, and whether a scrubbed architecture diagram of the Operations Agent is permissible — a diagram sidesteps confidentiality entirely and is a better proof artifact here than a UI screenshot.
 8. Any *sourced* usage fact for ScorelyAI. "In use by DECA competitors" is confirmed and must never be embellished into a number.
-9. Whether Gestura / Wave Function Collapse / WordPlay can be deployed to live URLs.
+9. Whether Gestura / WordPlay can be deployed to live URLs.
 10. Whether any project should be promoted to `weight: 2`.
 
-**Off-repo, and the highest-leverage thing Parth can do next:** a README with one image and one run command on each of the six public repos. A recruiter will click through, and a repo with no README subtracts the credibility the case study just earned.
+**Off-repo, and the highest-leverage thing Parth can do next:** a README with one image and one run command on each of the five public repos. A recruiter will click through, and a repo with no README subtracts the credibility the case study just earned.
 
 ## Product Principles
 
