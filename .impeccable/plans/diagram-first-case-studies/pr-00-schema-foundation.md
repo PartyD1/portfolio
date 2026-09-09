@@ -47,20 +47,11 @@ export type TreeDiagram = {
   children: { title: string; detail?: string; isolated?: boolean }[];
 };
 
-export type GridDiagram = {
-  kind: "grid";
-  // Shape TBD at PR 06, once the mechanism is confirmed. Placeholder member
-  // only so the union compiles; PR 06 replaces this with real fields or
-  // removes the "grid" kind entirely if it turns out not to be needed.
-  cells: { title: string; detail?: string }[];
-};
-
 export type Diagram =
   | StepperDiagram
   | HubAndSpokeDiagram
   | LoopDiagram
-  | TreeDiagram
-  | GridDiagram;
+  | TreeDiagram;
 
 export type CaseStudy = {
   diagrams?: Diagram[];
@@ -80,12 +71,11 @@ Remove the `sections` array and its render loop entirely. Replace the single `{s
     case "hub-and-spoke": return <HubAndSpoke key={i} data={d} />;
     case "loop": return <Loop key={i} data={d} />;
     case "tree": return <Tree key={i} data={d} />;
-    case "grid": return <Grid key={i} data={d} />;
   }
 })}
 ```
 
-`HubAndSpoke`, `Loop`, `Tree`, `Grid` do not exist yet; this PR imports them as it builds them, or (more likely, given none has a consumer until PR 01) this PR stubs the switch with only the `"stepper"` case wired, and PR 01 adds the other three cases the same day it builds the components, since Operations Agent is the first project to need them. Either sequencing is fine; do not merge a switch case with no component behind it.
+`HubAndSpoke`, `Loop`, `Tree` do not exist yet; this PR imports them as it builds them, or (more likely, given none has a consumer until PR 01) this PR stubs the switch with only the `"stepper"` case wired, and PR 01 adds the other three cases the same day it builds the components, since Operations Agent is the first project to need them. Either sequencing is fine; do not merge a switch case with no component behind it.
 
 ### What gets deleted, not just unused
 
@@ -95,7 +85,7 @@ Remove the `sections` array and its render loop entirely. Replace the single `{s
 
 ## 3. Migration order (important)
 
-Deleting the five prose fields from the `CaseStudy` type in this PR would break every project's data in the same commit, forcing PR 00 to also rewrite all seven projects' content, which defeats the point of doing this project by project. Instead:
+Deleting the five prose fields from the `CaseStudy` type in this PR would break every project's data in the same commit, forcing PR 00 to also rewrite all six projects' content, which defeats the point of doing this project by project. Instead:
 
 1. PR 00 adds `diagrams?: Diagram[]` to `CaseStudy` **alongside** the existing five prose fields (additive, not breaking).
 2. PR 00 updates `page.tsx` to render `diagrams` first, then still render any remaining prose sections below it (temporary, ugly, and gone by PR 08).
@@ -114,7 +104,7 @@ This is the same additive-then-subtractive pattern the mobile overhaul used for 
 
 - [ ] `npm run build` passes with the additive type change; no project's existing data needs to change yet.
 - [ ] The detector reports zero findings.
-- [ ] Every existing case study page (`/work/operations-agent`, `/work/santaclaws`, `/work/gestura`, `/work/wordplay`) renders identically to before this PR (nothing removed yet, `diagrams` is empty on all seven projects until PR 01 onward).
+- [ ] Every existing case study page (`/work/operations-agent`, `/work/santaclaws`, `/work/gestura`, `/work/wordplay`) renders identically to before this PR (nothing removed yet, `diagrams` is empty on all six projects until PR 01 onward).
 - [ ] TypeScript's discriminated union narrows correctly in the `page.tsx` switch (no `as` casts needed to read shape-specific fields).
 
 Commit title: `Case studies can carry more than one diagram, in more than one shape`.
