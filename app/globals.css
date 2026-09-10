@@ -2934,6 +2934,15 @@ svg {
   opacity: 0.45;
 }
 
+/* Agreed, not started: the same outline-vs-fill distinction the hero draws
+ * between "HEY, I'M" and the filled name. A dashed edge, not a fifth glass
+ * opacity (The Glass Ladder Rule) and not new copy — the two data-rich rows
+ * stay solid, so the one row with nothing else to show reads as a different
+ * KIND of fact rather than a thinner version of the same one. */
+.timeline__item[data-incoming] .timeline__node {
+  border-style: dashed;
+}
+
 .timeline__card {
   display: flex;
   flex-direction: column;
@@ -2944,6 +2953,10 @@ svg {
   background: var(--glass);
   color: var(--ink);
   transition: border-color 200ms var(--ease-out);
+}
+
+.timeline__item[data-incoming] .timeline__card {
+  border-style: dashed;
 }
 
 /* The role leads the card: a recruiter scans for the position, then who it was for. */

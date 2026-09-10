@@ -1,5 +1,4 @@
 import RoleRoll, { type Phrase } from "@/components/RoleRoll";
-import { ArrowDown } from "@/components/Icon";
 import { availability } from "@/data/site";
 import { FIXTURES, fixtureAvailability } from "@/data/fixtures";
 
@@ -27,6 +26,31 @@ const phrases: Phrase[] = [
   { text: "mentor" },
   { text: "obsessed with AI", accent: true, hold: 4200 },
 ];
+
+/**
+ * The fold cue's glyph: the same sine the name waves on, turned vertical and
+ * given a chevron tip. A generic down-chevron is the one boilerplate mark on
+ * an otherwise specific page; this keeps the "scroll" affordance legible
+ * (the chevron still reads as a direction) while carrying the site's own
+ * signature instead of a stock icon.
+ */
+function ScrollCue({ className = "icon" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M10 1.5c3 1.4-3 2.8 0 4.2s-3 2.8 0 4.2" />
+      <path d="M5 11l5 5 5-5" />
+    </svg>
+  );
+}
 
 /** Two sine passes behind the name, echoing the reference's wave. */
 function Wave({ className }: { className?: string }) {
@@ -118,7 +142,7 @@ export default function Hero() {
           hint that the page continues. An anchor, not a decoration, so it is a
           44px target with a name. */}
       <a className="hero__cue" href="#work" aria-label="Scroll to the work">
-        <ArrowDown />
+        <ScrollCue />
       </a>
 
     </section>
