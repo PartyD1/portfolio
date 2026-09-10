@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { projects } from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
@@ -31,20 +30,7 @@ function edge2col(i: number) {
   return k % 2 === Math.floor(k / 2) % 2;
 }
 
-/*
- * The flagship plus its first pair read as one decision (the headline act);
- * everything after is the second. Above four non-flagship cards the grid
- * is one field of same-weight decisions with nothing to chunk it (the
- * cognitive-load ceiling is four visible options per decision), so a break
- * lands after the first pair — full-span, so the auto-placement grid starts
- * the next pair on a fresh row regardless of how many cards remain. At or
- * under three non-flagship cards nothing needs splitting.
- */
-const BREAK_AFTER_INDEX = 2;
-
 export default function Work() {
-  const needsBreak = projects.length - 1 > 4;
-
   return (
     <section
       className="section section--work"
@@ -58,23 +44,19 @@ export default function Work() {
       </div>
       <div className="work__grid">
         {projects.map((project, i) => (
-          <Fragment key={project.slug}>
-            <Reveal
-              delay={i * 50}
-              className={[
-                "work__item",
-                project.weight === 1 && "work__item--flagship",
-              ]
-                .filter(Boolean)
-                .join(" ")}
-              data-edge-2col={edge2col(i) ? "" : undefined}
-            >
-              <ProjectCard project={project} />
-            </Reveal>
-            {needsBreak && i === BREAK_AFTER_INDEX && (
-              <div className="work__break" aria-hidden="true" />
-            )}
-          </Fragment>
+          <Reveal
+            key={project.slug}
+            delay={i * 50}
+            className={[
+              "work__item",
+              project.weight === 1 && "work__item--flagship",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+            data-edge-2col={edge2col(i) ? "" : undefined}
+          >
+            <ProjectCard project={project} />
+          </Reveal>
         ))}
       </div>
     </section>
