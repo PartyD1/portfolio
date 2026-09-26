@@ -79,8 +79,12 @@ export default function ResumeDocument({
           () => {
             if (!cancelled) setState("ready");
           },
-          () => {
-            // Cancelled by a newer draw. That draw owns the canvas now.
+          (err: unknown) => {
+            // Cancelled by a newer draw: that draw owns the canvas now. Any
+            // other failure (iOS refusing the canvas, say) would otherwise
+            // leave a blank sheet, so it falls back to the PDF link.
+            if ((err as Error)?.name === "RenderingCancelledException") return;
+            if (!cancelled) setState("error");
           },
         );
       }
@@ -93,6 +97,9 @@ export default function ResumeDocument({
           "pdfjs-dist/legacy/build/pdf.worker.min.mjs",
           import.meta.url,
         ).toString();
+        // Unmounted during the import: nothing to load. Past this line the
+        // task is assigned synchronously, so cleanup can always destroy it.
+        if (cancelled) return;
 
         loading = pdfjs.getDocument({ url: src });
         const doc = await loading.promise;

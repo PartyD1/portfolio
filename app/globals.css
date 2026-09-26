@@ -4946,11 +4946,82 @@ html:has(.shots__dialog[open]) {
   height: 100%;
 }
 
-/* pdf.js sizes its text layer with round(), which older Safari drops; the
+/* pdf.js's text layer, over the canvas: every span is transparent text
+ * placed where its glyphs are drawn, so dragging selects the page, Cmd-F
+ * finds in it and a screen reader reads it. These are the layout rules from
+ * pdfjs-dist/web/pdf_viewer.css, trimmed to what a static page uses; pdf.js
+ * writes --min-font-size, --font-height, --scale-x and --rotate inline, and
+ * the sheet sets --total-scale-factor on every resize.
+ *
+ * pdf.js also sizes the layer with round(), which older Safari drops; the
  * sheet already has the page's exact aspect ratio, so fill it instead. */
 .resume__page .textLayer {
+  position: absolute;
+  inset: 0;
   width: 100% !important;
   height: 100% !important;
+  z-index: 1;
+  overflow: clip;
+  line-height: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: initial;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+  --min-font-size: 1;
+  --text-scale-factor: calc(var(--total-scale-factor) * var(--min-font-size));
+  --min-font-size-inv: calc(1 / var(--min-font-size));
+}
+
+.resume__page .textLayer :is(span, br) {
+  position: absolute;
+  color: transparent;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+  user-select: text;
+}
+
+.resume__page .textLayer > :not(.markedContent),
+.resume__page .textLayer .markedContent span:not(.markedContent) {
+  --font-height: 0;
+  --scale-x: 1;
+  --rotate: 0deg;
+  font-size: calc(var(--text-scale-factor) * var(--font-height));
+  transform: rotate(var(--rotate)) scaleX(var(--scale-x))
+    scale(var(--min-font-size-inv));
+}
+
+.resume__page .textLayer .markedContent {
+  display: contents;
+}
+
+/* The highlight is the accent at a wash, so it reads on white paper in
+ * either theme; the glyphs stay the canvas's. */
+.resume__page .textLayer ::selection {
+  background: color-mix(in oklab, var(--signal) 32%, transparent);
+  color: transparent;
+}
+
+.resume__page .textLayer br::selection {
+  background: transparent;
+}
+
+/* pdf.js's end-of-content marker: keeps a drag past the last line from
+ * selecting the whole page. */
+.resume__page .textLayer .endOfContent {
+  position: absolute;
+  inset: 100% 0 0;
+  display: block;
+  z-index: 0;
+  cursor: default;
+  user-select: none;
+}
+
+.resume__page .textLayer.selecting .endOfContent {
+  top: 0;
 }
 
 .resume__links {
