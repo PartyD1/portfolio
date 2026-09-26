@@ -7,6 +7,7 @@ import ScrollRing from "@/components/ScrollRing";
 import ScrollScrub from "@/components/ScrollScrub";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
+import { tagline } from "@/data/site";
 
 const display = Unbounded({
   subsets: ["latin"],
@@ -20,8 +21,7 @@ const body = Hanken_Grotesk({
   display: "swap",
 });
 
-const description =
-  "Computer science student at UC Santa Cruz building autonomous AI agents that do real work.";
+const description = tagline;
 
 /**
  * A portfolio's whole job is to be pasted into a message, so the unfurl is not

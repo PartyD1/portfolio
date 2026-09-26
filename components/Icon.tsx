@@ -73,6 +73,24 @@ export function ArrowUpRight({ className = "icon" }: IconProps) {
   );
 }
 
+/** Into the tray: the one control that saves a file rather than going anywhere. */
+export function Download({ className = "icon" }: IconProps) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M10 3v10M5.5 8.5 10 13l4.5-4.5M4 17h12" />
+    </svg>
+  );
+}
+
 export function Cross({ className = "icon" }: IconProps) {
   return (
     <svg

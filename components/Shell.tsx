@@ -146,7 +146,10 @@ export default function Shell() {
               <a href={links.linkedin} target="_blank" rel="noreferrer">
                 LinkedIn
               </a>
-              <ResumeLink className="menu__resume" />
+              <ResumeLink
+                className="menu__resume"
+                onClick={() => setOpen(false)}
+              />
             </div>
           </div>
 
