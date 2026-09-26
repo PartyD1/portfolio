@@ -134,7 +134,11 @@ export default function ResumeDocument({
             const [y1, y2] = [Math.min(ay, by), Math.max(ay, by)];
             const link = document.createElement("a");
             link.href = a.url;
-            if (!a.url.startsWith("mailto:")) {
+            // The résumé links to this site too; those stay in the tab.
+            const external =
+              !a.url.startsWith("mailto:") &&
+              new URL(a.url, location.href).host !== location.host;
+            if (external) {
               link.target = "_blank";
               link.rel = "noreferrer";
             }
