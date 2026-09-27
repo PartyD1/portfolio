@@ -4935,15 +4935,31 @@ html:has(.shots__dialog[open]) {
   aspect-ratio: 8.5 / 11;
 }
 
-.dark .resume__pages:empty,
-.dark .resume__page {
-  filter: brightness(0.94);
+/* Dark turns the sheet over with the rest of the site instead of leaving a
+ * white page glaring out of the indigo. The PDF is black ink on white with no
+ * images, so inverting the canvas loses nothing: white paper goes black, black
+ * ink goes white. Screen-blending that onto the dark paper then lifts the
+ * black to the paper's own colour while the white ink stays put, so the sheet
+ * sits on the same surface as the site's cards rather than on flat #000.
+ * isolation keeps the blend inside the sheet. It is all CSS, so the page
+ * flips on the same frame as everything else and pdf.js never redraws. */
+.dark .resume {
+  --paper: var(--white);
+}
+
+.resume__page {
+  isolation: isolate;
 }
 
 .resume__page canvas {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.dark .resume__page canvas {
+  filter: invert(1) brightness(0.93);
+  mix-blend-mode: screen;
 }
 
 /* pdf.js's text layer, over the canvas: every span is transparent text
@@ -4998,7 +5014,7 @@ html:has(.shots__dialog[open]) {
   display: contents;
 }
 
-/* The highlight is the accent at a wash, so it reads on white paper in
+/* The highlight is the accent at a wash, so it reads on the paper in
  * either theme; the glyphs stay the canvas's. */
 .resume__page .textLayer ::selection {
   background: color-mix(in oklab, var(--signal) 32%, transparent);
