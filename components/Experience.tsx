@@ -16,7 +16,9 @@ import { ArrowRight } from "@/components/Icon";
  *
  * An incoming role renders the role, the company and its season in the period
  * slot, and nothing else: no ownership sentence, no project chip, and not the
- * live node either, since live means happening now.
+ * live node either, since live means happening now. Its node and card outline
+ * dashed rather than solid — agreed, not yet real — the same outline-vs-fill
+ * distinction the hero already uses for a lead-in word versus the name.
  *
  * Returns null when there is nothing to show, so it can never become a
  * content-free section.
@@ -47,6 +49,7 @@ export default function Experience() {
                 delay={120 + i * 70}
                 className="timeline__item"
                 data-live={e.end || e.incoming ? undefined : ""}
+                data-incoming={e.incoming ? "" : undefined}
               >
                 <p className="timeline__period">
                   <span className="timeline__node" aria-hidden="true" />
