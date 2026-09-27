@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Parth Doshi's personal portfolio: a statically generated multi-route site — the homepage (`/`) plus a case study per project at `/work/[slug]` (six of them) — built with Next.js 15 App Router, React 19, TypeScript, and CSS. Tailwind v4 is installed (with shadcn, radix-ui and next-themes) — `app/globals.css` opens with `@import "tailwindcss"; @import "tw-animate-css"; @import "shadcn/tailwind.css";` — but the site itself is written in hand-authored CSS with custom properties and BEM-ish class names, not utility classes. No tests, no backend. Deploys to Vercel.
+Parth Doshi's personal portfolio: a statically generated multi-route site — the homepage (`/`) plus a case study per project at `/work/[slug]` (six of them) and the hosted résumé at `/resume` — built with Next.js 15 App Router, React 19, TypeScript, and CSS. Tailwind v4 is installed (with shadcn, radix-ui and next-themes) — `app/globals.css` opens with `@import "tailwindcss"; @import "tw-animate-css"; @import "shadcn/tailwind.css";` — but the site itself is written in hand-authored CSS with custom properties and BEM-ish class names, not utility classes. No tests, no backend. Deploys to Vercel.
 
 ## Commands
 
@@ -39,7 +39,7 @@ Screenshots in `.impeccable/review/` (320/390/768/1280/1366/1440 wide, both them
 
 ## Product and design constraints
 
-- `PRODUCT.md` is product truth. The parts that bite: never invent metrics, users, or testimonials; **Operations Agent has no public repo** (internship-confidential) and must not be given a link — not even a disabled one, because a disabled control implies the thing exists. The résumé is live at `public/resume.pdf`, gated by `resume.ready` in `data/site.ts` (currently `true`); that single flag switches the Contact and menu entries between an inert "coming soon" and a real download link. Never hand-wire a résumé link around the flag.
+- `PRODUCT.md` is product truth. The parts that bite: never invent metrics, users, or testimonials; **Operations Agent has no public repo** (internship-confidential) and must not be given a link — not even a disabled one, because a disabled control implies the thing exists. The résumé is live at `public/resume.pdf`, gated by `resume.ready` in `data/site.ts` (currently `true`); that single flag switches the Contact and menu entries between an inert "coming soon" and a link to `/resume` (`app/resume/page.tsx`), which hosts the PDF inside the site — drawn page by page by `components/ResumeDocument.tsx` with pdf.js (canvas + selectable text layer + the PDF's own links), loaded on that route only — with a Download button and links back into the portfolio. Off, `/resume` 404s. Replacing `public/resume.pdf` updates the page and the download together. Never hand-wire a résumé link around the flag.
 - The visual direction was **pinned by the user** to three reference screenshots in `.impeccable/references/` (Sharlee's holographic-blob portfolio leads, re-pinned 2026-09-01). **Both themes are first-class:** dark shipped 2026-09-01 as a second token set redefined under `.dark`, and a value that exists in only one theme is a bug. Don't re-propose a "console/terminal" aesthetic; that direction was explicitly superseded (history in `.impeccable/surfaces/homepage.md`).
 - Every copy claim on the page traces to `PRODUCT.md`; when in doubt, soften rather than escalate ("improved", not "rebuilt").
 

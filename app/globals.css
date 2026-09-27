@@ -4872,3 +4872,218 @@ html:has(.shots__dialog[open]) {
     @apply bg-background text-foreground;
   }
 }
+
+/* ==========================================================================
+   Résumé — /resume
+   ==========================================================================
+   A case-study route holding one document. The headline panel and the foot
+   are the case study's own; what is new is the sheet of paper between them.
+
+   The paper is white in BOTH themes, on purpose and not as a missed dark
+   value: it is the PDF, drawn as the PDF, and a résumé that turns navy on a
+   dark screen would no longer be the file the Download button hands over.
+   Dark mode dims it a step so it does not glare off the ground. */
+.resume {
+  --paper: #fff;
+}
+
+.resume__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 26px;
+  margin-top: 24px;
+}
+
+/* The live-link pill, minus the live dot: saving a file is the thing a
+ * visitor can DO here, so it takes the site's one "act on this" control. */
+.resume__download {
+  padding-left: 18px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* Down into the tray, not up-and-out: this arrow does not leave. Placed
+   * after .live-link:hover .icon, equal specificity, so this one wins. */
+  .resume__download:hover .icon {
+    transform: translateY(2px);
+  }
+}
+
+.resume__doc {
+  margin-top: 40px;
+}
+
+.resume__pages {
+  display: grid;
+  gap: 24px;
+  max-width: 880px;
+  margin-inline: auto;
+}
+
+/* Before pdf.js has laid out the first page the host is empty; it holds a
+ * blank Letter sheet so the foot does not jump 1100px when the page lands. */
+.resume__pages:empty,
+.resume__page {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-edge);
+  background: var(--paper);
+}
+
+.resume__pages:empty {
+  aspect-ratio: 8.5 / 11;
+}
+
+.dark .resume__pages:empty,
+.dark .resume__page {
+  filter: brightness(0.94);
+}
+
+.resume__page canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* pdf.js's text layer, over the canvas: every span is transparent text
+ * placed where its glyphs are drawn, so dragging selects the page, Cmd-F
+ * finds in it and a screen reader reads it. These are the layout rules from
+ * pdfjs-dist/web/pdf_viewer.css, trimmed to what a static page uses; pdf.js
+ * writes --min-font-size, --font-height, --scale-x and --rotate inline, and
+ * the sheet sets --total-scale-factor on every resize.
+ *
+ * pdf.js also sizes the layer with round(), which older Safari drops; the
+ * sheet already has the page's exact aspect ratio, so fill it instead. */
+.resume__page .textLayer {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1;
+  overflow: clip;
+  line-height: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-align: initial;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+  --min-font-size: 1;
+  --text-scale-factor: calc(var(--total-scale-factor) * var(--min-font-size));
+  --min-font-size-inv: calc(1 / var(--min-font-size));
+}
+
+.resume__page .textLayer :is(span, br) {
+  position: absolute;
+  color: transparent;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+  user-select: text;
+}
+
+.resume__page .textLayer > :not(.markedContent),
+.resume__page .textLayer .markedContent span:not(.markedContent) {
+  --font-height: 0;
+  --scale-x: 1;
+  --rotate: 0deg;
+  font-size: calc(var(--text-scale-factor) * var(--font-height));
+  transform: rotate(var(--rotate)) scaleX(var(--scale-x))
+    scale(var(--min-font-size-inv));
+}
+
+.resume__page .textLayer .markedContent {
+  display: contents;
+}
+
+/* The highlight is the accent at a wash, so it reads on white paper in
+ * either theme; the glyphs stay the canvas's. */
+.resume__page .textLayer ::selection {
+  background: color-mix(in oklab, var(--signal) 32%, transparent);
+  color: transparent;
+}
+
+.resume__page .textLayer br::selection {
+  background: transparent;
+}
+
+/* pdf.js's end-of-content marker: keeps a drag past the last line from
+ * selecting the whole page. */
+.resume__page .textLayer .endOfContent {
+  position: absolute;
+  inset: 100% 0 0;
+  display: block;
+  z-index: 0;
+  cursor: default;
+  user-select: none;
+}
+
+.resume__page .textLayer.selecting .endOfContent {
+  top: 0;
+}
+
+.resume__links {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.resume__links a {
+  position: absolute;
+  pointer-events: auto;
+}
+
+.resume__links a:focus-visible {
+  outline: 2px solid var(--signal-ink);
+  outline-offset: 1px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .resume__links a:hover {
+    background: color-mix(in oklab, var(--signal) 14%, transparent);
+  }
+}
+
+/* The page fades up over the blank sheet once pdf.js has painted it: seen
+ * once per visit, and it keeps the type from popping in. Opacity only, so
+ * reduced motion keeps it too (fewer and gentler, not none), just quicker. */
+.resume__doc[data-state="loading"] .resume__page canvas {
+  opacity: 0;
+}
+
+.resume__page canvas {
+  transition: opacity 120ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .resume__page canvas {
+    transition-duration: 220ms;
+  }
+}
+
+.resume__fallback {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.resume__fallback a {
+  color: var(--signal-ink);
+}
+
+@media (max-width: 760px) {
+  .resume__actions {
+    gap: 12px 18px;
+    margin-top: 20px;
+  }
+  .resume__doc {
+    margin-top: 24px;
+  }
+  .resume__pages {
+    gap: 16px;
+  }
+}

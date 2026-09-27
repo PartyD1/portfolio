@@ -6,12 +6,24 @@
  * `ready` stays as a switch rather than being deleted: setting it to false
  * reverts Contact and the menu to a designed pending state — inert text
  * saying "coming soon", never a dead link — which is what you want while
- * swapping the file out for a newer one.
+ * swapping the file out for a newer one. False also takes /resume itself down
+ * (404), since a page with no résumé on it is a placeholder.
  */
 export const resume = {
+  /** The file itself: the Download button and the renderer both read it. */
   path: "/resume.pdf",
+  /** The page that hosts it inside the site. Every Résumé link lands here,
+   * so a link sent on its own still has the rest of the portfolio around it. */
+  page: "/resume",
+  /** What the browser names the file on download, instead of "resume.pdf". */
+  filename: "Parth-Doshi-Resume.pdf",
   ready: true,
 } as const;
+
+/** The one-line self-description: the site's meta description and the
+ * résumé page's tagline, so the two can never drift apart. */
+export const tagline =
+  "Computer science student at UC Santa Cruz building autonomous AI agents that do real work.";
 
 /**
  * Where to reach him. Moved here from data/projects.ts, which had no business
