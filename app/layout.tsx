@@ -60,13 +60,11 @@ export const metadata: Metadata = {
   },
 };
 
-/* One per scheme, so the phone browser's chrome joins the page's ground
- * instead of sitting on the other side of a seam from it. */
+/* The light ground, since every visit opens in light: the phone browser's
+ * chrome joins the page instead of sitting across a seam from it. Choosing
+ * dark rewrites it from the toggle (ThemeToggle). */
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#e9e6ee" },
-    { media: "(prefers-color-scheme: dark)", color: "#191a2e" },
-  ],
+  themeColor: "#e9e6ee",
   viewportFit: "cover",
 };
 

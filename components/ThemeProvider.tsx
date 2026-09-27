@@ -10,8 +10,10 @@ export default function ThemeProvider({
   return (
     <NextThemes
       attribute="class"
-      defaultTheme="system"
-      enableSystem
+      /* Every visit opens in light, whatever the OS prefers; dark is one
+       * click away, and a choice made with the toggle is remembered. */
+      defaultTheme="light"
+      enableSystem={false}
       /* Without this, every transitioned property on the page animates at once
        * when the theme flips — the "everything animates" smear. */
       disableTransitionOnChange
